@@ -1,0 +1,123 @@
+@font-face {
+  font-family: "MiSansLight";
+  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Light.woff2);
+  font-weight: 250;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MiSansNormal";
+  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Normal.woff2);
+  font-weight: 305;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MiSansRegular";
+  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Regular.woff2);
+  font-weight: 330;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MiSansMedium";
+  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Medium.woff2);
+  font-weight: 380;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MiSansBold";
+  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Semibold.woff2);
+  font-weight: 520;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SourceHanSansSC-Bold";
+  src: url("@/assets/fonts/SourceSansPro-Bold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SourceHanSansSC-Light";
+  src: url("@/assets/fonts/SourceSansPro-Light.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SourceHanSansSC-Medium";
+  src: url("@/assets/fonts/SourceSansPro-Semibold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SourceHanSansSC-Normal";
+  src: url("@/assets/fonts/SourceSansPro-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SourceHanSansSC-Regular";
+  src: url("@/assets/fonts/SourceSansPro-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-miLight {
+  font-family: "MiSansLight", sans-serif;
+}
+
+.font-miNormal {
+  font-family: "MiSansNormal", sans-serif;
+}
+
+.font-miRegular {
+  font-family: "MiSansRegular", sans-serif;
+}
+
+.font-miMedium {
+  font-family: "MiSansMedium", sans-serif;
+}
+
+.font-miBold {
+  font-family: "MiSansBold", sans-serif;
+}
+
+body {
+  font-family: "MiSansNormal", sans-serif;
+}
+
+@font-face {
+  font-family: "MiSans";
+  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Light.woff2);
+  font-weight: 250;
+}
+
+@font-face {
+  font-family: "MiSans";
+  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Normal.woff2);
+  font-weight: 305;
+}
+
+@font-face {
+  font-family: "MiSans";
+  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Regular.woff2);
+  font-weight: 330;
+}
+
+@font-face {
+  font-family: "MiSans";
+  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Medium.woff2);
+  font-weight: 380;
+}
+
+@font-face {
+  font-family: "MiSans";
+  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Semibold.woff2);
+  font-weight: 520;
+}
