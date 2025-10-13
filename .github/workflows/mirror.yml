@@ -15,7 +15,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Configurar remoto mirror
+      - name: Limpiar credenciales de github-actions[bot]
+        run: |
+          git config --global --unset credential.helper || true
+
+      - name: Configurar remoto mirror con token personal
         env:
           MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
         run: |
