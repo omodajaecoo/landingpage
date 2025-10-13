@@ -1,0 +1,23 @@
+name: Mirror automotores-front → landingpage
+
+on:
+  push:
+    branches:
+      - main
+      - stable
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo completo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Trae todo el historial de git
+
+      - name: Mirror a landingpage
+        env:
+          MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
+        run: |
+          git remote add mirror https://x-access-token:${MIRROR_TOKEN}@github.com/ORG_DESTINO/landingpage.git
+          git push --mirror mirror
