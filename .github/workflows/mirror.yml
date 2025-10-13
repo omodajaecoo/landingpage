@@ -13,11 +13,15 @@ jobs:
       - name: Checkout repo completo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Clona todo el historial (todas las ramas y tags)
+          fetch-depth: 0  # Clona todo el historial y las ramas
 
-      - name: Mirror a landingpage (omodajaecoo)
+      - name: Configurar remoto mirror
         env:
           MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
         run: |
-          git remote add mirror https://x-access-token:${MIRROR_TOKEN}@github.com/omodajaecoo/landingpage.git
-          git push --mirror mirror
+          git remote add mirror https://omodajaecoo:${MIRROR_TOKEN}@github.com/omodajaecoo/landingpage.git
+
+      - name: Sincronizar ramas main y stable
+        run: |
+          git push mirror main:main --force
+          git push mirror stable:stable --force
