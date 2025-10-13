@@ -29,3 +29,5 @@ jobs:
         run: |
           git push mirror main:main --force
           git push mirror stable:stable --force
+
+#deploy
