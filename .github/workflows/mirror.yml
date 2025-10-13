@@ -9,25 +9,27 @@ on:
 jobs:
   mirror:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo completo
+      - name: Checkout código fuente
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false  # 👈 Desactiva el token del bot
 
-      - name: Limpiar credenciales de github-actions[bot]
+      - name: Configurar Git
         run: |
-          git config --global --unset credential.helper || true
+          git config user.name "omodajaecoo"
+          git config user.email "omodajaecoo@users.noreply.github.com"
 
-      - name: Configurar remoto mirror con token personal
+      - name: Agregar remoto con token personal
         env:
           MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
         run: |
-          git remote add mirror https://x-access-token:${MIRROR_TOKEN}@github.com/omodajaecoo/landingpage.git
+          git remote add mirror https://omodajaecoo:${MIRROR_TOKEN}@github.com/omodajaecoo/landingpage.git
+          git remote -v  # 👈 Verificación visual
 
       - name: Sincronizar ramas main y stable
         run: |
           git push mirror main:main --force
           git push mirror stable:stable --force
-
-#deploy
