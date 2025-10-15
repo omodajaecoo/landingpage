@@ -43,20 +43,19 @@ jobs:
           echo "⚙️ Generando build de producción..."
           npm run generate:prod
 
-      # 👉 Verificar que el build fue exitoso y que la carpeta dist existe
-      - name: Verify build output
+      # 👉 Verificar carpeta de salida
+      - name: Verify Nuxt output structure
         run: |
-          echo "🔍 Verificando contenido del build..."
-          if [ ! -d "dist" ]; then
-            echo "❌ Error: La carpeta 'dist' no fue generada. Revisa el comando npm run generate:prod."
-            exit 1
-          fi
-          if [ ! -f "dist/index.html" ]; then
-            echo "⚠️ Advertencia: No se encontró 'index.html' en dist/. Mostrando estructura:"
+          echo "🔍 Verificando estructura generada..."
+          if [ -d "dist/public" ]; then
+            echo "✅ Detectado build en dist/public"
+            ls -R dist/public
+          elif [ -d "dist" ]; then
+            echo "⚠️ Solo existe dist/, se usará esa ruta"
             ls -R dist
           else
-            echo "✅ Build generado correctamente. Estructura de dist:"
-            ls -R dist
+            echo "❌ No se encontró carpeta dist ni dist/public"
+            exit 1
           fi
 
       - name: Build And Deploy
@@ -65,11 +64,10 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AMBITIOUS_SAND_09E89E30F }}
           action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
+          ###### Repository/Build Configurations ######
           app_location: "/" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "dist" # Built app content directory - optional
+          api_location: ""  # No hay API
+          output_location: "dist/public" # ✅ Ajustado para Nuxt 3
           github_id_token: ${{ steps.idtoken.outputs.result }}
           ###### End of Repository/Build Configurations ######
 
