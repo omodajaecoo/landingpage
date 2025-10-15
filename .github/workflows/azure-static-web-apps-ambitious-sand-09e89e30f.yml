@@ -35,15 +35,13 @@ jobs:
                return await coredemo.getIDToken()
            result-encoding: string
 
-      # 👉 Generar el build manualmente
       - name: Install dependencies and build project
         run: |
           echo "📦 Instalando dependencias..."
           npm install
-          echo "⚙️ Generando build de producción (Nuxt 3)..."
+          echo "⚙️ Generando build de producción..."
           npm run generate:prod
 
-      # 👉 Verificar que el build se haya generado correctamente
       - name: Verify build output
         run: |
           echo "🔍 Verificando estructura generada..."
@@ -59,18 +57,19 @@ jobs:
           echo "✅ Build listo para desplegar. Estructura:"
           ls -R dist
 
-      # 👉 Desplegar sin reconstruir (Oryx skip build)
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AMBITIOUS_SAND_09E89E30F }}
           action: "upload"
-          app_location: "/" 
+          ###### Repository/Build Configurations ######
+          app_location: "dist"     # ✅ AHORA Azure busca aquí el index.html
           api_location: ""
-          output_location: "dist"  # ✅ usamos dist, no dist/public
-          skip_app_build: true     # ✅ evita que Oryx ejecute npm run build otra vez
+          output_location: ""      # ⚠️ vacío porque ya estamos dentro de dist
+          skip_app_build: true
           github_id_token: ${{ steps.idtoken.outputs.result }}
+          ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
