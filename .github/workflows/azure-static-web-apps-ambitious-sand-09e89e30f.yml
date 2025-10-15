@@ -2,10 +2,6 @@ name: Azure Static Web Apps CI/CD
 
 on:
   push:
-    branches:name: Azure Static Web Apps CI/CD
-
-on:
-  push:
     branches:
       - main
   pull_request:
@@ -39,123 +35,42 @@ jobs:
                return await coredemo.getIDToken()
            result-encoding: string
 
-      # 👉 Usamos el build manual con generate:prod
-      - name: Install dependencies and generate static site
-        run: |
-          echo "📦 Instalando dependencias..."
-          npm install
-          echo "⚙️ Generando build estático con npm run generate:prod..."
-          npm run generate:prod
-
-      # 👉 Verificar y ajustar la salida del build
-      - name: Verify build output
-        run: |
-          echo "🔍 Verificando estructura generada..."
-          if [ -d "dist/public" ]; then
-            echo "✅ Se detectó dist/public. Moviendo contenido a dist/..."
-            mv dist/public/* dist/
-          fi
-          if [ ! -f "dist/index.html" ]; then
-            echo "❌ Error: No se encontró dist/index.html"
-            ls -R dist || true
-            exit 1
-          fi
-          echo "✅ Build listo. Estructura final:"
-          ls -R dist
-
-      # 👉 Desplegar sin reconstrucción adicional (evita Oryx rebuild)
-      - name: Build And Deploy
-        id: builddeploy
-        uses: Azure/static-web-apps-deploy@v1
-        with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AMBITIOUS_SAND_09E89E30F }}
-          action: "upload"
-          ###### Configuración del despliegue ######
-          app_location: "/" # Ruta raíz del código fuente
-          api_location: ""  # No hay API
-          output_location: "dist" # ✅ el contenido final queda en dist
-          skip_app_build: true    # ✅ evita que Oryx vuelva a ejecutar npm run build
-          github_id_token: ${{ steps.idtoken.outputs.result }}
-          ###### Fin configuración ######
-
-  close_pull_request_job:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    name: Close Pull Request Job
-    steps:
-      - name: Close Pull Request
-        id: closepullrequest
-        uses: Azure/static-web-apps-deploy@v1
-        with:
-          action: "close"
-
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
-    branches:
-      - main
-
-jobs:
-  build_and_deploy_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
-    runs-on: ubuntu-latest
-    name: Build and Deploy Job
-    permissions:
-       id-token: write
-       contents: read
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: true
-          lfs: false
-
-      - name: Install OIDC Client from Core Package
-        run: npm install @actions/core@1.6.0 @actions/http-client
-
-      - name: Get Id Token
-        uses: actions/github-script@v6
-        id: idtoken
-        with:
-           script: |
-               const coredemo = require('@actions/core')
-               return await coredemo.getIDToken()
-           result-encoding: string
-
-      # 👉 Paso agregado: instalar dependencias y generar el build
+      # 👉 Generar el build manualmente
       - name: Install dependencies and build project
         run: |
           echo "📦 Instalando dependencias..."
           npm install
-          echo "⚙️ Generando build de producción..."
+          echo "⚙️ Generando build de producción (Nuxt 3)..."
           npm run generate:prod
 
-      # 👉 Verificar carpeta de salida
-      - name: Verify Nuxt output structure
+      # 👉 Verificar que el build se haya generado correctamente
+      - name: Verify build output
         run: |
           echo "🔍 Verificando estructura generada..."
           if [ -d "dist/public" ]; then
-            echo "✅ Detectado build en dist/public"
-            ls -R dist/public
-          elif [ -d "dist" ]; then
-            echo "⚠️ Solo existe dist/, se usará esa ruta"
-            ls -R dist
-          else
-            echo "❌ No se encontró carpeta dist ni dist/public"
+            echo "✅ Se encontró dist/public, moviendo contenido a dist/"
+            mv dist/public/* dist/
+          fi
+          if [ ! -f "dist/index.html" ]; then
+            echo "❌ No se encontró index.html, build incompleto."
+            ls -R dist || true
             exit 1
           fi
+          echo "✅ Build listo para desplegar. Estructura:"
+          ls -R dist
 
+      # 👉 Desplegar sin reconstruir (Oryx skip build)
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AMBITIOUS_SAND_09E89E30F }}
           action: "upload"
-          ###### Repository/Build Configurations ######
-          app_location: "/" # App source code path
-          api_location: ""  # No hay API
-          output_location: "dist/public" # ✅ Ajustado para Nuxt 3
+          app_location: "/" 
+          api_location: ""
+          output_location: "dist"  # ✅ usamos dist, no dist/public
+          skip_app_build: true     # ✅ evita que Oryx ejecute npm run build otra vez
           github_id_token: ${{ steps.idtoken.outputs.result }}
-          ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -167,4 +82,3 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           action: "close"
-
