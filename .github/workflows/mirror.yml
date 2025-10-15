@@ -1,0 +1,70 @@
+name: Mirror automotores-front → landingpage
+
+on:
+  push:
+    branches:
+      - main
+      - stable
+
+jobs:
+  mirror:
+    if: github.repository == 'NyxTech/automotores-front'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sin credenciales del bot
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Configurar identidad Git
+        run: |
+          git config user.name "omodajaecoo"
+          git config user.email "omodajaecoo@users.noreply.github.com"
+
+      - name: Inyectar credenciales personales
+        env:
+          MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
+        run: |
+          git config --global credential.helper store
+          echo "https://x-access-token:${MIRROR_TOKEN}@github.com" > ~/.git-credentials
+
+      # ✅ Prepara el código excluyendo workflows
+      - name: Preparar código para sincronización
+        run: |
+          mkdir sync-temp
+          rsync -av --progress ./ sync-temp/ --exclude '.git' --exclude '.github/workflows'
+          cd sync-temp
+          git init
+          git config user.name "omodajaecoo"
+          git config user.email "omodajaecoo@users.noreply.github.com"
+          git add .
+          git commit -m "sync: actualización desde automotores-front"
+
+      # ✅ Sincroniza sin borrar workflows del destino
+      - name: Sincronizar con el repositorio destino
+        env:
+          MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
+        run: |
+          cd sync-temp
+          git fetch https://omodajaecoo:${MIRROR_TOKEN}@github.com/omodajaecoo/landingpage.git main || true
+          git checkout -B main
+          
+          # Traer workflows del destino y mantenerlos
+          mkdir -p .github/workflows
+          git pull --no-edit --no-rebase https://omodajaecoo:${MIRROR_TOKEN}@github.com/omodajaecoo/landingpage.git main --allow-unrelated-histories || true
+          
+          echo "✅ Preservando workflows del destino"
+          rsync -av --ignore-existing ../.github/workflows/ .github/workflows/ || true
+          
+          git add .
+          git commit -m "sync: actualización sin sobrescribir workflows del destino" || echo "Sin cambios nuevos"
+          
+          git push https://omodajaecoo:${MIRROR_TOKEN}@github.com/omodajaecoo/landingpage.git main
+
+          if git show-ref --quiet refs/heads/stable; then
+            git push https://omodajaecoo:${MIRROR_TOKEN}@github.com/omodajaecoo/landingpage.git HEAD:stable
+          else
+            echo "⚠️ Rama stable no existe, se omite."
+          fi
