@@ -6,11 +6,7 @@
           
           <div class="w-full flex flex-col items-center text-center mb-[40px] sm:pb-[0px]">
             <h1 class="font-inter font-normal text-[24px] leading-[28px] sm:text-[32px] sm:leading-[38px] text-white sm:mx-[113px]">
-<<<<<<< HEAD
               LLENA EL SIGUIENTE FORMULARIO Y SE PARTE DE LOS EARLY ADOPTERS TEST
-=======
-              LLENA EL SIGUIENTE FORMULARIO Y SE PARTE DE LOS EARLY ADOPTERS
->>>>>>> f0d292acfc899ed3a1c76178ceac31289523d97e
             </h1>
 
             <div class="my-[32px] bg-[#67B0C480] rounded-[8px] p-2 flex flex-col items-center mx-auto sm:w-[300px]">
