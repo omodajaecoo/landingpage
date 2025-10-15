@@ -2,7 +2,93 @@ name: Azure Static Web Apps CI/CD
 
 on:
   push:
+    branches:name: Azure Static Web Apps CI/CD
+
+on:
+  push:
     branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+
+jobs:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    permissions:
+       id-token: write
+       contents: read
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+          lfs: false
+
+      - name: Install OIDC Client from Core Package
+        run: npm install @actions/core@1.6.0 @actions/http-client
+
+      - name: Get Id Token
+        uses: actions/github-script@v6
+        id: idtoken
+        with:
+           script: |
+               const coredemo = require('@actions/core')
+               return await coredemo.getIDToken()
+           result-encoding: string
+
+      # 👉 Usamos el build manual con generate:prod
+      - name: Install dependencies and generate static site
+        run: |
+          echo "📦 Instalando dependencias..."
+          npm install
+          echo "⚙️ Generando build estático con npm run generate:prod..."
+          npm run generate:prod
+
+      # 👉 Verificar y ajustar la salida del build
+      - name: Verify build output
+        run: |
+          echo "🔍 Verificando estructura generada..."
+          if [ -d "dist/public" ]; then
+            echo "✅ Se detectó dist/public. Moviendo contenido a dist/..."
+            mv dist/public/* dist/
+          fi
+          if [ ! -f "dist/index.html" ]; then
+            echo "❌ Error: No se encontró dist/index.html"
+            ls -R dist || true
+            exit 1
+          fi
+          echo "✅ Build listo. Estructura final:"
+          ls -R dist
+
+      # 👉 Desplegar sin reconstrucción adicional (evita Oryx rebuild)
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AMBITIOUS_SAND_09E89E30F }}
+          action: "upload"
+          ###### Configuración del despliegue ######
+          app_location: "/" # Ruta raíz del código fuente
+          api_location: ""  # No hay API
+          output_location: "dist" # ✅ el contenido final queda en dist
+          skip_app_build: true    # ✅ evita que Oryx vuelva a ejecutar npm run build
+          github_id_token: ${{ steps.idtoken.outputs.result }}
+          ###### Fin configuración ######
+
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          action: "close"
+
       - main
   pull_request:
     types: [opened, synchronize, reopened, closed]
@@ -81,3 +167,4 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           action: "close"
+
