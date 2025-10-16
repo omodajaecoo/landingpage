@@ -1,0 +1,60 @@
+// #__nuxt {
+//   font-size: 16px;
+//   line-height: 21px;
+//   color: #222222;
+//   overflow-x: hidden;
+//   overflow-y: auto;
+// }
+
+#layout-index,
+#layout-brand,
+#layout-newsCenter {
+  font-size: 16px;
+  line-height: 21px;
+  color: #222222;
+}
+
+// 大标题
+// .title {
+//   @apply
+//     uppercase
+//     text-[0.48rem] leading-[0.64rem] text-white
+//     lg:text-[0.4rem] lg:leading-[0.53rem];
+//   font-family: MiSansLight;
+// }
+
+:root {
+  --el-color-primary: #67b0c4 !important;
+}
+
+* {
+  /* --mainColor: #206779; */
+  /* --omodaE5MainColor:#71ceb8; */
+  --mainColor: #67b0c4;
+  --omodaE5MainColor: #67b0c4;
+  --el-mask-color: rgba(43, 43, 43, 0.7);
+  --el-color-primary: #67b0c4;
+  --navigation-bg-color: #000000;
+  --navigation-bg-o-color: rgba(0, 0, 0, 0.6);
+  --navigation-color: #67b0c4;
+  --smaller-pc-font-size: 0.82vw;
+  --small-pc-font-size: 0.96vw;
+  --news-normal-pc-font-size: 1.2vw;
+  --normal-pc-font-size: 1.93vw;
+  --big-pc-font-size: 2.41vw;
+  --kv-small-pc-font-size: 0.96vw;
+  --kv-normal-pc-font-size: 1.4vw;
+  --kv-big-pc-font-size: 1.8vw;
+  --brand-big-title-pc-font-size: 5.43vw;
+  --brand-normal-title-pc-font-size: 3.34vw;
+
+  --smaller-swiper-mob-font-size: 2vw;
+  --smaller-mob-font-size: 2.6vw;
+  --small-mob-font-size: 3vw;
+  --normal-mob-font-size: 4vw;
+  --big-mob-font-size: 6.41vw;
+  --kv-small-mob-font-size: 2.54vw;
+  --kv-normal-mob-font-size: 3.29vw;
+  --kv-big-mob-font-size: 3.86vw;
+  /* scrollbar-width: thin; */
+}
