@@ -142,3 +142,11 @@ body {
   font-family: "Inter", sans-serif;
   font-weight: 500;
 }
+.font-interSemiBold {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+}
+.font-interBold {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+}
