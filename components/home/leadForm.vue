@@ -13,9 +13,11 @@
               <label for="field1" class="block text-[12px] font-inter font-semibold text-[#0D0E0E] mb-[4px]">Nombre *</label>
               <input 
                 v-model="form.nombre"
+                @input="form.nombre = form.nombre.slice(0, 50)"
                 type="text" 
                 id="field1" 
                 placeholder="Nombre"
+                maxlength="50"
                 :class="{ 'border-[#B1000F]': errors.nombre }"
                 class="w-full rounded-[8px] font-interRegular border bg-white px-[14px] py-[8px] text-[14px] text-[#0D0E0E] placeholder:text-[#8E8E8E] focus:outline-none focus:ring-2 focus:ring-[#67B0C4]"
               >
@@ -25,9 +27,11 @@
               <label for="field2" class="block text-[12px] font-inter font-semibold text-[#0D0E0E] mb-[4px]">Apellido *</label>
               <input 
                 v-model="form.apellido"
+                @input="form.apellido = form.apellido.slice(0, 50)"
                 type="text" 
                 id="field2" 
                 placeholder="Apellido"
+                maxlength="50"
                 :class="{ 'border-[#B1000F]': errors.apellido }"
                 class="w-full rounded-[8px] font-interRegular border bg-white px-[14px] py-[8px] text-[14px] text-[#0D0E0E] placeholder:text-[#8E8E8E] focus:outline-none focus:ring-2 focus:ring-[#67B0C4]"
               >
@@ -37,9 +41,11 @@
               <label for="field3" class="block text-[12px] font-inter font-semibold text-[#0D0E0E] mb-[4px]">Cédula de identidad *</label>
               <input 
                 v-model="form.cedula"
+                @input="form.cedula = form.cedula.slice(0, 13)"
                 type="text" 
                 id="field3" 
                 placeholder="1234567891011"
+                maxlength="13"
                 :class="{ 'border-[#B1000F]': errors.cedula }"
                 class="w-full rounded-[8px] font-interRegular border bg-white px-[14px] py-[8px] text-[14px] text-[#0D0E0E] placeholder:text-[#8E8E8E] focus:outline-none focus:ring-2 focus:ring-[#67B0C4]"
               >
@@ -66,9 +72,11 @@
                 <span class="pl-[14px] pr-[4px] text-[#0D0E0E] text-[14px]">(593)</span>
                 <input 
                   v-model="form.celular"
+                  @input="form.celular = form.celular.slice(0, 10)"
                   type="text" 
                   id="field5" 
                   placeholder="991234567"
+                  maxlength="10"
                   class="w-full flex-1 font-interRegular bg-transparent py-[8px] pr-[14px] text-[14px] text-[#0D0E0E] placeholder:text-[#8E8E8E] focus:outline-none"
                 >
               </div>
@@ -125,7 +133,7 @@
           <!-- terms -->
           <div style="height:108px; overflow-y:auto; " class="w-full font-inter rounded-[8px] mt-[10px] text-[#0D0E0E] text-[12px] custom-scrollbar">
           
-              <h1 class="font-interMedium">Aviso de privacidad:</h1>
+              <h1 class="font-semibold">Aviso de privacidad:</h1>
 
               <p class="">
                   <span class="font-interMedium">TELEMÁTICA EQUINOCCIAL TELEQUINOX S.A., AUTOMOTORES Y ANEXOS
