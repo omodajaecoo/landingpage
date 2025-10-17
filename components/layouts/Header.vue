@@ -6,9 +6,10 @@
   >
     <!-- logo centrado -->
     <BaseImg 
-      class="logo w-[208px] lg:w-[208px] mx-auto block" 
+      class="logo w-[208px] lg:w-[208px] mx-auto block cursor-pointer" 
       :src="logoUrl"
       alt="logo"
+      @click="scrollToTop"
     />
   </header>
 </template>
@@ -25,6 +26,12 @@
 
   const isScrolled = ref(false);
   const { scrollY } = useScroll();
+
+  const scrollToTop = () => {    
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   onMounted(() => {
     if (typeof window !== 'undefined') {
@@ -46,13 +53,6 @@
     &.scrolled {
       background: rgba(0, 0, 0, 0.9);
       transition: background 0.3s ease-in-out;
-    }
-    &::after {
-      transition: .3s background ease-in-out;
-      content: '';
-      background: transparent;
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
     }
   }
 </style>
