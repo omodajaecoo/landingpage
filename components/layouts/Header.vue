@@ -1,8 +1,10 @@
 <template>
   <header 
     ref="headerRef" 
-    :class="[headerTheme, 'header', { 'scrolled': isScrolled } ]"
+    :class="[headerTheme, 'header', { 'scrolled': isScrolled || mbMenuExpand || isHovered } ]"
     class="w-full h-[0.88rem] lg:h-[0.54rem] px-[0.32rem] lg:px-[0.6rem] fixed top-0 left-0 z-[1000] flex justify-center items-center"
+    @mouseenter="isHovered = true"
+    @mouseleave="isHovered = false"
   >
     <!-- logo centrado -->
     <BaseImg 
@@ -11,6 +13,15 @@
       alt="logo"
       @click="scrollToTop"
     />
+    <LayoutsTopNav 
+      :expand="mbMenuExpand"
+      @touchmove.stop 
+    />
+    <MenuIcon 
+        class="block lg:hidden" 
+        :expand="mbMenuExpand" 
+        @click="handleToggleMenu"
+      />
   </header>
 </template>
 
@@ -26,6 +37,9 @@
 
   const isScrolled = ref(false);
   const { scrollY } = useScroll();
+  const mbMenuExpand = ref(false);
+  const activeFlag = ref(false);
+  const isHovered = ref(false);
 
   const scrollToTop = () => {    
     if (typeof window !== 'undefined') {
@@ -40,6 +54,14 @@
       }, { immediate: true });
     }
   });
+  const handleToggleMenu = () => {
+    mbMenuExpand.value = !mbMenuExpand.value;
+    if (mbMenuExpand.value) {
+      activeFlag.value = true;
+    } else {
+      activeFlag.value = false;
+    }
+  }
 
 </script>
 <style scoped lang='scss'>
