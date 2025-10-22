@@ -69,33 +69,6 @@
             </ul>
           </div>
         </transition>
-        <!-- children -->
-        <!-- <ul 
-          v-if="nav.children && nav.type !== 'model'" 
-          v-show="navStore.name === nav.name"
-          :class="[bgColor, textColor]"
-          class="
-            absolute top-[100%] left-0
-            flex items-center justify-center
-            w-[100vw] h-0 overflow-hidden backdrop-blur-2xl
-            pointer-events-none opacity-0
-            transition-all duration-300 ease-in-out
-            group-hover:h-[0.6rem] group-hover:opacity-100 group-hover:pointer-events-auto
-        ">
-          <li 
-            v-for="child in nav.children" 
-            :key="child.name"
-            class="mr-[150px] last:mr-0 flex items-center"
-            @click.stop="NavToPage(child.linkUrl)"
-          >
-            <div 
-              class="nav-line block text-[16px] lg:text-[14px] cursor-pointer relative px-[0.16rem] py-[0.1rem] animate__animated animate__fadeIn animate__faster"
-            >
-              <span>{{ child.name }}</span>
-              <span class="line"></span>
-            </div>
-          </li>
-        </ul> -->
       </li>
     </ul>
     <!-- mb -->
@@ -229,15 +202,32 @@
     headerTheme.value === 'dark' ? 'text-white' : 'text-black'
   );
   const mbMenuBg = computed(() => headerTheme.value === 'dark' ? 'bg-black text-white' : 'bg-white text-[#333]')
-
+  const brandList = ['JAECOO', 'OMODA'];  
   const navList = [
     {
-      name: 'contacto',
-      linkUrl: '#leadform'
-    },
-    {
-      name: 'global website',
-      linkUrl: '/globalWebsite'
+      name: 'models',
+      type: 'model',
+      children: [
+        {
+          name: 'OMODA C5',
+          imgUrl: '/header/c5.png',
+          brand: brandList[1],
+          linkUrl: '/c5',
+        },
+        {
+          name: 'OMODA E5',
+          imgUrl: '/header/e5.png',
+          brand: brandList[1],
+          linkUrl: '/e5'
+        },
+        {
+          name: 'JAECOO J7',
+          imgUrl: '/header/j7.png',
+          brand: brandList[0],
+          linkUrl: '/j7'
+        },
+        
+      ]
     },
   ]
 
