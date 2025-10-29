@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full flex justify-center items-center min-h-[100px] pt-[0px] py-[10px] pb-[10px] sm:pb-[32px]"
+    class="w-full flex justify-center items-center min-h-[100px] pt-[0px] py-[10px] pb-[32px] sm:pb-[100px]"
     style="background: linear-gradient(to bottom, #0D0E0E, #67B0C4);"
   >
     <div class="w-[800px] max-w-[90%] flex flex-col items-center">
@@ -124,13 +124,63 @@
           </div>
           <!-- terms -->
           <div style="height:108px; overflow-y:auto; " class="w-full font-inter rounded-[8px] mt-[10px] text-[#0D0E0E] text-[12px] custom-scrollbar">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta iure iste aliquam laborum nobis recusandae quod repellendus repudiandae dolorum, exercitationem ratione ex neque veritatis, in at ut consequuntur perferendis! Dicta?
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta iure iste aliquam laborum nobis recusandae quod repellendus repudiandae dolorum, exercitationem ratione ex neque veritatis, in at ut consequuntur perferendis! Dicta?
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta iure iste aliquam laborum nobis recusandae quod repellendus repudiandae dolorum, exercitationem ratione ex neque veritatis, in at ut consequuntur perferendis! Dicta?
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta iure iste aliquam laborum nobis recusandae quod repellendus repudiandae dolorum, exercitationem ratione ex neque veritatis, in at ut consequuntur perferendis! Dicta?
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta iure iste aliquam laborum nobis recusandae quod repellendus repudiandae dolorum, exercitationem ratione ex neque veritatis, in at ut consequuntur perferendis! Dicta?
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta iure iste aliquam laborum nobis recusandae quod repellendus repudiandae dolorum, exercitationem ratione ex neque veritatis, in at ut consequuntur perferendis! Dicta?
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta iure iste aliquam laborum nobis recusandae quod repellendus repudiandae dolorum, exercitationem ratione ex neque veritatis, in at ut consequuntur perferendis! Dicta?
+          
+              <h1 class="font-interMedium">Aviso de privacidad:</h1>
+
+              <p class="">
+                  <span class="font-interMedium">TELEMÁTICA EQUINOCCIAL TELEQUINOX S.A., AUTOMOTORES Y ANEXOS
+                  S.A. (A.Y.A.S.A.), FOTON DEL ECUADOR SOCIEDAD CIVIL Y COMERCIAL</span>,
+                  (en adelante LAS EMPRESAS), informan al cliente sobre el uso de su información
+                  personal, en virtud de su consentimiento:
+              </p>
+
+              <p class="">
+                  Los datos personales identificativos y de contacto que el cliente proporcione serán
+                  utilizados para atender sus requerimientos sobre bienes y/o servicios ofertados por
+                  LAS EMPRESAS, actividades de marketing, contacto directo o indirecto con el
+                  cliente a través del medio más idóneo. Sus datos personales serán conservados
+                  por el tiempo estrictamente necesario para el cumplimiento de las finalidades aquí
+                  descritas.
+              </p>
+
+              <p class="">
+                  El cliente, en calidad de titular de la información, podrá ejercer sus derechos de
+                  protección de datos personales dirigiendo un correo electrónico a:
+                  <a href="mailto:datos@ayasa.com.ec" class="text-blue-600 hover:text-blue-800 underline font-medium">datos@ayasa.com.ec</a>
+              </p>
+
+              <p class="">
+                  LAS EMPRESAS, en calidad de Responsables del Tratamiento, implementarán
+                  todas las medidas tecnológicas, organizativas y jurídicas que garanticen la
+                  seguridad de los datos personales registrados; y, en caso de que los datos
+                  personales sean transferidos dentro o fuera del Ecuador, LAS EMPRESAS
+                  garantizarán que los terceros cumplan con un nivel adecuado de protección
+                  conforme a la normativa vigente.
+              </p>
+
+              <h2 class="font-interMedium">CONSENTIMIENTO INFORMADO:</h2>
+
+              <p class="">
+                  EL CLIENTE, libre y voluntariamente, autoriza el tratamiento de sus datos
+                  personales a LAS EMPRESAS, conforme los parámetros descritos en el presente
+                  aviso de privacidad. En consecuencia, LAS EMPRESAS, podrán compartir,
+                  transferir, consultar; y, en general tratar la información personal registrada por el
+                  titular.
+              </p>
+
+              <p class="">
+                  EL CLIENTE, garantiza la veracidad de la información personal entregada y se
+                  compromete a comunicar de manera inmediata sobre cualquier cambio o
+                  modificación de la misma. En consecuencia, LAS EMPRESAS, no serán
+                  responsables de los resultados derivados del tratamiento o procesamiento de los
+                  datos personales inexactos, erróneos o falases.
+              </p>
+
+              <p class="">
+                  El cliente conoce que, de oponerse a ciertos tratamientos, podría limitar su
+                  relación comercial con LAS EMPRESAS.
+              </p>
+
           </div>
           <div class="mt-[10px]">
             <label for="terms" class="flex items-center cursor-pointer font-inter">

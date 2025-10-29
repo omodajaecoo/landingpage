@@ -21,7 +21,7 @@ export default defineNuxtConfig({
   app: {
     baseURL: process.env.NUXT_API_KEY,
     head: {
-      title: "OMODA&JAECOO INTERNATIONAL WEB",
+      title: "OMODA&JAECOO",
       meta: [
         {
           name: "viewport",
