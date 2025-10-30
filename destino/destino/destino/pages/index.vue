@@ -41,7 +41,7 @@ const banner2Content = ref({
 
 const leadFormRef = ref();
 const focusLeadForm = () => {
-  const el = leadFormRef.value?.$el || leadFormRef.value?.$refs?.root || null;
+  const el = leadFormRef.value?.root || null;
   if (el && typeof el.scrollIntoView === 'function') {
     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     const input = el.querySelector('input,select,textarea,button');
