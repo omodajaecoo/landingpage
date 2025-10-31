@@ -63,7 +63,7 @@ const categories = [
     title: 'MODELOS JAECOO',
     isLinked: false,
     links: [
-      { name: 'JAECOO C7', link: '/models/jaecoo-c7' },
+      { name: 'JAECOO J7', link: '/models/jaecoo-j7' },
     ]
   },
   {

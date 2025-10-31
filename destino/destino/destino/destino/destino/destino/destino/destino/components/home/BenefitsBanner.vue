@@ -14,7 +14,7 @@
             </div>
           </div>
           <div class="flex flex-col items-center space-y-[24px] sm:space-y-[40px] w-full lg:max-w-[400px]">
-            <BaseImg src="index/banner-benefits_2.webp" class="max-h-[140px] sm:max-h-[450px] lg:h-[268px] sm:w-[70%] lg:w-[90%] object-contain"/>
+            <BaseImg src="index/banner-benefits_2_2.png" class="max-h-[140px] sm:max-h-[450px] lg:h-[268px] sm:w-[70%] lg:w-[90%] object-contain"/>
             <div class="font-interRegular text-white text-[14px] sm:text-[16px] text-center">
               En O&J premiamos tu próxima compra con beneficios especiales y un valor garantizado al renovar tu OMODA & JAECOO en el futuro.*
             </div>
