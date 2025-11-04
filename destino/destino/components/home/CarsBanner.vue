@@ -139,25 +139,42 @@ import { type Swiper } from "swiper";
 import { useRouter } from 'vue-router';
 
 const { isMobile } = useDeviceType()
+const props = defineProps({
+  LP: {
+    type: Boolean,
+    default: false
+  }
+});
 
 const router = useRouter();
 
-const slides = [
+let slides = [
   {
     title: "Omoda C5",
     desc: "El Omoda C5 Super Hybrid System no solo combina potencia y eficiencia, sino también un diseño que redefine el estilo urbano. Su silueta fastback aerodinámica transmite movimiento incluso en reposo, mientras el frontal sin marco y la parrilla paramétrica en forma de diamante proyectan una estética futurista.",
-    imgUrl: "index/banner-value_1.webp",
+    imgUrl: "index/banner-value_omoda-c5.webp",
+    btn: 'Más información',
+    link: '#contactForm'
+  },
+  {
+    title: "Omoda E5",
+    desc: "El Omoda E5 trae la movilidad eléctrica con un diseño que fusiona aerodinámica, tecnología y emoción. Su silueta fastback transmite dinamismo puro, mientras el frontal cerrado sin parrilla tradicional y las líneas limpias y fluidas reflejan la elegancia de un vehículo nacido para un futuro más sostenible.",
+    imgUrl: "index/banner-value_omoda-e5.webp",
     btn: 'Más información',
     link: '#contactForm'
   },
   {
     title: "Jaecoo J7",
     desc: "El Jaecoo J7 Super Hybrid System combina elegancia urbana con la fuerza de un auténtico SUV todoterreno. Su diseño vertical y musculoso proyecta autoridad en cada ángulo, mientras la parrilla trapezoidal con detalles cromados y las luces LED en forma de T refuerzan su identidad moderna y poderosa.",
-    imgUrl: "index/banner-value_2.webp",
+    imgUrl: "index/banner-value_jaecoo-j7.webp",
     btn: 'Más información',
     link: '#contactForm'
   }
 ];
+
+const slidesLP = [true, false, true];
+
+if (props.LP) {slides = slides.filter((_, index) => slidesLP[index])};
 
 let swiperInst: Swiper;
 const activeIndex = ref(0);

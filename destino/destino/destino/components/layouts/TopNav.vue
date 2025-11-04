@@ -236,7 +236,7 @@
     },
     {
       name: 'Súper híbrido',
-      linkUrl: '/home'
+      linkUrl: '/shs'
     },
     {
       name: 'Nosotros',
