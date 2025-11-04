@@ -1,10 +1,6 @@
 <template>
   <div class="table-main">
     <div v-if="paramsData && paramsData.title" :mq="['lg', 'xl', 'md']">
-      <div class="h3 title params-table__title">
-        <div class="txt">{{ paramsData.title }}</div>
-        <img loading="lazy" src="/images/table-title.webp" class="img" />
-      </div>
       <table class="params-table">
         <thead class="params-table__header">
           <tr
@@ -211,12 +207,7 @@
       <div class="params-div__remark">{{ paramsDataMobile.remarks[0] }}</div>
       <div class="params-div__remark">{{ paramsDataMobile.remarks[1] }}</div>
     </div>
-    <div class="table-hint">
-      The pictures and parameters in this website are for reference only, and
-      the relevant configuration of the vehicle model will be adjusted
-      differently due to different national markets. The actual release of the
-      country shall prevail.
-    </div>
+    
   </div>
 </template>
 
