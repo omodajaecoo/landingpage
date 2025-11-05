@@ -13,15 +13,6 @@
       alt="logo"
       @click="scrollToTop"
     />
-    <LayoutsTopNav 
-      :expand="mbMenuExpand"
-      @touchmove.stop 
-    />
-    <MenuIcon 
-        class="block lg:hidden" 
-        :expand="mbMenuExpand" 
-        @click="handleToggleMenu"
-      />
   </header>
 </template>
 

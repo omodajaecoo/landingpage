@@ -59,7 +59,7 @@
       <div
         v-for="(bottomItem, bottomItemIndex) in bottom.list"
         :key="bottomItemIndex"
-        class="shs-bottom-item"
+        class="shs-bottom-item flex-1"
       >
         <div
           v-if="bottomItem.title"
@@ -236,15 +236,15 @@ const props = withDefaults(defineProps<PageData>(), {
 });
 
 const activeIndex3 = ref(0);
-let page3SwiperInst;
+let page3SwiperInst:any = null;
 
-const handlePage3Swiper = (swiper) => {
+const handlePage3Swiper = (swiper:any) => {
   page3SwiperInst = swiper;
 };
 const handlePage3SlideChange = () => {
   activeIndex3.value = page3SwiperInst?.realIndex || 0;
 };
-const handlePage3Change = (index) => {
+const handlePage3Change = (index:number) => {
   page3SwiperInst.slideToLoop(index);
 };
 
@@ -274,28 +274,20 @@ const config = useRuntimeConfig();
     color: #fff;
     &-title {
       margin-bottom: 0.12rem;
-      font-size: 0.32rem;
+      font-size: 32px;
       line-height: 1.5;
-      font-weight: 380;
-      /* text-transform: uppercase; */
+      font-weight: 500;
     }
     &-desc {
-      font-size: 0.16rem;
-      /* line-height: 0.21rem; */
-      line-height: 1.5;
-      font-weight: 205;
+      font-size: 16px;
+      line-height: 1.2;
+      font-weight: 200;
     }
     &.p1 {
       top: 12.21vw;
       .shs-top-title {
-        font-size: 0.4rem;
-        line-height: 1.5;
-      }
-    }
-    &.p2 {
-      .shs-top-desc {
-        /* font-size: 1.25vw;
-        line-height: 1.67vw; */
+        font-size: 36px;
+        line-height: 1.2;
       }
     }
     &.p9 {
@@ -311,10 +303,11 @@ const config = useRuntimeConfig();
     width: 80vw;
     color: #fff;
     &-title {
-      font-size: 0.2rem;
-      line-height: 1.5;
-      font-weight: 305;
+      font-size: 16px;
+      line-height: 1.2;
+      font-weight: 300;
       letter-spacing: 0.002083em;
+      max-width: 520px;
     }
   }
   .shs-horizontal {
@@ -330,9 +323,9 @@ const config = useRuntimeConfig();
       display: flex;
       align-items: center;
       width: 30.63vw;
-      font-size: 0.24rem;
-      line-height: 1.5;
-      font-weight: 305;
+      font-size: 20px;
+      line-height: 1.2;
+      font-weight: 300;
       letter-spacing: 0.002083em;
 
       :deep(span) {
@@ -342,18 +335,8 @@ const config = useRuntimeConfig();
     &-right {
       width: 52.08vw;
     }
-    &.leftSmall {
-      .shs-horizontal-left {
-        font-size: 0.18rem;
-        line-height: 1.5;
-      }
-    }
     &.top1432 {
       margin-top: 6.364%;
-
-      .shs-horizontal-left {
-        font-weight: 250;
-      }
     }
     &.top8 {
       margin-top: 4.6%;
@@ -369,139 +352,39 @@ const config = useRuntimeConfig();
     display: flex;
     justify-content: space-between;
     &-title {
-      font-size: 0.16rem;
+      font-size: 16px;
       line-height: 1.5;
-      font-weight: 380;
-      letter-spacing: 0.002083em;
-      /* text-transform: capitalize; */
+      font-weight: 400;
+      letter-spacing: 0.025em;
     }
     &-desc {
       margin-top: 0.62vw;
-      font-size: 0.14rem;
-      line-height: 1.5;
+      font-size: 14px;
+      line-height: 1.2;
       font-weight: 250;
       letter-spacing: 0.002083em;
+      margin-right: 30px;
     }
     &.p3 {
-      width: 86.09vw;
-      height: 5vw;
-      align-items: center;
-      margin-left: -43.045vw;
       .shs-bottom {
-        &-item {
-          position: relative;
-          display: flex;
-          align-items: center;
-          height: 2.81vw;
-
-          &::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            right: -2.6vw;
-            width: 1px;
-            /* height: 2.6vw; */
-            height: 5.2vw;
-            transform: scale(0.5);
-            margin-top: -2.6vw;
-            /* background: rgba(216, 216, 216, 0.8); */
-            background: rgba(#909399, 0.85);
-            transform-origin: 0 50;
-          }
-        }
-        &-title {
-          width: 25.21vw;
-          font-size: 0.16rem;
-          line-height: 1.5;
-          font-weight: 250;
+        &-desc {
           text-align: center;
           text-transform: none;
-        }
-
-        &-item:last-of-type {
-          &::after {
-            display: none;
-          }
         }
       }
     }
     &.p4 {
-      justify-content: center;
-      text-align: center;
       .shs-bottom {
-        &-title {
-          font-size: 0.27rem;
-          line-height: 1.5;
-          font-weight: 380;
-        }
         &-desc {
-          font-size: 0.16rem;
-          line-height: 1.5;
-          font-weight: 250;
-        }
-      }
-    }
-    &.p14 {
-      width: 67.56vw;
-      height: 5vw;
-      align-items: center;
-      margin-left: -33.78vw;
-      .shs-bottom {
-        &-title {
-          position: relative;
-          width: 29.25vw;
-          font-size: 0.16rem;
-          line-height: 1.5;
-          font-weight: 250;
+          width: 80vw;
           text-align: center;
           text-transform: none;
-
-          :deep(span) {
-            font-weight: 520;
-          }
-
-          &::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            /* right: -5.21vw; */
-            right: -4.53vw;
-            width: 1px;
-            height: 6.66vw;
-            transform: scale(0.5);
-            margin-top: -3.33vw;
-            /* background: rgba(216, 216, 216, 0.8); */
-            background: rgba(#909399, 0.85);
-            transform-origin: 0 50;
-          }
-        }
-
-        &-item:last-of-type {
-          .shs-bottom-title::after {
-            display: none;
-          }
         }
       }
     }
   }
 }
-// P14设置
-@media screen and (max-width: 1160px) {
-  .shs-box {
-    .shs-bottom.p14 {
-      width: 70.56vw;
-      margin-left: -35.28vw;
-      .shs-bottom {
-        &-title {
-          width: 32.25vw;
-          &::after {
-            right: -3.03vw;
-          }
-        }
-      }
-    }
-  }
-}
+
 // 1080 900 810 720
 @media screen and (max-height: 900px) {
   .shs-box {
@@ -536,36 +419,172 @@ const config = useRuntimeConfig();
     }
   }
 }
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 767px) {
+  // Solo teléfonos móviles (portrait y landscape)
   .shs-box {
     .shs-top {
-      top: 18.47%;
-      width: 91.47vw;
-      margin-left: -45.735vw;
+      top: 15%;
       &-title {
-        margin-bottom: 3.2vw;
-        font-size: 6.4vw;
-        line-height: 8.53vw;
-        letter-spacing: 0.002083em;
+        font-size: 20px;
+        line-height: 24px;
       }
       &-desc {
-        font-size: 3.2vw;
-        line-height: 4.5333vw;
+        font-size: 14px;
+        line-height: 16px;
+        margin-top: 16px;
       }
       &.titleLarge {
+        top: 15%;
         .shs-top-title {
-          font-size: 8vw;
-          line-height: 10.67vw;
+          font-size: 20px;
         }
       }
     }
     .shs-leftBottom {
       left: 4.27vw;
-      bottom: 8.6224%;
+      bottom: 40px;
       &-title {
-        font-size: 4.27vw;
-        line-height: 5.6vw;
+        font-size: 18px;
+        line-height: 22px;
         letter-spacing: 0;
+      }
+    }
+    .shs-horizontal {
+      &-left {
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+    .shs-bottom {
+      &-title {
+        font-size: 16px;
+        line-height: 20px;
+      }
+      &-desc {
+        font-size: 12px;
+        line-height: 16px;
+      }
+      &.h3 {
+        .shs-bottom {
+          &-desc {
+            text-align: center;
+            text-transform: none;
+            padding-top: 30px;
+          }
+        }
+      }
+    }
+    &.h5,
+    &.h9,
+    &.h11,
+    &.h13 {
+      height: 100%;
+      .shs-img {
+        position: absolute;
+        height: 100%;
+      }
+      .shs-top {
+        position: static;
+        transform: none;
+        margin: 0 auto;
+        padding-top: 50px;
+      }
+      .shs-horizontal {
+        padding-bottom: 100px;
+      }
+    }
+
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  // Solo tablets (portrait y landscape)
+  .shs-box {
+    .shs-top {
+      top: 100px;
+      &-title {
+        font-size: 32px;
+        line-height: 40px;
+        margin-bottom: 16px;
+      }
+      &-desc {
+        font-size: 16px;
+        line-height: 20px;
+      }
+      &.titleLarge {
+        .shs-top-title {
+          font-size: 36px;
+        }
+      }
+    }
+    .shs-leftBottom {
+      left: 4.27vw;
+      bottom: 40px;
+      max-width: 500px;
+      &-title {
+        font-size: 20px;
+        line-height: 24px;
+        letter-spacing: 0;
+        text-align: left;
+      }
+    }
+    .shs-horizontal {
+      &-left {
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+    .shs-bottom {
+      &-title {
+        font-size: 24px;
+        line-height: 28px;
+      }
+      &-desc {
+        font-size: 18px;
+        line-height: 22px;
+      }
+      &.h3 {
+        .shs-bottom {
+          &-desc {
+            text-align: center;
+            text-transform: none;
+            padding-top: 30px;
+          }
+        }
+      }
+    }
+    &.h5,
+    &.h9,
+    &.h11,
+    &.h13 {
+      height: 100%;
+      .shs-img {
+        position: absolute;
+        height: 100%;
+      }
+      .shs-top {
+        position: static;
+        transform: none;
+        margin: 0 auto;
+        padding-top: 100px;
+      }
+      .shs-horizontal {
+        margin-bottom: 100px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1023px) {
+  .shs-box {
+    .shs-top {
+      width: 91.47vw;
+      margin-left: -45.735vw;
+      &-title {
+        letter-spacing: 0.002083em;
+      }
+      &.titleLarge {
+        .shs-top-title {
+          line-height: 10.67vw;
+        }
       }
     }
     .shs-horizontal {
@@ -573,18 +592,15 @@ const config = useRuntimeConfig();
       transform: none;
       width: 91.47vw;
       height: auto;
-      margin: 12.78vw auto 0;
+      margin: 60px auto 0;
       /* flex-flow: column-reverse; */
       flex-direction: column;
       &-left {
         display: block;
         width: 100%;
-        font-size: 3.2vw;
-        line-height: 4.27vw;
-        font-weight: 380;
+        font-weight: 300;
         letter-spacing: 0.005333em;
-        margin-top: 4.27vw;
-
+        margin-top: 24px;
         :deep(span) {
           font-size: 5.3375vw;
           font-weight: 305;
@@ -601,8 +617,6 @@ const config = useRuntimeConfig();
       display: block;
       &-title {
         padding: 5.33vw 0;
-        font-size: 2.67vw;
-        line-height: 3.6vw;
         font-weight: 305;
         letter-spacing: 0.005333em;
         /* text-transform: capitalize; */
@@ -610,10 +624,9 @@ const config = useRuntimeConfig();
       }
       &-desc {
         margin-top: 0.62vw;
-        font-size: 0.83vw;
-        line-height: 1.1vw;
         font-weight: 250;
         letter-spacing: 0.002083em;
+        margin-right: 0px;
       }
       &-item {
         position: relative;
@@ -639,30 +652,11 @@ const config = useRuntimeConfig();
         justify-content: center;
         text-align: center;
         .shs-bottom {
-          &-title {
-            padding: 0;
-            font-size: 6.93vw;
-            line-height: 9.2vw;
-            font-weight: 380;
-          }
           &-desc {
             margin-top: 3.2vw;
-            font-size: 3.2vw;
+            font-size: 14px;
             line-height: 4.27vw;
             font-weight: 305;
-          }
-        }
-      }
-      &.h14 {
-        .shs-bottom {
-          &-title {
-            font-size: 3.2vw;
-            line-height: 4.267vw;
-            text-align: left;
-
-            :deep(span) {
-              font-weight: 520;
-            }
           }
         }
       }
@@ -688,48 +682,14 @@ const config = useRuntimeConfig();
         .shs-bottom {
           &-title {
             padding: 0;
-            font-size: 3.73vw;
-            line-height: 4.93vw;
             font-weight: 380;
             text-align: left;
           }
           &-desc {
             margin-top: 1.6vw;
-            font-size: 2.4vw;
-            line-height: 3.2vw;
             font-weight: 250;
+            margin-right: 30px;
           }
-        }
-      }
-    }
-    &.h5,
-    &.h9,
-    &.h11,
-    &.h13 {
-      height: 160.13vw;
-      .shs-img {
-        position: absolute;
-        height: 160.13vw;
-      }
-      .shs-top {
-        position: static;
-        transform: none;
-        margin: 0 auto;
-        padding-top: 32vw;
-      }
-    }
-    &.h11,
-    &.h13 {
-      height: 124.27vw;
-      .shs-img {
-        height: 124.27vw;
-      }
-      .shs-horizontal {
-        padding-top: 32vw;
-        margin-top: 0;
-        &-left {
-          font-size: 4.27vw;
-          line-height: 5.6vw;
         }
       }
     }
