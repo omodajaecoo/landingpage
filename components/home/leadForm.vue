@@ -1,6 +1,7 @@
 <template>
   <div
     ref="root"
+    v-bind="$attrs"
     class="w-full flex justify-center items-center min-h-[100px] pt-[0px] py-[10px] pb-[32px] sm:pb-[100px]"
     style="background: linear-gradient(to bottom, #0D0E0E, #67B0C4);"
   >
