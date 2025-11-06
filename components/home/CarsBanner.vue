@@ -9,7 +9,8 @@
                 <BaseImg :src="slide.imgUrl" class="w-[560px] max-h-[480px] object-cover" />
               </div>
               <div class="flex justify-start items-center">
-                <div class="flex flex-col justify-center items-center h-full bg-[#121313] w-[560px] px-[56px] space-y-[42px]">
+                <div
+                  class="flex flex-col justify-center items-center h-full bg-[#121313] w-[560px] px-[56px] space-y-[42px]">
                   <div class="font-interRegular text-white text-[32px] text-center">
                     {{ slide.title }}
                   </div>
@@ -17,14 +18,17 @@
                     {{ slide.desc }}
                   </div>
                   <div class="flex justify-center items-center">
-                    <a :href="slide.link" target="_blank" rel="noopener">
-                      <BaseButton
-                        type="text"
-                        class="font-interRegular text-[20px] px-[20px] py-[25px] border border-white"
-                      >
-                        Más información
+                    <a v-if="props.LP" :href="slide.link" target="_blank" rel="noopener">
+                      <BaseButton type="text"
+                        class="font-interRegular text-[20px] px-[20px] py-[25px] border border-white">
+                        {{ slide.btn }}
                       </BaseButton>
                     </a>
+                    <BaseButton v-else type="text"
+                      class="font-interRegular text-[20px] px-[20px] py-[25px] border border-white"
+                      @click="router.push(slide.link)">
+                      {{ slide.btn }}
+                    </BaseButton>
                   </div>
                 </div>
               </div>
@@ -33,7 +37,8 @@
           <template v-else>
             <div class="w-full grid grid-cols-2 h-[480px]">
               <div class="flex justify-end items-center">
-                <div class="flex flex-col justify-center items-center  h-full bg-[#121313] w-[560px] px-[56px] space-y-[42px]">
+                <div
+                  class="flex flex-col justify-center items-center  h-full bg-[#121313] w-[560px] px-[56px] space-y-[42px]">
                   <div class="font-interRegular text-white text-[32px] text-center">
                     {{ slide.title }}
                   </div>
@@ -41,14 +46,17 @@
                     {{ slide.desc }}
                   </div>
                   <div class="flex justify-center items-center">
-                    <a :href="slide.link" target="_blank" rel="noopener">    
-                      <BaseButton
-                        type="text"
-                        class="font-interRegular text-[20px] px-[20px] py-[25px] border border-white"
-                      >
-                        Más información
+                    <a v-if="props.LP" :href="slide.link" target="_blank" rel="noopener">
+                      <BaseButton type="text"
+                        class="font-interRegular text-[20px] px-[20px] py-[25px] border border-white">
+                        {{ slide.btn }}
                       </BaseButton>
                     </a>
+                    <BaseButton v-else type="text"
+                      class="font-interRegular text-[20px] px-[20px] py-[25px] border border-white"
+                      @click="router.push(slide.link)">
+                      {{ slide.btn }}
+                    </BaseButton>
                   </div>
                 </div>
               </div>
@@ -60,16 +68,15 @@
         </template>
       </div>
     </template>
-    
+
     <template v-else>
       <div class="w-full h-auto bg-black flex justify-center overflow-hidden">
         <div class="w-full h-auto py-[50px] md:py-[100px] px-[10px] md:px-[24px]">
           <template v-for="(slide, index) in slides" :key="index">
-            <div class="" v-if="index === activeIndex"
-              v-animate="{
-                effect: 'fadeInUp',
-                once: true,
-              }">
+            <div class="" v-if="index === activeIndex" v-animate="{
+              effect: 'fadeInUp',
+              once: true,
+            }">
               <div class="flex flex-col justify-center items-center text-center py-[24px] space-y-[42px]">
                 <div class="text-white text-[24px] md:text-[32px] font-interRegular">
                   {{ slide.title }}
@@ -77,58 +84,47 @@
                 <div class="text-white text-[14px] md:text-[16px] font-interSemiRegular">
                   {{ slide.desc }}
                 </div>
-                  <a :href="slide.link" target="_blank" rel="noopener">  
-                    <BaseButton
-                      type="text"
-                      class="font-interRegular text-white text-[20px] px-[20px] py-[16px] lg:py-[25px] border border-white"
-                    >
-                      {{ slide.btn }}
-                    </BaseButton>
-                  </a>
+                <a v-if="props.LP" :href="slide.link" target="_blank" rel="noopener">
+                  <BaseButton type="text"
+                    class="font-interRegular text-white text-[20px] px-[20px] py-[16px] lg:py-[25px] border border-white">
+                    {{ slide.btn }}
+                  </BaseButton>
+                </a>
+                <BaseButton v-else type="text"
+                  class="font-interRegular text-white text-[20px] px-[20px] py-[16px] lg:py-[25px] border border-white"
+                  @click="router.push(slide.link)">
+                  {{ slide.btn }}
+                </BaseButton>
               </div>
             </div>
           </template>
 
           <ClientOnly>
-            <swiper
-              :autoplay="false"
-              :speed="500"
-              @swiper="handleInit"
-              @slide-change="handleSlideChange"
-              class="home-swiper mt-[0.6rem]"
-            >
+            <swiper :autoplay="false" :speed="500" @swiper="handleInit" @slide-change="handleSlideChange"
+              class="home-swiper mt-[0.6rem]">
               <swiper-slide v-for="(slide, idx) in slides" :key="idx">
-                <BaseImg
-                  :src="slide.imgUrl"
-                  class="w-full h-[300px] md:h-[980px] object-cover"
-                />
+                <BaseImg :src="slide.imgUrl" class="w-full h-[300px] md:h-[980px] object-cover" />
               </swiper-slide>
             </swiper>
           </ClientOnly>
 
           <div class="flex justify-center gap-[calc(10/7.5*1vw)] mt-[calc(40/7.5*1vw)]">
-            <div
-              v-for="(item, index) in slides"
-              :key="index"
-              class="w-[calc(48/7.5*1vw)] h-[calc(4/7.5*1vw)]"
+            <div v-for="(item, index) in slides" :key="index" class="w-[calc(48/7.5*1vw)] h-[calc(4/7.5*1vw)]"
               :class="index === activeIndex ? 'bg-white' : 'bg-[rgba(255,255,255,0.2)]'"
-              @click="handleChangeSlide(index)"
-            ></div>
+              @click="handleChangeSlide(index)"></div>
           </div>
 
           <template v-for="(slide, index) in slides" :key="index">
-            <div class="flex flex-col justify-center items-center py-[24px] space-y-[24px]"
-              v-if="index === activeIndex"
+            <div class="flex flex-col justify-center items-center py-[24px] space-y-[24px]" v-if="index === activeIndex"
               v-animate="{
                 effect: 'fadeInUp',
                 once: true,
-              }"
-            >
+              }">
               <div class="text-white text-[24px] font-interRegular text-center">
                 {{ slide.title }}
               </div>
             </div>
-            
+
           </template>
         </div>
       </div>
@@ -157,27 +153,38 @@ let slides = [
     desc: "El Omoda C5 Super Hybrid System no solo combina potencia y eficiencia, sino también un diseño que redefine el estilo urbano. Su silueta fastback aerodinámica transmite movimiento incluso en reposo, mientras el frontal sin marco y la parrilla paramétrica en forma de diamante proyectan una estética futurista.",
     imgUrl: "index/banner-value_omoda-c5.webp",
     btn: 'Más información',
-    link: '/files/Ficha_Tecnica_OMODA-C5.pdf'
+    link: '/models/omoda-c5'
   },
   {
     title: "Omoda E5",
     desc: "El Omoda E5 trae la movilidad eléctrica con un diseño que fusiona aerodinámica, tecnología y emoción. Su silueta fastback transmite dinamismo puro, mientras el frontal cerrado sin parrilla tradicional y las líneas limpias y fluidas reflejan la elegancia de un vehículo nacido para un futuro más sostenible.",
     imgUrl: "index/banner-value_omoda-e5.webp",
     btn: 'Más información',
-    link: '#contactForm'
+    link: '/models/omoda-e5'
   },
   {
     title: "Jaecoo J7",
     desc: "El Jaecoo J7 Super Hybrid System combina elegancia urbana con la fuerza de un auténtico SUV todoterreno. Su diseño vertical y musculoso proyecta autoridad en cada ángulo, mientras la parrilla trapezoidal con detalles cromados y las luces LED en forma de T refuerzan su identidad moderna y poderosa.",
     imgUrl: "index/banner-value_jaecoo-j7.webp",
     btn: 'Más información',
-    link: '/files/Ficha_Tecnica_JAECOO-J7.pdf'
+    link: '/models/jaecoo-j7'
   }
 ];
 
-const slidesLP = [true, false, true];
+const slidesLP = new Map<string, { modeLP: boolean; link: string }>([
+  ["Omoda C5", { modeLP: true, link: '/files/Ficha_Tecnica_OMODA-C5.pdf' }],
+  ["Omoda E5", { modeLP: false, link: '' }],
+  ["Jaecoo J7", { modeLP: true, link: '/files/Ficha_Tecnica_JAECOO-J7.pdf' }]
+]);
 
-if (props.LP) {slides = slides.filter((_, index) => slidesLP[index])};
+
+if (props.LP) {
+  slides = slides.filter((_, index) => slidesLP.get(slides[index].title)?.modeLP);
+  slides.forEach((slide) => {
+    console.log(slide.title);
+    slide.link = slidesLP.get(slide.title)?.link as string;
+  });
+};
 
 let swiperInst: Swiper;
 const activeIndex = ref(0);
@@ -214,5 +221,4 @@ const handleAnimation = () => {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
