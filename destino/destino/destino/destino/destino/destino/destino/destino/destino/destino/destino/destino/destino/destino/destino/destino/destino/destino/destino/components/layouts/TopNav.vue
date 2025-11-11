@@ -204,8 +204,13 @@
   const mbMenuBg = computed(() => headerTheme.value === 'dark' ? 'bg-black text-white' : 'bg-white text-[#333]')
   const brandList = ['JAECOO', 'OMODA'];  
   const navList = [
+    
     {
-      name: 'models',
+      name: 'Inicio',
+      linkUrl: '/home'
+    },
+    {
+      name: 'Modelos',
       type: 'model',
       children: [
         {
@@ -228,6 +233,14 @@
         },
         
       ]
+    },
+    {
+      name: 'Súper híbrido',
+      linkUrl: '/home'
+    },
+    {
+      name: 'Nosotros',
+      linkUrl: '/home'
     },
   ]
 

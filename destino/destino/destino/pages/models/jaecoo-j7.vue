@@ -24,11 +24,6 @@
             <div
               class=""
               v-if="currentPage == 0"
-              :style="[
-                currentPage == 0
-                  ? 'transition-delay: ' + idx * 0.2 + 's;'
-                  : 'transition-delay: 0s;',
-              ]"
             >
               <div class="flex flex-row items-center justify-center w-[90vw] lg:w-[70vw]">
                 <div class="pr-[10px] lg:pr-[48px] border-r border-white font-interSemiBold text-[12px] sm:text-[20px]">1.000KMS AUTONOMÍA</div>
@@ -486,7 +481,7 @@
               <ClientOnly fallback-tag="span" fallback="Loading comments...">
                 <xlsxTable class="flex-1"></xlsxTable>
               </ClientOnly>
-              <LayoutsFooter />
+              <LayoutsFooter :routePath="$route.path" />
             </div>
           </SwiperSlide>
         </Swiper>
@@ -505,13 +500,13 @@ const ispc = computed(() => {
 });
 const currentPage: Ref<number> = ref(999);
 var page4Swiper: any;
-const onPage4Swiper = (swiper4) => {
+const onPage4Swiper = (swiper4: any) => {
   page4Swiper = swiper4;
 };
 var startNumAni = ref(false);
 var dis360: Ref<boolean> = ref(true);
 var playweb360: Ref<boolean> = ref(false);
-function handleCustomEvent(cur) {
+function handleCustomEvent(cur:any) {
   console.log("cur",cur);
   console.log("currentpage",currentPage.value);
   
