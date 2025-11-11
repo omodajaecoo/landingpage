@@ -291,7 +291,7 @@ const closeModal = () => {
 
 const config = useRuntimeConfig()
 const ciudades = ['QUITO', 'GUAYAQUIL', 'CUENCA', 'MANTA', 'AMBATO', 'OTROS'];
-const modelos = ['OMODA C5 GASOLINA', 'OMODA C5 FHEV SHS COMFORT', 'OMODA C5 FHEV SHS LUXURY', 'JAECOO J7 PHEV SHS STANDARD', 'JAECOO J7 PHEV SHS PREMIUM', 'OMODA EV BEV'];
+const modelos = ['OMODA C5 FHEV SHS COMFORT', 'OMODA C5 FHEV SHS LUXURY', 'JAECOO J7 PHEV SHS STANDARD', 'JAECOO J7 PHEV SHS PREMIUM', 'OMODA E5 BEV'];
 const form = ref({
   nombre: '',
   apellido: '',

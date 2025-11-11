@@ -13,9 +13,11 @@
               <label for="field1" class="block text-[12px] font-inter font-semibold text-[#0D0E0E] mb-[4px]">Nombre *</label>
               <input 
                 v-model="form.nombre"
+                @input="form.nombre = form.nombre.slice(0, 50)"
                 type="text" 
                 id="field1" 
                 placeholder="Nombre"
+                maxlength="50"
                 :class="{ 'border-[#B1000F]': errors.nombre }"
                 class="w-full rounded-[8px] font-interRegular border bg-white px-[14px] py-[8px] text-[14px] text-[#0D0E0E] placeholder:text-[#8E8E8E] focus:outline-none focus:ring-2 focus:ring-[#67B0C4]"
               >
@@ -25,9 +27,11 @@
               <label for="field2" class="block text-[12px] font-inter font-semibold text-[#0D0E0E] mb-[4px]">Apellido *</label>
               <input 
                 v-model="form.apellido"
+                @input="form.apellido = form.apellido.slice(0, 50)"
                 type="text" 
                 id="field2" 
                 placeholder="Apellido"
+                maxlength="50"
                 :class="{ 'border-[#B1000F]': errors.apellido }"
                 class="w-full rounded-[8px] font-interRegular border bg-white px-[14px] py-[8px] text-[14px] text-[#0D0E0E] placeholder:text-[#8E8E8E] focus:outline-none focus:ring-2 focus:ring-[#67B0C4]"
               >
@@ -37,9 +41,11 @@
               <label for="field3" class="block text-[12px] font-inter font-semibold text-[#0D0E0E] mb-[4px]">Cédula de identidad *</label>
               <input 
                 v-model="form.cedula"
+                @input="form.cedula = form.cedula.slice(0, 13)"
                 type="text" 
                 id="field3" 
                 placeholder="1234567891011"
+                maxlength="13"
                 :class="{ 'border-[#B1000F]': errors.cedula }"
                 class="w-full rounded-[8px] font-interRegular border bg-white px-[14px] py-[8px] text-[14px] text-[#0D0E0E] placeholder:text-[#8E8E8E] focus:outline-none focus:ring-2 focus:ring-[#67B0C4]"
               >
@@ -66,9 +72,11 @@
                 <span class="pl-[14px] pr-[4px] text-[#0D0E0E] text-[14px]">(593)</span>
                 <input 
                   v-model="form.celular"
+                  @input="form.celular = form.celular.slice(0, 10)"
                   type="text" 
                   id="field5" 
                   placeholder="991234567"
+                  maxlength="10"
                   class="w-full flex-1 font-interRegular bg-transparent py-[8px] pr-[14px] text-[14px] text-[#0D0E0E] placeholder:text-[#8E8E8E] focus:outline-none"
                 >
               </div>
@@ -125,7 +133,7 @@
           <!-- terms -->
           <div style="height:108px; overflow-y:auto; " class="w-full font-inter rounded-[8px] mt-[10px] text-[#0D0E0E] text-[12px] custom-scrollbar">
           
-              <h1 class="font-interMedium">Aviso de privacidad:</h1>
+              <h1 class="font-semibold">Aviso de privacidad:</h1>
 
               <p class="">
                   <span class="font-interMedium">TELEMÁTICA EQUINOCCIAL TELEQUINOX S.A., AUTOMOTORES Y ANEXOS
@@ -225,19 +233,60 @@
       </div>
     </div>
   </div>
+
+  <BaseModal :show="isModalVisible" @close="closeModal">
+      
+      <template #logo>
+        <img 
+          :src="modalIcon" 
+          alt="logo info" 
+          class="h-[48px] w-[48px]"
+        >
+      </template>
+
+      <template #content>
+        <h3 class="text-[18px] font-inter font-semibold text-[#0D0E0E]">
+          {{ modalTitle }}
+        </h3>
+        <p v-if="modalMessage" class="font-inter mt-[8px]">
+          {{ modalMessage }}
+        </p>
+      </template>
+
+      <template #footer>
+        <div class="flex justify-center w-full">
+          <button 
+            @click="closeModal"
+            class="text-white font-inter font-normal border border-white px-[16px] py-[8px] text-[12px] font-medium hover:bg-white/10"
+          >
+            Continuar
+          </button>
+        </div>
+      </template>
+
+    </BaseModal>
 </template>
 
 <script lang="ts" setup>
 import { ref, watch, onMounted, onUnmounted } from 'vue';
 
+const isModalVisible = ref(false);
+
+const modalIcon = ref('/images/close-circle.svg');
+const modalTitle = ref('');
+const modalMessage = ref('');
+
+const openModal = () => {
+  isModalVisible.value = true;
+};
+
+const closeModal = () => {
+  isModalVisible.value = false;
+};
+
 const config = useRuntimeConfig()
-
-
-// --- OPCIONES PARA LOS SELECTS ---
 const ciudades = ['QUITO', 'GUAYAQUIL', 'CUENCA', 'MANTA', 'AMBATO', 'OTROS'];
 const modelos = ['OMODA C5 GASOLINA', 'OMODA C5 FHEV SHS COMFORT', 'OMODA C5 FHEV SHS LUXURY', 'JAECOO J7 PHEV SHS STANDARD', 'JAECOO J7 PHEV SHS PREMIUM', 'OMODA EV BEV'];
-
-// --- LÓGICA DEL FORMULARIO ---
 const form = ref({
   nombre: '',
   apellido: '',
@@ -249,10 +298,8 @@ const form = ref({
   concesionario: '',
   terminos_aceptados: false,
 });
-
 const termsAccepted = ref(false);
 const privacyAccepted = ref(false);
-
 const errors = ref({
   nombre: '',
   apellido: '',
@@ -260,7 +307,6 @@ const errors = ref({
   correo: '',
   celular: '',
 });
-
 const loading = ref(false);
 
 watch(() => form.value.ciudad, (nuevaCiudad) => {
@@ -337,6 +383,7 @@ const validateForm = () => {
 const handleSubmit = async () => {
   if (!validateForm()) return;
   if (loading.value) return;
+  
   loading.value = true;
 
   const finalPayload = {
@@ -350,42 +397,46 @@ const handleSubmit = async () => {
 
   try {
     const response = await fetch(endpoint, { method: 'POST', headers, body });
+    
     if (response.ok) {
-      alert('¡Formulario enviado con éxito!');
+      modalIcon.value = '/images/ok-circle.svg';
+      modalTitle.value = '¡Tus datos se han guardado exitosamente!';
+      modalMessage.value = '';
+      
       form.value = { nombre: '', apellido: '', cedula: '', correo: '', celular: '', ciudad: '', modelo_interes: '', concesionario: '', terminos_aceptados: false };
       termsAccepted.value = false;
       privacyAccepted.value = false;
+
     } else {
-      const errorData = await response.json();
-      console.error('Error en la respuesta del servidor:', errorData);
-      alert(`Error: ${errorData.message || 'No se pudo enviar el formulario.'}`);
+      modalIcon.value = '/images/close-circle.svg';
+      modalTitle.value = 'Ha ocurrido un problema al enviar el formulario.';
+      modalMessage.value = 'Por favor, inténtalo de nuevo más tarde.';
     }
+
   } catch (error) {
-    console.error('Error de red o de conexión:', error);
-    alert('Error de conexión. Por favor, revisa tu internet.');
+    modalIcon.value = '/images/close-circle.svg';
+    modalTitle.value = 'Ha ocurrido un problema al enviar el formulario.';
+    modalMessage.value = 'Por favor, inténtalo de nuevo más tarde.';
   } finally {
     loading.value = false;
+    openModal(); 
   }
 };
 </script>
+
 <style scoped>
-/* Para navegadores basados en WebKit (Chrome, Safari, Edge, etc.) */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 7px; /* Ancho del scrollbar */
+  width: 7px;
 }
-
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent; /* Fondo del track transparente */
+  background: transparent;
 }
-
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #000000; /* Color negro para el pulgar */
-  border-radius: 6px;      /* Bordes redondeados para el pulgar */
+  background-color: #000000;
+  border-radius: 6px;
 }
-
-/* Para Firefox */
 .custom-scrollbar {
-  scrollbar-width: thin; /* Hace el scrollbar más delgado */
-  scrollbar-color: #000000 transparent; /* Color del pulgar y del track */
+  scrollbar-width: thin;
+  scrollbar-color: #000000 transparent;
 }
 </style>
