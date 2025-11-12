@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="root"
     class="w-full flex justify-center items-center min-h-[100px] pt-[0px] py-[10px] pb-[32px] sm:pb-[100px]"
     style="background: linear-gradient(to bottom, #0D0E0E, #67B0C4);"
   >
@@ -267,8 +268,11 @@
     </BaseModal>
 </template>
 
+
 <script lang="ts" setup>
-import { ref, watch, onMounted, onUnmounted } from 'vue';
+import { ref, watch, onMounted, onUnmounted, defineExpose } from 'vue';
+const root = ref(null);
+defineExpose({ root });
 
 const isModalVisible = ref(false);
 
