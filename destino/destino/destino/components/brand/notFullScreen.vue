@@ -4,7 +4,7 @@
             <tLtitle :titleContent="props.bannerContent"></tLtitle>
             <div class="mt-[1.45rem] lg:mt-[1rem] w-[6.84rem] lg:w-full lg:px-[2.4rem] lg:mb-[1rem]">
                 <BaseImg 
-                    :src="isMobile ?`${props.bannerContent.img}_mobile.jpg` : `${props.bannerContent.img}.jpg`" 
+                    :src="isMobile ?`${props.bannerContent.img}_mobile.${props.ext}` : `${props.bannerContent.img}.${props.ext}`" 
                     class="object-cover h-[4.06rem] lg:h-auto w-full"
                     :style="{'aspect-ratio': isMobile ? '1300/769': 'auto'}"
                 />
@@ -28,6 +28,10 @@
                 className: false,
                 img: ''
             })
+        },
+        ext: {
+            type: String,
+            default: 'jpg'
         }
     })
     const isMobile = ref(false)

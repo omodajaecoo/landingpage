@@ -31,9 +31,9 @@
               v-if="needTitleBg"
             />
             <div
-              class="animate__animated animate__fadeInUpBig"
+              class="animate__animated animate__fadeInUpBig font-interSemiRegular text-[16px]"
               :class="needTitleBg ? 'txt' : 'txt2'"
-              v-if="curnum == shownum && current_idx == idx"
+              v-if="current_idx == idx"
             >
               {{ item.txt }}
             </div>
@@ -52,12 +52,7 @@
             />
             <div class="txt">{{ item.carmodel }}</div>
           </div>
-          <img
-            loading="lazy"
-            src="/images/models/page4Swiper_mob_mask.webp"
-            class="afterMask"
-            alt=""
-          />
+          
         </swiperSlide>
         <img
           class="btn next"
@@ -165,7 +160,7 @@ function changeMobSwiper(type) {
   padding: calc(2 * 16 / 3.75 * 1vw) 0;
   position: absolute;
   z-index: 9;
-  bottom: 22%;
+  bottom: -3px;
 }
 .mob-swiper-container .next {
   right: 5%;
@@ -199,7 +194,7 @@ function changeMobSwiper(type) {
   width: 100%;
   position: absolute;
   left: 0;
-  bottom: 25%;
+  bottom: 20px;
   min-height: 2rem;
   min-height: calc(2 * 16 / 3.75 * 1vw);
   z-index: 12;
@@ -217,12 +212,6 @@ function changeMobSwiper(type) {
   top: calc(-0.6 * 16 / 3.75 * 1vw);
   left: 10%;
   width: 80%;
-  font-family: "SourceHanSansSC-Light";
-  font-size: 1.2rem;
-  font-size: calc(1.2 * 16 / 3.75 * 1vw);
-  font-weight: normal;
-  font-stretch: normal;
-  letter-spacing: 2px;
   color: #ffffff;
   text-align: center;
   transition: 1s;
