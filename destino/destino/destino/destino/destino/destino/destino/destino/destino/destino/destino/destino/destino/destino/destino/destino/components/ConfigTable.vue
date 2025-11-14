@@ -1,10 +1,7 @@
 <template>
   <div class="table-main">
     <div v-if="paramsData && paramsData.title" :mq="['lg', 'xl', 'md']">
-      <div class="h3 title params-table__title">
-        <div class="txt">{{ paramsData.title }}</div>
-        <img loading="lazy" src="/images/table-title.webp" class="img" />
-      </div>
+  
       <table class="params-table">
         <thead class="params-table__header">
           <tr
