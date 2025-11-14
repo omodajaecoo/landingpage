@@ -1,0 +1,54 @@
+/* 图片从下往上过渡效果 */
+.animated-container,
+.animated-img-container {
+  & > .animated {
+    transform: translateY(60px);
+    transition: none;
+    opacity: 0;
+    &.slide-up {
+      animation: slideUp 0.7s ease-in-out forwards;
+    }
+  }
+  /* 标题透明度过渡效果 */
+
+  .animated-title {
+    opacity: 0;
+    transition: none;
+    &.slide-up {
+      animation: slideUp 0.7s ease-in-out forwards;
+    }
+  }
+}
+@keyframes slideUp {
+    from {
+      opacity: 0;
+      /* transform: translateY(30px);   */
+      transform: translateY(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: #999999;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 4px;
+  background: #fff;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+*:not(input, select, textarea) {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none;
+}

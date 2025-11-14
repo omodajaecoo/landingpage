@@ -58,7 +58,7 @@
         </template>
       </swiper>
 
-      <!-- Car configuration specs - Mobile -->
+      <!-- Car configuration specs - Mobile --
       <div class="mt-[40px] relative flex justify-center items-center flex-col lg:hidden">
 
         <div class="grid grid-cols-2 gap-y-[0.48rem] ">
@@ -77,38 +77,36 @@
 
         </div>
 
-        <!-- Learn more button -->
+        !-- Learn more button --
         <BaseButton class="mt-[0.33rem] border-[#222] text-[16px]" @click="goCarDetail">
           Descubre más
         </BaseButton>
 
-        <!-- Swiper navigation buttons - Mobile -->
+        !-- Swiper navigation buttons - Mobile 
         <template v-if="isMobile">
           <BaseImg @click="slideTo('prev')" slot="container-end" src="common/arrow_dark.svg"
             class="absolute w-[0.48rem] cursor-pointer bottom-[0.085rem] left-[0.75rem] z-20 rotate-180" />
           <BaseImg @click="slideTo('next')" slot="container-end" src="common/arrow_dark.svg"
             class="absolute w-[0.48rem] cursor-pointer bottom-[0.085rem] right-[0.75rem] z-20" />
         </template>
-      </div>
+      </div>-->
 
       <!-- Car configuration specs - Desktop -->
-      <div class="hidden lg:flex justify-center items-center flex-row relative mt-[70px] px-[8%]">
-        <div class="grid grid-cols-3 xl:grid-cols-4 w-full max-w-[1120px] gap-y-[60px]">
-          <div v-if="flag"
-            class="flex justify-center border-r border-solid border-[#999] last:border-r-0"
-            v-for="config in activeConfigList" :key="config.value">
-            <CountToV2 ref="countToRef" class="inline-block h-auto" 
-              :value="config.value" :label="config.label"
-              :unit="config.unit" :once="false" label-class="text-left !lg: !xl:text-[16px] !text-[#4D4D4D]"
-              value-class="text-left !text-[32px] !text-[#222]" unit-class="!text-[24px] contents" />
-
-          </div>
-        </div>
-
-
+      <div class="flex flex-col lg:flex-row flex-wrap justify-center items-center flex-row relative mt-[70px] px-[8%] gap-y-[80px] ">
+        <div class="flex flex-col md:flex-row justify-start items-start md:justify-center md:w-full md:max-w-[1120px] gap-y-[20px] md:gap-y-[60px]">
+          <template v-for="(config, index) in activeConfigList" :key="config.value">
+            <div v-if="flag" class="flex md:px-[48px] md:py-[10px] leading-none">
+              <span class='md:text-center text-[20px] text-[#222] font-interSemiRegular'>{{ config.label }}</span>
+            </div>
+            <!-- Línea divisoria -->
+            <div v-if="index < activeConfigList.length - 1"
+              class="self-stretch h-[1px] md:w-[1px] md:h-auto md:self-stretch bg-[#999]"
+            ></div>
+          </template>
+        </div>        
         <!-- Learn more button -->
-        <div class="flex justify-end w-[230px]">
-          <BaseButton class="border-[#222] text-[16px]" @click="goCarDetail">
+        <div class="flex justify-center">
+          <BaseButton class="border-[#222] font-interRegular text-[20px] py-[16px] px-[20px]" @click="goCarDetail">
             Descubre más
           </BaseButton>
         </div>
@@ -139,10 +137,9 @@ const carList = [
     iconUrl: 'index/cars/omoda-c5/logo_c5.webp',
     imgUrl: 'index/cars/omoda-c5/banner_c5.webp',
     configList: [
-      { label: 'LARGO', value: '4400', unit: 'mm' },
-      { label: 'ANCHO', value: '1830', unit: 'mm' },
-      { label: 'ALTURA', value: '1588', unit: 'mm' },
-      { label: 'DISTANCIA ENTRE EJES', value: '2630', unit: 'mm' },
+      { label: '+1.000 KMS AUTONOMÍA HEV*', value: '1000', unit: 'KMS AUTONOMIA' },
+      { label: '24.6" PANTALLA DUAL', value: '24', unit: '.6" PANTALLA DUAL' },
+      { label: '6 AIRBAGS', value: '6', unit: '.  AIRBAGS' },
     ]
   },
   {
@@ -151,10 +148,9 @@ const carList = [
     iconUrl: 'index/cars/omoda-e5/logo_e5.webp',
     imgUrl: 'index/cars/omoda-e5/banner_e5.webp',
     configList: [
-      { label: 'LARGO', value: '4424', unit: 'mm' },
-      { label: 'ANCHO', value: '1830', unit: 'mm' },
-      { label: 'ALTURA', value: '1588', unit: 'mm' },
-      { label: 'DISTANCIA ENTRE EJES', value: '2630', unit: 'mm' },
+      { label: '+430 KMS AUTONOMÍA EV (WLTP)*', value: '4424', unit: 'mm' },
+      { label: '24.6" PANTALLA DUAL', value: '1830', unit: 'mm' },
+      { label: '6 AIRBAGS', value: '1588', unit: 'mm' },
     ]
   },
   {
@@ -163,10 +159,9 @@ const carList = [
     iconUrl: 'index/cars/jaecoo-j7/logo_j7.webp',
     imgUrl: 'index/cars/jaecoo-j7/banner_j7.webp',
     configList: [
-      { label: 'LARGO', value: '4500', unit: 'mm' },
-      { label: 'ANCHO', value: '1865', unit: 'mm' },
-      { label: 'ALTURA', value: '1680', unit: 'mm' },
-      { label: 'DISTANCIA ENTRE EJES', value: '2672', unit: 'mm' },
+      { label: '+1.200 KMS AUTONOMÍA PHEV*', value: '4500', unit: 'mm' },
+      { label: '14.8" PANTALLA VERTICAL*', value: '1865', unit: 'mm' },
+      { label: '7 AIRBAGS*', value: '1680', unit: 'mm' },
     ]
   }
 ]
