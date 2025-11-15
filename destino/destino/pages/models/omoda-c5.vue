@@ -173,7 +173,7 @@
               </Transition>
               <Transition name="slide-fade">
                 <div class="memo" v-if="currentPage == 6">
-                  <p>Omoda 5 SHS convierte tu día a día en un viaje sensorial gracias a su sonido envolvente, preciso y de alta fidelidad.</p>
+                  <p>Omoda C5 SHS convierte tu día a día en un viaje sensorial gracias a su sonido envolvente, preciso y de alta fidelidad.</p>
                 </div>
               </Transition>
             </div>
@@ -213,8 +213,8 @@
               </Transition>
               <Transition name="slide-fade">
                 <div class="memo" v-if="currentPage >= 7">
-                  <p>El Omoda 5 cuenta con estándares de seguridad a la par de tus necesidades: cámara 360°, 6 airbags 
-                    y con certificación de 5 estrellas en la EURO NCAP*
+                  <p>El Omoda C5 cuenta con estándares de seguridad a la par de tus necesidades: cámara 360°, 6 airbags 
+                    y con certificación de 5 estrellas en la EURO NCAP*.
                   </p>
                 </div>
               </Transition>
@@ -378,7 +378,7 @@ var section2_tittle = ["CADA", "LÍNEA", "PROYECTA", "ENERGÍA,", "CADA", "MOVIM
 
 var section3_slides: Array<swiperItem> = [
   {
-    label: ["POTENCIA", "&", "AHORRO:", "MOTOR", "1.5", "TGDI", "ACTECO"],
+    label: ["POTENCIA", "&", "AHORRO:", "MOTOR", "1.5", "TGDI", "ACTECO", "CON", "SISTEMA", "SHS", "FULL", "HYBRID", "AHORRO", "EN", "EL", "MANEJO", "DENTRO", "DE", "LA", "CIUDAD"],
     txtarr: {},
     imgsrc: dir + "images/models/C5/section3-item1.webp",
     isvideo: false,
@@ -399,11 +399,11 @@ var section3_slides: Array<swiperItem> = [
 var section3_slides_mob: sideswiperItem[] = [
   {
     src: dir + "images/models/C5/section3-item1_mob.webp",
-    txt: "POTENCIA & AHORRO: MOTOR 1.5 TGDI ACTECO",
+    txt: "Potencia & Ahorro: Motor 1.5 TGDI ACTECO con sistema SHS FULL HYBRID ahorro en el manejo dentro de la ciudad.",
   },
   {
     src: dir + "images/models/C5/section3-item2_mob.webp",
-    txt: "BATERÍAS DE LITIO FERROFOSTATO DE ALTA DURABILIDAD RENDIMIENTO Y 5 ESTÁNDARES DE PROTECCIÓN & SEGURIDAD",
+    txt: "Baterías de Litio Ferrofostato de alta durabilidad rendimiento y 5 estándares de protección & seguridad.",
   }
 ];
 
@@ -432,7 +432,7 @@ type sideswiperItem = {
 };
 var section5_slides: Array<swiperItem> = [
   {
-    label: ["CARGA", "RÁPIDA", "WIRELESS", "(50W)", "CON", "VENTILACIÓN", "PARA", "EL", "CELULAR"],
+    label: ["PANTALLA", "HD", "CURVA", "DUAL", "DE", "24.6\"", "CON", "COMANDOS", "DE", "VOZ", "Y", "FLUIDEZ", "AL", "TACTO"],
     txtarr: {},
     imgsrc: dir + "images/models/C5/section5-item1.webp",
     isvideo: false,
@@ -440,7 +440,7 @@ var section5_slides: Array<swiperItem> = [
     ismask: true,
   },
   {
-    label: ["PANTALLA", "HD", "CURVA", "DUAL", "DE", "24.6\"", "CON", "COMANDOS", "DE", "VOZ", "Y", "FLUIDEZ", "AL", "TACTO"],
+    label: ["ASIENTOS", "MONOPLAZA", "DEPORTIVOS", "CON", "AJUSTE", "ELÉCTRICO", "&", "VENTILACIÓN*"],
     txtarr: {},
     imgsrc: dir + "images/models/C5/section5-item2.webp",
     isvideo: false,
@@ -448,7 +448,7 @@ var section5_slides: Array<swiperItem> = [
     ismask: true,
   },
   {
-    label: ["ASIENTOS", "MONOPLAZA", "DEPORTIVOS", "CON", "AJUSTE", "ELÉCTRICO", "&", "VENTILACIÓN*"],
+    label: ["CARGA", "RÁPIDA", "WIRELESS", "(50W)", "CON", "VENTILACIÓN", "PARA", "EL", "CELULAR"],
     txtarr: {},
     imgsrc: dir + "images/models/C5/section5-item3.webp",
     isvideo: false,
@@ -459,15 +459,15 @@ var section5_slides: Array<swiperItem> = [
 var section5_slides_mob: sideswiperItem[] = [
   {
     src: dir + "images/models/C5/section5-item1_mob.webp",
-    txt: "CARGA RÁPIDA WIRELESS (50W) CON VENTILACIÓN PARA EL CELULAR",
+    txt: "Pantalla HD curva dual de 24.6\", con comandos de voz y fluidez al tacto.",
   },
   {
     src: dir + "images/models/C5/section5-item2_mob.webp",
-    txt: "PANTALLA HD CURVA DUAL DE 24.6\", CON COMANDOS DE VOZ Y FLUIDEZ AL TACTO",
+    txt: "Asientos monoplaza deportivos con ajuste eléctrico & ventilación*.",
   },
   {
     src: dir + "images/models/C5/section5-item3_mob.webp",
-    txt: "ASIENTOS MONOPLAZA DEPORTIVOS CON AJUSTE ELÉCTRICO & VENTILACIÓN",
+    txt: "Carga rápida wireless (50W) con ventilación para el celular.",
   },
 ];
 
@@ -970,7 +970,7 @@ function changePage_section5(type: string) {
 
 .carrousel-sub .swiper-slide .title {
   width: 100%;
-  padding-top: 20px;
+  padding-top: 12px;
   overflow: hidden;
   text-align: center;
   font-family: "SourceHanSansSC-Light";
