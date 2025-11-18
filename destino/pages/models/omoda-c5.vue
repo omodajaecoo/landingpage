@@ -18,7 +18,8 @@
                   24.6" PANTALLA DUAL</div>
                 <div class="px-[10px] lg:px-[48px] flex-1 border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
                   6 AIRBAGS</div>
-                <div class="pl-[5px] lg:pl-[40px] flex-1 font-interSemiBold text-[12px] sm:text-[20px] text-center">+10 ADAS</div>
+                <div class="pl-[5px] lg:pl-[40px] flex-1 font-interSemiBold text-[12px] sm:text-[20px] text-center">
+                  +10 ADAS</div>
               </div>
             </div>
           </Transition>
@@ -31,7 +32,7 @@
           " class="banner" />
         <div class="title bottom-[20%] sm:bottom-[40px]">
           <img loading="lazy" src="/images/models/title-left.webp" class="icon left-icon" v-if="ispc"/>
-          <div class="flex flex-wrap justify-center items-center max-w-[1000px]">
+          <div class="flex flex-wrap justify-center items-center max-w-[1000px] px-[8px]">
             <Transition name="slide-fade" v-for="(item, idx) in section2_tittle" :key="idx">
               <div class="txt font-interSemiRegular text-[14px] sm:text-[16px]" v-if="currentPage == 1">
                {{ item }}
@@ -45,7 +46,7 @@
         <Swiper v-if="ispc" class="swiper-container carrousel_section3" :modules="[SwiperPagination, SwiperEffectCreative]"
           :slides-per-view="1" :loop="true" @swiper="onPage4Swiper">
           <SwiperSlide v-for="(slide, idx) in section3_slides" :key="idx">
-            <img loading="lazy" :src="slide.imgsrc" class="img" />
+            <img loading="lazy" :src="slide.imgsrc" class="img" :style="slide.objectPosition ? { objectPosition: slide.objectPosition } : {}" />
             <div v-if="slide.ismask" class="mask"></div>
             <div class="flex justify-center items-center w-full">
               <div class="title max-w-[1000px]">
@@ -78,7 +79,7 @@
           " class="banner" />
         <div class="title bottom-[20%] sm:bottom-[40px]">
           <img loading="lazy" src="/images/models/title-left.webp" class="icon left-icon" v-if="ispc"/>
-          <div class="flex flex-wrap justify-center items-center max-w-[1000px]">
+          <div class="flex flex-wrap justify-center items-center max-w-[1000px] px-[8px]">
             <Transition name="slide-fade" v-for="(item, idx) in section4_tittle" :key="idx">
               <div class="txt font-interSemiRegular text-[14px] sm:text-[16px]" v-if="currentPage == 3">
                 {{ item }}
@@ -92,7 +93,7 @@
         <Swiper v-if="ispc" class="swiper-container carrousel_section5" :modules="[SwiperPagination, SwiperEffectCreative]"
           :slides-per-view="1" :loop="true" @swiper="onPage4Swiper">
           <SwiperSlide v-for="(slide, idx) in section5_slides" :key="idx">
-            <img loading="lazy" :src="slide.imgsrc" class="img" />
+            <img loading="lazy" :src="slide.imgsrc" class="img" :style="slide.objectPosition ? { objectPosition: slide.objectPosition } : {}" />
             <div v-if="slide.ismask" class="mask"></div>
             <div class="flex justify-center items-center w-full">
               <div class="title max-w-[1000px]">
@@ -425,6 +426,7 @@ type swiperItem = {
   isvideo: boolean;
   vsrc: string;
   ismask: boolean;
+  objectPosition?: string;
 };
 type sideswiperItem = {
   src: string;
@@ -1111,7 +1113,7 @@ function changePage_section5(type: string) {
 
   .carrousel-sub .swiper-slide .title {
     width: 93%;
-    padding-top: 0px;
+    padding-top: 12px;
     overflow: hidden;
     text-align: center;
     font-family: "SourceHanSansSC-Light";
@@ -1128,10 +1130,6 @@ function changePage_section5(type: string) {
     justify-content: center;
     flex-wrap: wrap;
     position: relative;
-    left: 50%;
-    top: 1rem;
-    top: calc(1 * 16 / 3.75 * 1vw);
-    transform: translateX(-50%);
   }
 
   .carrousel-sub .swiper-slide .title .word {

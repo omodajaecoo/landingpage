@@ -2,236 +2,129 @@
   <NuxtLayout name="layout" @custom-event="handleCustomEvent">
     <template #slidesSection>
       <SwiperSlide class="section first-page">
-        <img
-          loading="lazy"
-          :src="
-            ispc
-              ? dir + 'images/models/banner.webp'
-              : dir + 'images/models/page1Banner_mob.webp'
-          "
-          class="banner"
-        />
-        <img
-          loading="lazy"
-          src="/images/models/page1icon_mob.webp"
-          v-if="!ispc"
-          class="mob-icon"
-        />
-  <div class="absolute left-1/2 -translate-x-1/2 bottom-[10px] sm:bottom-[115px] lg:bottom-[50px] flex items-center justify-center w-fit">
-          <Transition
-            name="slide-fade"
-          >
-            <div
-              class=""
-              v-if="currentPage == 0"
-            >
-              <div class="flex flex-row items-center justify-center w-[90vw] lg:w-[70vw]">
-                <div class="pr-[10px] lg:pr-[48px] border-r border-white font-interSemiBold text-[12px] sm:text-[20px]">1.000KMS AUTONOMÍA</div>
-                <div class="px-[10px] lg:px-[48px] border-r border-white font-interSemiBold text-[12px] sm:text-[20px]">24.6" PANTALLA DUAL</div>
-                <div class="pl-[10px] lg:pl-[48px] font-interSemiBold text-[12px] sm:text-[20px]">6 AIRBAGS</div>
+        <img loading="lazy" :src="ispc
+            ? dir + 'images/models/J7/section1bg.webp'
+            : dir + 'images/models/J7/section1bg_mob.webp'
+          " class="banner" />
+        <img loading="lazy" src="/images/models/page1icon_mob.webp" v-if="!ispc" class="mob-icon" />
+        <div
+          class="absolute left-1/2 -translate-x-1/2 bottom-[25%] sm:bottom-[115px] lg:bottom-[50px] flex items-center justify-center w-fit">
+          <Transition name="slide-fade">
+            <div class="" v-if="currentPage == 0">
+              <div class="flex flex-row items-stretch justify-center w-[90vw] lg:w-[70vw] ">
+                <div class="pr-[10px] lg:pr-[48px] flex-1 border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
+                  1.000KMS AUTONOMÍA</div>
+                <div class="px-[10px] lg:px-[48px] flex-1 border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
+                  24.6" PANTALLA DUAL</div>
+                <div class="pl-[5px] lg:pl-[40px] flex-1 font-interSemiBold text-[12px] sm:text-[20px] text-center">6 AIRBAGS</div>
               </div>
             </div>
           </Transition>
         </div>
       </SwiperSlide>
-      <SwiperSlide class="section third-page">
-        <img
-          loading="lazy"
-          :src="
-            ispc
-              ? dir + 'images/models/page3bg2.webp'
-              : dir + 'images/models/page3bg2_mob.webp'
-          "
-          class="banner"
-        />
-        <div
-          class="title bottom-[10px] sm:bottom-[40px]"
-          v-if="currentPage == 1"
-        >
-          
-          <Transition
-            name="slide-fade"
-            v-for="(item, idx) in thirdPage_title2"
-            :key="idx"
-          >
+      <SwiperSlide class="section fullpage-sub">
+        <img loading="lazy" :src="ispc
+            ? dir + 'images/models/J7/section2bg.webp'
+            : dir + 'images/models/J7/section2bg_mob.webp'
+          " class="banner" />
+        <div class="title bottom-[20%] sm:bottom-[40px]">
+          <img loading="lazy" src="/images/models/title-left.webp" class="icon left-icon" v-if="ispc"/>
+          <Transition name="slide-fade" v-for="(item, idx) in section2_tittle" :key="idx">
             <div class="txt font-interSemiRegular text-[14px] sm:text-[16px]" v-if="currentPage == 1">
               {{ item }}
             </div>
           </Transition>
+          <img loading="lazy" src="/images/models/title-right.webp" class="icon right-icon" v-if="ispc"/>
         </div>
       </SwiperSlide>
-      <SwiperSlide class="section fourth-page">
-        <Swiper
-          v-if="ispc"
-          class="swiper-container my_swiper_3"
-          :modules="[SwiperPagination, SwiperEffectCreative]"
-          :slides-per-view="1"
-          :loop="true"
-          @swiper="onPage4Swiper"
-        >
-          <SwiperSlide v-for="(slide, idx) in slides2" :key="idx">
+      <SwiperSlide class="section carrousel-sub">
+        <Swiper v-if="ispc" class="swiper-container carrousel_section3" :modules="[SwiperPagination, SwiperEffectCreative]"
+          :slides-per-view="1" :loop="true" @swiper="onPage4Swiper">
+          <SwiperSlide v-for="(slide, idx) in section3_slides" :key="idx">
             <img loading="lazy" :src="slide.imgsrc" class="img" />
             <div v-if="slide.ismask" class="mask"></div>
             <div class="title">
-              
-              <Transition
-                name="slide-fade"
-                v-for="(item, ldex) in slide.label"
-                :key="ldex"
-                :style="[
-                  currentPage == 2
-                    ? 'transition-delay: ' + ldex * 0.15 + 's;'
-                    : 'transition-delay: 0s;',
-                ]"
-              >
+              <Transition name="slide-fade" v-for="(item, ldex) in slide.label" :key="ldex" :style="[
+                currentPage == 2
+                  ? 'transition-delay: ' + ldex * 0.15 + 's;'
+                  : 'transition-delay: 0s;',
+              ]">
                 <div class="word font-interSemiRegular text-[16px]" v-if="currentPage == 2">
                   {{ item }}
                 </div>
               </Transition>
-             
             </div>
           </SwiperSlide>
-          <img
-            loading="lazy"
-            class="btn next"
-            src="/images/page2_right_arrow.webp"
-            alt="next"
-            v-if="slides2.length > 1"
-            @click="changePage4_2('next')"
-          />
-          <img
-            loading="lazy"
-            class="btn prev"
-            src="/images/page2_left_arrow.webp"
-            alt="prev"
-            v-if="slides2.length > 1"
-            @click="changePage4_2('next')"
-          />
+          <img loading="lazy" class="btn next" src="/images/page2_right_arrow.webp" alt="next" v-if="section3_slides.length > 1"
+            @click="changePage_section3('next')" />
+          <img loading="lazy" class="btn prev" src="/images/page2_left_arrow.webp" alt="prev" v-if="section3_slides.length > 1"
+            @click="changePage_section3('prev')" />
         </Swiper>
         <ClientOnly fallback-tag="span" fallback="Loading comments...">
-          <modelSwiper
-            modid="mobslides2"
-            :swiperArr="slides2_mob"
-            :needTitleBg="false"
-            :needPagination="true"
-            :needCarmodel="false"
-            :shownum="3"
-            :curnum="currentPage"
-            v-if="!ispc"
-          ></modelSwiper>
+          <modelSwiper modid="mobslides2" :swiperArr="section3_slides_mob" :needTitleBg="false" :needPagination="true"
+            :needCarmodel="false" :shownum="3" :curnum="currentPage" v-if="!ispc"></modelSwiper>
         </ClientOnly>
       </SwiperSlide>
-      <SwiperSlide class="section third-page">
-        <img
-          loading="lazy"
-          :src="
-            ispc
-              ? dir + 'images/models/page3bg.webp'
-              : dir + 'images/models/page3bg_mob.webp'
-          "
-          class="banner"
-        />
-        <div
-          class="title bottom-[10px] sm:bottom-[40px]"
-          v-if="currentPage == 3"
-        >
-          
-          <Transition
-            name="slide-fade"
-            v-for="(item, idx) in thirdPage_title"
-            :key="idx"
-          >
-            <div class="txt font-interSemiRegular text-[16px] sm:text-[16px]" v-if="currentPage == 3">
+      <SwiperSlide class="section fullpage-sub">
+        <img loading="lazy" :src="ispc
+            ? dir + 'images/models/J7/section4bg.webp'
+            : dir + 'images/models/J7/section4bg_mob.webp'
+          " class="banner" />
+        <div class="title bottom-[20%] sm:bottom-[40px]">
+          <img loading="lazy" src="/images/models/title-left.webp" class="icon left-icon" v-if="ispc"/>
+          <Transition name="slide-fade" v-for="(item, idx) in section4_tittle" :key="idx">
+            <div class="txt font-interSemiRegular text-[14px] sm:text-[16px]" v-if="currentPage == 3">
               {{ item }}
             </div>
           </Transition>
-          
+          <img loading="lazy" src="/images/models/title-right.webp" class="icon right-icon" v-if="ispc"/>
         </div>
       </SwiperSlide>
-      <SwiperSlide class="section fourth-page">
-        <Swiper
-          v-if="ispc"
-          class="swiper-container my_swiper_2"
-          :modules="[SwiperPagination, SwiperEffectCreative]"
-          :slides-per-view="1"
-          :loop="true"
-          @swiper="onPage4Swiper"
-        >
-          <SwiperSlide v-for="(slide, idx) in slides" :key="idx">
+      <SwiperSlide class="section carrousel-sub">
+        <Swiper v-if="ispc" class="swiper-container carrousel_section5" :modules="[SwiperPagination, SwiperEffectCreative]"
+          :slides-per-view="1" :loop="true" @swiper="onPage4Swiper">
+          <SwiperSlide v-for="(slide, idx) in section5_slides" :key="idx">
             <img loading="lazy" :src="slide.imgsrc" class="img" />
             <div v-if="slide.ismask" class="mask"></div>
             <div class="title">
-              
-              <Transition
-                name="slide-fade"
-                v-for="(item, ldex) in slide.label"
-                :key="ldex"
-                :style="[
-                  currentPage == 4
-                    ? 'transition-delay: ' + ldex * 0.15 + 's;'
-                    : 'transition-delay: 0s;',
-                ]"
-              >
+
+              <Transition name="slide-fade" v-for="(item, ldex) in slide.label" :key="ldex" :style="[
+                currentPage == 4
+                  ? 'transition-delay: ' + ldex * 0.15 + 's;'
+                  : 'transition-delay: 0s;',
+              ]">
                 <div class="word font-interSemiRegular text-[16px]" v-if="currentPage == 4">
                   {{ item }}
                 </div>
-              </Transition>        
+              </Transition>
             </div>
           </SwiperSlide>
-          <img
-            loading="lazy"
-            class="btn next"
-            src="/images/page2_right_arrow.webp"
-            alt="next"
-            @click="changePage4('next')"
-          />
-          <img
-            loading="lazy"
-            class="btn prev"
-            src="/images/page2_left_arrow.webp"
-            alt="prev"
-            @click="changePage4('next')"
-          />
+          <img loading="lazy" class="btn next" src="/images/page2_right_arrow.webp" alt="next"
+            @click="changePage_section5('next')" />
+          <img loading="lazy" class="btn prev" src="/images/page2_left_arrow.webp" alt="prev"
+            @click="changePage_section5('prev')" />
         </Swiper>
         <ClientOnly fallback-tag="span" fallback="Loading comments...">
-          <modelSwiper
-            modid="mobslides"
-            :swiperArr="slides_mob"
-            :needTitleBg="false"
-            :needPagination="true"
-            :needCarmodel="false"
-            :shownum="5"
-            :curnum="currentPage"
-            v-if="!ispc"
-          ></modelSwiper>
+          <modelSwiper modid="mobslides" :swiperArr="section5_slides_mob" :needTitleBg="false" :needPagination="true"
+            :needCarmodel="false" :shownum="5" :curnum="currentPage" v-if="!ispc"></modelSwiper>
         </ClientOnly>
       </SwiperSlide>
-      <SwiperSlide class="section five-page" v-if="ispc">
+      <SwiperSlide class="section collage_section" v-if="ispc">
         <div class="img-main">
           <div class="img-item">
             <Transition name="slide-fade">
-              <img
-                loading="lazy"
-                src="/images/models/page5Img1.webp"
-                class="img"
-                v-if="currentPage == 5"
-              />
+              <img loading="lazy" src="/images/models/J7/section6-item1.webp" class="img" v-if="currentPage == 5" />
             </Transition>
             <div class="txt" style="text-align: left">
               <Transition name="slide-fade">
                 <div class="title" v-if="currentPage == 5">
                   MANIJAS DE PUERTA OCULTAS ELÉCTRICAS
-                  <img
-                    loading="lazy"
-                    src="/images/models/page5Line-right.webp"
-                    class="icon icon-right"
-                  />
+                  <img loading="lazy" src="/images/models/page5Line-right.webp" class="icon icon-right" />
                 </div>
               </Transition>
               <Transition name="slide-fade">
                 <div class="memo" v-if="currentPage == 5">
-                  <p>Con la función de liberación eléctrica</p>
-                  <p>la puerta se puede abrir con una fuerza de 30N</p>
+                  <p>Con la función de liberación eléctrica la puerta se puede abrir con una fuerza de 30N.</p>
                 </div>
               </Transition>
             </div>
@@ -241,75 +134,50 @@
               <Transition name="slide-fade">
                 <div class="title" v-if="currentPage == 5">
                   RINES DE ALEACIÓN DE ALUMINIO BRILLANTES DE 19 PULGADAS
-                  <img
-                    loading="lazy"
-                    src="/images/models/page5Line-left.webp"
-                    class="icon"
-                  />
+                  <img loading="lazy" src="/images/models/page5Line-left.webp" class="icon" />
                 </div>
               </Transition>
               <Transition name="slide-fade">
                 <div class="memo" v-if="currentPage == 5">
-                  <p>It boasts the design that resembles the</p>
-                  <p>aurora, making it even more trendy and dazzling</p>
+                  <p>Cuenta con un diseño que se asemeja a la aurora boreal, lo que lo hace aún más moderno y deslumbrante.</p>
                 </div>
               </Transition>
             </div>
             <Transition name="slide-fade">
-              <img
-                loading="lazy"
-                src="/images/models/page5Img2.webp"
-                class="img"
-                v-if="currentPage == 5"
-              />
+              <img loading="lazy" src="/images/models/J7/section6-item2.webp" class="img" v-if="currentPage == 5" />
             </Transition>
             <div class="txt" v-if="!ispc" style="text-align: left">
               <Transition name="slide-fade">
                 <div class="title" v-if="currentPage == 5">
                   RINES DE ALEACIÓN DE ALUMINIO BRILLANTES DE 19 PULGADAS
-                  <img
-                    loading="lazy"
-                    src="/images/models/page5Line-right.webp"
-                    class="icon icon-right"
-                  />
+                  <img loading="lazy" src="/images/models/page5Line-right.webp" class="icon icon-right" />
                 </div>
               </Transition>
               <Transition name="slide-fade">
                 <div class="memo" v-if="currentPage == 5">
-                  <p>Cuenta con un diseño que se asemeja a la aurora,</p>
-                  <p>lo que lo hace aún más moderno y deslumbrante</p>
+                  <p>Cuenta con un diseño que se asemeja a la aurora, lo que lo hace aún más moderno y deslumbrante.</p>
                 </div>
               </Transition>
             </div>
           </div>
         </div>
       </SwiperSlide>
-      <SwiperSlide class="section five-page" v-if="ispc">
+      <SwiperSlide class="section collage_section" v-if="ispc">
         <div class="img-main">
           <div class="img-item">
             <Transition name="slide-fade">
-              <img
-                loading="lazy"
-                src="/images/models/page5Img3.webp"
-                class="img"
-                v-if="currentPage == 6"
-              />
+              <img loading="lazy" src="/images/models/J7/section7-item1.webp" class="img" v-if="currentPage == 6" />
             </Transition>
             <div class="txt" style="text-align: left">
               <Transition name="slide-fade">
                 <div class="title" v-if="currentPage == 6">
                   TECHO SOLAR PANORÁMICO GRANDE DE 1.1M²
-                  <img
-                    loading="lazy"
-                    src="/images/models/page5Line-right.webp"
-                    class="icon icon-right"
-                  />
+                  <img loading="lazy" src="/images/models/page5Line-right.webp" class="icon icon-right" />
                 </div>
               </Transition>
               <Transition name="slide-fade">
                 <div class="memo" v-if="currentPage == 6">
-                  <p>Con gran tamaño y funciones inteligentes</p>
-                  <p>de apertura y cierre líderes en la industria</p>
+                  <p>Con gran tamaño y funciones inteligentes de apertura y cierre líderes en la industria.</p>
                 </div>
               </Transition>
             </div>
@@ -319,58 +187,38 @@
               <Transition name="slide-fade">
                 <div class="title" v-if="currentPage == 6">
                   ASIENTOS ALL-SENSE
-                  <img
-                    loading="lazy"
-                    src="/images/models/page5Line-left.webp"
-                    class="icon"
-                  />
+                  <img loading="lazy" src="/images/models/page5Line-left.webp" class="icon" />
                 </div>
               </Transition>
               <Transition name="slide-fade">
                 <div class="memo" v-if="currentPage == 6">
-                  <p>Los asientos multimodo son suaves y cómodos</p>
-                  <p>con diez potentes funciones de ajuste</p>
+                  <p>Los asientos multimodo son suaves y cómodos con diez potentes funciones de ajuste.</p>
                 </div>
               </Transition>
             </div>
             <Transition name="slide-fade">
-              <img
-                loading="lazy"
-                src="/images/models/page5Img4.webp"
-                class="img"
-                v-if="currentPage == 6"
-              />
+              <img loading="lazy" src="/images/models/J7/section7-item2.webp" class="img" v-if="currentPage == 6" />
             </Transition>
           </div>
         </div>
       </SwiperSlide>
-      <SwiperSlide class="section five-page" v-if="ispc">
+      <SwiperSlide class="section collage_section" v-if="ispc">
         <div class="img-main">
           <div class="img-item">
             <Transition name="slide-fade">
-              <img
-                loading="lazy"
-                src="/images/models/page5Img5.webp"
-                class="img"
-                v-if="currentPage >= 7"
-              />
+              <img loading="lazy" src="/images/models/J7/section8-item1.webp" class="img" v-if="currentPage >= 7" />
             </Transition>
             <div class="txt" style="text-align: left">
               <Transition name="slide-fade">
                 <div class="title" v-if="currentPage >= 7">
                   10 BOLSAS DE AIRE DE SEGURIDAD
-                  <img
-                    loading="lazy"
-                    src="/images/models/page5Line-right.webp"
-                    class="icon icon-right"
-                  />
+                  <img loading="lazy" src="/images/models/page5Line-right.webp" class="icon icon-right" />
                 </div>
               </Transition>
               <Transition name="slide-fade">
                 <div class="memo" v-if="currentPage >= 7">
-                  <p>Toda la serie adopta una tecnología de mantenimiento de presión de 6 segundos que</p>
-                  <p>
-                    puede prevenir eficazmente lesiones secundarias por accidentes
+                  <p>Toda la serie adopta una tecnología de mantenimiento de presión de 6 segundos que puede prevenir eficazmente 
+                    lesiones secundarias por accidentes.
                   </p>
                 </div>
               </Transition>
@@ -379,99 +227,54 @@
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <Swiper
-          class="insideSwiper"
-          style="width: 100%; height: 100vh; transform: none"
-          :modules="[SwiperFreeMode, SwiperMousewheel]"
-          direction="vertical"
-          :mousewheel="true"
-          slidesPerView="auto"
+        <Swiper class="insideSwiper" style="width: 100%; height: 100vh; transform: none"
+          :modules="[SwiperFreeMode, SwiperMousewheel]" direction="vertical" :mousewheel="true" slidesPerView="auto"
           :freeMode="{
             enabled: true,
             minimumVelocity: 0.1,
-          }"
-          :nested="true"
-          :observer="true"
-          :observeParents="true"
-          :autoHeight="true"
-        >
-          <SwiperSlide class="another-five-page" v-if="!ispc">
+          }" :nested="true" :observer="true" :observeParents="true" :autoHeight="true">
+          <SwiperSlide class="mobile-collage_section" v-if="!ispc">
             <div class="img-main">
               <div class="img-item item1">
-                <img
-                  loading="lazy"
-                  src="/images/models/page5Img5.webp"
-                  class="img animate__animated animate__fadeIn"
-                />
+                <img loading="lazy" src="/images/models/J7/section8-item1.webp" class="img animate__animated animate__fadeIn" />
                 <Transition name="slide-fade">
-                  <img
-                    loading="lazy"
-                    src="/images/models/10safetyairbags.webp"
-                    v-if="currentPage >= 8"
-                    class="titleimg"
-                  />
+                  <div class="flex w-full justify-center items-center title-content">
+                    <p class="title-text font-interRegular"  v-if="currentPage >= 5">Manillas eléctricas ocultas para puertas</p>
+                  </div>
                 </Transition>
               </div>
-              <div class="row">
-                <div class="img-item item2">
-                  <img
-                    loading="lazy"
-                    src="/images/models/page5Img1.webp"
-                    class="img animate__animated animate__fadeIn"
-                  />
-                  <Transition name="slide-fade">
-                    <img
-                      loading="lazy"
-                      src="/images/models/Electrichiddendoorhandles.webp"
-                      class="titleimg"
-                      v-if="currentPage >= 8"
-                    />
-                  </Transition>
-                </div>
-                <div class="img-item item3">
-                  <img
-                    loading="lazy"
-                    src="/images/models/page5Img2.webp"
-                    class="img animate__animated animate__fadeIn"
-                  />
-                  <Transition name="slide-fade">
-                    <img
-                      loading="lazy"
-                      src="/images/models/CrystaldiamondarrayLEDtaillamp.webp"
-                      class="titleimg"
-                      v-if="currentPage >= 8"
-                    />
-                  </Transition>
-                </div>
+              <div class="img-item item2">
+                <img loading="lazy" src="/images/models/J7/section6-item1.webp"
+                  class="img animate__animated animate__fadeIn" />
+                <Transition name="slide-fade">
+                  <div class="flex w-full justify-center items-center title-content">
+                    <p class="title-text font-interRegular"  v-if="currentPage >= 5">Rines de aleación de aluminio brillantes de 19 pulgadas</p>
+                  </div>
+                </Transition>
+              </div>
+              <div class="img-item item3">
+                <img loading="lazy" src="/images/models/J7/section6-item2.webp"
+                  class="img animate__animated animate__fadeIn" />
+                <Transition name="slide-fade">
+                  <div class="flex w-full justify-center items-center title-content">
+                    <p class="title-text font-interRegular"  v-if="currentPage >= 5">Techo solar panorámico grande de 1.1m²</p>
+                  </div>
+                </Transition>
               </div>
               <div class="img-item item4">
-                <img
-                  loading="lazy"
-                  src="/images/models/page5Img3.webp"
-                  class="img animate__animated animate__fadeIn"
-                />
+                <img loading="lazy" src="/images/models/J7/section7-item1.webp" class="img animate__animated animate__fadeIn" />
                 <Transition name="slide-fade">
-                  <img
-                    loading="lazy"
-                    src="/images/models/1.1M2largepanoramicsunroof.webp"
-                    class="titleimg"
-                    v-if="currentPage >= 8"
-                  />
+                  <div class="flex w-full justify-center items-center title-content">
+                    <p class="title-text font-interRegular"  v-if="currentPage >= 5">Asientos All-Sense</p>
+                  </div>
                 </Transition>
               </div>
               <div class="img-item item5">
-                <img
-                  loading="lazy"
-                  src="/images/models/page5Img4.webp"
-                  class="img animate__animated animate__fadeIn"
-                />
+                <img loading="lazy" src="/images/models/J7/section7-item2.webp" class="img animate__animated animate__fadeIn" />
                 <Transition name="slide-fade">
-                  <img
-                    loading="lazy"
-                    src="/images/models/All-senseseats.webp"
-                    class="titleimg"
-                    v-if="currentPage >= 8" 
-                  />
+                  <div class="flex w-full justify-center items-center title-content">
+                    <p class="title-text font-interRegular"  v-if="currentPage >= 5">10 Bolsas de aire de seguridad</p>
+                  </div>
                 </Transition>
               </div>
             </div>
@@ -479,10 +282,9 @@
           <SwiperSlide style="height: auto; display: block">
             <div class="min-h-[100vh] flex flex-col">
               <ClientOnly fallback-tag="span" fallback="Loading comments...">
-                <xlsxTable class="flex-1" model-name="J7" 
-                title="Tabla de parámetros de configuración del JAECOO J7"
-                desc="Las imágenes y los parámetros de este sitio web son solo de referencia. La configuración del modelo del vehículo puede variar según el mercado. La versión del país de lanzamiento prevalecerá."
-                ></xlsxTable>
+                <xlsxTable class="flex-1" model-name="J7" title="Tabla de parámetros de configuración del JAECOO J7"
+                  desc="Las imágenes y los parámetros de este sitio web son solo de referencia. La configuración del modelo del vehículo puede variar según el mercado. La versión del país de lanzamiento prevalecerá.">
+                </xlsxTable>
               </ClientOnly>
               <LayoutsFooter :routePath="$route.path" />
             </div>
@@ -509,8 +311,8 @@ const onPage4Swiper = (swiper4: any) => {
 var startNumAni = ref(false);
 var dis360: Ref<boolean> = ref(true);
 var playweb360: Ref<boolean> = ref(false);
-function handleCustomEvent(cur:any) {
-  
+function handleCustomEvent(cur: any) {
+
   let pagecur;
   if (cur > 8) {
     pagecur = cur + 1;
@@ -553,7 +355,7 @@ function handleMessage(event: any) {
 onMounted(() => {
   handleCustomEvent(1);
 
-  nextTick(() => {    
+  nextTick(() => {
     window.addEventListener("message", handleMessage);
     var elements = document.querySelectorAll(".wrap_360");
     var observer = new IntersectionObserver((entries, instance) => {
@@ -573,20 +375,50 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener("message", handleMessage);
 });
-var firstPage_arr = [
-  { label: "", num: 1000, txt: "kMS AUTONOMÍA" },
+
+
+var section2_tittle = ["4X4", "INTELIGENTE", " PARA", "TODO", "TIPO", "DE", "CAMINOS"];
+
+var section3_slides: Array<swiperItem> = [
   {
-    label: "TORQUE",
-    num: 290,
-    txt: ispc.value
-      ? "N<div style='width: calc(0.23 * 16 / 19.2 * 1vw);height: calc(0.23 * 16 / 19.2 * 1vw);background: #fff;border-radius: 50%;margin:calc(0.4 * 16 / 19.2 * 1vw) calc(0.2 * 16 / 19.2 * 1vw) 0;'></div>m"
-      : "N<div style='width: calc(0.13 * 16 / 3.75 * 1vw);height: calc(0.13 * 16 / 3.75 * 1vw);background: #fff;border-radius: 50%;margin:calc(0.13 * 16 / 3.75 * 1vw) calc(0.1 * 16 / 3.75 * 1vw) 0;'></div>m",
+    label: ["CÁPSULA", "ESPACIAL", "ENJAULADA", "QUE", "ABSORBE", "ENERGÍA"],
+    txtarr: {},
+    imgsrc: dir + "images/models/J7/section3-item1.webp",
+    isvideo: false,
+    vsrc: "",
+    ismask: true,
   },
-  { label: "WHEELBASE", num: 2672, txt: "mm" },
+  {
+    label: ["1.6TGDI", "de", "alto", "rendimiento"],
+    txtarr: {},
+    imgsrc: dir + "images/models/J7/section3-item2.webp",
+    isvideo: false,
+    vsrc: "",
+    ismask: true,
+  },
 ];
 
-var thirdPage_title = ["Cabina","con","tecnología","inteligente"];
-var thirdPage_title2 = ["4x4", "inteligente"," para", "todo","tipo","de","caminos"];
+var section3_slides_mob: sideswiperItem[] = [
+  {
+    src: dir + "images/models/J7/section3-item1_mob.webp",
+    txt: "CÁPSULA ESPACIAL ENJAULADA QUE ABSORBE ENERGÍA",
+  },
+  {
+    src: dir + "images/models/J7/section3-item2_mob.webp",
+    txt: "MOTOR 1.6TGDI DE ALTO RENDIMIENTO",
+  },
+];
+
+function changePage_section3(type: string) {
+  const swiper_2 = (document.querySelector(".carrousel_section3") as any)?.swiper;
+  if (type == "next") {
+    swiper_2.slideNext();
+  } else {
+    swiper_2.slidePrev();
+  }
+}
+
+var section4_tittle = ["CABINA", "CON", "TECNOLOGÍA", "INTELIGENTE"];
 
 type swiperItem = {
   label: string[];
@@ -600,91 +432,56 @@ type sideswiperItem = {
   src: string;
   txt: string;
 };
-var slides: Array<swiperItem> = [
+var section5_slides: Array<swiperItem> = [
   {
-    label: ["CARGA","RÁPIDA","INALÁMBRICA","DE","50W","PARA","TELÉFONOS","MÓVILES"],
+    label: ["CARGA", "RÁPIDA", "INALÁMBRICA", "DE", "50W", "PARA", "TELÉFONOS", "MÓVILES"],
     txtarr: {},
-    imgsrc: dir + "images/models/page4Swiper1.webp",
+    imgsrc: dir + "images/models/J7/section5-item1.webp",
     isvideo: false,
     vsrc: "",
     ismask: true,
   },
   {
-    label: ["Pantalla","grande","de","14.8","pulgadas"],
+    label: ["PANTALLA", "GRANDE", "DE", "14.8", "PULGADAS"],
     txtarr: {},
-    imgsrc: dir + "images/models/page4Swiper2.webp",
+    imgsrc: dir + "images/models/J7/section5-item2.webp",
     isvideo: false,
     vsrc: "",
     ismask: true,
   },
   {
-    label: ["Palanca","de","cambios","estilo","AVIÓN"],
+    label: ["PALANCA", "DE", "CAMBIOS", "ESTILO", "AVIÓN"],
     txtarr: {},
-    imgsrc: dir + "images/models/page4Swiper3.webp",
+    imgsrc: dir + "images/models/J7/section5-item3.webp",
     isvideo: false,
     vsrc: "",
     ismask: true,
   },
 ];
-var slides_mob: sideswiperItem[] = [
+var section5_slides_mob: sideswiperItem[] = [
   {
-    src: dir + "images/models/page4Swiper1_mob.webp",
+    src: dir + "images/models/J7/section5-item1_mob.webp",
     txt: "CARGA RÁPIDA INALÁMBRICA DE 50W PARA TELÉFONOS MÓVILES",
   },
   {
-    src: dir + "images/models/page4Swiper2_mob.webp",
-    txt: "Pantalla grande de 14.8 pulgadas",
+    src: dir + "images/models/J7/section5-item2_mob.webp",
+    txt: "PANTALLA GRANDE DE 14.8 PULGADAS",
   },
   {
-    src: dir + "images/models/page4Swiper3_mob.webp",
-    txt: "Palanca de cambios estilo AVIÓN",
-  },
-];
-function changePage4(type: string) {
-  const swiper_2 = (document.querySelector(".my_swiper_2") as any)?.swiper;
-  if (type == "next") {
-    swiper_2.slideNext();
-  } else {
-    swiper_2.slidePrev();
-  }
-}
-var slides2: Array<swiperItem> = [
-  {
-    label: ["Cápsula", "espacial", "enjaulada", "que", "absorbe", "energía"],
-    txtarr: {},
-    imgsrc: dir + "images/models/page4Swiper6.webp",
-    isvideo: false,
-    vsrc: "",
-    ismask: true,
-  },
-  {
-    label: ["1.6TGDI", "de", "alto", "rendimiento"],
-    txtarr: {},
-    imgsrc: dir + "images/models/page4Swiper7.webp",
-    isvideo: false,
-    vsrc: "",
-    ismask: true,
+    src: dir + "images/models/J7/section5-item3_mob.webp",
+    txt: "PALANCA DE CAMBIOS ESTILO AVIÓN",
   },
 ];
 
-var slides2_mob: sideswiperItem[] = [
-  {
-    src: dir + "images/models/page4Swiper6_mob.webp",
-    txt: "Cápsula espacial enjaulada que absorbe energía",
-  },
-  {
-    src: dir + "images/models/page4Swiper7_mob.webp",
-    txt: "Motor 1.6TGDI de alto rendimiento",
-  },
-];
-function changePage4_2(type: string) {
-  const swiper_2 = (document.querySelector(".my_swiper_3") as any)?.swiper;
+function changePage_section5(type: string) {
+  const swiper_2 = (document.querySelector(".carrousel_section5") as any)?.swiper;
   if (type == "next") {
     swiper_2.slideNext();
   } else {
     swiper_2.slidePrev();
   }
 }
+
 </script>
 
 <style scoped>
@@ -750,7 +547,6 @@ function changePage4_2(type: string) {
   left: 5%;
 }
 
-/*第一屏*/
 .first-page {
   width: 100%;
   height: 100vh;
@@ -930,7 +726,6 @@ function changePage4_2(type: string) {
   }
 }
 
-/*第二屏*/
 .second-page {
   width: 100%;
   height: 100vh;
@@ -1027,29 +822,25 @@ function changePage4_2(type: string) {
   }
 }
 
-/*第三屏*/
-.third-page {
+.fullpage-sub {
   width: 100%;
   height: 100vh;
   position: relative;
 }
 
-.third-page .banner {
+.fullpage-sub .banner {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   object-fit: cover;
   z-index: -1;
 }
 
-.third-page .title {
+.fullpage-sub .title {
   width: 100%;
-  
   overflow: hidden;
-
-
   color: #ffffff;
   position: absolute;
   top: auto;
@@ -1062,13 +853,13 @@ function changePage4_2(type: string) {
   --animate-delay: 1.8s;
 }
 
-.third-page .title .txt {
+.fullpage-sub .title .txt {
   margin: 0 0.4rem;
   margin: 0 calc(0.4 * 16 / 19.2 * 1vw);
   text-transform: uppercase;
 }
 
-.third-page .title .icon {
+.fullpage-sub .title .icon {
   width: 7rem;
   width: calc(7 * 16 / 19.2 * 1vw);
   height: auto;
@@ -1092,7 +883,7 @@ function changePage4_2(type: string) {
     animation: move2bottom 1.2s infinite;
   }
 
-  .third-page .titleimg {
+  .fullpage-sub .titleimg {
     width: 95%;
     height: auto;
     position: absolute;
@@ -1102,8 +893,7 @@ function changePage4_2(type: string) {
   }
 }
 
-/*第四屏*/
-.fourth-page {
+.carrousel-sub {
   width: 100%;
   height: 100vh;
   position: relative;
@@ -1113,14 +903,14 @@ function changePage4_2(type: string) {
   box-sizing: border-box;
 }
 
-.fourth-page .swiper-container {
+.carrousel-sub .swiper-container {
   width: 100%;
   height: 48rem;
   height: calc(48 * 16 / 19.2 * 1vw);
   position: relative;
 }
 
-.fourth-page .swiper-slide {
+.carrousel-sub .swiper-slide {
   width: 80%;
   height: 100%;
   position: relative;
@@ -1130,7 +920,7 @@ function changePage4_2(type: string) {
   justify-content: flex-start;
 }
 
-.fourth-page .swiper-container :deep() .swiper-pagination {
+.carrousel-sub .swiper-container :deep() .swiper-pagination {
   width: 100%;
   height: 4rem;
   height: calc(4 * 16 / 19.2 * 1vw);
@@ -1143,11 +933,7 @@ function changePage4_2(type: string) {
   z-index: 10;
 }
 
-.fourth-page
-  .swiper-container
-  :deep()
-  .swiper-pagination
-  .swiper-pagination-bullet {
+.carrousel-sub .swiper-container :deep() .swiper-pagination .swiper-pagination-bullet {
   width: 4rem;
   width: calc(4 * 16 / 19.2 * 1vw);
   height: 0.35rem;
@@ -1161,15 +947,11 @@ function changePage4_2(type: string) {
   opacity: 1;
 }
 
-.fourth-page
-  .swiper-container
-  :deep()
-  .swiper-pagination
-  .swiper-pagination-bullet-active {
+.carrousel-sub .swiper-container :deep() .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #e4e2e2a4;
 }
 
-.fourth-page .btn {
+.carrousel-sub .btn {
   width: 1.3rem;
   width: calc(1.3 * 16 / 19.2 * 1vw);
   height: auto;
@@ -1180,15 +962,15 @@ function changePage4_2(type: string) {
   cursor: pointer;
 }
 
-.fourth-page .next {
+.carrousel-sub .next {
   right: 5%;
 }
 
-.fourth-page .prev {
+.carrousel-sub .prev {
   left: 5%;
 }
 
-.fourth-page .swiper-slide .title {
+.carrousel-sub .swiper-slide .title {
   width: 100%;
   height: 3.8rem;
   height: calc(3.8 * 16 / 19.2 * 1vw);
@@ -1208,7 +990,7 @@ function changePage4_2(type: string) {
   justify-content: center;
 }
 
-.fourth-page .swiper-slide .title .icon {
+.carrousel-sub .swiper-slide .title .icon {
   width: 7rem;
   width: calc(7 * 16 / 19.2 * 1vw);
   height: auto;
@@ -1216,12 +998,13 @@ function changePage4_2(type: string) {
   margin: calc(0.15 * 16 / 19.2 * 1vw) calc(0.15 * 16 / 19.2 * 1vw) 0;
 }
 
-.fourth-page .swiper-slide .title .word {
+.carrousel-sub .swiper-slide .title .word {
   margin: 0 0.4rem;
   margin: 0 calc(0.4 * 16 / 19.2 * 1vw);
+  text-transform: uppercase;
 }
 
-.fourth-page .swiper-slide .mask {
+.carrousel-sub .swiper-slide .mask {
   width: 100%;
   height: 100vh;
   background: url(/images/mask.webp);
@@ -1234,7 +1017,7 @@ function changePage4_2(type: string) {
   display: none;
 }
 
-.fourth-page .swiper-slide .img {
+.carrousel-sub .swiper-slide .img {
   width: 80%;
   height: 40rem;
   height: calc(40 * 16 / 19.2 * 1vw);
@@ -1247,7 +1030,7 @@ function changePage4_2(type: string) {
 }
 
 @media (max-width: 1024px) {
-  .fourth-page {
+  .carrousel-sub {
     width: 100%;
     height: 100vh;
     position: relative;
@@ -1257,25 +1040,24 @@ function changePage4_2(type: string) {
     display: block;
   }
 
-  .fourth-page .swiper-container {
+  .carrousel-sub .swiper-container {
     width: 100%;
-    height: 30rem;
-    height: calc(30 * 16 / 3.75 * 1vw);
+    height: 100vh;
     position: relative;
     margin-top: 0;
   }
 
-  .fourth-page .swiper-slide {
+  .carrousel-sub .swiper-slide {
     width: 93%;
     height: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
   }
 
-  .fourth-page .swiper-container :deep() .swiper-pagination {
+  .carrousel-sub .swiper-container :deep() .swiper-pagination {
     width: 100%;
     height: 1rem;
     height: calc(1 * 16 / 3.75 * 1vw);
@@ -1288,11 +1070,7 @@ function changePage4_2(type: string) {
     z-index: 10;
   }
 
-  .fourth-page
-    .swiper-container
-    :deep()
-    .swiper-pagination
-    .swiper-pagination-bullet {
+  .carrousel-sub .swiper-container :deep() .swiper-pagination .swiper-pagination-bullet {
     width: 4rem;
     width: calc(4 * 16 / 3.75 * 1vw);
     height: 0.1rem;
@@ -1306,15 +1084,11 @@ function changePage4_2(type: string) {
     opacity: 1;
   }
 
-  .fourth-page
-    .swiper-container
-    :deep()
-    .swiper-pagination
-    .swiper-pagination-bullet-active {
+  .carrousel-sub .swiper-container :deep() .swiper-pagination .swiper-pagination-bullet-active {
     background-color: #e4e2e2a4;
   }
 
-  .fourth-page .btn {
+  .carrousel-sub .btn {
     position: absolute;
     top: 40%;
     transform: translateY(-50%);
@@ -1326,19 +1100,19 @@ function changePage4_2(type: string) {
     cursor: pointer;
   }
 
-  .fourth-page .btn:hover {
+  .carrousel-sub .btn:hover {
     opacity: 1;
   }
 
-  .fourth-page .btn.next {
+  .carrousel-sub .btn.next {
     right: 5%;
   }
 
-  .fourth-page .btn.prev {
+  .carrousel-sub .btn.prev {
     left: 5%;
   }
 
-  .fourth-page .swiper-slide .title {
+  .carrousel-sub .swiper-slide .title {
     width: 93%;
     height: 2.8rem;
     height: calc(2.8 * 16 / 3.75 * 1vw);
@@ -1364,13 +1138,13 @@ function changePage4_2(type: string) {
     transform: translateX(-50%);
   }
 
-  .fourth-page .swiper-slide .title .word {
+  .carrousel-sub .swiper-slide .title .word {
     margin: 0 0.25rem;
     margin: 0 calc(0.25 * 16 / 3.75 * 1vw);
     text-transform: uppercase;
   }
 
-  .fourth-page .swiper-slide .mask {
+  .carrousel-sub .swiper-slide .mask {
     width: 100%;
     height: 100vh;
     background: url(/images/mask.webp);
@@ -1383,10 +1157,10 @@ function changePage4_2(type: string) {
     display: none;
   }
 
-  .fourth-page .swiper-slide .img {
-    width: 90%;
-    height: 20rem;
-    height: calc(20 * 16 / 3.75 * 1vw);
+  .carrousel-sub .swiper-slide .img {
+    width: 80%;
+    height: 70vh;
+    max-height: 800px;
     object-fit: cover;
     position: relative;
     left: 50%;
@@ -1395,21 +1169,65 @@ function changePage4_2(type: string) {
   }
 }
 
-/*第五屏*/
-.five-page {
+@media (max-width: 640px) {
+  .carrousel-sub {
+    display: block !important;
+    min-height: 100vh;
+  }
+
+  /* .carrousel-sub .swiper-container {
+    height: 60vh;
+    min-height: 400px;
+  } */
+
+  /* .carrousel-sub .swiper-slide .img {
+    height: 45vh;
+    min-height: 300px;
+  } */
+/* 
+  .carrousel-sub .swiper-slide .title {
+    height: auto;
+    min-height: 50px;
+    font-size: 14px;
+  }
+
+  .carrousel-sub .swiper-slide .title .word {
+    margin: 0 4px;
+  }
+
+  .carrousel-sub .btn {
+    width: 16px;
+    min-width: 12px;
+  }
+
+  .carrousel-sub .swiper-container :deep() .swiper-pagination {
+    height: 20px;
+    min-height: 16px;
+    bottom: 10px !important;
+  }
+
+  .carrousel-sub .swiper-container :deep() .swiper-pagination .swiper-pagination-bullet {
+    width: 40px;
+    height: 2px;
+    margin: 0 5px;
+  } */
+}
+
+
+.collage_section {
   width: 100%;
   height: 100vh;
   position: relative;
   background: #000;
 }
 
-.five-page .img-main {
-  width: 80%;
+.collage_section .img-main {
+  width: 100%;
   height: auto;
   position: relative;
 }
 
-.five-page .img-main .img-item {
+.collage_section .img-main .img-item {
   width: 100%;
   display: flex;
   align-items: center;
@@ -1421,7 +1239,7 @@ function changePage4_2(type: string) {
 .img-item .img {
   width: 38rem;
   width: calc(38 * 16 / 19.2 * 1vw);
-  height: 20rem;
+  height: 20rem; 
   height: calc(20 * 16 / 19.2 * 1vw);
   transition: 1s;
   transition-delay: 0.3s;
@@ -1489,13 +1307,42 @@ function changePage4_2(type: string) {
 }
 
 @media (max-width: 1024px) {
-  .another-five-page {
+  .collage_section .img-main {
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .collage_section .img-main .img-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+    gap: 1rem;
+  }
+  .collage_section .img-main .img-item .img {
+    width: calc(50% - 0.5rem);
+    height: auto;
+  }
+  .collage_section .img-main .img-item .txt {
+    width: calc(50% - 0.5rem);
+  }
+  .collage_section .img-main .img-item .txt .title {
+    font-size: 20px;
+  }
+  .collage_section .img-main .img-item .txt .memo {
+    font-size: 16px;
+  }
+  .mobile-collage_section {
     width: 100%;
     height: auto;
     position: relative;
   }
 
-  .another-five-page .img-main {
+  .mobile-collage_section .img-main {
     width: 100%;
     height: auto;
     position: relative;
@@ -1505,102 +1352,160 @@ function changePage4_2(type: string) {
     padding-bottom: calc(2 * 16 / 3.75 * 1vw);
   }
 
-  .another-five-page .img-main .img-item {
+  .mobile-collage_section .img-main .img-item {
     display: block;
     position: relative;
+
   }
 
-  .another-five-page .img-main .row {
+  .mobile-collage_section .img-main .row {
     width: 100%;
     display: flex;
     align-items: center;
   }
 
-  .another-five-page .img-main .img-item .img {
+  .mobile-collage_section .img-main .img-item .img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 0;
   }
 
-  .another-five-page .img-main .img-item .titleimg {
+  .mobile-collage_section .img-main .img-item .title-content {
     width: 100%;
     height: auto;
     position: absolute;
     left: 0;
-    bottom: 1%;
+    bottom: 0;
     transition: 0.6s;
     transition-delay: 0.3s;
+    padding: 0px 12px 12px 12px;
   }
 
-  .another-five-page .img-main .item1 {
+  .mobile-collage_section .img-main .img-item .title-text {
+    width: auto;
+    text-transform: uppercase;
+    font-size: 16px;
+    text-align: center;
+    color: #fff;
+    padding: 0px 10px;
+    background: linear-gradient(90deg, #67B0C4 0%, rgba(255, 255, 255, 0) 100%);
+
+  }
+
+  .mobile-collage_section .img-main .item1,
+  .mobile-collage_section .img-main .item2,
+  .mobile-collage_section .img-main .item3,
+  .mobile-collage_section .img-main .item4,
+  .mobile-collage_section .img-main .item5 {
     width: 100%;
-    height: 13rem;
-    height: calc(13 * 16 / 3.75 * 1vw);
+    height: 400px;
     border-top: 1px solid #fff;
   }
+  
 
-  .another-five-page .img-main .item1 .titleimg {
+  /* .mobile-collage_section .img-main .item1 .titleimg {
     width: 70%;
     bottom: 3%;
     left: 10%;
   }
 
-  .another-five-page .img-main .item2 {
-    width: 50%;
-    height: 12rem;
-    height: calc(12 * 16 / 3.75 * 1vw);
-    border-bottom: 1px solid #fff;
-    border-top: 1px solid #fff;
-    border-right: 1px solid #fff;
-  }
-
-  .another-five-page .img-main .item2 .titleimg {
+  .mobile-collage_section .img-main .item2 .titleimg {
     width: 100%;
     bottom: 3%;
     left: 6%;
   }
 
-  .another-five-page .img-main .item3 {
-    width: 50%;
-    height: 12rem;
-    height: calc(12 * 16 / 3.75 * 1vw);
-    border-bottom: 1px solid #fff;
-    border-top: 1px solid #fff;
-  }
 
-  .another-five-page .img-main .item3 .titleimg {
+
+  .mobile-collage_section .img-main .item3 .titleimg {
     width: 85%;
     bottom: 3%;
     left: 6%;
   }
 
-  .another-five-page .img-main .item4 {
-    width: 100%;
-    height: 13rem;
-    height: calc(13 * 16 / 3.75 * 1vw);
-    border-bottom: 1px solid #fff;
-  }
 
-  .another-five-page .img-main .item4 .titleimg {
+  .mobile-collage_section .img-main .item4 .titleimg {
     width: 90%;
     bottom: 5%;
     left: 50%;
     transform: translateX(-50%);
   }
 
-  .another-five-page .img-main .item5 {
-    width: 100%;
-    height: 13rem;
-    height: calc(13 * 16 / 3.75 * 1vw);
-    border-bottom: 1px solid #fff;
-  }
 
-  .another-five-page .img-main .item5 .titleimg {
+  .mobile-collage_section .img-main .item5 .titleimg {
     width: 70%;
     bottom: 5%;
     left: 52%;
     transform: translateX(-50%);
+  } */
+}
+
+@media (min-width: 640px) and (max-width: 874px) {
+  .collage_section .img-main .img-item .txt .title {
+    font-size: 18px;
+  }
+  .collage_section .img-main .img-item .txt .memo {
+    font-size: 14px;
   }
 }
+
+@media (max-width: 640px) {
+  .mobile-collage_section .img-main {
+    padding-top: 80px;
+    padding-bottom: 20px;
+  }
+
+  .mobile-collage_section .img-main .item1,
+  .mobile-collage_section .img-main .item2,
+  .mobile-collage_section .img-main .item3,
+  .mobile-collage_section .img-main .item4,
+  .mobile-collage_section .img-main .item5 {
+    height: 350px;
+    min-height: 350px;
+  }
+
+}
+
+@media (max-width: 450px) {
+  .mobile-collage_section .img-main {
+    padding-top: 80px;
+    padding-bottom: 20px;
+  }
+
+  .mobile-collage_section .img-main .item1,
+  .mobile-collage_section .img-main .item2,
+  .mobile-collage_section .img-main .item3,
+  .mobile-collage_section .img-main .item4,
+  .mobile-collage_section .img-main .item5 {
+    height: 250px;
+    min-height: 250px;
+  }
+
+  .mobile-collage_section .img-main .img-item .title-text {
+    font-size: 14px;
+  }
+
+
+}
+
+/* Transición slide-fade */
+.slide-fade-enter-active {
+  transition: all 1.2s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from {
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+.slide-fade-leave-to {
+  transform: translateY(-30px);
+  opacity: 0;
+}
+
 </style>
