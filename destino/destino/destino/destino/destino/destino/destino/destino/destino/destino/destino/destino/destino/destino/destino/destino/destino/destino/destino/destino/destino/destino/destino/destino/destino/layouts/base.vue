@@ -2,14 +2,15 @@
   <div class="h-full relative">
     <!-- 回到顶部 -->
     <CommonBacktop />
-    <!-- head -->
-    <LayoutsHeader />
+  <!-- head -->
+  <LayoutsHeader v-if="route.path === '/'" />
+  <GeneralHeader v-else />
     <!-- content -->
     <div :id="'layout-' + String(route.name)" class="content min-h-[100vh]">
       <slot></slot>
     </div>
     <!-- footer -->
-    <LayoutsFooter/>
+    <LayoutsFooter :routePath="route.path" />
   </div>
 </template>
 

@@ -148,7 +148,7 @@
           
         </div>
       </SwiperSlide>
-      <SwiperSlide class="fourth-page">
+      <SwiperSlide class="section fourth-page">
         <Swiper
           v-if="ispc"
           class="swiper-container my_swiper_2"
@@ -206,7 +206,7 @@
           ></modelSwiper>
         </ClientOnly>
       </SwiperSlide>
-      <SwiperSlide class="five-page" v-if="ispc">
+      <SwiperSlide class="section five-page" v-if="ispc">
         <div class="img-main">
           <div class="img-item">
             <Transition name="slide-fade">
@@ -284,7 +284,7 @@
           </div>
         </div>
       </SwiperSlide>
-      <SwiperSlide class="five-page" v-if="ispc">
+      <SwiperSlide class="section five-page" v-if="ispc">
         <div class="img-main">
           <div class="img-item">
             <Transition name="slide-fade">
@@ -344,7 +344,7 @@
           </div>
         </div>
       </SwiperSlide>
-      <SwiperSlide class="five-page" v-if="ispc">
+      <SwiperSlide class="section five-page" v-if="ispc">
         <div class="img-main">
           <div class="img-item">
             <Transition name="slide-fade">
@@ -479,7 +479,7 @@
           <SwiperSlide style="height: auto; display: block">
             <div class="min-h-[100vh] flex flex-col">
               <ClientOnly fallback-tag="span" fallback="Loading comments...">
-                <xlsxTable class="flex-1"></xlsxTable>
+                <xlsxTable class="flex-1" model-name="J7"></xlsxTable>
               </ClientOnly>
               <LayoutsFooter :routePath="$route.path" />
             </div>
@@ -507,8 +507,6 @@ var startNumAni = ref(false);
 var dis360: Ref<boolean> = ref(true);
 var playweb360: Ref<boolean> = ref(false);
 function handleCustomEvent(cur:any) {
-  console.log("cur",cur);
-  console.log("currentpage",currentPage.value);
   
   let pagecur;
   if (cur > 8) {
@@ -522,7 +520,6 @@ function handleCustomEvent(cur:any) {
   setTimeout(
     () => {
       currentPage.value = pagecur;
-      console.log("currentpage after",currentPage.value);
       if (cur - 1 == 0) {
         setTimeout(() => {
           startNumAni.value = true;
@@ -536,10 +533,10 @@ function handleCustomEvent(cur:any) {
 }
 
 let goon = true;
-function handleMessage(event) {
+function handleMessage(event: any) {
   if (goon == true) {
     goon = false;
-    var fullpage = document.querySelector(".fullPageContainer").swiper;
+    var fullpage = (document.querySelector(".fullPageContainer") as any).swiper;
     if (event.data.message > 0) {
       fullpage.slideNext();
     } else if (event.data.message < 0) {
@@ -553,10 +550,8 @@ function handleMessage(event) {
 onMounted(() => {
   handleCustomEvent(1);
 
-  nextTick(() => {
-    console.log('currentPAge', currentPage);
-    
-    window.addEventListener("message", handleMessage, "*");
+  nextTick(() => {    
+    window.addEventListener("message", handleMessage);
     var elements = document.querySelectorAll(".wrap_360");
     var observer = new IntersectionObserver((entries, instance) => {
       entries.forEach((entry) => {
@@ -642,8 +637,8 @@ var slides_mob: sideswiperItem[] = [
     txt: "Palanca de cambios estilo AVIÓN",
   },
 ];
-function changePage4(type) {
-  const swiper_2 = document.querySelector(".my_swiper_2").swiper;
+function changePage4(type: string) {
+  const swiper_2 = (document.querySelector(".my_swiper_2") as any)?.swiper;
   if (type == "next") {
     swiper_2.slideNext();
   } else {
@@ -679,8 +674,8 @@ var slides2_mob: sideswiperItem[] = [
     txt: "Motor 1.6TGDI de alto rendimiento",
   },
 ];
-function changePage4_2(type) {
-  const swiper_2 = document.querySelector(".my_swiper_3").swiper;
+function changePage4_2(type: string) {
+  const swiper_2 = (document.querySelector(".my_swiper_3") as any)?.swiper;
   if (type == "next") {
     swiper_2.slideNext();
   } else {
@@ -697,7 +692,7 @@ function changePage4_2(type) {
   background: #000;
 }
 
-.swiper-slide {
+.swiper-slide.section {
   width: 100%;
   height: 100vh;
   display: flex;
