@@ -479,7 +479,10 @@
           <SwiperSlide style="height: auto; display: block">
             <div class="min-h-[100vh] flex flex-col">
               <ClientOnly fallback-tag="span" fallback="Loading comments...">
-                <xlsxTable class="flex-1" model-name="J7"></xlsxTable>
+                <xlsxTable class="flex-1" model-name="J7" 
+                title="Tabla de parámetros de configuración del JAECOO J7"
+                desc="Las imágenes y los parámetros de este sitio web son solo de referencia. La configuración del modelo del vehículo puede variar según el mercado. La versión del país de lanzamiento prevalecerá."
+                ></xlsxTable>
               </ClientOnly>
               <LayoutsFooter :routePath="$route.path" />
             </div>
