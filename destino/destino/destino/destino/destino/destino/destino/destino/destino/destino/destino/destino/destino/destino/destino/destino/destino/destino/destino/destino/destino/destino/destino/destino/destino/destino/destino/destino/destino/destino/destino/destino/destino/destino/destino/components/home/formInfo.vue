@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex bg-[#0D0E0E] justify-center items-center min-h-[100px] sm:px-[10px] pt-[32px] sm:pt-[100px] pb-[40px]">
+  <div id="contactForm" class="w-full flex bg-[#0D0E0E] justify-center items-center min-h-[100px] sm:px-[10px] pt-[32px] sm:pt-[100px] pb-[40px]">
     <div class="w-[900px] max-w-[90%] flex flex-col justify-center items-center space-y-[32px]">
       <h1 class="text-center font-interRegular text-[24px] leading-[28px] sm:text-[32px] sm:leading-[38px] text-white sm:w-[600px]">
         LLENA EL SIGUIENTE FORMULARIO Y SE PARTE DE LOS EARLY ADOPTERS

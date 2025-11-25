@@ -1,5 +1,8 @@
 <template>
   <div class="table-main">
+    <span v-if="title" class="flex flex-col items-center justify-center text-white font-interRegular table-title">
+      {{ title }}
+    </span>
     <div v-if="paramsData && paramsData.title" class="desktop-view">
       <table class="params-table">
         <tbody class="params-table__body">
@@ -88,7 +91,9 @@
         </tbody>
       </table>
     </div>
-    
+    <span v-if="desc" class="flex flex-col items-center justify-center text-white font-interRegular text-center table-desc">
+      {{ desc }}
+    </span>
   </div>
 </template>
 
@@ -101,6 +106,14 @@ const props = defineProps({
   modelName: {
     type: String,
     required: true
+  },
+  title: {
+    type: String,
+    required: false
+  },
+  desc: {
+    type: String,
+    required: false
   }
 });
 
@@ -243,8 +256,20 @@ function menuClickMobile(k: any) {
 <style scoped lang="scss">
 .table-main {
   width: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.table-title {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.table-desc {
+    font-size: 12px;
+    text-align: justify;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 .desktop-view {
@@ -256,10 +281,14 @@ function menuClickMobile(k: any) {
 }
 
 @media (min-width: 640px) {
-  .table-main {
-    padding-top: 100px;
-    padding-bottom: 100px;
+  .table-title {
+    font-size: 24px;
   }
+  .table-desc {
+    text-align: center;
+    padding-left: 24px;
+    padding-right: 24px;
+}
   .desktop-view {
     padding-left: 24px;
     padding-right: 24px;
