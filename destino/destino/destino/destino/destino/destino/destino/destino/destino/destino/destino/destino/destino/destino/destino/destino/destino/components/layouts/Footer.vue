@@ -1,9 +1,9 @@
 <template>
-  <footer class="w-full bg-[#0d0e0e] flex flex-col justify-center items-center footer-info ">
-    <div class="flex flex-col justify-center w-full max-w-[1280px] bg-[#0d0e0e] px-[24px] lg:min-h-[140px] py-[50px] lg:py-[32px]">
+  <footer class="w-full bg-[#0d0e0e] flex flex-col justify-center items-center footer-info">
+    <div class="flex flex-col justify-center w-full max-w-[1280px] bg-[#0d0e0e] px-[24px] sm:px-[50px] lg:min-h-[140px] py-[50px] lg:py-[32px] gap-y-[20px] ">
       <template v-if="routePath !== '/'">
-        <div class="flex w-full flex-col pb-[20px] space-y-[32px]">
-          <div class="flex justify-center sm:justify-start items-start space-x-[19px] sm:space-x-[64px]">
+        <div class="flex w-full flex-col space-y-[32px]">
+          <div class="flex justify-center lg:justify-start items-start space-x-[19px] sm:space-x-[64px]">
             <template v-for="(category) in categories" :key="category.title">
               <div class="flex flex-col space-y-[16px]">
                 <div v-if="category.isLinked">
@@ -50,20 +50,30 @@
           </a>
         </div>
       </div>
-
+      <div class="flex justify-center lg:justify-start mt-[6px] items-center">
+        <span class="text-[10px] sm:text-[12px] text-white font-interRegular hover:underline cursor-pointer"
+          @click="NavToPage('/cookieNotice')">
+          Cookies
+        </span>
+      </div>
     </div>
   </footer>
 
 </template>
 <script lang="ts" setup>
 defineProps<{ routePath: string }>();
+import { useRouter } from 'vue-router'
+import { useFooterStore } from '~/stores/useFooter'
+const store = useFooterStore()
+const router = useRouter()
+
 
 const categories = [
   {
     title: 'MODELOS JAECOO',
     isLinked: false,
     links: [
-      { name: 'JAECOO C7', link: '/models/jaecoo-c7' },
+      { name: 'JAECOO J7', link: '/models/jaecoo-j7' },
     ]
   },
   {
@@ -80,4 +90,14 @@ const categories = [
     link: '/about'
   }
 ]
+
+const NavToPage = (url: string) => {
+  if (url === '/cookieNotice') {
+    store.setShowCookie(true)
+    return
+  }
+  store.setPath(url)
+  router.push({ path: url })
+}
+
 </script>

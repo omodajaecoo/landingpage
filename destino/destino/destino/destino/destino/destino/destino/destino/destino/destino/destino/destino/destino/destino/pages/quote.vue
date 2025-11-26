@@ -1,6 +1,8 @@
 <template>
-  <HomeFormInfo />
-  <HomeLeadForm ref="leadFormRef" id="leadform"/>
+  <div class="flex flex-col items-center w-full pt-[60px] sm:pt-0 bg-[#0D0E0E]">
+    <HomeFormInfo />
+    <HomeLeadForm ref="leadFormRef" id="leadform"/>
+  </div>
 </template>
 
 <script lang="ts" setup>
