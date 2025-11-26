@@ -207,7 +207,7 @@
     
     {
       name: 'Inicio',
-      linkUrl: '/home'
+      linkUrl: '/'
     },
     {
       name: 'Modelos',

@@ -39,7 +39,7 @@
                 <BaseButton
                   type="text"
                   class="text-[0.32rem] lg:text-[0.16rem] anim"
-                  >Ver más</BaseButton
+                  >Descubre más</BaseButton
                 >
               </div>
             </div>

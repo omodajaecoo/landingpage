@@ -15,10 +15,11 @@
                 <div class="pr-[10px] lg:pr-[48px] flex-[1.2] border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
                   1.200KMS AUTONOMÍA PHEV</div>
                 <div class="px-[10px] lg:px-[48px] flex-[1.2] border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
-                  14.8" PANTALLA DUAL</div>
+                  14.8" PANTALLA VERTICAL</div>
                 <div class="px-[10px] lg:px-[48px] flex-1 border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
                   7 AIRBAGS</div>
-                <div class="pl-[5px] lg:pl-[40px] flex-1 font-interSemiBold text-[12px] sm:text-[20px] text-center">+15 ADAS</div>
+                <div class="pl-[5px] lg:pl-[40px] flex-1 font-interSemiBold text-[12px] sm:text-[20px] text-center">
+                  +15 ADAS</div>
               </div>
             </div>
           </Transition>
@@ -31,7 +32,7 @@
           " class="banner" />
         <div class="title bottom-[20%] sm:bottom-[40px]">
           <img loading="lazy" src="/images/models/title-left.webp" class="icon left-icon" v-if="ispc"/>
-          <div class="flex flex-wrap justify-center items-center max-w-[1000px]">
+          <div class="flex flex-wrap justify-center items-center max-w-[1000px] px-[8px]">
             <Transition name="slide-fade" v-for="(item, idx) in section2_tittle" :key="idx">
               <div class="txt font-interSemiRegular text-[14px] sm:text-[16px]" v-if="currentPage == 1">
                {{ item }}
@@ -45,7 +46,7 @@
         <Swiper v-if="ispc" class="swiper-container carrousel_section3" :modules="[SwiperPagination, SwiperEffectCreative]"
           :slides-per-view="1" :loop="true" @swiper="onPage4Swiper">
           <SwiperSlide v-for="(slide, idx) in section3_slides" :key="idx">
-            <img loading="lazy" :src="slide.imgsrc" class="img" />
+            <img loading="lazy" :src="slide.imgsrc" class="img" :style="slide.objectPosition ? { objectPosition: slide.objectPosition } : {}" />
             <div v-if="slide.ismask" class="mask"></div>
             <div class="flex justify-center items-center w-full">
               <div class="title max-w-[1000px]">
@@ -78,7 +79,7 @@
           " class="banner" />
         <div class="title bottom-[20%] sm:bottom-[40px]">
           <img loading="lazy" src="/images/models/title-left.webp" class="icon left-icon" v-if="ispc"/>
-          <div class="flex flex-wrap justify-center items-center max-w-[1000px]">
+          <div class="flex flex-wrap justify-center items-center max-w-[1000px] px-[8px]">
             <Transition name="slide-fade" v-for="(item, idx) in section4_tittle" :key="idx">
               <div class="txt font-interSemiRegular text-[14px] sm:text-[16px]" v-if="currentPage == 3">
                 {{ item }}
@@ -404,15 +405,15 @@ var section3_slides: Array<swiperItem> = [
 var section3_slides_mob: sideswiperItem[] = [
   {
     src: dir + "images/models/J7/section3-item1_mob.webp",
-    txt: "ESTRUCTURA CON UN 80% COMPUESTO DE ACERO DE ALTA RESISTENCIA",
+    txt: "Estructura con un 80% compuesto de acero de alta resistencia.",
   },
   {
     src: dir + "images/models/J7/section3-item2_mob.webp",
-    txt: "PLATAFORMA SUPER HYBRID SYSTEM CON AHORRO DE HASTA 70% DE COMBUSTIBLE*",
+    txt: "Plataforma Super Hybrid System con ahorro de hasta 70% de combustible*.",
   },  
   {
     src: dir + "images/models/J7/section3-item3_mob.webp",
-    txt: "BATERÍAS DE ALTO RENDIMIENTO Y 5 ESTÁNDARES DE PROTECCIÓN & SEGURIDAD",
+    txt: "Baterías de alto rendimiento y 5 estándares de protección & seguridad.",
   },
 ];
 
@@ -442,7 +443,7 @@ type sideswiperItem = {
 };
 var section5_slides: Array<swiperItem> = [
     {
-    label: ["CONNECTIVIDAD", "Y", "EXPERIENCIA", "CENTRALIZADA", "EN", "SU", "PANTALLA", "VERTICAL", "DE", "14.8\""],
+    label: ["CONECTIVIDAD", "Y", "EXPERIENCIA", "CENTRALIZADA", "EN", "SU", "PANTALLA", "VERTICAL", "DE", "14.8\""],
     txtarr: {},
     imgsrc: dir + "images/models/J7/section5-item1.webp",
     isvideo: false,
@@ -463,11 +464,11 @@ var section5_slides: Array<swiperItem> = [
 var section5_slides_mob: sideswiperItem[] = [
   {
     src: dir + "images/models/J7/section5-item1_mob.webp",
-    txt: "CONNECTIVIDAD Y EXPERIENCIA CENTRALIZADA EN SU PANTALLA VERTICAL DE 14.8\"",
+    txt: "Conectividad y experiencia centralizada en su pantalla vertical de 14.8\".",
   },
   {
     src: dir + "images/models/J7/section5-item2_mob.webp",
-    txt: "AMPLIO TECHO PANORÁMICO PARA DISFRUTAR EL CAMINO CON TODOS",
+    txt: "Amplio techo panorámico para disfrutar el camino con todos.",
   },
 ];
 
@@ -970,7 +971,7 @@ function changePage_section5(type: string) {
 
 .carrousel-sub .swiper-slide .title {
   width: 100%;
-  padding-top: 20px;
+  padding-top: 12px;
   overflow: hidden;
   text-align: center;
   font-family: "SourceHanSansSC-Light";
@@ -985,6 +986,7 @@ function changePage_section5(type: string) {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .carrousel-sub .swiper-slide .title .icon {
@@ -1109,7 +1111,7 @@ function changePage_section5(type: string) {
 
   .carrousel-sub .swiper-slide .title {
     width: 93%;
-    padding-top: 0px;
+    padding-top: 12px;
     overflow: hidden;
     text-align: center;
     font-family: "SourceHanSansSC-Light";
@@ -1126,10 +1128,6 @@ function changePage_section5(type: string) {
     justify-content: center;
     flex-wrap: wrap;
     position: relative;
-    left: 50%;
-    top: 1rem;
-    top: calc(1 * 16 / 3.75 * 1vw);
-    transform: translateX(-50%);
   }
 
   .carrousel-sub .swiper-slide .title .word {
