@@ -15,7 +15,7 @@
   <!-- Section: Autos -->
   <HomeCarsBanner />
 
-  
+  <!-- Section: Beneficios -->
   <HomeBenefitsBanner/>
 
   <HomeFormInfo />

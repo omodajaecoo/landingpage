@@ -21,13 +21,13 @@
       @touchmove.stop 
     />
     <!-- global website -->
-    <div class="hidden lg:flex items-center cursor-pointer" @click="goToGlobalWebsite">
+    <a href="https://www.automotoresyanexos.com.ec/" target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center cursor-pointer">
       <BaseImg 
         class="logo w-[100px]" 
         :src="globalUrl" 
         alt="global" 
       />
-    </div>
+    </a>
     <!-- mb top menu -->
     <div 
       :class="[headerTheme, {active: activeFlag}]"
@@ -97,11 +97,6 @@
   }
   // 提供方法给子孙组件
  provide('parentMethod', handleToggleMenu);
-
-  const goToGlobalWebsite = () => {
-    store.setPath('/globalWebsite');
-    router.push({ path: '/globalWebsite' });
-  }
 
   const setPath = () => {
     store.setPath('/');

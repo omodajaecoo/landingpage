@@ -43,7 +43,7 @@
         </div>
       </SwiperSlide>
       <SwiperSlide class="section carrousel-sub">
-        <Swiper v-if="ispc" class="swiper-container carrousel_section3" :modules="[SwiperPagination, SwiperEffectCreative]"
+        <Swiper v-if="showDesktopSwiper" class="swiper-container carrousel_section3" :modules="[SwiperPagination, SwiperEffectCreative]"
           :slides-per-view="1" :loop="true" @swiper="onPage4Swiper">
           <SwiperSlide v-for="(slide, idx) in section3_slides" :key="idx">
             <img loading="lazy" :src="slide.imgsrc" class="img" :style="slide.objectPosition ? { objectPosition: slide.objectPosition } : {}" />
@@ -69,7 +69,7 @@
         </Swiper>
         <ClientOnly fallback-tag="span" fallback="Loading comments...">
           <modelSwiper modid="mobslides2" :swiperArr="section3_slides_mob" :needTitleBg="false" :needPagination="true"
-            :needCarmodel="false" :shownum="3" :curnum="currentPage" v-if="!ispc"></modelSwiper>
+            :needCarmodel="false" :shownum="3" :curnum="currentPage" v-if="showMobileSwiper"></modelSwiper>
         </ClientOnly>
       </SwiperSlide>
       <SwiperSlide class="section fullpage-sub">
@@ -90,7 +90,7 @@
         </div>
       </SwiperSlide>
       <SwiperSlide class="section carrousel-sub">
-        <Swiper v-if="ispc" class="swiper-container carrousel_section5" :modules="[SwiperPagination, SwiperEffectCreative]"
+        <Swiper v-if="showDesktopSwiper" class="swiper-container carrousel_section5" :modules="[SwiperPagination, SwiperEffectCreative]"
           :slides-per-view="1" :loop="true" @swiper="onPage4Swiper">
           <SwiperSlide v-for="(slide, idx) in section5_slides" :key="idx">
             <img loading="lazy" :src="slide.imgsrc" class="img" :style="slide.objectPosition ? { objectPosition: slide.objectPosition } : {}" />
@@ -116,10 +116,10 @@
         </Swiper>
         <ClientOnly fallback-tag="span" fallback="Loading comments...">
           <modelSwiper modid="mobslides" :swiperArr="section5_slides_mob" :needTitleBg="false" :needPagination="true"
-            :needCarmodel="false" :shownum="5" :curnum="currentPage" v-if="!ispc"></modelSwiper>
+            :needCarmodel="false" :shownum="5" :curnum="currentPage" v-if="showMobileSwiper"></modelSwiper>
         </ClientOnly>
       </SwiperSlide>
-      <SwiperSlide class="section collage_section" v-if="ispc">
+      <SwiperSlide class="section collage_section" v-if="showDesktopSwiper">
         <div class="img-main">
           <div class="img-item">
             <Transition name="slide-fade">
@@ -140,7 +140,7 @@
             </div>
           </div>
           <div class="img-item">
-            <div class="txt" v-if="ispc" style="text-align: right">
+            <div class="txt" style="text-align: right">
               <Transition name="slide-fade">
                 <div class="title" v-if="currentPage == 5">
                   AROS DE ALEACIÓN DE 19 PULGADAS
@@ -159,7 +159,7 @@
           </div>
         </div>
       </SwiperSlide>
-      <SwiperSlide class="section collage_section" v-if="ispc">
+      <SwiperSlide class="section collage_section" v-if="showDesktopSwiper">
         <div class="img-main">
           <div class="img-item">
             <Transition name="slide-fade">
@@ -180,7 +180,7 @@
             </div>
           </div>
           <div class="img-item">
-            <div class="txt" v-if="ispc" style="text-align: right">
+            <div class="txt" style="text-align: right">
               <Transition name="slide-fade">
                 <div class="title" v-if="currentPage == 6">
                   FROM CLASSIC, BEYOND CLASSIC
@@ -199,7 +199,7 @@
           </div>
         </div>
       </SwiperSlide>
-      <SwiperSlide class="section collage_section" v-if="ispc">
+      <SwiperSlide class="section collage_section" v-if="showDesktopSwiper">
         <div class="img-main">
           <div class="img-item">
             <Transition name="slide-fade">
@@ -229,7 +229,7 @@
             enabled: true,
             minimumVelocity: 0.1,
           }" :nested="true" :observer="true" :observeParents="true" :autoHeight="true">
-          <SwiperSlide class="mobile-collage_section" v-if="!ispc">
+          <SwiperSlide class="mobile-collage_section" v-if="showMobileSwiper">
             <div class="img-main">
               <div class="img-item item1">
                 <img loading="lazy" src="/images/models/J7/section6-item1.webp" class="img animate__animated animate__fadeIn" />
@@ -299,6 +299,11 @@ const { isMobile } = useDeviceType();
 const ispc = computed(() => {
   return !isMobile.value;
 });
+
+const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1920);
+const showDesktopSwiper = computed(() => windowWidth.value > 640);
+const showMobileSwiper = computed(() => windowWidth.value <= 640);
+
 const currentPage: Ref<number> = ref(999);
 var page4Swiper: any;
 const onPage4Swiper = (swiper4: any) => {
@@ -351,6 +356,12 @@ function handleMessage(event: any) {
 onMounted(() => {
   handleCustomEvent(1);
 
+  const handleResize = () => {
+    windowWidth.value = window.innerWidth;
+  };
+  
+  window.addEventListener('resize', handleResize);
+
   nextTick(() => {
     window.addEventListener("message", handleMessage);
     var elements = document.querySelectorAll(".wrap_360");
@@ -370,9 +381,11 @@ onMounted(() => {
 });
 onBeforeUnmount(() => {
   window.removeEventListener("message", handleMessage);
+  window.removeEventListener('resize', () => {
+    windowWidth.value = window.innerWidth;
+  });
 });
 
-// Potente cuando hace falta, silencioso cuando importa. El Jaecoo J7 SHS encuentra el equilibrio en cada camino. Gracias a su Super Hybrid System, se convierte en el SUV diseñado para ti.
 var section2_tittle = ["POTENTE", "CUANDO", "HACE", "FALTA,", "SILENCIOSO", "CUANDO", "IMPORTA.", "EL", "JAECOO", "J7", "SHS", "ENCUENTRA", "EL", "EQUILIBRIO", "EN", "CADA", "CAMINO.", "GRACIAS", "A", "SU", "SUPER", "HYBRID", "SYSTEM,", "SE", "CONVIERTE", "EN", "EL", "SUV", "DISEÑADO", "PARA", "TI."];
 
 var section3_slides: Array<swiperItem> = [

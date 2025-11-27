@@ -17,11 +17,13 @@
                     {{ slide.desc }}
                   </div>
                   <div class="flex justify-center items-center">
-                    <a :href="slide.link" target="_blank" rel="noopener">
-                      <BaseButton type="text" class="font-interRegular text-[20px] px-[20px] py-[25px] border border-white">
-                        Más información
-                      </BaseButton>
-                    </a>
+                    <BaseButton
+                      type="text"
+                      class="font-interRegular text-[20px] px-[20px] py-[25px] border border-white"
+                      @click="router.push({ path: '/', hash: slide.link })"
+                    >
+                      Más información
+                    </BaseButton>
                   </div>
                 </div>
               </div>
@@ -38,11 +40,13 @@
                     {{ slide.desc }}
                   </div>
                   <div class="flex justify-center items-center">
-                    <a :href="slide.link" target="_blank" rel="noopener">
-                      <BaseButton type="text" class="font-interRegular text-[20px] px-[20px] py-[25px] border border-white">
-                        Más información
-                      </BaseButton>
-                    </a>
+                    <BaseButton
+                      type="text"
+                      class="font-interRegular text-[20px] px-[20px] py-[25px] border border-white"
+                      @click="router.push({ path: '/', hash: slide.link })"
+                    >
+                      Más información
+                    </BaseButton>
                   </div>
                 </div>
               </div>
@@ -71,12 +75,13 @@
                 <div class="text-white text-[14px] md:text-[16px] font-interSemiRegular">
                   {{ slide.desc }}
                 </div>
-                <a :href="slide.link" target="_blank" rel="noopener"
-                  class="font-interRegular text-white text-[20px]">
-                  <BaseButton type="text" class="px-[20px] py-[16px] lg:py-[25px] border border-white">
-                    {{ slide.btn }}
-                  </BaseButton>
-                </a>
+                <BaseButton
+                  type="text"
+                  class="font-interRegular text-white text-[20px] px-[20px] py-[16px] lg:py-[25px] border border-white"
+                  @click="router.push({ path: '/', hash: slide.link })"
+                >
+                  {{ slide.btn }}
+                </BaseButton>
               </div>
             </div>
           </template>
@@ -131,8 +136,11 @@
 <script setup lang="ts">
 import useDeviceType from '~/composables/useDeviceType'
 import { type Swiper } from "swiper";
+import { useRouter } from 'vue-router';
 
 const { isMobile } = useDeviceType()
+
+const router = useRouter();
 
 const slides = [
   {
@@ -140,14 +148,14 @@ const slides = [
     desc: "El Omoda C5 Super Hybrid System no solo combina potencia y eficiencia, sino también un diseño que redefine el estilo urbano. Su silueta fastback aerodinámica transmite movimiento incluso en reposo, mientras el frontal sin marco y la parrilla paramétrica en forma de diamante proyectan una estética futurista.",
     imgUrl: "index/banner-value_1.webp",
     btn: 'Más información',
-    link: '/files/test.pdf'
+    link: '#contactForm'
   },
   {
     title: "Jaecoo J7",
     desc: "El Jaecoo J7 Super Hybrid System combina elegancia urbana con la fuerza de un auténtico SUV todoterreno. Su diseño vertical y musculoso proyecta autoridad en cada ángulo, mientras la parrilla trapezoidal con detalles cromados y las luces LED en forma de T refuerzan su identidad moderna y poderosa.",
     imgUrl: "index/banner-value_2.webp",
     btn: 'Más información',
-    link: '/files/test.pdf'
+    link: '#contactForm'
   }
 ];
 
