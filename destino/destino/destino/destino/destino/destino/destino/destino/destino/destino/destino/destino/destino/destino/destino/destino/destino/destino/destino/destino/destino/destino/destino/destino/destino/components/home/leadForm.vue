@@ -1,6 +1,7 @@
 <template>
   <div
     ref="root"
+    v-bind="$attrs"
     class="w-full flex justify-center items-center min-h-[100px] pt-[0px] py-[10px] pb-[32px] sm:pb-[100px]"
     style="background: linear-gradient(to bottom, #0D0E0E, #67B0C4);"
   >
@@ -290,7 +291,7 @@ const closeModal = () => {
 
 const config = useRuntimeConfig()
 const ciudades = ['QUITO', 'GUAYAQUIL', 'CUENCA', 'MANTA', 'AMBATO', 'OTROS'];
-const modelos = ['OMODA C5 GASOLINA', 'OMODA C5 FHEV SHS COMFORT', 'OMODA C5 FHEV SHS LUXURY', 'JAECOO J7 PHEV SHS STANDARD', 'JAECOO J7 PHEV SHS PREMIUM', 'OMODA EV BEV'];
+const modelos = ['OMODA C5 FHEV SHS COMFORT', 'OMODA C5 FHEV SHS LUXURY', 'JAECOO J7 PHEV SHS STANDARD', 'JAECOO J7 PHEV SHS PREMIUM', 'OMODA E5 BEV'];
 const form = ref({
   nombre: '',
   apellido: '',

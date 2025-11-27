@@ -12,11 +12,13 @@
           <Transition name="slide-fade">
             <div class="" v-if="currentPage == 0">
               <div class="flex flex-row items-stretch justify-center w-[90vw] lg:w-[70vw] ">
-                <div class="pr-[10px] lg:pr-[48px] flex-1 border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
-                  1.000KMS AUTONOMÍA</div>
+                <div class="pr-[10px] lg:pr-[48px] flex-[1.2] border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
+                  1.200KMS AUTONOMÍA PHEV</div>
+                <div class="px-[10px] lg:px-[48px] flex-[1.2] border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
+                  14.8" PANTALLA DUAL</div>
                 <div class="px-[10px] lg:px-[48px] flex-1 border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
-                  24.6" PANTALLA DUAL</div>
-                <div class="pl-[5px] lg:pl-[40px] flex-1 font-interSemiBold text-[12px] sm:text-[20px] text-center">6 AIRBAGS</div>
+                  7 AIRBAGS</div>
+                <div class="pl-[5px] lg:pl-[40px] flex-1 font-interSemiBold text-[12px] sm:text-[20px] text-center">+15 ADAS</div>
               </div>
             </div>
           </Transition>
@@ -29,11 +31,13 @@
           " class="banner" />
         <div class="title bottom-[20%] sm:bottom-[40px]">
           <img loading="lazy" src="/images/models/title-left.webp" class="icon left-icon" v-if="ispc"/>
-          <Transition name="slide-fade" v-for="(item, idx) in section2_tittle" :key="idx">
-            <div class="txt font-interSemiRegular text-[14px] sm:text-[16px]" v-if="currentPage == 1">
-              {{ item }}
-            </div>
-          </Transition>
+          <div class="flex flex-wrap justify-center items-center max-w-[1000px]">
+            <Transition name="slide-fade" v-for="(item, idx) in section2_tittle" :key="idx">
+              <div class="txt font-interSemiRegular text-[14px] sm:text-[16px]" v-if="currentPage == 1">
+               {{ item }}
+              </div>
+            </Transition>
+          </div> 
           <img loading="lazy" src="/images/models/title-right.webp" class="icon right-icon" v-if="ispc"/>
         </div>
       </SwiperSlide>
@@ -43,16 +47,18 @@
           <SwiperSlide v-for="(slide, idx) in section3_slides" :key="idx">
             <img loading="lazy" :src="slide.imgsrc" class="img" />
             <div v-if="slide.ismask" class="mask"></div>
-            <div class="title">
-              <Transition name="slide-fade" v-for="(item, ldex) in slide.label" :key="ldex" :style="[
-                currentPage == 2
-                  ? 'transition-delay: ' + ldex * 0.15 + 's;'
-                  : 'transition-delay: 0s;',
-              ]">
-                <div class="word font-interSemiRegular text-[16px]" v-if="currentPage == 2">
-                  {{ item }}
-                </div>
-              </Transition>
+            <div class="flex justify-center items-center w-full">
+              <div class="title max-w-[1000px]">
+                <Transition name="slide-fade" v-for="(item, ldex) in slide.label" :key="ldex" :style="[
+                  currentPage == 2
+                    ? 'transition-delay: ' + ldex * 0.15 + 's;'
+                    : 'transition-delay: 0s;',
+                ]">
+                  <div class="word font-interSemiRegular text-[16px]" v-if="currentPage == 2">
+                    {{ item }}
+                  </div>
+                </Transition>
+              </div>
             </div>
           </SwiperSlide>
           <img loading="lazy" class="btn next" src="/images/page2_right_arrow.webp" alt="next" v-if="section3_slides.length > 1"
@@ -72,11 +78,13 @@
           " class="banner" />
         <div class="title bottom-[20%] sm:bottom-[40px]">
           <img loading="lazy" src="/images/models/title-left.webp" class="icon left-icon" v-if="ispc"/>
-          <Transition name="slide-fade" v-for="(item, idx) in section4_tittle" :key="idx">
-            <div class="txt font-interSemiRegular text-[14px] sm:text-[16px]" v-if="currentPage == 3">
-              {{ item }}
-            </div>
-          </Transition>
+          <div class="flex flex-wrap justify-center items-center max-w-[1000px]">
+            <Transition name="slide-fade" v-for="(item, idx) in section4_tittle" :key="idx">
+              <div class="txt font-interSemiRegular text-[14px] sm:text-[16px]" v-if="currentPage == 3">
+                {{ item }}
+              </div>
+            </Transition>
+          </div>
           <img loading="lazy" src="/images/models/title-right.webp" class="icon right-icon" v-if="ispc"/>
         </div>
       </SwiperSlide>
@@ -84,19 +92,20 @@
         <Swiper v-if="ispc" class="swiper-container carrousel_section5" :modules="[SwiperPagination, SwiperEffectCreative]"
           :slides-per-view="1" :loop="true" @swiper="onPage4Swiper">
           <SwiperSlide v-for="(slide, idx) in section5_slides" :key="idx">
-            <img loading="lazy" :src="slide.imgsrc" class="img" />
+            <img loading="lazy" :src="slide.imgsrc" class="img" :style="slide.objectPosition ? { objectPosition: slide.objectPosition } : {}" />
             <div v-if="slide.ismask" class="mask"></div>
-            <div class="title">
-
-              <Transition name="slide-fade" v-for="(item, ldex) in slide.label" :key="ldex" :style="[
-                currentPage == 4
-                  ? 'transition-delay: ' + ldex * 0.15 + 's;'
-                  : 'transition-delay: 0s;',
-              ]">
-                <div class="word font-interSemiRegular text-[16px]" v-if="currentPage == 4">
-                  {{ item }}
-                </div>
-              </Transition>
+            <div class="flex justify-center items-center w-full">
+              <div class="title max-w-[1000px]">
+                <Transition name="slide-fade" v-for="(item, ldex) in slide.label" :key="ldex" :style="[
+                  currentPage == 4
+                    ? 'transition-delay: ' + ldex * 0.15 + 's;'
+                    : 'transition-delay: 0s;',
+                ]">
+                  <div class="word font-interSemiRegular text-[16px]" v-if="currentPage == 4">
+                    {{ item }}
+                  </div>
+                </Transition>
+              </div>
             </div>
           </SwiperSlide>
           <img loading="lazy" class="btn next" src="/images/page2_right_arrow.webp" alt="next"
@@ -118,13 +127,13 @@
             <div class="txt" style="text-align: left">
               <Transition name="slide-fade">
                 <div class="title" v-if="currentPage == 5">
-                  MANIJAS DE PUERTA OCULTAS ELÉCTRICAS
+                  MANIJAS OCULTAS ELÉCTRICAS
                   <img loading="lazy" src="/images/models/page5Line-right.webp" class="icon icon-right" />
                 </div>
               </Transition>
               <Transition name="slide-fade">
                 <div class="memo" v-if="currentPage == 5">
-                  <p>Con la función de liberación eléctrica la puerta se puede abrir con una fuerza de 30N.</p>
+                  <p>Aporta una estética limpia y aerodinámica, fusionando elegancia con eficiencia en cada línea.</p>
                 </div>
               </Transition>
             </div>
@@ -133,32 +142,19 @@
             <div class="txt" v-if="ispc" style="text-align: right">
               <Transition name="slide-fade">
                 <div class="title" v-if="currentPage == 5">
-                  RINES DE ALEACIÓN DE ALUMINIO BRILLANTES DE 19 PULGADAS
+                  AROS DE ALEACIÓN DE 19 PULGADAS
                   <img loading="lazy" src="/images/models/page5Line-left.webp" class="icon" />
                 </div>
               </Transition>
               <Transition name="slide-fade">
                 <div class="memo" v-if="currentPage == 5">
-                  <p>Cuenta con un diseño que se asemeja a la aurora boreal, lo que lo hace aún más moderno y deslumbrante.</p>
+                  <p>Combinan fuerza y estilo, realzando su presencia robusta con un toque de sofisticación dinámica.</p>
                 </div>
               </Transition>
             </div>
             <Transition name="slide-fade">
               <img loading="lazy" src="/images/models/J7/section6-item2.webp" class="img" v-if="currentPage == 5" />
             </Transition>
-            <div class="txt" v-if="!ispc" style="text-align: left">
-              <Transition name="slide-fade">
-                <div class="title" v-if="currentPage == 5">
-                  RINES DE ALEACIÓN DE ALUMINIO BRILLANTES DE 19 PULGADAS
-                  <img loading="lazy" src="/images/models/page5Line-right.webp" class="icon icon-right" />
-                </div>
-              </Transition>
-              <Transition name="slide-fade">
-                <div class="memo" v-if="currentPage == 5">
-                  <p>Cuenta con un diseño que se asemeja a la aurora, lo que lo hace aún más moderno y deslumbrante.</p>
-                </div>
-              </Transition>
-            </div>
           </div>
         </div>
       </SwiperSlide>
@@ -171,13 +167,13 @@
             <div class="txt" style="text-align: left">
               <Transition name="slide-fade">
                 <div class="title" v-if="currentPage == 6">
-                  TECHO SOLAR PANORÁMICO GRANDE DE 1.1M²
+                  ESPACIO Y COMODIDAD SUPERIOR
                   <img loading="lazy" src="/images/models/page5Line-right.webp" class="icon icon-right" />
                 </div>
               </Transition>
               <Transition name="slide-fade">
                 <div class="memo" v-if="currentPage == 6">
-                  <p>Con gran tamaño y funciones inteligentes de apertura y cierre líderes en la industria.</p>
+                  <p>Jaecoo 7 SHS da la mejor distribución para los pasajeros tanto en el frente como en la parte posterior.</p>
                 </div>
               </Transition>
             </div>
@@ -186,13 +182,13 @@
             <div class="txt" v-if="ispc" style="text-align: right">
               <Transition name="slide-fade">
                 <div class="title" v-if="currentPage == 6">
-                  ASIENTOS ALL-SENSE
+                  FROM CLASSIC, BEYOND CLASSIC
                   <img loading="lazy" src="/images/models/page5Line-left.webp" class="icon" />
                 </div>
               </Transition>
               <Transition name="slide-fade">
                 <div class="memo" v-if="currentPage == 6">
-                  <p>Los asientos multimodo son suaves y cómodos con diez potentes funciones de ajuste.</p>
+                  <p>Su parilla con cortes firmes brindan una robustez a un SUV que viene resaltar la elegancia de su lenguaje de diseño.</p>
                 </div>
               </Transition>
             </div>
@@ -211,14 +207,13 @@
             <div class="txt" style="text-align: left">
               <Transition name="slide-fade">
                 <div class="title" v-if="currentPage >= 7">
-                  10 BOLSAS DE AIRE DE SEGURIDAD
+                  7 AIRBAGS* PARA SEGURIDAD 360°
                   <img loading="lazy" src="/images/models/page5Line-right.webp" class="icon icon-right" />
                 </div>
               </Transition>
               <Transition name="slide-fade">
                 <div class="memo" v-if="currentPage >= 7">
-                  <p>Toda la serie adopta una tecnología de mantenimiento de presión de 6 segundos que puede prevenir eficazmente 
-                    lesiones secundarias por accidentes.
+                  <p>El Jaecoo J7 integra los más altos estándares de seguridad para ti y tu familia, con certificación de 5 estrellas en la EURO NCAP*.
                   </p>
                 </div>
               </Transition>
@@ -236,15 +231,15 @@
           <SwiperSlide class="mobile-collage_section" v-if="!ispc">
             <div class="img-main">
               <div class="img-item item1">
-                <img loading="lazy" src="/images/models/J7/section8-item1.webp" class="img animate__animated animate__fadeIn" />
+                <img loading="lazy" src="/images/models/J7/section6-item1.webp" class="img animate__animated animate__fadeIn" />
                 <Transition name="slide-fade">
                   <div class="flex w-full justify-center items-center title-content">
-                    <p class="title-text font-interRegular"  v-if="currentPage >= 5">Manillas eléctricas ocultas para puertas</p>
+                    <p class="title-text font-interRegular"  v-if="currentPage >= 5">Manijas ocultas eléctricas</p>
                   </div>
                 </Transition>
               </div>
               <div class="img-item item2">
-                <img loading="lazy" src="/images/models/J7/section6-item1.webp"
+                <img loading="lazy" src="/images/models/J7/section6-item2.webp"
                   class="img animate__animated animate__fadeIn" />
                 <Transition name="slide-fade">
                   <div class="flex w-full justify-center items-center title-content">
@@ -253,27 +248,27 @@
                 </Transition>
               </div>
               <div class="img-item item3">
-                <img loading="lazy" src="/images/models/J7/section6-item2.webp"
+                <img loading="lazy" src="/images/models/J7/section7-item1.webp"
                   class="img animate__animated animate__fadeIn" />
                 <Transition name="slide-fade">
                   <div class="flex w-full justify-center items-center title-content">
-                    <p class="title-text font-interRegular"  v-if="currentPage >= 5">Techo solar panorámico grande de 1.1m²</p>
+                    <p class="title-text font-interRegular"  v-if="currentPage >= 5">From classic, beyond classic</p>
                   </div>
                 </Transition>
               </div>
               <div class="img-item item4">
-                <img loading="lazy" src="/images/models/J7/section7-item1.webp" class="img animate__animated animate__fadeIn" />
+                <img loading="lazy" src="/images/models/J7/section7-item2.webp" class="img animate__animated animate__fadeIn" />
                 <Transition name="slide-fade">
                   <div class="flex w-full justify-center items-center title-content">
-                    <p class="title-text font-interRegular"  v-if="currentPage >= 5">Asientos All-Sense</p>
+                    <p class="title-text font-interRegular"  v-if="currentPage >= 5">Espacio y comodidad superior</p>
                   </div>
                 </Transition>
               </div>
               <div class="img-item item5">
-                <img loading="lazy" src="/images/models/J7/section7-item2.webp" class="img animate__animated animate__fadeIn" />
+                <img loading="lazy" src="/images/models/J7/section8-item1.webp" class="img animate__animated animate__fadeIn" />
                 <Transition name="slide-fade">
                   <div class="flex w-full justify-center items-center title-content">
-                    <p class="title-text font-interRegular"  v-if="currentPage >= 5">10 Bolsas de aire de seguridad</p>
+                    <p class="title-text font-interRegular"  v-if="currentPage >= 5">7 airbags* para seguridad 360°</p>
                   </div>
                 </Transition>
               </div>
@@ -376,12 +371,12 @@ onBeforeUnmount(() => {
   window.removeEventListener("message", handleMessage);
 });
 
-
-var section2_tittle = ["4X4", "INTELIGENTE", " PARA", "TODO", "TIPO", "DE", "CAMINOS"];
+// Potente cuando hace falta, silencioso cuando importa. El Jaecoo J7 SHS encuentra el equilibrio en cada camino. Gracias a su Super Hybrid System, se convierte en el SUV diseñado para ti.
+var section2_tittle = ["POTENTE", "CUANDO", "HACE", "FALTA,", "SILENCIOSO", "CUANDO", "IMPORTA.", "EL", "JAECOO", "J7", "SHS", "ENCUENTRA", "EL", "EQUILIBRIO", "EN", "CADA", "CAMINO.", "GRACIAS", "A", "SU", "SUPER", "HYBRID", "SYSTEM,", "SE", "CONVIERTE", "EN", "EL", "SUV", "DISEÑADO", "PARA", "TI."];
 
 var section3_slides: Array<swiperItem> = [
   {
-    label: ["CÁPSULA", "ESPACIAL", "ENJAULADA", "QUE", "ABSORBE", "ENERGÍA"],
+    label: ["ESTRUCTURA", "CON", "UN", "80%", "COMPUESTO", "DE", "ACERO", "DE", "ALTA", "RESISTENCIA"],
     txtarr: {},
     imgsrc: dir + "images/models/J7/section3-item1.webp",
     isvideo: false,
@@ -389,9 +384,17 @@ var section3_slides: Array<swiperItem> = [
     ismask: true,
   },
   {
-    label: ["1.6TGDI", "de", "alto", "rendimiento"],
+    label: ["PLATAFORMA", "SUPER", "HYBRID", "SYSTEM", "CON", "AHORRO", "DE", "HASTA", "70%", "DE", "COMBUSTIBLE*"],
     txtarr: {},
     imgsrc: dir + "images/models/J7/section3-item2.webp",
+    isvideo: false,
+    vsrc: "",
+    ismask: true,
+  },
+  {
+    label: ["BATERÍAS", "DE", "ALTO", "RENDIMIENTO", "Y", "5", "ESTÁNDARES", "DE", "PROTECCIÓN", "&", "SEGURIDAD"],
+    txtarr: {},
+    imgsrc: dir + "images/models/J7/section3-item3.webp",
     isvideo: false,
     vsrc: "",
     ismask: true,
@@ -401,11 +404,15 @@ var section3_slides: Array<swiperItem> = [
 var section3_slides_mob: sideswiperItem[] = [
   {
     src: dir + "images/models/J7/section3-item1_mob.webp",
-    txt: "CÁPSULA ESPACIAL ENJAULADA QUE ABSORBE ENERGÍA",
+    txt: "ESTRUCTURA CON UN 80% COMPUESTO DE ACERO DE ALTA RESISTENCIA",
   },
   {
     src: dir + "images/models/J7/section3-item2_mob.webp",
-    txt: "MOTOR 1.6TGDI DE ALTO RENDIMIENTO",
+    txt: "PLATAFORMA SUPER HYBRID SYSTEM CON AHORRO DE HASTA 70% DE COMBUSTIBLE*",
+  },  
+  {
+    src: dir + "images/models/J7/section3-item3_mob.webp",
+    txt: "BATERÍAS DE ALTO RENDIMIENTO Y 5 ESTÁNDARES DE PROTECCIÓN & SEGURIDAD",
   },
 ];
 
@@ -418,7 +425,7 @@ function changePage_section3(type: string) {
   }
 }
 
-var section4_tittle = ["CABINA", "CON", "TECNOLOGÍA", "INTELIGENTE"];
+var section4_tittle = ["FUSIONA", "TECNOLOGÍA,", "MATERIALES", "PREMIUM", "Y", "REFINAMIENTO", "PARA", "QUE", "CADA", "TRAYECTO", "SE", "SIENTA", "UN", "ESCAPE", "PERSONAL"];
 
 type swiperItem = {
   label: string[];
@@ -427,14 +434,15 @@ type swiperItem = {
   isvideo: boolean;
   vsrc: string;
   ismask: boolean;
+  objectPosition?: string;
 };
 type sideswiperItem = {
   src: string;
   txt: string;
 };
 var section5_slides: Array<swiperItem> = [
-  {
-    label: ["CARGA", "RÁPIDA", "INALÁMBRICA", "DE", "50W", "PARA", "TELÉFONOS", "MÓVILES"],
+    {
+    label: ["CONNECTIVIDAD", "Y", "EXPERIENCIA", "CENTRALIZADA", "EN", "SU", "PANTALLA", "VERTICAL", "DE", "14.8\""],
     txtarr: {},
     imgsrc: dir + "images/models/J7/section5-item1.webp",
     isvideo: false,
@@ -442,34 +450,24 @@ var section5_slides: Array<swiperItem> = [
     ismask: true,
   },
   {
-    label: ["PANTALLA", "GRANDE", "DE", "14.8", "PULGADAS"],
+    label: ["AMPLIO", "TECHO", "PANORÁMICO", "PARA", "DISFRUTAR", "EL", "CAMINO", "CON", "TODOS"],
     txtarr: {},
     imgsrc: dir + "images/models/J7/section5-item2.webp",
     isvideo: false,
     vsrc: "",
     ismask: true,
+    objectPosition: "center top",
   },
-  {
-    label: ["PALANCA", "DE", "CAMBIOS", "ESTILO", "AVIÓN"],
-    txtarr: {},
-    imgsrc: dir + "images/models/J7/section5-item3.webp",
-    isvideo: false,
-    vsrc: "",
-    ismask: true,
-  },
+
 ];
 var section5_slides_mob: sideswiperItem[] = [
   {
     src: dir + "images/models/J7/section5-item1_mob.webp",
-    txt: "CARGA RÁPIDA INALÁMBRICA DE 50W PARA TELÉFONOS MÓVILES",
+    txt: "CONNECTIVIDAD Y EXPERIENCIA CENTRALIZADA EN SU PANTALLA VERTICAL DE 14.8\"",
   },
   {
     src: dir + "images/models/J7/section5-item2_mob.webp",
-    txt: "PANTALLA GRANDE DE 14.8 PULGADAS",
-  },
-  {
-    src: dir + "images/models/J7/section5-item3_mob.webp",
-    txt: "PALANCA DE CAMBIOS ESTILO AVIÓN",
+    txt: "AMPLIO TECHO PANORÁMICO PARA DISFRUTAR EL CAMINO CON TODOS",
   },
 ];
 
@@ -972,8 +970,7 @@ function changePage_section5(type: string) {
 
 .carrousel-sub .swiper-slide .title {
   width: 100%;
-  height: 3.8rem;
-  height: calc(3.8 * 16 / 19.2 * 1vw);
+  padding-top: 20px;
   overflow: hidden;
   text-align: center;
   font-family: "SourceHanSansSC-Light";
@@ -999,8 +996,7 @@ function changePage_section5(type: string) {
 }
 
 .carrousel-sub .swiper-slide .title .word {
-  margin: 0 0.4rem;
-  margin: 0 calc(0.4 * 16 / 19.2 * 1vw);
+  margin: 8px 4px;
   text-transform: uppercase;
 }
 
@@ -1090,7 +1086,6 @@ function changePage_section5(type: string) {
 
   .carrousel-sub .btn {
     position: absolute;
-    top: 40%;
     transform: translateY(-50%);
     z-index: 10;
     width: 1rem;
@@ -1114,8 +1109,7 @@ function changePage_section5(type: string) {
 
   .carrousel-sub .swiper-slide .title {
     width: 93%;
-    height: 2.8rem;
-    height: calc(2.8 * 16 / 3.75 * 1vw);
+    padding-top: 0px;
     overflow: hidden;
     text-align: center;
     font-family: "SourceHanSansSC-Light";
@@ -1139,9 +1133,9 @@ function changePage_section5(type: string) {
   }
 
   .carrousel-sub .swiper-slide .title .word {
-    margin: 0 0.25rem;
-    margin: 0 calc(0.25 * 16 / 3.75 * 1vw);
+    margin: 4px;
     text-transform: uppercase;
+    letter-spacing: 2px;
   }
 
   .carrousel-sub .swiper-slide .mask {
@@ -1174,43 +1168,6 @@ function changePage_section5(type: string) {
     display: block !important;
     min-height: 100vh;
   }
-
-  /* .carrousel-sub .swiper-container {
-    height: 60vh;
-    min-height: 400px;
-  } */
-
-  /* .carrousel-sub .swiper-slide .img {
-    height: 45vh;
-    min-height: 300px;
-  } */
-/* 
-  .carrousel-sub .swiper-slide .title {
-    height: auto;
-    min-height: 50px;
-    font-size: 14px;
-  }
-
-  .carrousel-sub .swiper-slide .title .word {
-    margin: 0 4px;
-  }
-
-  .carrousel-sub .btn {
-    width: 16px;
-    min-width: 12px;
-  }
-
-  .carrousel-sub .swiper-container :deep() .swiper-pagination {
-    height: 20px;
-    min-height: 16px;
-    bottom: 10px !important;
-  }
-
-  .carrousel-sub .swiper-container :deep() .swiper-pagination .swiper-pagination-bullet {
-    width: 40px;
-    height: 2px;
-    margin: 0 5px;
-  } */
 }
 
 
@@ -1402,43 +1359,6 @@ function changePage_section5(type: string) {
     height: 400px;
     border-top: 1px solid #fff;
   }
-  
-
-  /* .mobile-collage_section .img-main .item1 .titleimg {
-    width: 70%;
-    bottom: 3%;
-    left: 10%;
-  }
-
-  .mobile-collage_section .img-main .item2 .titleimg {
-    width: 100%;
-    bottom: 3%;
-    left: 6%;
-  }
-
-
-
-  .mobile-collage_section .img-main .item3 .titleimg {
-    width: 85%;
-    bottom: 3%;
-    left: 6%;
-  }
-
-
-  .mobile-collage_section .img-main .item4 .titleimg {
-    width: 90%;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-
-  .mobile-collage_section .img-main .item5 .titleimg {
-    width: 70%;
-    bottom: 5%;
-    left: 52%;
-    transform: translateX(-50%);
-  } */
 }
 
 @media (min-width: 640px) and (max-width: 874px) {

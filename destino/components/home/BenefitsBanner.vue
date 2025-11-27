@@ -5,7 +5,7 @@
         REDISEÑAMOS LAS PROPUESTAS DE VALOR
       </div>
       <div class="w-full flex flex-col justify-center items-center space-y-[50px]">
-        <div class="flex flex-col lg:flex-row justify-center items-stretch space-y-[32px] sm:space-y-[80px] lg:space-y-[0px] lg:space-y-0 lg:space-x-[40px]">
+        <div class="flex flex-col lg:flex-row justify-center items-stretch space-y-[50px] sm:space-y-[80px] lg:space-y-[0px] lg:space-y-0 lg:space-x-[40px]">
           <div class="flex flex-col items-center space-y-[24px] sm:space-y-[40px] w-full lg:max-w-[400px]">
             <BaseImg src="index/banner-benefits_1.webp" class="max-w-[70%] sm:max-h-[450px] lg:h-[268px] sm:w-[55%] lg:w-[70%] object-contain"/>
             <div class="font-interRegular text-white text-[14px] sm:text-[16px] text-center">
@@ -14,13 +14,13 @@
             </div>
           </div>
           <div class="flex flex-col items-center space-y-[24px] sm:space-y-[40px] w-full lg:max-w-[400px]">
-            <BaseImg src="index/banner-benefits_2.webp" class="max-h-[140px] sm:max-h-[450px] lg:h-[268px] sm:w-[70%] lg:w-[90%] object-contain"/>
+            <BaseImg src="index/banner-benefits_2.webp" class="max-h-[140px] sm:max-h-[450px] lg:h-[268px] w-[80%] sm:w-[70%] lg:w-[90%] object-contain"/>
             <div class="font-interRegular text-white text-[14px] sm:text-[16px] text-center">
               En O&J premiamos tu próxima compra con beneficios especiales y un valor garantizado al renovar tu OMODA & JAECOO en el futuro.*
             </div>
           </div>
           <div class="flex flex-col items-center space-y-[24px] sm:space-y-[40px] w-full lg:max-w-[400px]">
-            <BaseImg src="index/banner-benefits_3.webp" class="max-h-[140px] sm:max-h-[450px] lg:h-[268px] sm:w-[60%] lg:w-[80%] object-contain"/>
+            <BaseImg src="index/banner-benefits_3.webp" class="max-h-[140px] sm:max-h-[450px] lg:h-[268px] w-[80%] sm:w-[60%] lg:w-[80%] object-contain"/>
             <div class="font-interRegular text-white text-[14px] sm:text-[16px] text-center">
               Con la promesa de servicio en O&J, recibes tus repuestos en el tiempo comprometido o nosotros los pagamos por ti.*
             </div>

@@ -24,6 +24,9 @@ export default defineNuxtConfig({
     baseURL: process.env.NUXT_API_KEY,
     head: {
       title: "OMODA&JAECOO",
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ],
       meta: [
         {
           name: "viewport",
