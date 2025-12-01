@@ -37,10 +37,10 @@
     const banner2Content = ref({
         isTextWhite: true,
         subTitle: `
-        <div class="px-0 max-w-[876px] lg:mx-[70px] font-interMedium text-[20px] sm:text-[36px]">CHERY HOLDING GROUP</div>
+        <div class="px-0 max-w-[876px] lg:mx-[70px] font-interMedium text-[20px] sm:text-[36px]">LAS MARCAS QUE ESTÁN CONQUISTANDO EUROPA, AHORA EN ECUADOR</div>
         <br>
         <div class="px-0 max-w-[876px] lg:mx-[70px] font-interRegular text-[12px] sm:text-[16px]">
-        Fundado en 1997 Wuhu China, Chery Holding Group ha evolucionado de una empresa local a un referente global en la industria automotriz. Con más de 80 países en su red y 14.2 millones de usuarios en todo el mundo, el grupo lidera la exportación de automóviles de pasajeros chinos durante 22 años consecutivos. Su compromiso con la innovación y la sostenibilidad se refleja en el desarrollo de tecnologías avanzadas para vehículos eléctricos, híbridos y conectividad inteligente, consolidando su posición como pionero en movilidad verde.  Con marcas como Omoda y Jaecoo, Chery Holding Group impulsa una visión clara: ofrecer soluciones inteligentes, seguras y sostenibles que transformen la experiencia de conducción y marquen el futuro de la movilidad.
+        Parte del grupo automotriz líder en exportaciones por más de 22 años. Fundada en 1997 Wuhu China, este Holding Group ha evolucionado de una empresa local a un referente global en la industria automotriz. Con más de 80 países en su red y 14.2 millones de usuarios en todo el mundo, el grupo lidera la exportación, calidad y seguridad en vehículos pasajeros chinos. Su compromiso con la innovación y la sostenibilidad se refleja en el desarrollo de tecnologías avanzadas para vehículos eléctricos, híbridos y conectividad inteligente, consolidando su posición como pionero en movilidad verde.  Con marcas como Omoda y Jaecoo hay una visión clara: ofrecer soluciones inteligentes, seguras y sostenibles que transformen la experiencia de conducción y marquen el futuro de la movilidad.
         </div>
         `,
         h5ClassName: 'mx-[20px] sm:mx-[50px] lg:mx-0',
@@ -57,7 +57,7 @@
         <div class="px-0 max-w-[1028px] lg:mx-[70px] font-interMedium text-[20px] sm:text-[32px] text-white">OMODA</div>
         <br> 
         <div class="px-0 max-w-[1028px] lg:mx-[70px] font-interRegular text-[12px] sm:text-[16px] text-white">
-        Omoda es la expresión de una nueva era en la industria automotriz, donde el diseño futurista se une con la tecnología inteligente para crear experiencias únicas. Como parte del Grupo Chery, Omoda nace con una visión clara: ofrecer vehículos que no solo se adapten al presente, sino que anticipen el futuro de la movilidad. Cada modelo refleja innovación, conectividad y un compromiso con la sostenibilidad, pensado para quienes buscan estilo, seguridad y rendimiento sin compromisos. En Automotores y Anexos, llevamos esta propuesta al mercado ecuatoriano, respaldados por décadas de experiencia y la confianza que nos caracteriza.
+        Omoda es la expresión de una nueva era en la industria automotriz, donde el diseño futurista se une con la tecnología inteligente para crear experiencias únicas. Omoda nace con una visión clara: ofrecer vehículos que no solo se adapten al presente, sino que anticipen el futuro de la movilidad. Cada modelo refleja innovación, conectividad y un compromiso con la sostenibilidad, pensado para quienes buscan estilo, seguridad y rendimiento sin compromisos. En Automotores y Anexos, llevamos esta propuesta al mercado ecuatoriano, respaldados por décadas de experiencia y la confianza que nos caracteriza.
         </div>
         `,
         h5ClassName: "brand-subtitle h5-brand-sub",
@@ -73,7 +73,7 @@
         <div class="px-0 max-w-[1028px] sm:mx-[70px] font-interMedium text-[20px] sm:text-[32px] text-white">JAECOO</div>
         <br> 
         <div class="px-0 max-w-[1028px] sm:mx-[70px] font-interRegular text-[12px] sm:text-[16px] text-white">
-        Jaecoo representa la esencia del espíritu aventurero y la sofisticación urbana. Como marca del Grupo Chery, su propuesta se centra en vehículos con ADN todoterreno premium que combinan potencia, tecnología avanzada y diseño elegante, pensados para quienes buscan libertad sin renunciar al confort. Con Jaecoo, la experiencia de conducción trasciende los límites, ofreciendo seguridad, conectividad y rendimiento en cualquier terreno. En Automotores y Anexos, llevamos esta visión al Ecuador, respaldados por nuestra trayectoria y compromiso con la excelencia.
+        Jaecoo representa la esencia del espíritu aventurero y la sofisticación urbana. Su propuesta se centra en vehículos con ADN todoterreno premium que combinan potencia, tecnología avanzada y diseño elegante, pensados para quienes buscan libertad sin renunciar al confort. Con Jaecoo, la experiencia de conducción trasciende los límites, ofreciendo seguridad, conectividad y rendimiento en cualquier terreno. En Automotores y Anexos, llevamos esta visión al Ecuador, respaldados por nuestra trayectoria y compromiso con la excelencia.
         </div>
         `,
         h5ClassName: 'brand-subtitle h5-brand-sub',
