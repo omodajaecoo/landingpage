@@ -246,8 +246,15 @@ import type { Ref } from "vue";
 import { showCookies } from "@/composables/state";
 import { useFooterStore } from "~/stores/useFooter";
 
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+
 const config = useRuntimeConfig();
 const gtagId = config.public.gtagId as string;
+const gtagId2 = config.public.gtagId2 as string;
 const gtmId = config.public.gtmId as string;
 
 const currentDate = new Date();
@@ -340,6 +347,10 @@ function getGtagUrl() {
   return `https://www.googletagmanager.com/gtag/js?id=${gtagId}`;
 }
 
+function getGtag2Url() {
+  return `https://www.googletagmanager.com/gtag/js?id=${gtagId2}`;
+}
+
 function getGtagScript() {
   return `
     window.dataLayer = window.dataLayer || [];
@@ -348,6 +359,7 @@ function getGtagScript() {
     }
     gtag("js", new Date());
     gtag("config", "${gtagId}");
+    gtag("config", "${gtagId2}");
   `;
 }
 
@@ -383,6 +395,47 @@ function loadGTM() {
   }
 }
 
+function clearGoogleCookies() {
+  const allCookies = document.cookie.split(';');
+  const domain = window.location.hostname;
+  
+  allCookies.forEach(cookie => {
+    const cookieName = cookie.split('=')[0].trim();
+    
+    if (cookieName.startsWith('_ga') || 
+        cookieName.startsWith('_gid') || 
+        cookieName.startsWith('_gat') ||
+        cookieName.startsWith('__utm')) {
+      
+      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${domain}`;
+      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${domain}`;
+    }
+  });
+  
+  if (window.dataLayer) {
+    window.dataLayer = [];
+  }
+  
+  document.querySelectorAll(`script[src*="googletagmanager.com/gtag"]`).forEach(script => {
+    script.remove();
+  });
+  
+  document.querySelectorAll(`script[data-gtm-head]`).forEach(script => {
+    script.remove();
+  });
+  
+  document.querySelectorAll(`noscript[data-gtm-noscript]`).forEach(noscript => {
+    noscript.remove();
+  });
+  
+  document.querySelectorAll('script:not([src])').forEach(script => {
+    if (script.innerHTML.includes('gtag') || script.innerHTML.includes('dataLayer')) {
+      script.remove();
+    }
+  });
+}
+
 function closeAgree() {
   showCookies().value = false;
   showAgree.value = false;
@@ -391,7 +444,9 @@ function closeAgree() {
   useCookie<Record<string, boolean>>("cookies", { expires: futureDate }).value = {
     google: false,
   };
+  clearGoogleCookies();
 }
+
 function changeAgree(status: boolean, type?: string) {
   showAgree.value = status;
   showCookies().value = status;
@@ -406,6 +461,9 @@ function changeAgree(status: boolean, type?: string) {
     useCookie<Record<string, boolean>>("cookies", { expires: futureDate }).value = {
       google: chooseStatistics.value,
     };
+    if (!chooseStatistics.value) {
+      clearGoogleCookies();
+    }
   }
   if (type == "save" && !chooseStatistics.value) {
     return false;
@@ -416,10 +474,14 @@ function changeAgree(status: boolean, type?: string) {
   if (!haveThisUrl && window.location.host.indexOf("127.0.0.1") == -1) {
     const script = document.createElement("script");
     const script2 = document.createElement("script");
+    const script3 = document.createElement("script");
     script.innerHTML = getGtagScript();
     script2.src = getGtagUrl();
     script2.async = true;
+    script3.src = getGtag2Url();
+    script3.async = true;
     document.body.appendChild(script2);
+    document.body.appendChild(script3);
     script2.onload = function () {
       document.body.appendChild(script);
     };
@@ -484,11 +546,15 @@ onMounted(() => {
       if (!haveThisUrl && jeacooCookies.google != false) {
         // Cargar Google Analytics
         const script_asy = document.createElement("script");
+        const script_asy2 = document.createElement("script");
         const script = document.createElement("script");
         script_asy.src = getGtagUrl();
         script_asy.async = true;
+        script_asy2.src = getGtag2Url();
+        script_asy2.async = true;
         script.innerHTML = getGtagScript();
         document.body.appendChild(script_asy);
+        document.body.appendChild(script_asy2);
         document.body.appendChild(script);
 
         // Cargar Google Tag Manager

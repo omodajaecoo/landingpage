@@ -137,7 +137,7 @@ const carList = [
     iconUrl: 'index/cars/omoda-c5/logo_c5.webp',
     imgUrl: 'index/cars/omoda-c5/banner_c5.webp',
     configList: [
-      { label: '+1.000 KMS AUTONOMÍA HEV*', value: '1000', unit: 'KMS AUTONOMIA' },
+      { label: '+1.000 KMS AUTONOMÍA HEV', value: '1000', unit: 'KMS AUTONOMIA' },
       { label: '24.6" PANTALLA DUAL', value: '24', unit: '.6" PANTALLA DUAL' },
       { label: '6 AIRBAGS', value: '6', unit: '.  AIRBAGS' },
     ]
@@ -148,7 +148,7 @@ const carList = [
     iconUrl: 'index/cars/omoda-e5/logo_e5.webp',
     imgUrl: 'index/cars/omoda-e5/banner_e5.webp',
     configList: [
-      { label: '+430 KMS AUTONOMÍA EV (WLTP)*', value: '4424', unit: 'mm' },
+      { label: '+430 KMS AUTONOMÍA EV (WLTP)', value: '4424', unit: 'mm' },
       { label: '24.6" PANTALLA DUAL', value: '1830', unit: 'mm' },
       { label: '6 AIRBAGS', value: '1588', unit: 'mm' },
     ]
@@ -159,9 +159,9 @@ const carList = [
     iconUrl: 'index/cars/jaecoo-j7/logo_j7.webp',
     imgUrl: 'index/cars/jaecoo-j7/banner_j7.webp',
     configList: [
-      { label: '+1.200 KMS AUTONOMÍA PHEV*', value: '4500', unit: 'mm' },
-      { label: '14.8" PANTALLA VERTICAL*', value: '1865', unit: 'mm' },
-      { label: '7 AIRBAGS*', value: '1680', unit: 'mm' },
+      { label: '+1.200 KMS AUTONOMÍA PHEV', value: '4500', unit: 'mm' },
+      { label: '14.8" PANTALLA VERTICAL', value: '1865', unit: 'mm' },
+      { label: '7 AIRBAGS', value: '1680', unit: 'mm' },
     ]
   }
 ]

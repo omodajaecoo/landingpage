@@ -1,0 +1,341 @@
+.anim {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    visibility: visible;
+  }
+}
+
+.zoomIn {
+  animation: zoomIn 0.3s ease-in-out forwards;
+}
+
+@keyframes _slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+    visibility: visible;
+  }
+}
+
+.slideUp {
+  animation: _slideUp 0.7s ease-in-out forwards;
+}
+
+@keyframes _bounce {
+  0%, 100% {
+    transform: translateY(-150%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+.bounce {
+  animation: _bounce 1.2s infinite;
+}
+
+/* 图片从大往中心缩小动画 */
+@keyframes zoomInCenter {
+  0% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate__zoomInCenter {
+  animation: zoomInCenter 0.3s ease-in-out forwards;
+}
+
+/* 图片从中心放大动画 */
+@keyframes scaleInCenter {
+  0% {
+    transform: matrix(0.5, 0, 0, 0.5, 0, 0);
+  }
+  100% {
+    transform: matrix(1, 0, 0, 1, 0, 0);
+  }
+}
+
+.animate__scaleInCenter {
+  animation: scaleInCenter 1s ease-in-out forwards;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-280deg);
+  }
+
+}
+
+.animate__spin {
+  animation: spin 0.1s linear 1 normal none running;
+  animation-duration: 0.4s !important;
+}
+
+.animation {
+  opacity: 0;
+  visibility: hidden;
+}
+.animate__fadeIn {
+  animation: _fadeIn ease-in-out 1s forwards;
+}
+.animate__slideUp {
+  animation: _slideUp ease-in-out 1s forwards;
+}
+.animate__slideDown {
+  animation: _slideDown ease-in-out 1s forwards;
+}
+.animate__slideLeft {
+  animation: _slideLeft ease-in-out 1s forwards;
+}
+.animate__slideRight {
+  animation: _slideRight ease-in-out 1s forwards;
+}
+
+/* 自定义 animation */
+@keyframes _fadeIn {
+  0% {
+      opacity: 0;
+      visibility: hidden;
+  }
+  100% {
+      opacity: 1;
+      visibility: visible;
+  }
+}
+
+@keyframes _slideUp {
+  0% {
+      translate: 0 50%;
+      opacity: 0;
+      visibility: hidden;
+  }
+  100% {
+      translate: 0;
+      opacity: 1;
+      visibility: visible;
+  }
+}
+
+@keyframes _slideDown {
+  0% {
+      translate: 0 -30%;
+      opacity: 0;
+      visibility: hidden;
+  }
+  100% {
+      translate: 0;
+      opacity: 1;
+      visibility: visible;
+  }
+}
+
+@keyframes _slideLeft {
+  0% {
+      translate: 20% 0;
+      opacity: 0;
+      visibility: hidden;
+  }
+  100% {
+      translate: 0;
+      opacity: 1;
+      visibility: visible;
+  }
+}
+
+@keyframes _slideRight {
+  0% {
+      translate: -20% 0;
+      opacity: 0;
+      visibility: hidden;
+  }
+  100% {
+      translate: 0;
+      opacity: 1;
+      visibility: visible;
+  }
+}
+
+
+.page-enter-active,
+.page-leave-active {
+    transition: opacity 0.1s;
+}
+
+.page-enter,
+.page-leave-active {
+    opacity: 0;
+}
+
+.slide-fade-enter-active {
+    transition: all 0.3s cubic-bezier(0, 1, 0.65, 1);
+}
+
+.slide-fade-leave-active {
+    transition: all 0.5s linear;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    transform: translateY(5rem);
+    opacity: 0;
+}
+
+.window-fade-enter-active {
+    transform: translate(-100%, -100%);
+    opacity: 1;
+    transition: all 1.6s linear;
+}
+
+.window-fade-leave-active {
+    transform: translate(10%, 10%);
+    opacity: 0;
+    transition: all 1.8s linear;
+}
+
+.txt-slide-fade-enter-active {
+    transition: all 0.5s cubic-bezier(0, 1, 0.65, 1);
+}
+
+.txt-slide-fade-leave-active {
+    transition: all 1s linear;
+}
+
+.txt-slide-fade-enter-from,
+.txt-slide-fade-leave-to {
+    transform: translate(-50%,10rem);
+    opacity: 0;
+}
+
+/* 自定义 animation */
+@keyframes _fadeIn {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        translate: 0 50%;
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        translate: 0;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        translate: 0 -30%;
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        translate: 0;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes slideLeft {
+    0% {
+        translate: 20% 0;
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        translate: 0;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes slideRight {
+    0% {
+        translate: -20% 0;
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        translate: 0;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.animation {
+    opacity: 0;
+    visibility: hidden;
+}
+.animation__fadeIn {
+    animation: _fadeIn ease-in-out 1.6s forwards;
+}
+.animation__slideUp {
+    animation: slideUp ease-in-out 1s forwards;
+}
+.animation__slideDown {
+    animation: slideDown ease-in-out 1s forwards;
+}
+.animation__slideLeft {
+    animation: slideLeft ease-in-out 1s forwards;
+}
+.animation__slideRight {
+    animation: slideRight ease-in-out 1s forwards;
+}
+
+/* 图片从大往中心缩小动画 */
+@keyframes zoomInCenter {
+  0% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate__zoomInCenter {
+  animation: zoomInCenter 0.3s ease-in-out forwards;
+}
+
+/* 图片从中心放大动画 */
+@keyframes scaleInCenter {
+  0% {
+    transform: matrix(0.5, 0, 0, 0.5, 0, 0);
+  }
+  100% {
+    transform: matrix(1, 0, 0, 1, 0, 0);
+  }
+}
+
+.animate__scaleInCenter {
+  animation: scaleInCenter 1s ease-in-out forwards;
+}
+  

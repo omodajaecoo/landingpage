@@ -1,0 +1,49 @@
+.news-container .el-select-dropdown__list {
+  font-family: MiSansRegular !important;
+}
+.menu_view .el-select-dropdown__item.is-hovering {
+  background-color: #F4F4F4;
+  color: #222;
+  font-family: MiSansMedium;
+}
+.menu_view .el-select-dropdown__item.is-selected {
+  color: #222;
+  font-weight: 380 !important;
+  font-family: MiSansMedium;
+}
+.menu_view .el-select-dropdown__item {
+  height: 0.51rem;
+  font-size: 0.16rem;
+  color: #999;
+  line-height: 0.51rem;
+  padding-left: 12px;
+}
+.news-container .el-select__placeholder {
+  color: #999;
+  font-size: 0.16rem;
+}
+.menu_view .el-popper__arrow, .el-popper__arrow:before {
+  width: 0;
+  height: 0;
+}
+.menu_view {
+  margin-top: -7px;
+}
+.news-container .el-select__wrapper {
+  height: 0.36rem;
+  line-height: 0.36rem;
+}
+@media (max-width: 1024px) {
+  .menu_view .el-select-dropdown__item {
+    height: 0.8rem;
+    font-size: 0.28rem;
+    line-height: 0.8rem;
+  }
+  .news-container .el-select__placeholder {
+    font-size: 0.16rem;
+  }
+  .news-container .el-select__wrapper {
+    height: 0.74rem;
+    line-height: 0.74rem;
+  }
+}
