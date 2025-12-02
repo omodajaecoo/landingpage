@@ -66,7 +66,7 @@
           src="/images/page2_left_arrow.webp"
           alt="prev"
           v-if="swiperArr.length > 1"
-          @click="changeMobSwiper('next')"
+          @click="changeMobSwiper('prev')"
         />
       </Swiper>
     </div>
@@ -76,8 +76,16 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import type { Ref } from "vue";
+
+interface SwiperItem {
+  src: string;
+  txt: string;
+  memo?: string;
+  carmodel?: string;
+}
+
 const { isMobile } = useDeviceType();
-const ispc = computed(() => {
+const ispc: Ref<boolean> = computed((): boolean => {
   return !isMobile.value;
 });
 var current_idx: Ref<Number> = ref(0);
@@ -92,7 +100,7 @@ const props = defineProps({
     default: 0,
   },
   swiperArr: {
-    type: Array,
+    type: Array as () => SwiperItem[],
     default: [],
   },
   needTitleBg: {
@@ -112,26 +120,23 @@ const props = defineProps({
     default: "",
   },
 });
-function changeCur(idx) {
+function changeCur(idx:any) {
   current_idx.value = idx;
   if (idx != 99) {
     current_title.value = props.swiperArr[idx].txt;
   }
 }
-// 移动端
-let myFullSwiper: Swiper.Swiper = null;
-/** swiper加载完毕 */
-const onFullSwiper = (swiper) => {
-  // // console.log(swiper);
+
+let myFullSwiper: any = null;
+const onFullSwiper = (swiper:any) => {
   myFullSwiper = swiper;
-  swiper.on("slideChange", function () {
-    // // // console.log(this);
-    current_idx.value = this.realIndex;
+  swiper.on("slideChange", () => {
+    current_idx.value = swiper.realIndex;
   });
 };
-function changeMobSwiper(type) {
+function changeMobSwiper(type:any) {
   let modid = props.modid;
-  const swiper = document.querySelector("#" + modid).swiper;
+  const swiper = (document.querySelector("#" + modid) as any).swiper;
   if (type == "next") {
     swiper.slideNext();
   } else {
@@ -156,11 +161,10 @@ function changeMobSwiper(type) {
   width: 1rem;
   width: calc(1 * 16 / 3.75 * 1vw);
   height: auto;
-  padding: 2rem 0;
-  padding: calc(2 * 16 / 3.75 * 1vw) 0;
   position: absolute;
   z-index: 9;
-  bottom: -3px;
+  bottom: 50%;
+  cursor: pointer;
 }
 .mob-swiper-container .next {
   right: 5%;
@@ -172,6 +176,10 @@ function changeMobSwiper(type) {
   width: 100%;
   height: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 .mob-swiper-container .slide .afterMask {
   width: 100%;
@@ -183,9 +191,8 @@ function changeMobSwiper(type) {
 }
 .mob-swiper-container .slide .img {
   width: 100%;
-  height: autp;
+  height: auto;
   position: absolute;
-  top: 0;
   left: 0;
   object-fit: cover;
   z-index: -1;
@@ -194,7 +201,7 @@ function changeMobSwiper(type) {
   width: 100%;
   position: absolute;
   left: 0;
-  bottom: 20px;
+  bottom: 15%;
   min-height: 2rem;
   min-height: calc(2 * 16 / 3.75 * 1vw);
   z-index: 12;

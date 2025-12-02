@@ -145,7 +145,10 @@ const handleSlideChange = (curSwiper: any) => {
     const videoDom = document.querySelector(
       "#page1KVVideo" + activeIndex.value
     ) as HTMLVideoElement;
-    videoDom?.play?.();
+    if (videoDom) {
+      videoDom.play().catch(() => {
+      });
+    }
   }
 
   showPagination.value = false;
@@ -161,6 +164,18 @@ const handleInit = (inst: any) => {
   handleAnimation();
 
   showPagination.value = true;
+
+  // Reproducir video inicial si la primera slide es un video
+  if (props.slides[0]?.type === "video") {
+    setTimeout(() => {
+      const videoDom = document.querySelector("#page1KVVideo0") as HTMLVideoElement;
+      if (videoDom) {
+        videoDom.play().catch(() => {
+          // Ignorar error si el play es interrumpido
+        });
+      }
+    }, 100);
+  }
 };
 
 const activePaginationLeft = computed(() => {

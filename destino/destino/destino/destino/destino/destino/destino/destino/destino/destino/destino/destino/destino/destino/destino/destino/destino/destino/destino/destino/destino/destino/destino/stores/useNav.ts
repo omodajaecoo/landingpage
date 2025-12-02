@@ -17,7 +17,6 @@ export const useNavStore = defineStore({
     async setNav(show: boolean, name: string = '') {
       this.visible = show;
       this.name = show ? name : '';
-      console.log(this.visible, this.name, 999)
     },
     setActiveBrand(brand: string) {
       this.activeBrand = brand;
