@@ -17,6 +17,7 @@ export default defineNuxtConfig({
       formURL: process.env.NUXT_FORM_URL,
       secKey: process.env.NUXT_SEC_KEY,
       gtagId: process.env.NUXT_GTAG_ID, // Google Analytics ID
+      gtagId2: process.env.NUXT_GTAG_ID_2, // Second Google Analytics ID
       gtmId: process.env.NUXT_GTM_ID, // Google Tag Manager ID
     },
   },
@@ -24,6 +25,9 @@ export default defineNuxtConfig({
     baseURL: process.env.NUXT_API_KEY,
     head: {
       title: "OMODA&JAECOO",
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ],
       meta: [
         {
           name: "viewport",

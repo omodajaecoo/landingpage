@@ -484,7 +484,7 @@ type sideswiperItem = {
 };
 var section5_slides: Array<swiperItem> = [
     {
-    label: ["CONECTIVIDAD", "Y", "EXPERIENCIA", "CENTRALIZADA", "EN", "SU", "PANTALLA", "VERTICAL", "DE", "14.8\""],
+    label: ["FUNCIONALIDAD", "CON", "ESTILO,", "ALTA", "CONECTIVIDAD", "Y", "HEADS", "UP", "DISPLAY", "(HUD)"],
     txtarr: {},
     imgsrc: dir + "images/models/J7/section5-item1.webp",
     isvideo: false,
@@ -505,7 +505,7 @@ var section5_slides: Array<swiperItem> = [
 var section5_slides_mob: sideswiperItem[] = [
   {
     src: dir + "images/models/J7/section5-item1_mob.webp",
-    txt: "Conectividad y experiencia centralizada en su pantalla vertical de 14.8\".",
+    txt: "Funcionalidad con estilo, alta conectividad y Heads Up Display (HUD).",
   },
   {
     src: dir + "images/models/J7/section5-item2_mob.webp",

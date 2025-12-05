@@ -11,6 +11,7 @@
     </div>
     <!-- footer -->
     <LayoutsFooter :routePath="route.path" />
+    <LayoutsCookies />
   </div>
 </template>
 

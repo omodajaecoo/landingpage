@@ -14,7 +14,6 @@
         :bottom="page.bottom"
       />
     </template>
-    <!-- <ShsMarathon :ispc="!isMobile" /> -->
   </div>
 </template>
 
@@ -59,7 +58,7 @@ const allPageData: AllPageData = {
       style: "p1",
       top: {
         title: "SISTEMA SÚPER HÍBRIDO",
-        desc: "Basado en la tercera generación de tecnología híbrida de Chery Holding Group, el Súper Sistema Híbrido ha sido<br/> desarrollado para satisfacer a los consumidores más exigentes en su búsqueda por eficiencia, innovación y un<br/> estilo de vida sostenible.",
+        desc: "Basado en la tercera generación de tecnología híbrida de Chery Holding Group, el Súper Sistema Híbrido ha sido desarrollado para satisfacer a los consumidores más exigentes en su búsqueda por eficiencia, innovación y un estilo de vida sostenible.",
         style: "p1",
       },
     },
@@ -67,7 +66,7 @@ const allPageData: AllPageData = {
       imgUrl: "shs/bg_2.webp",
       top: {
         title: "SUPER HYBRID SYSTEM - SUVS FULL HYBRID AND PLUG IN HYBRID",
-        desc: "Tecnología y tren motriz de alto rendimiento que brinda una precisión de conducción similar a<br/> la de un vehículo 100% eléctrico, combinando potencia, eficiencia y tecnología avanzada.",
+        desc: "Tecnología y tren motriz de alto rendimiento que brinda una precisión de conducción similar a la de un vehículo 100% eléctrico, combinando potencia, eficiencia y tecnología avanzada.",
         style: "p2",
       },
       bottom: {

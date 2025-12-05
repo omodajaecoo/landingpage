@@ -6,7 +6,7 @@
   <HomeCarsCarrousel />
 
   <!-- Video Banner -->
-  <CommonVideoArticle :content="videoBanner" ref="banner2" max-height="800px" objectFit="contain"/>
+  <CommonVideoArticle :content="videoBanner" ref="banner2" max-height="800px" objectFit="fill"/>
 
   <!-- Section: Autos -->
   <HomeCarsBanner />
