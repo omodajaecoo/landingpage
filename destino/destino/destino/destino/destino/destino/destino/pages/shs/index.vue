@@ -205,7 +205,7 @@ const allPageData: AllPageData = {
   ],
   h5: [
     {
-      imgUrl: "shs/bg_1.webp",
+      imgUrl: "shs/bg_1_m.webp",
       style: "h1",
       top: {
         title: "SISTEMA SÚPER HÍBRIDO",
