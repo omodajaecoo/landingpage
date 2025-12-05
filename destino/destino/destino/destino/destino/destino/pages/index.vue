@@ -11,6 +11,9 @@
   <!-- Section: Autos -->
   <HomeCarsBanner />
 
+  <!-- Section: Beneficios -->
+  <HomeBenefitsBanner/>
+
 
 </template>
 

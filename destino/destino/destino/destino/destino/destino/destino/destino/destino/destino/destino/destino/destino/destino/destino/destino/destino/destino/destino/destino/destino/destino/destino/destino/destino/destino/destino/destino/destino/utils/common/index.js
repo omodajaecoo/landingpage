@@ -7,7 +7,7 @@ const isMobileDevice = () => {
   // 检测 userAgent 字符串中是否包含移动设备的关键字
   const isMobile = mobileDevices.test(userAgent);
 
-  return window.innerWidth < 1024 ? true : isMobile;
+  return window.innerWidth < 640 ? true : isMobile;
 }
 
 const debunce = function (fn, delay = 300){
