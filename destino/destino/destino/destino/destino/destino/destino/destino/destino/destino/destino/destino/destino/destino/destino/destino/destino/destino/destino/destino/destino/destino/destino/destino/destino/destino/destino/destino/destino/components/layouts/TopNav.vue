@@ -244,7 +244,7 @@
     },
     {
       name: 'Cotización',
-      linkUrl: '/#contactForm'
+      linkUrl: '/quote'
     },
   ]
 

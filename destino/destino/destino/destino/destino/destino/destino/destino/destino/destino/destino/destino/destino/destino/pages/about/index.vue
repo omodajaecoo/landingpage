@@ -1,13 +1,13 @@
 <template>
     <div class="overflow-hidden">
-        <fullArticle class="bg-black" :content="content" ext="webp" v-animate="{
+        <fullArticle class="bg-black" :content="banner1Content" ext="webp" v-animate="{
             effect: 'zoomInCenter',
             immediate: true
         }"></fullArticle>
     </div>
-    <notFullScreen class="bg-black" :bannerContent="banner2Content" ext="webp"></notFullScreen>
-    <fullArticle class="bg-black" :content="banner3Content" ext="webp"></fullArticle>
-    <fullArticle class="bg-black" :content="banner4Content" ext="webp"></fullArticle>
+    <fullArticle class="bg-black" :content="banner2Content" ext="webp"></fullArticle>
+    <notFullScreen class="bg-black" :bannerContent="banner3Content" ext="webp"></notFullScreen>
+    <notFullScreen class="bg-black" :bannerContent="banner4Content" ext="webp"></notFullScreen>
 
 </template>
 <script lang="ts" setup>
@@ -15,73 +15,75 @@
     import fullArticle from '../../components/common/fullArticle.vue'
     import notFullScreen from '../../components/brand/notFullScreen.vue'
 
-    const content = ref({
+    const banner1Content = ref({
         isTextWhite: true,
-  
         subTitle: `
-        <div class="px-0 max-w-[876px] sm:mx-[70px] font-interMedium text-[20px] sm:text-[36px]">ACERCA DE NOSOTROS </div>
-        <br>
-        <div class="px-0 max-w-[876px] sm:mx-[70px] font-interRegular text-[12px] sm:text-[16px]">
-        En el panorama en rápida evolución de hoy en día, la industria automotriz está experimentando un cambio transformador. La demografía de los consumidores es cada vez más joven, con demandas que se vuelven cada vez más personalizadas; los automóviles han trascendido hace mucho tiempo su función básica de transporte para convertirse en portadores vitales de estilo de vida y aspiraciones personales. <br />
-        Es dentro de esta marea de cambio que han surgido las marcas OMODA y JAECCOO. No solo aprovechan tecnologías automotrices de vanguardia para construir dos matrices de productos principales —OMODA y JAECCOO— sino que también se integran profundamente en diversos círculos culturales y dominios personalizados a través de O-LAB y J-LAND, creando posibilidades ilimitadas para la futura movilidad de los usuarios.
+        <div class="px-0 max-w-[876px] lg:mx-[70px] font-interSemiBold text-[20px] sm:text-[36px] text-white">ACERCA DE NOSOTROS</div>
+        <div class="px-0 max-w-[876px] lg:mx-[70px] font-interRegular text-[12px] sm:text-[16px] mt-[18px] text-white">
+        Desde 1963, Automotores y Anexos ha sido protagonista en la evolución de la movilidad en Ecuador, iniciando con la representación de Nissan y consolidando alianzas con marcas globales como Renault, Foton y BAIC. Con más de seis décadas de experiencia, seguimos innovando para ofrecer soluciones que respondan a las tendencias del mercado y a las necesidades de nuestros clientes. Hoy, damos un paso hacia el futuro con la incorporación de Omoda y Jaecoo, marcas del Grupo Chery que están diseñadas para la mejor experiencia automotriz con diseño vanguardista, tecnología inteligente y un firme compromiso con la movilidad sostenible. Nuestra historia es sinónimo de confianza, calidad y visión, y con estas nuevas marcas reafirmamos nuestro propósito: construir relaciones duraderas y liderar la transformación del sector automotor en el país.
+        </div>
+        <div class="flex justify-center items-center">
+        <img src="/images/about/banner1bg_logo.webp" alt="Logo" class="w-[132px] sm:w-[250px] h-[50px] sm:h-[96px] mt-[24px]" />
         </div>
         `,
         h5ClassName: 'h5-brand-sub',
         className: "",
-        imgClass: "",
-        img: "brand/brand_banner1",
-        titleClassName: 'uppercase',
+        imgClass: "!object-left lg:!object-top !object-cover lg:!object-fill",
+        img: "about/banner1bg",
+        fullArticleClass: 'enlarge',
+        titleContentClass: '!justify-center  !pb-0 !pt-0 md:!pt-[0px]',
     })
+
     const banner2Content = ref({
         isTextWhite: true,
         subTitle: `
-        <div class="px-0 max-w-[1028px] sm:mx-[70px] font-interMedium text-[20px] sm:text-[32px] text-white">OMODA</div>
+        <div class="px-0 max-w-[876px] lg:mx-[70px] font-interMedium text-[20px] sm:text-[36px]">CHERY HOLDING GROUP</div>
+        <br>
+        <div class="px-0 max-w-[876px] lg:mx-[70px] font-interRegular text-[12px] sm:text-[16px]">
+        Fundado en 1997 Wuhu China, Chery Holding Group ha evolucionado de una empresa local a un referente global en la industria automotriz. Con más de 80 países en su red y 14.2 millones de usuarios en todo el mundo, el grupo lidera la exportación de automóviles de pasajeros chinos durante 22 años consecutivos. Su compromiso con la innovación y la sostenibilidad se refleja en el desarrollo de tecnologías avanzadas para vehículos eléctricos, híbridos y conectividad inteligente, consolidando su posición como pionero en movilidad verde.  Con marcas como Omoda y Jaecoo, Chery Holding Group impulsa una visión clara: ofrecer soluciones inteligentes, seguras y sostenibles que transformen la experiencia de conducción y marquen el futuro de la movilidad.
+        </div>
+        `,
+        h5ClassName: 'mx-[20px] sm:mx-[50px] lg:mx-0',
+        className: "",
+        imgClass: "",
+        img: "about/banner2bg",
+        titleClassName: 'uppercase',
+        fullArticleClass: 'enlarge',
+        titleContentClass: '!justify-start !pb-0 !pt-[1.2rem]',
+    })
+    const banner3Content = ref({
+        isTextWhite: true,
+        subTitle: `
+        <div class="px-0 max-w-[1028px] lg:mx-[70px] font-interMedium text-[20px] sm:text-[32px] text-white">OMODA</div>
         <br> 
-        <div class="px-0 max-w-[1028px] sm:mx-[70px] font-interRegular text-[12px] sm:text-[16px] text-white">
-        Como marca global profesional de Crossovers, se centra en crear elegantes productos crossover para la nueva generación de entusiastas del estilo de vida. Basándose en su ADN central de 'Futuro, Moda, Tecnología y Verde', su objetivo es romper las limitaciones tradicionales y empoderar a los jóvenes para que sigan estilos de vida contemporáneos más personalizados a través de un diseño con visión de futuro y tecnología de vanguardia.
+        <div class="px-0 max-w-[1028px] lg:mx-[70px] font-interRegular text-[12px] sm:text-[16px] text-white">
+        Omoda es la expresión de una nueva era en la industria automotriz, donde el diseño futurista se une con la tecnología inteligente para crear experiencias únicas. Como parte del Grupo Chery, Omoda nace con una visión clara: ofrecer vehículos que no solo se adapten al presente, sino que anticipen el futuro de la movilidad. Cada modelo refleja innovación, conectividad y un compromiso con la sostenibilidad, pensado para quienes buscan estilo, seguridad y rendimiento sin compromisos. En Automotores y Anexos, llevamos esta propuesta al mercado ecuatoriano, respaldados por décadas de experiencia y la confianza que nos caracteriza.
         </div>
         `,
         h5ClassName: "brand-subtitle h5-brand-sub",
         className: "",
-        img: "brand/brand_banner2",
+        imgClass: "max-h-[600px]",
+        img: "about/banner3bg",
         titleClassName: "brand-title uppercase"
-    })
-
-    const banner3Content = ref({
-        isTextWhite: true,
-        subTitle: `
-        <div class="px-0 max-w-[1000px] sm:mx-[70px] font-interMedium text-[20px] sm:text-[32px] text-white">JAECOO</div>
-        <br> 
-        <div class="px-0 max-w-[1000px] sm:mx-[70px] font-interRegular text-[12px] sm:text-[16px] text-white">
-        El líder global en conducción off-road refinada— crea la serie de vehículos de 'Aventura sin Miedo' (Fearless Adventure) específicamente para las élites emergentes. Adhiriéndose a la filosofía de 'Arraigado en Clásicos, Trascendiendo Clásicos', rompe con los estereotipos tradicionales 'robustos y monótonos' de los vehículos todoterreno, reconstruyendo la estética off-road con un refinamiento extraordinario y liderando nuevas tendencias todoterreno con un rendimiento excepcional, asegurando que cada viaje combine sofisticación con potencia.
-        </div>
-        `,
-        h5ClassName: 'h5-brand-sub',
-        className: "",
-        imgClass: "",
-        img: "brand/brand_banner3",
-        fullArticleClass: 'enlarge',
     })
 
     const banner4Content = ref({
         isTextWhite: true,
         subTitle: `
-        <div class="px-0 max-w-[876px] sm:mx-[70px] font-interSemiBold text-[20px] sm:text-[32px] text-white">NUESTRA TRAYECTORIA CORPORATIVA</div>
+        <div class="px-0 max-w-[1028px] sm:mx-[70px] font-interMedium text-[20px] sm:text-[32px] text-white">JAECOO</div>
         <br> 
-        <div class="px-0 max-w-[876px] sm:mx-[70px] font-interRegular text-[12px] sm:text-[16px] text-white">
-        Con más de 60 años de trayectoria, Automotores y Anexos S.A. es una empresa ecuatoriana líder en el sector automotriz que ha impulsado la movilidad y la innovación en el país.
-        <br> <br> 
-        Desde sus inicios, la compañía ha mantenido un firme compromiso con la excelencia, el servicio al cliente y la calidad, representando marcas globales que transforman la experiencia de conducción en Ecuador.<br>
-        A lo largo de su historia, Automotores y Anexos ha contribuido significativamente al desarrollo del sector, consolidándose como un grupo sólido, con una visión orientada al futuro, la sostenibilidad y la confianza.
-        Hoy, con la introducción de OMODA y JAECCOO, reafirma su propósito de seguir ofreciendo movilidad inteligente, tecnología avanzada y diseño de vanguardia al mercado ecuatoriano.
+        <div class="px-0 max-w-[1028px] sm:mx-[70px] font-interRegular text-[12px] sm:text-[16px] text-white">
+        Jaecoo representa la esencia del espíritu aventurero y la sofisticación urbana. Como marca del Grupo Chery, su propuesta se centra en vehículos con ADN todoterreno premium que combinan potencia, tecnología avanzada y diseño elegante, pensados para quienes buscan libertad sin renunciar al confort. Con Jaecoo, la experiencia de conducción trasciende los límites, ofreciendo seguridad, conectividad y rendimiento en cualquier terreno. En Automotores y Anexos, llevamos esta visión al Ecuador, respaldados por nuestra trayectoria y compromiso con la excelencia.
         </div>
         `,
-        h5ClassName: 'h5-brand-sub',
+        h5ClassName: 'brand-subtitle h5-brand-sub',
         className: "",
-        imgClass: "",
-        img: "brand/brand_banner4",
-        fullArticleClass: 'enlarge',
+        imgClass: "max-h-[600px]",
+        img: "about/banner4bg",
+        titleClassName: "brand-title uppercase"
     })
+
+
 
     
 </script>

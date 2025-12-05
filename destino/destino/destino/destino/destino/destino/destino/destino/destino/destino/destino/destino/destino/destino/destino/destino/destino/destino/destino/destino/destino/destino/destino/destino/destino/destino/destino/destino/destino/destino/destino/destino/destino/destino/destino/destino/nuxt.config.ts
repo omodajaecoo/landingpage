@@ -16,6 +16,8 @@ export default defineNuxtConfig({
       apiURL: process.env.NUXT_API_URL, // 暴露在前端
       formURL: process.env.NUXT_FORM_URL,
       secKey: process.env.NUXT_SEC_KEY,
+      gtagId: process.env.NUXT_GTAG_ID, // Google Analytics ID
+      gtmId: process.env.NUXT_GTM_ID, // Google Tag Manager ID
     },
   },
   app: {
@@ -47,18 +49,7 @@ export default defineNuxtConfig({
           content: `Welcome to OMODA&JAECOO official website. Here you can find out more about the OMODA&JAECOO brand concept, the latest models, exciting events and more.`,
         },
       ],
-      script: [
-        // 这是谷歌分析的监听代码 -是key
-        // { src: "https://www.googletagmanager.com/gtag/js?id=G-652S58106P", async: true },
-        // `window.dataLayer = window.dataLayer || [];
-        //   function gtag() {
-        //     dataLayer.push(arguments);
-
-        //   }
-        //   gtag("js", new Date());
-        //   gtag("config", "G-652S58106P");
-        // `,
-      ],
+      script: [],
     },
   },
   modules: [
@@ -70,10 +61,10 @@ export default defineNuxtConfig({
     'pinia-plugin-persistedstate/nuxt'
   ],
   piniaPluginPersistedstate: {
-    storage: 'localStorage', // 默认存储方式
+    storage: 'localStorage', // 
     cookieOptions: {
-      maxAge: 2 * 365 * 24 * 60 * 60 * 1000, // Cookie 的过期时间，单位为毫秒
-      sameSite: 'lax' // Cookie 的 SameSite 属性
+      maxAge: 2 * 365 * 24 * 60 * 60 * 1000, 
+      sameSite: 'lax'
     }
   },
   tailwindcss: {

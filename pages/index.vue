@@ -14,6 +14,8 @@
   <!-- Section: Beneficios -->
   <HomeBenefitsBanner/>
 
+  <HomeLeadForm ref="leadFormRef" id="leadform"/>
+
 
 </template>
 

@@ -47,7 +47,7 @@
       <img
         loading="lazy"
         class="btn prev"
-        src="/images/j5/arrow_left.webp"
+        src="/images/arrow_left.webp"
         alt="prev"
         v-if="slide.length > 1"
         @click="handleChange('prev')"
@@ -55,7 +55,7 @@
       <img
         loading="lazy"
         class="btn next"
-        src="/images/j5/arrow_right.webp"
+        src="/images/arrow_right.webp"
         alt="next"
         v-if="slide.length > 1"
         @click="handleChange('next')"
