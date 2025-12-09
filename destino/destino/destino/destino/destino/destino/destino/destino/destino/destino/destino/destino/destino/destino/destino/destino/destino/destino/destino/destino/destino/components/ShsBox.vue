@@ -20,16 +20,18 @@
           once: false,
         }"
       ></div>
-      <div
-        v-if="top.desc"
-        class="shs-top-desc"
-        v-html="top.desc"
-        v-animate="{
-          effect: 'fadeInUp',
-          once: false,
-        }"
-        style="animation-delay: 0.3s"
-      ></div>
+      <div class="flex justify-center">
+        <div
+          v-if="top.desc"
+          class="shs-top-desc"
+          v-html="top.desc"
+          v-animate="{
+            effect: 'fadeInUp',
+            once: false,
+          }"
+          style="animation-delay: 0.3s"
+        ></div>
+      </div>
     </div>
     <div
       v-if="leftBottom"
@@ -46,7 +48,6 @@
         }"
       ></div>
     </div>
-    <!-- h2为特殊格式 -->
     <div
       v-if="bottom && bottom.style !== 'h2'"
       class="shs-bottom"
@@ -260,7 +261,7 @@ const config = useRuntimeConfig();
 
   &.p1 {
     .shs-img {
-      object-position: 50% 0;
+      object-position: 0 20%;
     }
   }
   .shs-top {
@@ -269,7 +270,6 @@ const config = useRuntimeConfig();
     width: 80vw;
     text-align: center;
     left: 50%;
-    /* transform: translateX(-50%); */
     margin-left: -40vw;
     color: #fff;
     &-title {
@@ -284,10 +284,20 @@ const config = useRuntimeConfig();
       font-weight: 200;
     }
     &.p1 {
-      top: 12.21vw;
+      top: 10vw;
       .shs-top-title {
         font-size: 36px;
         line-height: 1.2;
+      }
+      .shs-top-desc {
+        max-width: 950px;
+        padding: 0 20px;
+      }
+    }
+    &.p2 {
+      .shs-top-desc {
+        max-width: 950px;
+        padding: 0 20px;
       }
     }
     &.p9 {
@@ -434,7 +444,7 @@ const config = useRuntimeConfig();
         margin-top: 16px;
       }
       &.titleLarge {
-        top: 15%;
+        top: 100px;
         .shs-top-title {
           font-size: 20px;
         }
@@ -515,6 +525,9 @@ const config = useRuntimeConfig();
           font-size: 36px;
         }
       }
+      &.p1 {
+        top: 10vw;
+      }
     }
     .shs-leftBottom {
       left: 4.27vw;
@@ -581,11 +594,7 @@ const config = useRuntimeConfig();
       &-title {
         letter-spacing: 0.002083em;
       }
-      &.titleLarge {
-        .shs-top-title {
-          line-height: 10.67vw;
-        }
-      }
+
     }
     .shs-horizontal {
       position: static;

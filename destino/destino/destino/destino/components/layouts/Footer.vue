@@ -1,7 +1,7 @@
 <template>
   <footer class="w-full bg-[#0d0e0e] flex flex-col justify-center items-center footer-info">
     <div class="flex flex-col justify-center w-full bg-[#0d0e0e] px-[24px] sm:px-[50px] lg:min-h-[140px] py-[50px] lg:py-[32px] gap-y-[20px] ">
-      <template v-if="routePath !== '/LP'">
+      <template v-if="!routePath.startsWith('/LP')">
         <div class="flex w-full flex-col space-y-[32px]">
           <div class="flex justify-center lg:justify-start items-start space-x-[19px] sm:space-x-[64px]">
             <template v-for="(category) in categories" :key="category.title">
