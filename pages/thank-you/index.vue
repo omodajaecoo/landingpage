@@ -4,27 +4,22 @@
 
 <script lang="ts" setup>
 import ThankYouBanner from '~/components/thank-you/Banner.vue'
-import { useRoute, useRouter } from 'vue-router'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-const route = useRoute()
 const router = useRouter()
 const isValid = ref(false)
 
-const tokenFromUrl = route.query.t as string
-
-if (!tokenFromUrl) {
-  router.replace('/')
-} else if (import.meta.client) {
-  const tokenFromStorage = sessionStorage.getItem('formToken')
+if (import.meta.client) {
+  const tyAccess = sessionStorage.getItem('tyAccess')
   
-  if (!tokenFromStorage || tokenFromStorage !== tokenFromUrl) {
+  if (!tyAccess) {
     router.replace('/')
   } else {
-    sessionStorage.removeItem('formToken')
-    const timestamp = parseInt(tokenFromUrl)
+    const timestamp = parseInt(tyAccess)
     const now = Date.now()
     const timeLimit = 15 * 1000
-    
+    sessionStorage.removeItem('tyAccess')
     if (now - timestamp > timeLimit) {
       router.replace('/')
     } else {

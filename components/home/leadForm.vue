@@ -271,7 +271,7 @@
 
 
 <script lang="ts" setup>
-import { ref, watch, onMounted, onUnmounted, defineExpose } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
 const root = ref(null);
@@ -428,12 +428,14 @@ const handleSubmit = async () => {
       sessionStorage.setItem('tyAccess', Date.now().toString());
       const isLPRoute = route.path.startsWith('/LP');
       const thankYouPath = isLPRoute ? '/LP/thank-you' : '/thank-you';
+      const queryParams: Record<string, string> = {
+        source: route.path.replace(/^\//, '')
+      };
+      
       if (selectedModel) {
-        const formattedModelSlug = formatModeloSlug(selectedModel);
-        router.push({ path: thankYouPath, query: { modelo: formattedModelSlug } });
-      } else {
-        router.push(thankYouPath);
+        queryParams.model = formatModeloSlug(selectedModel);
       }
+      router.push({ path: thankYouPath, query: queryParams });
 
     } else {
       modalIcon.value = '/images/close-circle.svg';
