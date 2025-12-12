@@ -50,7 +50,11 @@
           </a>
         </div>
       </div>
-      <div class="flex justify-center lg:justify-start mt-[6px] items-center">
+      <div class="flex justify-center lg:justify-start mt-[6px] items-center  space-x-[20px] sm:space-x-[40px]">
+        <span class="text-[10px] sm:text-[12px] text-white font-interRegular hover:underline cursor-pointer"
+          @click="NavToPage('/privacyStatement')">
+          Aviso de Privacidad
+        </span>
         <span class="text-[10px] sm:text-[12px] text-white font-interRegular hover:underline cursor-pointer"
           @click="NavToPage('/cookieNotice')">
           Cookies
