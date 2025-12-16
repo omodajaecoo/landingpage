@@ -492,17 +492,9 @@ var section5_slides: Array<swiperItem> = [
     ismask: true,
   },
   {
-    label: ["SONIDO", "ENVOLVENTE", "PREMIUM", "SONY", "CON", "ALTA", "PRECISIÓN", "Y", "FIDELIDAD"],
-    txtarr: {},
-    imgsrc: dir + "images/models/E5/section5-item2.webp",
-    isvideo: false,
-    vsrc: "",
-    ismask: true,
-  },
-  {
     label: ["CARGA", "RÁPIDA", "WIRELESS", "(50W)", "CON", "VENTILACIÓN", "PARA", "EL", "CELULAR"],
     txtarr: {},
-    imgsrc: dir + "images/models/E5/section5-item3.webp",
+    imgsrc: dir + "images/models/E5/section5-item2.webp",
     isvideo: false,
     vsrc: "",
     ismask: true,
@@ -516,10 +508,6 @@ var section5_slides_mob: sideswiperItem[] = [
   },
   {
     src: dir + "images/models/E5/section5-item2_mob.webp",
-    txt: "Sonido envolvente premium SONY con alta precisión y fidelidad.",
-  },
-  {
-    src: dir + "images/models/E5/section5-item3_mob.webp",
     txt: "Carga rápida wireless (50W) con ventilación para el celular.",
   },
 ];

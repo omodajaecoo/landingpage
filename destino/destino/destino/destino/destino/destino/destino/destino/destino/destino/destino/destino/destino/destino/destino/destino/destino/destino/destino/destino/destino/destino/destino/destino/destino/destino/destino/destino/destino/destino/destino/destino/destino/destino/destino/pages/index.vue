@@ -13,7 +13,7 @@
   <HomeValueBanner />
 
   <!-- Section: Autos -->
-  <HomeCarsBanner />
+  <HomeCarsBanner :LP="true"/>
 
   <!-- Section: Beneficios -->
   <HomeBenefitsBanner/>

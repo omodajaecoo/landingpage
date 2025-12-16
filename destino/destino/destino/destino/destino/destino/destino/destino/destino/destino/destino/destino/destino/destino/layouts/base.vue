@@ -3,7 +3,7 @@
     <!-- 回到顶部 -->
     <CommonBacktop />
   <!-- head -->
-  <LayoutsHeader v-if="route.path === '/'" />
+  <LayoutsHeader v-if="route.path === '/LP'" />
   <GeneralHeader v-else />
     <!-- content -->
     <div :id="'layout-' + String(route.name)" class="content min-h-[100vh]">
@@ -29,8 +29,8 @@ const route = useRoute();
 watch(
   route,
   (newVal) => {
-    // Solo para la ruta base
-    if (newVal.path === "/") {
+    // Solo para la ruta LP
+    if (newVal.path === "/LP") {
       headerStore.setHeaderTheme("dark");
       navStore.setActiveBrand("ALL");
     } else {

@@ -181,7 +181,6 @@ const slidesLP = new Map<string, { modeLP: boolean; link: string }>([
 if (props.LP) {
   slides = slides.filter((_, index) => slidesLP.get(slides[index].title)?.modeLP);
   slides.forEach((slide) => {
-    console.log(slide.title);
     slide.link = slidesLP.get(slide.title)?.link as string;
   });
 };

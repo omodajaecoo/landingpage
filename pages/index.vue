@@ -28,7 +28,7 @@
       imgUrl: 'images/index/banner_1-1.webp',
       imgUrlMobile: 'images/index/banner_1-1_mb.webp',
       videoUrl: 'videos/index/banner_1-1.webm',
-      videoUrlMobile: 'videos/index/banner_1-1_mb.mp4'
+      videoUrlMobile: 'videos/index/banner_1-1_mb.webm',
     },
     {
       title: '',
@@ -58,11 +58,10 @@
 
   const videoBanner = ref({
     isTextWhite: false,
-    img: 'index/newbanner',
     h5ClassName: 'lg:w-[10.25rem] lg:text-[#fff] banner2-space',
     fullArticleClass: 'enlarge',
     type: 'video',
-    videoUrl: 'index/video/newlpvideo.mp4',
+    videoUrl: 'index/LP/banner.webm',
   })
 
 </script>

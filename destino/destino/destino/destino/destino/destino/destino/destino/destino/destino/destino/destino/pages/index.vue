@@ -17,13 +17,16 @@
 <script lang="ts" setup>
 
   const homeBanners = [
+    
     {
       title: '',
       desc: '',
-      linkUrl: '',
-      type: 'image',
+      linkUrl: '/models/jaecoo-j7',
+      type: 'video',
       imgUrl: 'images/index/banner_1-1.webp',
-      imgUrlMobile: 'images/index/banner_1-1_mb.webp'
+      imgUrlMobile: 'images/index/banner_1-1_mb.webp',
+      videoUrl: 'videos/index/banner_1-1.webm',
+      videoUrlMobile: 'videos/index/banner_1-1_mb.mp4'
     },
     {
       title: '',
@@ -44,12 +47,10 @@
     {
       title: '',
       desc: '',
-      linkUrl: '/models/omoda-c5',
-      type: 'video',
+      linkUrl: '',
+      type: 'image',
       imgUrl: 'images/index/banner_1-4.webp',
       imgUrlMobile: 'images/index/banner_1-4_mb.webp',
-      videoUrl: 'videos/index/banner_1-4.webm',
-      videoUrlMobile: 'videos/index/banner_1-4_mb.mp4'
     },
   ]
 
