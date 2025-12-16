@@ -4,7 +4,7 @@
       flex flex-col justify-center items-center 
       lg:flex-row lg:items-start"
     >
-    <div class="lg:w-max-[90%] lg:w-max flex flex-col justify-center items-center 
+    <div class="lg:w-max-[90%] w-full lg:w-max flex flex-col justify-center items-center 
       lg:flex-row md:justify-start lg:items-start">
       <!-- tab -->
       <div class="tab-list w-full 
@@ -26,7 +26,7 @@
         <div 
           v-for="(model, index) in sortModelList" 
           :key="`${model.name}-${activeBrand}`" 
-          class="model-item text-center w-[calc(50%-0.25rem)] opacity-0 lg:w-auto animate__animated animate__faster"
+          class="model-item text-center w-[calc(50%-0.25rem)] opacity-0 lg:w-auto animate__animated animate__faster flex flex-col items-center"
           :class="{ 
             'visible-item animate__fadeInDownSmall': (activeBrand === 'ALL' || activeBrand === model.brand),  
             'cursor-pointer': (activeBrand === 'ALL' || activeBrand === model.brand)

@@ -214,7 +214,7 @@
       type: 'model',
       children: [
         {
-          name: 'OMODA C5',
+          name: 'OMODA C5 SHS H',
           imgUrl: '/header/c5.png',
           brand: brandList[1],
           linkUrl: '/models/omoda-c5',
@@ -226,7 +226,7 @@
           linkUrl: '/models/omoda-e5'
         },
         {
-          name: 'JAECOO J7',
+          name: 'JAECOO J7 SHS P',
           imgUrl: '/header/j7.png',
           brand: brandList[0],
           linkUrl: '/models/jaecoo-j7'

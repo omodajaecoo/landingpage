@@ -240,45 +240,75 @@
     },
     {
       name: 'Nosotros',
-      linkUrl: '/home'
+      linkUrl: '/about'
+    },
+    {
+      name: 'Cotización',
+      linkUrl: '/#contactForm'
     },
   ]
 
   // 注入父组件提供的方法
-  const parentMethod = inject('parentMethod');
+  const parentMethod = inject<(() => void) | undefined>('parentMethod');
 
   const mbNavList = reactive(navList.map(item => ({
     ...item,
     expand: false
   })))
 
-  const toggleNav = (nav: { expand: boolean; linkUrl?: string }) => {
+  const toggleNav = (nav: { expand?: boolean; linkUrl?: string; children?: any[]; type?: string }) => {
     if (nav.children && nav.children.length > 0) {
-      nav.expand = !nav.expand;
+      if (nav.expand !== undefined) {
+        nav.expand = !nav.expand;
+      }
     } else if (nav.linkUrl) {
-      if (nav.linkUrl.startsWith('#')) {
-        // Scroll suave al footer
-        const el = document.querySelector(nav.linkUrl);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
+      NavToPage(nav.linkUrl);
+    }
+  }
+
+  const NavToPage = (url: string) => {
+    // Verificar si la URL contiene un hash
+    if (url.includes('#')) {
+      const [path, hash] = url.split('#');
+      const targetPath = path || '/';
+      
+      // Si estamos en la misma página, solo hacer scroll
+      if (router.currentRoute.value.path === targetPath) {
         navStore.setNav(false);
         if (parentMethod) {
           parentMethod();
         }
+        setTimeout(() => {
+          const el = document.querySelector(`#${hash}`);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 300);
       } else {
-        NavToPage(nav.linkUrl);
+        // Si es otra página, navegar y luego hacer scroll
+        store.setPath(targetPath);
+        navStore.setNav(false);
+        if (parentMethod) {
+          parentMethod();
+        }
+        router.push({ path: targetPath }).then(() => {
+          // Esperar a que el DOM se actualice completamente
+          setTimeout(() => {
+            const el = document.querySelector(`#${hash}`);
+            if (el) {
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 800);
+        });
       }
-    }
-  }
-
-  // 跳转页面
-  const NavToPage = (url: string) => {
-    store.setPath(url);
-    router.push({ path: url });
-    navStore.setNav(false);
-    if (parentMethod) {
-      parentMethod();
+    } else {
+      // Navegación normal sin hash
+      store.setPath(url);
+      router.push({ path: url });
+      navStore.setNav(false);
+      if (parentMethod) {
+        parentMethod();
+      }
     }
   }
 

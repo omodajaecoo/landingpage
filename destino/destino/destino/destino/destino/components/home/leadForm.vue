@@ -272,21 +272,46 @@
 
 <script lang="ts" setup>
 import { ref, watch, onMounted, onUnmounted, defineExpose } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+
 const root = ref(null);
 defineExpose({ root });
 
+const router = useRouter();
+const route = useRoute();
 const isModalVisible = ref(false);
 
 const modalIcon = ref('/images/close-circle.svg');
 const modalTitle = ref('');
 const modalMessage = ref('');
 
+let redirectTimeout: number | undefined;
+
 const openModal = () => {
   isModalVisible.value = true;
+  
+  if (modalIcon.value === '/images/ok-circle.svg') {
+    redirectTimeout = window.setTimeout(() => {
+      closeModal();
+    }, 5000);
+  }
 };
 
 const closeModal = () => {
+  if (redirectTimeout) {
+    clearTimeout(redirectTimeout);
+    redirectTimeout = undefined;
+  }
+  
   isModalVisible.value = false;
+  
+  if (modalIcon.value === '/images/ok-circle.svg') {
+    const token = Date.now().toString();
+    sessionStorage.setItem('formToken', token);
+    const isLPRoute = route.path.startsWith('/LP');
+    const thankYouPath = isLPRoute ? '/LP/thank-you' : '/thank-you';
+    router.push({ path: thankYouPath, query: { t: token } });
+  }
 };
 
 const config = useRuntimeConfig()
