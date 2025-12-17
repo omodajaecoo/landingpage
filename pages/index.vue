@@ -61,7 +61,7 @@
     h5ClassName: 'lg:w-[10.25rem] lg:text-[#fff] banner2-space',
     fullArticleClass: 'enlarge',
     type: 'video',
-    videoUrl: 'index/LP/banner.webm',
+    videoUrl: 'index/LP/banner.mp4',
   })
 
 </script>

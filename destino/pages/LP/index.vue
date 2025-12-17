@@ -1,5 +1,5 @@
 <template>
-   <CommonFullArticle :content="banner2Content" ref="banner2">
+   <CommonFullArticle :content="banner2Content" ref="banner2" ext="webp">
     <template v-slot:bottomSlot>
       <BaseButton 
         type="text" 
@@ -29,12 +29,12 @@
 
 const banner2Content = ref({
   isTextWhite: false,
-  img: 'index/newbanner',
+  img: 'index/LP/banner',
   h5ClassName: 'lg:w-[10.25rem] lg:text-[#fff] banner2-space',
   fullArticleClass: 'enlarge',
   titleContentClass: '!pb-[70px] md:!pb-[86px] lg:!pb-[120px] !pt-0 md:!pt-0 lg:!pt-0',
   type: 'video',
-  videoUrl: 'index/video/newlpvideo.mp4',
+  videoUrl: 'index/LP/banner.webm',
 })
 
 

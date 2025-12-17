@@ -31,15 +31,31 @@
             : dir + 'images/models/E5/section2bg_mob.webp'
           " class="banner" />
         <div class="title bottom-[20%] sm:bottom-[40px]">
-          <img loading="lazy" src="/images/models/title-left.webp" class="icon left-icon" v-if="ispc"/>
-          <div class="flex flex-wrap justify-center items-center max-w-[1000px] px-[8px]">
-            <Transition name="slide-fade" v-for="(item, idx) in section2_tittle" :key="idx">
-              <div class="txt font-interSemiRegular text-[14px] sm:text-[16px]" v-if="currentPage == 1">
-               {{ item }}
-              </div>
-            </Transition>
-          </div> 
-          <img loading="lazy" src="/images/models/title-right.webp" class="icon right-icon" v-if="ispc"/>
+          <div class="flex flex-col justify-center items-center space-y-[20px] sm:space-y-[50px]">
+            <div class="flex space-x-[8px] sm:space-x-[32px] justify-center items-center">
+              <BaseButton type="text" class="font-interSemiRegular text-[16px] sm:text-[20px] px-[10px] py-[10px] sm:px-[20px] sm:py-[20px] 
+              border border-white leading-none" @click="router.push(section2_btns[0].link)">
+                {{ section2_btns[0].label }}
+              </BaseButton>
+              <a :href="section2_btns[1].link" target="_blank" rel="noopener">
+                <BaseButton type="text" class="font-interSemiRegular text-[16px] sm:text-[20px] px-[10px] py-[10px] sm:px-[20px] sm:py-[20px] 
+                border border-[#67B0C4] leading-none !bg-[#67B0C4]">
+                  {{ section2_btns[1].label }}
+                </BaseButton>
+              </a>
+            </div>
+            <div class="flex justify-center items-center w-full">
+              <img loading="lazy" src="/images/models/title-left.webp" class="icon left-icon" v-if="ispc"/>
+              <div class="flex flex-wrap justify-center items-center max-w-[1000px] px-[8px]">
+                <Transition name="slide-fade" v-for="(item, idx) in section2_tittle" :key="idx">
+                  <div class="txt font-interSemiRegular text-[14px] sm:text-[16px]" v-if="currentPage == 1">
+                  {{ item }}
+                  </div>
+                </Transition>
+              </div> 
+              <img loading="lazy" src="/images/models/title-right.webp" class="icon right-icon" v-if="ispc"/>
+            </div>
+          </div>
         </div>
       </SwiperSlide>
       <SwiperSlide class="section carrousel-sub">
@@ -297,6 +313,7 @@ import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
 import type { Ref } from "vue";
 const dir = useRuntimeConfig().public.staticURL + "/";
 const { isMobile } = useDeviceType();
+const router = useRouter();
 const ispc = computed(() => {
   return !isMobile.value;
 });
@@ -388,6 +405,16 @@ onBeforeUnmount(() => {
 });
 
 var section2_tittle = ["100%", "ELÉCTRICO.", "100%", "OMODA.", "CONDUCCIÓN", "SILENCIOSA,", "RESPUESTA", "INSTANTÁNEA", "Y", "TECNOLOGÍA", "QUE", "CONVIERTE", "CADA", "TRAYECTO", "EN", "UNA", "EXPERIENCIA", "FLUIDA.", "UN", "SUV", "PENSADO", "EN", "COMBINAR", "LO", "MEJOR", "SIN", "SACRIFICAR", "NADA."];
+var section2_btns: Array<{ label: string; link: string }> = [
+  {
+    label: "COTIZAR AHORA",
+    link: "/quote"
+  },
+  {
+    label: "FICHA TÉCNICA",
+    link: "/files/Ficha_Tecnica_OMODA-E5.pdf"
+  }
+];
 
 var section3_slides: Array<swiperItem> = [
   {

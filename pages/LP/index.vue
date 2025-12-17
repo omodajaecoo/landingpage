@@ -34,7 +34,7 @@ const banner2Content = ref({
   fullArticleClass: 'enlarge',
   titleContentClass: '!pb-[70px] md:!pb-[86px] lg:!pb-[120px] !pt-0 md:!pt-0 lg:!pt-0',
   type: 'video',
-  videoUrl: 'index/LP/banner.webm',
+  videoUrl: 'index/LP/banner.mp4',
 })
 
 

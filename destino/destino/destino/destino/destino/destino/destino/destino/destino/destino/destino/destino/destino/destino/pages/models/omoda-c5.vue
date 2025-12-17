@@ -1229,16 +1229,19 @@ function changePage_section5(type: string) {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  column-gap: 10%;
+  margin-top: 1.2rem;
+  margin-top: calc(1.2 * 16 / 19.2 * 1vw);
   margin-bottom: 1.2rem;
   margin-bottom: calc(1.2 * 16 / 19.2 * 1vw);
 }
 
 .img-item .img {
-  width: 38rem;
-  width: calc(38 * 16 / 19.2 * 1vw);
-  height: 20rem; 
-  height: calc(20 * 16 / 19.2 * 1vw);
+  width: 50vw;
+  max-width: 545px;
+  height: 45vh; 
+  max-height: 561px;
   transition: 1s;
   transition-delay: 0.3s;
   object-fit: cover;
@@ -1246,11 +1249,10 @@ function changePage_section5(type: string) {
   border-radius: calc(0.5 * 16 / 19.2 * 1vw);
 }
 
-.img-item .txt {
-  width: 35rem;
-  width: calc(35 * 16 / 19.2 * 1vw);
-  font-size: 1.2rem;
-  font-size: calc(1.2 * 16 / 19.2 * 1vw);
+.img-item .txt {  
+  width: 50vw;
+  max-width: 545px;
+  flex: 1 1 0;
   font-weight: normal;
   font-stretch: normal;
   line-height: 1.2;
@@ -1264,8 +1266,7 @@ function changePage_section5(type: string) {
   width: 100%;
   margin-bottom: 2.6rem;
   margin-bottom: calc(2.6 * 16 / 19.2 * 1vw);
-  font-size: 1.5rem;
-  font-size: calc(1.5 * 16 / 19.2 * 1vw);
+  font-size: 24px;
   transition: 1s;
   transition-delay: 0.1s;
   position: relative;
@@ -1291,8 +1292,7 @@ function changePage_section5(type: string) {
 .img-item .txt .memo {
   width: 100%;
   font-family: "SourceHanSansSC-Light";
-  font-size: 1.2rem;
-  font-size: calc(1.2 * 16 / 19.2 * 1vw);
+  font-size: 16px;
   font-stretch: normal;
   letter-spacing: 1px;
   transition: 1s;
@@ -1305,35 +1305,6 @@ function changePage_section5(type: string) {
 }
 
 @media (max-width: 1024px) {
-  .collage_section .img-main {
-    width: 100%;
-    height: auto;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-  .collage_section .img-main .img-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: stretch;
-    gap: 1rem;
-  }
-  .collage_section .img-main .img-item .img {
-    width: calc(50% - 0.5rem);
-    height: auto;
-  }
-  .collage_section .img-main .img-item .txt {
-    width: calc(50% - 0.5rem);
-  }
-  .collage_section .img-main .img-item .txt .title {
-    font-size: 20px;
-  }
-  .collage_section .img-main .img-item .txt .memo {
-    font-size: 16px;
-  }
   .mobile-collage_section {
     width: 100%;
     height: auto;
@@ -1364,6 +1335,7 @@ function changePage_section5(type: string) {
 
   .mobile-collage_section .img-main .img-item .img {
     width: 100%;
+    max-width: none;
     height: 100%;
     object-fit: cover;
     border-radius: 0;

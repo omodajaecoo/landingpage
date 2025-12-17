@@ -271,7 +271,7 @@
 
 
 <script lang="ts" setup>
-import { ref, watch, onMounted, onUnmounted, defineExpose } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
 const root = ref(null);
@@ -285,33 +285,12 @@ const modalIcon = ref('/images/close-circle.svg');
 const modalTitle = ref('');
 const modalMessage = ref('');
 
-let redirectTimeout: number | undefined;
-
 const openModal = () => {
   isModalVisible.value = true;
-  
-  if (modalIcon.value === '/images/ok-circle.svg') {
-    redirectTimeout = window.setTimeout(() => {
-      closeModal();
-    }, 5000);
-  }
 };
 
 const closeModal = () => {
-  if (redirectTimeout) {
-    clearTimeout(redirectTimeout);
-    redirectTimeout = undefined;
-  }
-  
   isModalVisible.value = false;
-  
-  if (modalIcon.value === '/images/ok-circle.svg') {
-    const token = Date.now().toString();
-    sessionStorage.setItem('formToken', token);
-    const isLPRoute = route.path.startsWith('/LP');
-    const thankYouPath = isLPRoute ? '/LP/thank-you' : '/thank-you';
-    router.push({ path: thankYouPath, query: { t: token } });
-  }
 };
 
 const config = useRuntimeConfig()
@@ -347,6 +326,18 @@ watch(() => form.value.ciudad, (nuevaCiudad) => {
     default: form.value.concesionario = 'OMODA & JAECOO POP UP STORE';
   }
 });
+
+const formatModeloSlug = (modelo: string): string => {
+  return modelo
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[áàäâ]/g, 'a')
+    .replace(/[éèëê]/g, 'e')
+    .replace(/[íìïî]/g, 'i')
+    .replace(/[óòöô]/g, 'o')
+    .replace(/[úùüû]/g, 'u')
+    .replace(/ñ/g, 'n');
+};
 
 const validateForm = () => {
   errors.value = { nombre: '', apellido: '', cedula: '', correo: '', celular: '' };
@@ -429,27 +420,37 @@ const handleSubmit = async () => {
     const response = await fetch(endpoint, { method: 'POST', headers, body });
     
     if (response.ok) {
-      modalIcon.value = '/images/ok-circle.svg';
-      modalTitle.value = '¡Tus datos se han guardado exitosamente!';
-      modalMessage.value = '';
-      
+      const selectedModel = form.value.modelo_interes;
       form.value = { nombre: '', apellido: '', cedula: '', correo: '', celular: '', ciudad: '', modelo_interes: '', concesionario: '', terminos_aceptados: false };
       termsAccepted.value = false;
       privacyAccepted.value = false;
+      
+      sessionStorage.setItem('tyAccess', Date.now().toString());
+      const isLPRoute = route.path.startsWith('/LP');
+      const thankYouPath = isLPRoute ? '/LP/thank-you' : '/thank-you';
+      const queryParams: Record<string, string> = {
+        source: route.path.replace(/^\//, '')
+      };
+      
+      if (selectedModel) {
+        queryParams.model = formatModeloSlug(selectedModel);
+      }
+      router.push({ path: thankYouPath, query: queryParams });
 
     } else {
       modalIcon.value = '/images/close-circle.svg';
       modalTitle.value = 'Ha ocurrido un problema al enviar el formulario.';
       modalMessage.value = 'Por favor, inténtalo de nuevo más tarde.';
+      openModal();
     }
 
   } catch (error) {
     modalIcon.value = '/images/close-circle.svg';
     modalTitle.value = 'Ha ocurrido un problema al enviar el formulario.';
     modalMessage.value = 'Por favor, inténtalo de nuevo más tarde.';
+    openModal();
   } finally {
     loading.value = false;
-    openModal(); 
   }
 };
 </script>
