@@ -57,6 +57,6 @@ const props = withDefaults(defineProps<Props>(), {
 iframe {
   display: block;
   max-width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 </style>
