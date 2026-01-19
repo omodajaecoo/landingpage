@@ -6,7 +6,7 @@
   <LayoutsHeader v-if="route.path.startsWith('/LP')" />
   <GeneralHeader v-else />
     <!-- content -->
-    <div :id="'layout-' + String(route.name)" class="content min-h-[100vh]">
+    <div :id="'layout-' + String(route.name)">
       <slot></slot>
     </div>
     <!-- footer -->

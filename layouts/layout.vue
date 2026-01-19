@@ -1,5 +1,5 @@
 <template>
-  <div class="fullPage" ref="fullPage">
+  <div v-if="!isQuote" class="fullPage">
     <ClientOnly fallback-tag="span" fallback=" ">
       <!-- :freeMode="true" -->
       <Swiper
@@ -28,10 +28,20 @@
       </Swiper>
     </ClientOnly>
   </div>
+  <div v-else class="normalPage">
+    <slot />
+  </div>
 </template>
 <script>
 import { TweenMax } from "gsap";
 import { isMobileDevice } from "~/utils/common";
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+const route = useRoute();
+const isQuote = computed(() => {
+  return route.path === '/quote';
+});
+
 export default {
   name: "layout",
   data() {
@@ -306,6 +316,11 @@ export default {
 };
 </script>
 <style scoped>
+.normalPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 .fullPage {
   height: 100vh;
   overflow-x: hidden;
