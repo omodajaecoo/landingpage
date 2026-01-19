@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 const URL_FORM = 'https://ayas-formweb-prd.powerappsportals.com/tools/omoda-jaecoo/form-quote-general';
-const breakpoints = "h-[2182px] min-[808]:h-[1804px] min-[1024px]:h-[1780px] min-[1200px]:h-[1756px]";
+const breakpoints = "h-[2050px] min-[390px]:h-[2020px] min-[501px]:h-[1740px] min-[596px]:h-[2050px] min-[828px]:h-[1600px] min-[1024px]:h-[1650px]";
 
 </script>
 <style lang='scss'>
