@@ -10,7 +10,6 @@
       :style="iframeStyle"
       :allowfullscreen="allowFullscreen"
       :loading="loading"
-      scrolling="yes"
     />
     <div v-else class="flex items-center justify-center p-8 bg-gray-100 rounded">
       <p class="text-gray-500">No se ha proporcionado una URL para el formulario</p>
@@ -51,12 +50,14 @@ const props = withDefaults(defineProps<Props>(), {
 .iframe-container {
   width: 100%;
   overflow-x: hidden;
+  overflow-y: auto;
   max-width: 100%;
 }
 
 iframe {
   display: block;
-  max-width: 100%;
+  width: 100%;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 </style>
