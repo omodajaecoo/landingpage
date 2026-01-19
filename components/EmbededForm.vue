@@ -1,5 +1,5 @@
 <template>
-  <div :class="containerClass" :style="containerStyle">
+  <div class="iframe-container" :class="containerClass" :style="containerStyle">
     <iframe
       v-if="url"
       :src="url"
@@ -10,6 +10,7 @@
       :style="iframeStyle"
       :allowfullscreen="allowFullscreen"
       :loading="loading"
+      scrolling="no"
     />
     <div v-else class="flex items-center justify-center p-8 bg-gray-100 rounded">
       <p class="text-gray-500">No se ha proporcionado una URL para el formulario</p>
@@ -47,7 +48,15 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <style scoped>
+.iframe-container {
+  width: 100%;
+  overflow: hidden;
+  max-width: 100%;
+}
+
 iframe {
   display: block;
+  max-width: 100%;
+  overflow: hidden;
 }
 </style>
