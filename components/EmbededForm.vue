@@ -50,7 +50,7 @@ const props = withDefaults(defineProps<Props>(), {
 <style scoped>
 .iframe-container {
   width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
   max-width: 100%;
 }
 
