@@ -10,7 +10,7 @@
       :style="iframeStyle"
       :allowfullscreen="allowFullscreen"
       :loading="loading"
-      scrolling="no"
+      scrolling="yes"
     />
     <div v-else class="flex items-center justify-center p-8 bg-gray-100 rounded">
       <p class="text-gray-500">No se ha proporcionado una URL para el formulario</p>
