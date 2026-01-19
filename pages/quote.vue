@@ -18,14 +18,4 @@ const URL_FORM = 'https://ayas-formweb-prd.powerappsportals.com/tools/omoda-jaec
   line-height: 21px;
   color: #222222;
 }
-
-iframe{
-  height: 100vh;
-  width: 100vw
-}
-
-iframe::-webkit-scrollbar {
-  display: none;
-}
-
 </style>
