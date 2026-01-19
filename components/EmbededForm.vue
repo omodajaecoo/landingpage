@@ -1,46 +1,28 @@
 <template>
-  <div class="iframe-container" :class="containerClass" :style="containerStyle">
+  <div class="iframe-container" :class="containerClass">
     <iframe
       v-if="url"
       :src="url"
-      :width="width"
-      :height="height"
-      :frameborder="frameborder"
+      class="iframe"
       :class="iframeClass"
-      :style="iframeStyle"
       :allowfullscreen="allowFullscreen"
       :loading="loading"
     />
-    <div v-else class="flex items-center justify-center p-8 bg-gray-100 rounded">
-      <p class="text-gray-500">No se ha proporcionado una URL para el formulario</p>
-    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { StyleValue } from 'vue';
-
 interface Props {
   url: string;
-  width?: string | number;
-  height?: string | number;
-  frameborder?: string | number;
   containerClass?: string;
-  containerStyle?: StyleValue;
   iframeClass?: string;
-  iframeStyle?: StyleValue;
   allowFullscreen?: boolean;
   loading?: 'lazy' | 'eager';
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  width: '100%',
-  height: '100%',
-  frameborder: '0',
+withDefaults(defineProps<Props>(), {
   containerClass: '',
-  containerStyle: '',
   iframeClass: '',
-  iframeStyle: '',
   allowFullscreen: true,
   loading: 'lazy'
 });
@@ -49,16 +31,14 @@ const props = withDefaults(defineProps<Props>(), {
 <style scoped>
 .iframe-container {
   width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  max-width: 100%;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
 }
 
-iframe {
-  display: block;
-  height: 100vh;
+.iframe {
   width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  height: 100%;
+  border: 0;
 }
 </style>
