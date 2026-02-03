@@ -10,24 +10,24 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const isValid = ref(true)
 
-// if (import.meta.client) {
-//   // const tyAccess = sessionStorage.getItem('tyAccess')
-//   
-//   // if (!tyAccess) {
-//   //   router.replace('/')
-//   // } else {
-//   //   const timestamp = parseInt(tyAccess)
-//   //   const now = Date.now()
-//   //   const timeLimit = 15 * 1000
-//   //   sessionStorage.removeItem('tyAccess')
-//   //   if (now - timestamp > timeLimit) {
-//   //     router.replace('/')
-//   //   } else {
-//   //     isValid.value = true
-//   //   }
-//   // }
-//   isValid.value = true
-// }
+if (import.meta.client) {
+  const tyAccess = sessionStorage.getItem('tyAccess')
+  
+  if (!tyAccess) {
+    router.replace('/')
+  } else {
+    const timestamp = parseInt(tyAccess)
+    const now = Date.now()
+    const timeLimit = 15 * 1000
+    sessionStorage.removeItem('tyAccess')
+    if (now - timestamp > timeLimit) {
+      router.replace('/')
+    } else {
+      isValid.value = true
+    }
+  }
+  isValid.value = true
+}
 </script>
 <style lang='scss'>
 </style>
