@@ -19,45 +19,17 @@ const breakpoints = "h-[2050px] min-[390px]:h-[2020px] min-[501px]:h-[1740px] mi
 const router = useRouter();
 const route = useRoute();
 
-const formatModeloSlug = (modelo: string): string => {
-  return modelo
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[áàäâ]/g, 'a')
-    .replace(/[éèëê]/g, 'e')
-    .replace(/[íìïî]/g, 'i')
-    .replace(/[óòöô]/g, 'o')
-    .replace(/[úùüû]/g, 'u')
-    .replace(/ñ/g, 'n');
-};
-
 const handleFormSubmitMessage = (event: MessageEvent) => {
   const allowedOrigins = ['https://ayas-formweb-prd.powerappsportals.com'];
-  
-  console.log('PostMessage recibido:', {
-    origin: event.origin,
-    data: event.data
-  });
-  
   if (allowedOrigins.indexOf(event.origin) === -1) return;
   
   const data = event.data || {};
-  
   if (data.type === 'redirect' && typeof data.url === 'string' && data.url) {
-
     sessionStorage.setItem('tyAccess', Date.now().toString());
-    
     const isLPRoute = route.path.startsWith('/LP');
     const thankYouPath = isLPRoute ? '/LP/thank-you' : '/thank-you';
-
     const queryParams: Record<string, string> = { source: route.path.replace(/^\//, '') };
     
-    const urlParams = new URLSearchParams(data.url.split('?')[1] || '');
-    const modelParam = urlParams.get('model') || urlParams.get('modelo');
-    
-    if (modelParam) { queryParams.model = formatModeloSlug(modelParam); }
-    
-
     router.push({ path: thankYouPath, query: queryParams });
   }
 };
