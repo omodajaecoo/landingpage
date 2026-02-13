@@ -19,6 +19,7 @@
 </template>
 
 <script lang="ts" setup>
+import { onMounted } from 'vue';
 import type { StyleValue } from 'vue';
 
 interface Props {
@@ -44,6 +45,40 @@ const props = withDefaults(defineProps<Props>(), {
   iframeStyle: '',
   allowFullscreen: true,
   loading: 'lazy'
+});
+
+function isIOSDevice(): boolean {
+  const ua = navigator.userAgent || "";
+  const isIOS = /iPad|iPhone|iPod/.test(ua);
+  const isIPadOS = !!(ua.includes("Mac") && navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
+  return isIOS || isIPadOS;
+}
+
+function getLandingParams(): string {
+  if (window.location.search && window.location.search.length > 1) {
+    try { 
+      localStorage.setItem("landingParams", window.location.search); 
+    } catch (e) {}
+    return window.location.search;
+  }
+  try {
+    const saved = localStorage.getItem("landingParams");
+    if (saved && saved.length > 1) return saved;
+  } catch (e2) {}
+  return "";
+}
+
+function redirectIOS(): void {
+  if (!isIOSDevice()) return;
+  if (!props.url) return;
+  const params = getLandingParams();
+  if (window.location.href.indexOf("powerappsportals.com") !== -1) return;
+
+  window.location.href = props.url + params;
+}
+
+onMounted(() => {
+  redirectIOS();
 });
 </script>
 
