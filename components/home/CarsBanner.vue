@@ -149,7 +149,7 @@ const router = useRouter();
 
 let slides = [
   {
-    title: "Omoda C5 SHS-H - Test",
+    title: "Omoda C5 SHS-H",
     desc: "El Omoda C5 Super Hybrid System no solo combina potencia y eficiencia, sino también un diseño que redefine el estilo urbano. Su silueta fastback aerodinámica transmite movimiento incluso en reposo, mientras el frontal sin marco y la parrilla paramétrica en forma de diamante proyectan una estética futurista.",
     imgUrl: "index/banner-value_omoda-c5.webp",
     btn: 'Más información',
@@ -163,7 +163,7 @@ let slides = [
     link: '/models/omoda-e5'
   },
   {
-    title: "Jaecoo J7 SHS-P - Test 2",
+    title: "Jaecoo J7 SHS-P",
     desc: "El Jaecoo J7 Super Hybrid System combina elegancia urbana con la fuerza de un auténtico SUV todoterreno. Su diseño vertical y musculoso proyecta autoridad en cada ángulo, mientras la parrilla trapezoidal con detalles cromados y las luces LED en forma de T refuerzan su identidad moderna y poderosa.",
     imgUrl: "index/banner-value_jaecoo-j7.webp",
     btn: 'Más información',
@@ -172,9 +172,9 @@ let slides = [
 ];
 
 const slidesLP = new Map<string, { modeLP: boolean; link: string }>([
-  ["Omoda C5 SHS-H - Test", { modeLP: true, link: '/files/Ficha_Tecnica_OMODA-C5.pdf' }],
+  ["Omoda C5 SHS-H", { modeLP: true, link: '/files/Ficha_Tecnica_OMODA-C5.pdf' }],
   ["Omoda E5 EV", { modeLP: false, link: '' }],
-  ["Jaecoo J7 SHS-P - Test 2", { modeLP: true, link: '/files/Ficha_Tecnica_JAECOO-J7.pdf' }]
+  ["Jaecoo J7 SHS-P", { modeLP: true, link: '/files/Ficha_Tecnica_JAECOO-J7.pdf' }]
 ]);
 
 
