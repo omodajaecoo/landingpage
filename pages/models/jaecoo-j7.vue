@@ -8,7 +8,7 @@
           " class="banner" />
         <img loading="lazy" src="/images/models/page1icon_mob.webp" v-if="!ispc" class="mob-icon" />
         <div
-          class="absolute left-1/2 -translate-x-1/2 bottom-[25%] sm:bottom-[115px] lg:bottom-[50px] flex items-center justify-center w-fit">
+          class="absolute left-1/2 -translate-x-1/2 bottom-[16%] sm:bottom-[115px] lg:bottom-[50px] flex items-center justify-center w-fit">
           <Transition name="slide-fade">
             <div class="" v-if="currentPage == 0">
               <div class="flex flex-row items-stretch justify-center w-[90vw] lg:w-[70vw] ">
