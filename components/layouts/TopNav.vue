@@ -297,6 +297,10 @@
         {
           name: 'Garantia',
           linkUrl: '/after-sales/warranty'
+        },
+        {
+          name: 'Mantenimiento',
+          linkUrl: '/after-sales/maintenance'
         }
       ]
     },

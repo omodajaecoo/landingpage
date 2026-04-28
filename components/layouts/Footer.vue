@@ -5,7 +5,7 @@
         <div class="flex w-full flex-col space-y-[32px]">
           <div class="flex justify-center lg:justify-start items-start space-x-[19px] sm:space-x-[64px]">
             <template v-for="(category) in categories" :key="category.title">
-              <div class="flex flex-col space-y-[16px]">
+              <div class="flex min-w-0 flex-1 lg:flex-none flex-col space-y-[16px]">
                 <div v-if="category.isLinked">
                   <a :href="category.link">
                     <p class="text-[10px] sm:text-[12px] text-white font-interMedium hover:underline cursor-pointer">
@@ -18,7 +18,7 @@
                     {{ category.title }}
                   </p>
                 </div>
-                <a class="text-[10px] sm:text-[12px] text-white font-interSemiRegular hover:underline" v-for="(link) in category.links" :key="link.name" :href="link.link">
+                <a class="block w-full min-w-0 break-words text-[10px] sm:text-[12px] text-white font-interSemiRegular hover:underline" v-for="(link) in category.links" :key="link.name" :href="link.link">
                   {{ link.name }}
                 </a>
               </div>
@@ -100,7 +100,8 @@ const categories = [
     title: 'POSVENTA',
     isLinked: false,
     links: [
-      { name: 'GARANTÍA', link: '/after-sales/warranty' }
+      { name: 'GARANTÍA', link: '/after-sales/warranty' },
+      { name: 'MANTENIMIENTO', link: '/after-sales/maintenance' }
     ]
   }
 ]
