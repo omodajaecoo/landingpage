@@ -1,5 +1,5 @@
 <template>
-  <nav class="w-full lg:w-auto overflow-y-auto
+  <nav class="w-full lg:w-auto overflow-y-auto lg:overflow-visible
     h-[100vh] fixed left-0 top-0 pt-[0.88rem] lg:pt-0
     lg:h-full lg:static"
     :class="[
@@ -11,14 +11,17 @@
     ]"
   >
     <!-- pc -->
-    <ul class="lg:flex hidden justify-center lg:h-full">
+    <ul class="lg:flex hidden justify-center lg:h-full lg:overflow-visible">
       <li 
         v-for="nav in navList.filter(item => item.name !== 'global website')" 
         :key="nav.name" 
         @click="toggleNav(nav)"
         @mouseover="navStore.setNav(true, nav.name)"
         @mouseleave="navStore.setNav(false)"
-        :class="{'group': navStore.name === nav.name}"
+        :class="[
+          {'group': navStore.name === nav.name},
+          isVerticalSubMenu(nav) ? 'vertical-nav-item' : ''
+        ]"
         class="mr-[0.24rem] last:mr-0 flex items-center">
         <div class="nav-line relative
           capitalize cursor-pointer
@@ -36,15 +39,15 @@
               v-show="navStore.name === nav.name"
               class="h-[3rem] lg:h-auto opacity-100 duration-500 ease-in-out transition-all relative z-[101] pointer-events-auto"
               :class="[modelBgClass]"
-              :modelList="nav.children" 
+              :modelList="modelChildren(nav)" 
               :brand-list="brandList"
           />
         </div>
         </transition>
         <transition appear enter-active-class="animate__fadeIn" leave-active-class="animate__fadeOut">
-          <div class="nav-mask animate__animated animate__faster" v-if="nav.children && nav.type !== 'model' && navStore.name === nav.name" >
+          <div class="nav-mask animate__animated animate__faster" v-if="nav.children && nav.type !== 'model' && !isVerticalSubMenu(nav) && navStore.name === nav.name" >
             <ul 
-              v-if="nav.children && nav.type !== 'model'" 
+              v-if="nav.children && nav.type !== 'model' && !isVerticalSubMenu(nav)" 
               v-show="navStore.name === nav.name"
               :class="[bgColor, textColor]"
               class="
@@ -54,7 +57,7 @@
                 pointer-events-auto opacity-100 group-hover:opacity-100
             ">
           <li 
-            v-for="child in nav.children" 
+            v-for="child in subMenuChildren(nav)" 
             :key="child.name"
             class="mr-[150px] last:mr-0 flex items-center"
             @click.stop="NavToPage(child.linkUrl)"
@@ -66,6 +69,24 @@
               <span class="line"></span>
             </div>
           </li>
+            </ul>
+          </div>
+        </transition>
+        <transition appear enter-active-class="animate__fadeInDown" leave-active-class="animate__fadeOutUp">
+          <div
+            v-if="isVerticalSubMenu(nav) && navStore.name === nav.name"
+            class="vertical-submenu"
+            :class="[verticalSubMenuTheme]"
+          >
+            <ul class="vertical-submenu-panel">
+              <li
+                v-for="child in subMenuChildren(nav)"
+                :key="child.name"
+                class="vertical-submenu-item"
+                @click.stop="NavToPage(child.linkUrl)"
+              >
+                {{ child.name }}
+              </li>
             </ul>
           </div>
         </transition>
@@ -125,7 +146,7 @@
             <div class="py-[0.32rem]">
               <LayoutsModelList 
                 :class="headerTheme === 'dark' ? 'text-white' : 'text-[#222]'"
-                :modelList="nav.children" 
+                :modelList="modelChildren(nav)" 
                 :brand-list="brandList"
               />
             </div>
@@ -146,7 +167,10 @@
               transform: nav.expand ? 'translateY(0)' : 'translateY(-8px)'
             }"
           >
-            <div class="py-[0.16rem]">
+            <div
+              class="py-[0.16rem]"
+              :class="isVerticalSubMenu(nav) ? 'vertical-mobile-submenu' : ''"
+            >
               <div 
                 class="sub-menu py-[0.16rem] leading-[0.32rem] text-[0.24rem] cursor-pointer
                   transition-all duration-300"
@@ -162,6 +186,8 @@
   </nav>
 </template>
 <script lang="ts" setup>
+  import { computed, inject, reactive, watch } from 'vue';
+  import { storeToRefs } from 'pinia';
   import { useRouter } from 'vue-router';
   import { useHeaderStore } from '~/stores/useHeader';
   import { useNavStore } from '~/stores/useNav';
@@ -169,7 +195,25 @@
 
   const router = useRouter();
   const props = defineProps<{ expand: boolean; }>();
-  const showModelList = ref(false);
+
+  interface SubMenuChild {
+    name: string;
+    linkUrl: string;
+  }
+
+  interface ModelNavChild extends SubMenuChild {
+    imgUrl: string;
+    brand: string;
+  }
+
+  interface NavItem {
+    name: string;
+    linkUrl?: string;
+    type?: 'model';
+    submenuType?: 'extended' | 'vertical';
+    children?: Array<ModelNavChild | SubMenuChild>;
+    expand?: boolean;
+  }
 
   watch(() => props.expand, (newVal) => {
     if (!newVal) {
@@ -202,13 +246,13 @@
     headerTheme.value === 'dark' ? 'text-white' : 'text-black'
   );
   const mbMenuBg = computed(() => headerTheme.value === 'dark' ? 'bg-black text-white' : 'bg-white text-[#333]')
+  const verticalSubMenuTheme = computed(() =>
+    headerTheme.value === 'dark'
+      ? 'bg-black/50 text-white border-white/10'
+      : 'bg-white/50 text-[#111] border-black/10'
+  )
   const brandList = ['JAECOO', 'OMODA'];  
-  const navList = [
-    
-    {
-      name: 'Inicio',
-      linkUrl: '/'
-    },
+  const navList: NavItem[] = [
     {
       name: 'Modelos',
       type: 'model',
@@ -246,6 +290,16 @@
       name: 'Cotización',
       linkUrl: '/quote'
     },
+    {
+      name: 'Posventa',
+      submenuType: 'vertical',
+      children: [
+        {
+          name: 'Garantia',
+          linkUrl: '/after-sales/warranty'
+        }
+      ]
+    },
   ]
 
   // 注入父组件提供的方法
@@ -256,7 +310,7 @@
     expand: false
   })))
 
-  const toggleNav = (nav: { expand?: boolean; linkUrl?: string; children?: any[]; type?: string }) => {
+  const toggleNav = (nav: NavItem) => {
     if (nav.children && nav.children.length > 0) {
       if (nav.expand !== undefined) {
         nav.expand = !nav.expand;
@@ -264,6 +318,18 @@
     } else if (nav.linkUrl) {
       NavToPage(nav.linkUrl);
     }
+  }
+
+  const isVerticalSubMenu = (nav: NavItem) => {
+    return nav.submenuType === 'vertical' && Boolean(nav.children?.length);
+  }
+
+  const modelChildren = (nav: NavItem): ModelNavChild[] => {
+    return nav.type === 'model' ? (nav.children as ModelNavChild[]) : [];
+  }
+
+  const subMenuChildren = (nav: NavItem): SubMenuChild[] => {
+    return nav.type !== 'model' ? (nav.children as SubMenuChild[] | undefined) ?? [] : [];
   }
 
   const NavToPage = (url: string) => {
@@ -338,6 +404,77 @@
 .nav-line:hover>.line, .active>.nav-line>.line {
   background: linear-gradient(to right, #67B0C4, #67B0C4) no-repeat left bottom;
   background-size: 100% 2px;
+}
+
+.vertical-nav-item {
+  position: relative;
+}
+
+.vertical-submenu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 102;
+  min-width: 2.05rem;
+  padding-top: 0.08rem;
+  transform: translateX(-50%);
+}
+
+.vertical-submenu-panel {
+  overflow: hidden;
+  border-width: 1px;
+  border-style: solid;
+  border-color: inherit;
+  border-radius: 0.04rem;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 0.18rem 0.5rem rgba(0, 0, 0, 0.22);
+}
+
+.vertical-submenu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0.46rem;
+  padding: 0 0.22rem;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.25s ease, background-color 0.25s ease;
+  text-align: center;
+
+  &::before {
+    position: absolute;
+    bottom: 0.08rem;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    content: '';
+    background: #67B0C4;
+    border-radius: 999px;
+    transform: translateX(-50%);
+    transition: width 0.25s ease;
+  }
+
+  &:hover {
+    color: #67B0C4;
+    background-color: rgba(103, 176, 196, 0.12);
+
+    &::before {
+      width: 76px;
+    }
+  }
+
+  & + & {
+    border-top: 1px solid rgba(103, 176, 196, 0.16);
+  }
+}
+
+.vertical-mobile-submenu {
+  border-top: 1px solid rgba(103, 176, 196, 0.24);
+  border-bottom: 1px solid rgba(103, 176, 196, 0.24);
 }
 
 .sub-menus {

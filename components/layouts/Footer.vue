@@ -18,7 +18,7 @@
                     {{ category.title }}
                   </p>
                 </div>
-                <a class="text-[10px] sm:text-[12px] text-white font-interRegular hover:underline" v-for="(link) in category.links" :key="link.name" :href="link.link">
+                <a class="text-[10px] sm:text-[12px] text-white font-interSemiRegular hover:underline" v-for="(link) in category.links" :key="link.name" :href="link.link">
                   {{ link.name }}
                 </a>
               </div>
@@ -91,7 +91,17 @@ const categories = [
   {
     title: 'NOSOTROS',
     isLinked: true,
-    link: '/about'
+    link: '/about',
+    links: [
+      { name: 'COTIZACIÓN', link: '/quote' }
+    ]
+  },
+  {
+    title: 'POSVENTA',
+    isLinked: false,
+    links: [
+      { name: 'GARANTÍA', link: '/after-sales/warranty' }
+    ]
   }
 ]
 
