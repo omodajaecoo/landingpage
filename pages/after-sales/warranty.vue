@@ -26,7 +26,7 @@
         <div class="warranty-metrics">
           <article v-for="(item, index) in warrantyBlocks" :key="item.title"
             class="warranty-metric mobile-no-observer-animation"
-            v-animate="{ effect: 'fadeInUp', delay: index * 0.12, once: false }">
+            v-animate="{ effect: 'fadeInUp', delay: index * 0.12, once: true }">
             <div class="warranty-metric__content">
               <BaseImg :src="`after-sales/warranty/${item.icon}`" class="warranty-metric__icon" :alt="item.title"
                 loading="lazy" />
@@ -57,7 +57,7 @@
 
         <div class="warranty-grid-items">
           <div class="warranty-grid-item mobile-no-observer-animation" v-for="(item, index) in section.items"
-            :key="item.subtitle" v-animate="{ effect: 'fadeInUp', delay: index * 0.12, once: false }">
+            :key="item.subtitle" v-animate="{ effect: 'fadeInUp', delay: index * 0.12, once: true }">
             <div class="warranty-grid-item__index">{{ item.index }}</div>
             <div class="warranty-grid-item__content">
               <div class="warranty-grid-item__content-subtitle">{{ item.subtitle }}</div>
@@ -91,13 +91,13 @@
     <section class="warranty-section warranty-section--downloads">
       <div class="warranty-section__inner">
         <div class="warranty-section-downloads">
-          <div class="warranty-section-downloads__heading" v-animate="{ effect: 'fadeInUp', once: false }">
+          <div class="warranty-section-downloads__heading" v-animate="{ effect: 'fadeInUp', once: true }">
             <h2>Documentación técnica</h2>
             <span>Libretas de garantía y mantenimiento</span>
           </div>
           <div class="warranty-downloads">
             <div v-for="(document, index) in maintenanceDocuments" :key="document.model" class="warranty-download mobile-no-observer-animation"
-              v-animate="{ effect: 'fadeInUp', delay: index * 0.12, once: false }">
+              v-animate="{ effect: 'fadeInUp', delay: index * 0.12, once: true }">
               <BaseImg :src="`after-sales/warranty/${document.img}.webp`" class="warranty-download__image"
                 :alt="document.model" loading="lazy" />
               <div class="warranty-download__content">
@@ -186,7 +186,7 @@ const bannerHeroContent = ref({
   className: '',
   titleClassName: 'warranty-hero-title',
   imgClass: '!object-center !object-cover brightness-[75%]',
-  img: 'after-sales/warranty/bannerHeroBg',
+  img: 'after-sales/warranty/bannerHerobg',
   fullArticleClass: 'enlarge',
   titleContentClass: '!justify-end !pb-[0.9rem] !pt-0 md:!pt-0',
 });
@@ -261,7 +261,7 @@ const bannerValidityContent = ref({
   className: '',
   titleClassName: 'warranty-validity-title',
   imgClass: '!object-center !object-cover brightness-[75%]',
-  img: 'after-sales/warranty/banner4Bg',
+  img: 'after-sales/warranty/banner4bg',
   fullArticleClass: 'enlarge',
   titleContentClass: '!justify-end !pb-[0.9rem] !pt-0 md:!pt-0',
 });
@@ -336,14 +336,15 @@ const maintenanceDocuments: MaintenanceDocument[] = [
 
 .warranty-mobile-hero__content {
   position: absolute;
-  top: 50%;
+  top: calc(0.88rem + ((100% - 0.88rem) / 2));
   left: 50%;
   z-index: 2;
   width: 100%;
-  padding: 0 32px;
+  padding: 0 16px;
   color: #fff;
   text-align: center;
   transform: translate(-50%, -50%);
+  gap: 0px;
 
   h1 {
     margin: 0;
@@ -351,6 +352,7 @@ const maintenanceDocuments: MaintenanceDocument[] = [
     font-size: 20px;
     font-weight: 500;
     line-height: 1.2;
+    text-transform: uppercase;
   }
 
   p {

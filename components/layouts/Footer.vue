@@ -101,6 +101,7 @@ const categories = [
     isLinked: false,
     links: [
       { name: 'GARANTÍA', link: '/after-sales/warranty' },
+      { name: 'REPUESTOS', link: '/after-sales/spare-parts' },
       { name: 'MANTENIMIENTO', link: '/after-sales/maintenance' }
     ]
   }

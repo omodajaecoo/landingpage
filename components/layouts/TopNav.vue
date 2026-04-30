@@ -299,6 +299,10 @@
           linkUrl: '/after-sales/warranty'
         },
         {
+          name: 'Repuestos',
+          linkUrl: '/after-sales/spare-parts'
+        },
+        {
           name: 'Mantenimiento',
           linkUrl: '/after-sales/maintenance'
         }

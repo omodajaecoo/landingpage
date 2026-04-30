@@ -23,11 +23,11 @@
     <section class="maintenance-section maintenance-section--downloads">
       <div class="maintenance-section__inner">
         <div class="maintenance-section-downloads">
-          <div class="maintenance-section-downloads__heading mobile-no-observer-animation" v-animate="{ effect: 'fadeInUp', once: false }">
+          <div class="maintenance-section-downloads__heading mobile-no-observer-animation" v-animate="{ effect: 'fadeInUp', once: true }">
             <h2>Intervalos de servicio</h2>
             <h4>Protocolos rigurosos diseñados por ingenieros para cada vehículo en específico.</h4>
           </div>
-          <div class="maintenance-download-error" v-if="downloadError" v-animate="{ effect: 'fadeInUp', delay: 0.25, once: false }">
+          <div class="maintenance-download-error" v-if="downloadError" v-animate="{ effect: 'fadeInUp', delay: 0.25, once: true }">
             <p class="maintenance-download-error__message" role="alert">
               {{ downloadError }}
             </p>
@@ -68,14 +68,14 @@
     <section class="maintenance-section maintenance-section--reasons">
       <div class="maintenance-section__inner">
         <div class="maintenance-section-reasons">
-          <div class="maintenance-section-reasons__heading" v-animate="{ effect: 'fadeInUp', once: false }">
+          <div class="maintenance-section-reasons__heading" v-animate="{ effect: 'fadeInUp', once: true }">
             <h2>¿Por qué realizarlo en lugares autorizados?</h2>
           </div>
           <div class="maintenance-reasons">
             <div class="maintenance-left-reasons">
               <article v-for="(item, index) in getReasonsByGroup('left')" :key="item.title"
                 class="maintenance-reason mobile-no-observer-animation"
-                v-animate="{ effect: 'fadeInUp', delay: index * 0.12, once: false }">
+                v-animate="{ effect: 'fadeInUp', delay: index * 0.12, once: true }">
                 <div class="maintenance-reason__content">
                   <BaseImg :src="`after-sales/maintenance/${item.icon}`" class="maintenance-reason__icon" :alt="item.title"
                     loading="lazy" />
@@ -89,7 +89,7 @@
               <div class="maintenance-topRight-reasons">
                 <article v-for="(item, index) in getReasonsByGroup('topRight')" :key="item.title"
                   class="maintenance-reason mobile-no-observer-animation"
-                  v-animate="{ effect: 'fadeInUp', delay: 0.12, once: false }">
+                  v-animate="{ effect: 'fadeInUp', delay: 0.12, once: true }">
                   <div class="maintenance-reason__content">
                     <BaseImg :src="`after-sales/maintenance/${item.icon}`" class="maintenance-reason__icon" :alt="item.title"
                       loading="lazy" />
@@ -102,7 +102,7 @@
                 <article v-for="(item, index) in getReasonsByGroup('bottomRight')" :key="item.title"
                   class="maintenance-reason maintenance-reason--image mobile-no-observer-animation"
                   :style="item.img ? { '--reason-bg-image': `url('/images/${item.img}')` } : undefined"
-                  v-animate="{ effect: 'fadeInUp', delay: 0.12, once: false }">
+                  v-animate="{ effect: 'fadeInUp', delay: 0.12, once: true }">
                   <div class="maintenance-reason__content">
                     <BaseImg :src="`after-sales/maintenance/${item.icon}`" class="maintenance-reason__icon" :alt="item.title"
                       loading="lazy" />
@@ -135,6 +135,7 @@
 
 <script lang="ts" setup>
 import { useHead } from '#imports';
+import { tr } from 'element-plus/es/locale/index.mjs';
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import fullArticle from '~/components/common/fullArticle.vue';
