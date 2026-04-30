@@ -189,7 +189,7 @@ const bannerHeroContent = ref({
   className: '',
   titleClassName: 'spare-parts-hero-title',
   imgClass: '!object-center !object-cover brightness-[60%]',
-  img: `${imagePath}/bannerHeroBg`,
+  img: `${imagePath}/bannerHerobg`,
   fullArticleClass: 'enlarge',
   titleContentClass: '!justify-end !pb-[0.9rem] !pt-0 md:!pt-0',
 });
