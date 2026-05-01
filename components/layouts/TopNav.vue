@@ -295,7 +295,7 @@
       submenuType: 'vertical',
       children: [
         {
-          name: 'Garantia',
+          name: 'Garantía',
           linkUrl: '/after-sales/warranty'
         },
         {
@@ -305,6 +305,20 @@
         {
           name: 'Mantenimiento',
           linkUrl: '/after-sales/maintenance'
+        }
+      ]
+    },
+    {
+      name: 'Encuéntranos',
+      submenuType: 'vertical',
+      children: [
+        {
+          name: 'Talleres',
+          linkUrl: '/authorized-service?tab=workshops'
+        },
+        {
+          name: 'Ventas',
+          linkUrl: '/authorized-service?tab=showrooms'
         }
       ]
     },
@@ -376,9 +390,22 @@
         });
       }
     } else {
-      // Navegación normal sin hash
-      store.setPath(url);
-      router.push({ path: url });
+      // Parsear path y query params
+      const [path, queryString] = url.split('?');
+      const query: Record<string, string> = {};
+      
+      if (queryString) {
+        queryString.split('&').forEach(param => {
+          const [key, value] = param.split('=');
+          if (key && value) {
+            query[key] = decodeURIComponent(value);
+          }
+        });
+      }
+      
+      // Navegación con query params
+      store.setPath(path);
+      router.push({ path, query });
       navStore.setNav(false);
       if (parentMethod) {
         parentMethod();

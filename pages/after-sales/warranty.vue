@@ -129,11 +129,11 @@ defineOptions({
 });
 
 useHead({
-  title: 'Garantia | OMODA & JAECOO',
+  title: 'Garantía - OMODA | JAECOO',
   meta: [
     {
       name: 'description',
-      content: 'Informacion de garantia, cobertura, validez y libretas de mantenimiento OMODA | JAECOO.'
+      content: 'Información de garantía, cobertura, validez y libretas de mantenimiento OMODA | JAECOO.'
     }
   ]
 });

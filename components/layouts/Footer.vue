@@ -93,7 +93,8 @@ const categories = [
     isLinked: true,
     link: '/about',
     links: [
-      { name: 'COTIZACIÓN', link: '/quote' }
+      { name: 'COTIZACIÓN', link: '/quote' },
+      { name: 'ENCUÉNTRANOS', link: '/authorized-service' }
     ]
   },
   {

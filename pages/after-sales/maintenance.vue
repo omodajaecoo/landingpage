@@ -124,7 +124,7 @@
             <h2>Optimice el rendimiento de su vehículo hoy</h2>
             <p>Encuentre su centro de servicio autorizado más cercano y agende su cita técnica en minutos.</p>
           </div>
-          <button type="button" class="maintenance-cta__button" @click="goToSchedule">
+          <button type="button" class="maintenance-cta__button" @click="goToAuthorizedService">
             Encuéntranos
           </button>
         </div>
@@ -135,7 +135,6 @@
 
 <script lang="ts" setup>
 import { useHead } from '#imports';
-import { tr } from 'element-plus/es/locale/index.mjs';
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import fullArticle from '~/components/common/fullArticle.vue';
@@ -146,11 +145,11 @@ defineOptions({
 });
 
 useHead({
-  title: 'Mantenimiento | OMODA & JAECOO',
+  title: 'Mantenimiento - OMODA | JAECOO',
   meta: [
     {
       name: 'description',
-      content: 'Informacion de mantenimiento, pautas preventivas y puntos autorizados OMODA | JAECOO.'
+      content: 'Información de mantenimiento, pautas preventivas y puntos autorizados OMODA | JAECOO.'
     }
   ]
 });
@@ -305,8 +304,8 @@ const downloadDocument = async (document: MaintenanceDocument) => {
   }
 };
 
-const goToSchedule = () => {
-  router.push({ path: '/find-us' });
+const goToAuthorizedService = () => {
+  router.push({ path: '/authorized-service' });
 };
 </script>
 

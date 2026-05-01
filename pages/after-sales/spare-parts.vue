@@ -119,7 +119,7 @@
             <p>Accede a nuestra red nacional de talleres oficiales y centros de repuestos.<br /> 
               Tu OMODA | JAECOO merece el cuidado de expertos.</p>
           </div>
-          <button type="button" class="spare-parts-cta__button" @click="goToDealers">
+          <button type="button" class="spare-parts-cta__button" @click="goToAuthorizedService">
             Encuéntranos
           </button>
         </div>
@@ -140,7 +140,7 @@ defineOptions({
 });
 
 useHead({
-  title: 'Repuestos | OMODA & JAECOO',
+  title: 'Repuestos - OMODA | JAECOO',
   meta: [
     {
       name: 'description',
@@ -248,8 +248,8 @@ const sparePartCategories: SparePartCategory[] = [
   }
 ];
 
-const goToDealers = () => {
-  router.push({ path: '/find-us' });
+const goToAuthorizedService = () => {
+  router.push({ path: '/authorized-service' });
 };
 </script>
 
