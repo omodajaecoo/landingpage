@@ -1,24 +1,24 @@
 <template>
   <footer class="w-full bg-[#0d0e0e] flex flex-col justify-center items-center footer-info">
-    <div class="flex flex-col justify-center w-full bg-[#0d0e0e] px-[24px] sm:px-[50px] lg:min-h-[140px] py-[50px] lg:py-[32px] gap-y-[20px] ">
+    <div class="flex flex-col justify-center w-full bg-[#0d0e0e] px-[24px] sm:px-[50px] lg:min-h-[140px] py-[50px] lg:py-[32px] gap-y-[24px] ">
       <template v-if="!routePath.startsWith('/LP')">
         <div class="flex w-full flex-col space-y-[32px]">
-          <div class="flex justify-center lg:justify-start items-start space-x-[19px] sm:space-x-[64px]">
+          <div class="grid w-full grid-cols-2 items-start gap-x-[19px] gap-y-[32px] min-[580px]:w-fit min-[580px]:grid-cols-4 min-[580px]:gap-x-[36px] min-[580px]:self-center md:self-start md:gap-x-[50px] lg:gap-x-[64px]">
             <template v-for="(category) in categories" :key="category.title">
-              <div class="flex min-w-0 flex-1 lg:flex-none flex-col space-y-[16px]">
+              <div class="flex min-w-0 flex-col space-y-[16px]">
                 <div v-if="category.isLinked">
                   <a :href="category.link">
-                    <p class="text-[10px] sm:text-[12px] text-white font-interMedium hover:underline cursor-pointer">
+                    <p class="text-[12px] leading-none text-white font-interMedium hover:underline cursor-pointer">
                       {{ category.title }}
                     </p>
                   </a>
                 </div>
                 <div v-else>
-                  <p class="text-[10px] sm:text-[12px] text-white font-interMedium">
+                  <p class="text-[12px] leading-none text-white font-interMedium">
                     {{ category.title }}
                   </p>
                 </div>
-                <a class="block w-full min-w-0 break-words text-[10px] sm:text-[12px] text-white font-interSemiRegular hover:underline" v-for="(link) in category.links" :key="link.name" :href="link.link">
+                <a class="block w-full min-w-0 break-words text-[12px] sm:text-[12px] leading-none text-white font-interSemiRegular hover:underline" v-for="(link) in category.links" :key="link.name" :href="link.link">
                   {{ link.name }}
                 </a>
               </div>
@@ -74,14 +74,14 @@ const router = useRouter()
 
 const categories = [
   {
-    title: 'MODELOS JAECOO',
+    title: 'JAECOO',
     isLinked: false,
     links: [
       { name: 'JAECOO J7 SHS P', link: '/models/jaecoo-j7' },
     ]
   },
   {
-    title: 'MODELOS OMODA',
+    title: 'OMODA',
     isLinked: false,
     links: [
       { name: 'OMODA C5 SHS H', link: '/models/omoda-c5' },

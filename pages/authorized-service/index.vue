@@ -86,7 +86,7 @@
         >
           <article
             v-for="(location, index) in filteredLocations"
-            :key="location.name"
+            :key="`${tabSelected}-${location.name}`"
             class="authorized-service-card mobile-no-observer-animation"
             v-animate="{ effect: 'fadeInUp', delay: index * 0.08, once: true }"
           >
@@ -122,6 +122,25 @@
         </div>
       </div>
     </section>
+
+  <section v-if="showroomCta" class="authorized-service-cta mobile-no-observer-animation"
+      v-animate="{ effect: 'fadeInUp', once: true }">
+      <BaseImg :src="isDesktop ? showroomCta.img : showroomCta.imgMobile" class="authorized-service-cta__image"
+        :alt="showroomCta.title" loading="lazy" />
+      <div class="authorized-service-cta__shade"></div>
+      <div class="authorized-service-cta__content">
+        <h2>{{ showroomCta.title }}</h2>
+        <div >
+          <p v-for="(desc, index) in showroomCta.description" :key="index" v-html="desc.text"></p>
+        </div>
+        <div class="authorized-service-cta__actions">
+          <a v-for="action in showroomCta.actions" :key="action.label" class="authorized-service-cta__action"
+            :class="{ 'authorized-service-cta__action--primary': action.variant === 'primary' }" :href="action.href">
+            {{ action.label }}
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -147,6 +166,24 @@ interface Location {
   url_map?: string;
 }
 
+interface AuthorizedServiceCtaAction {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary';
+}
+
+interface Description {
+  text: string;
+}
+
+interface AuthorizedServiceCta {
+  title: string;
+  description: Description[];
+  img: string;
+  imgMobile: string;
+  actions: AuthorizedServiceCtaAction[];
+}
+
 interface AuthorizedServiceMetadata {
   tabLabel: string;
   title: string;
@@ -156,6 +193,7 @@ interface AuthorizedServiceMetadata {
   heroTitle: string;
   emptyMessage: string;
   locations: Location[];
+  cta?: AuthorizedServiceCta;
 }
 
 const route = useRoute();
@@ -180,6 +218,7 @@ let filterTimer: ReturnType<typeof setTimeout> | undefined;
 
 const folderPath = 'authorized-service';
 const workshopPath = `${folderPath}/workshops`;
+const showroomPath = `${folderPath}/showrooms`;
 
 const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
   workshops: {
@@ -245,15 +284,89 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
     tabLabel: 'Ventas',
     title: 'Puntos Autorizados - OMODA | JAECOO',
     meta: 'Encuentra puntos de venta autorizados OMODA | JAECOO por ciudad.',
-    heroImg: `${workshopPath}/ws_bannerHerobg`,
-    heroEyebrow: 'RED AUTORIZADA',
+    heroImg: `${showroomPath}/sr_bannerHerobg`,
+    heroEyebrow: 'RED DE CONCESIONARIOS',
     heroTitle: 'PUNTOS DE VENTA',
     emptyMessage: 'Próximamente podrás consultar los puntos autorizados de ventas.',
-    locations: []
+    locations: [
+      {
+        name: 'Centro Técnico Ecuador',
+        address: 'Av. 10 de Agosto 170138',
+        city: 'Quito',
+        hours: '9 a.m. a 6 p.m.',
+        phone: '+593 96 405 4055',
+        image: `${workshopPath}/ws_quito.webp`
+      },
+      {
+        name: 'Centro Técnico Orellana',
+        address: 'Av. Francisco de Orellana y Av. 10 de Agosto E2-30 y, 170102',
+        city: 'Quito',
+        hours: '9 a.m. a 6 p.m.',
+        phone: '+593 95 897 2022',
+        image: `${showroomPath}/sr_orellana.webp`
+      },
+      {
+        name: 'Scala Shopping Mall',
+        address: 'Junto CC Scala, Av. Oswaldo Guayasamín y Pje. la Praga S/N, 170902',
+        city: 'Quito',
+        hours: '9 a.m. a 6 p.m.',
+        phone: '+593 95 897 2022',
+        image: `${showroomPath}/sr_scala.webp`
+      },
+      {
+        name: 'Centro Juan Tanca Marengo',
+        address: 'km 2 1/2, Av. Juan Tanca Marengo 2, 090613',
+        city: 'Guayaquil',
+        hours: '9 a.m. a 6 p.m.',
+        phone: '+593 4 380 2900',
+        image: `${showroomPath}/sr_tanca.webp`
+      },
+      {
+        name: 'Centro Piazza Samborondón',
+        address: 'La Piazza, 092301',
+        city: 'Samborondón',
+        hours: '9 a.m. a 6 p.m.',
+        phone: '+593 95 897 2022',
+        image: `${showroomPath}/sr_piazza.webp`
+      },
+      {
+        name: 'Centro Carlos Julio Arosemena',
+        address: 'Av. 41 NO Km 2 1/2, 090609',
+        city: 'Guayaquil',
+        hours: '9 a.m. a 6 p.m.',
+        phone: '+593 4 220 3770',
+        image: `${showroomPath}/sr_arosemena.webp` 
+      }
+    ],
+    cta: {
+      title: '¿LISTO PARA TU PRÓXIMO OMODA | JAECOO?',
+      description: [
+        {
+          text: 'Cotiza con nosotros directamente para recibir asistencia personalizada.'
+        },
+        {
+          text: 'Estaremos encantados en atenderte.'
+        }
+      ],
+      img: `${showroomPath}/sr_cta_bg.webp`,
+      imgMobile: `${showroomPath}/sr_cta_bg.webp`,
+      actions: [
+        {
+          label: 'COTIZAR AHORA',
+          href: '/quote',
+          variant: 'primary'
+        },
+        {
+          label: 'MÁS INFORMACIÓN',
+          href: '/about'
+        }
+      ]
+    }
   }
 };
 
 const currentService = computed(() => services[tabSelected.value]);
+const showroomCta = computed(() => tabSelected.value === 'showrooms' ? services.showrooms.cta : undefined);
 
 const tabs = computed(() => [
   {
@@ -382,7 +495,8 @@ const getMapUrl = (location: Location) => {
 .authorized-service-mobile-hero__image {
   display: block;
   width: 100%;
-  min-height: 164px;
+  aspect-ratio: 16 / 9;
+  min-height: 250px;
   object-fit: cover;
 }
 
@@ -650,6 +764,100 @@ const getMapUrl = (location: Location) => {
   background: #121212;
 }
 
+.authorized-service-cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 430px;
+  overflow: hidden;
+  color: #fff;
+  background: #080909;
+  padding: 64px 48px;
+}
+
+.authorized-service-cta__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 80%;
+}
+
+.authorized-service-cta__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.authorized-service-cta__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 920px);
+  gap: 24px;
+  text-align: center;
+
+  h2 {
+    margin: 0;
+    font-family: "Inter", "MiSansMedium", sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: #fff;
+  }
+
+  p {
+    font-family: "Inter", "MiSansLight", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.92);
+  }
+}
+
+.authorized-service-cta__actions {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+.authorized-service-cta__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  font-family: "Inter", "MiSansMedium", sans-serif;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+
+  &:hover {
+    border-color: #67B0C4;
+    background: rgba(103, 176, 196, 0.16);
+  }
+
+  &--primary {
+    border-color: #67B0C4;
+    background: #67B0C4;
+
+    &:hover {
+      border-color: #93cada;
+      background: #93cada;
+      color: #fff;
+    }
+  }
+}
+
 .authorized-service-card--skeleton {
   overflow: hidden;
 }
@@ -758,6 +966,35 @@ const getMapUrl = (location: Location) => {
   :deep(.mobile-no-observer-animation) {
     opacity: 1 !important;
     animation: none !important;
+  }
+
+  .authorized-service-cta {
+    align-items: flex-start;
+    height: auto;
+  }
+
+
+  .authorized-service-cta__content {
+    h2 {
+      font-size: 20px;
+      line-height: 1.18;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.55;
+    }
+  }
+
+  .authorized-service-cta__actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .authorized-service-cta__action {
+    width: fit-content;
+    font-size: 20px;
   }
 }
 
