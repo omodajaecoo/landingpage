@@ -25,6 +25,40 @@
           </Transition>
         </div>
       </SwiperSlide>
+      <SwiperSlide class="second-page">
+        <div class="wrap_360" ref="web360">
+          <iframe
+            ref="web360_iframe"
+            id="wrap_360"
+            v-if="playweb360"
+            scrolling="no"
+            frameborder="0"
+            :src="folder_j7"
+            class="iframe"
+            :class="[dis360 || !is360InteractionEnabled ? 'dis' : '', is360InteractionEnabled ? 'swiper-no-swiping' : '']"
+          ></iframe>
+          <div v-if="!is360InteractionEnabled" class="interaction-overlay" @click="enable360Interaction">
+            <img loading="lazy" src="/360/web360-clic.webp" class="interaction-button" alt="Clic para interactuar" />
+          </div>
+          <button v-else class="exit-interaction" type="button" @click.stop="disable360Interaction">
+            <img loading="lazy" src="/360/web360-exit.webp" alt="Salir" />
+          </button>
+          <img
+            loading="lazy"
+            :src="section_360.src_img_top"
+            class="icon top"
+            :class="dis360 ? 'hide' : 'show'"
+            @click="web360Change('top')"
+          />
+          <img
+            loading="lazy"
+            :src="section_360.src_img_bottom"
+            class="icon bottom"
+            :class="dis360 ? 'hide' : 'show'"
+            @click="web360Change('bottom')"
+          />
+        </div>
+      </SwiperSlide>
       <SwiperSlide class="section fullpage-sub">
         <img loading="lazy" :src="ispc
             ? dir + 'images/models/J7/section2bg.webp'
@@ -308,7 +342,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
+import { computed, ref, onMounted, onBeforeUnmount, nextTick } from "vue";
+import { useRouter, useRuntimeConfig } from "#app";
+import { EffectCreative as SwiperEffectCreative, FreeMode as SwiperFreeMode, Mousewheel as SwiperMousewheel, Pagination as SwiperPagination } from "swiper/modules";
+import useDeviceType from "~/composables/useDeviceType";
 import type { Ref } from "vue";
 const dir = useRuntimeConfig().public.staticURL + "/";
 const { isMobile } = useDeviceType();
@@ -321,6 +358,12 @@ const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1920
 const showDesktopSwiper = computed(() => windowWidth.value > 640);
 const showMobileSwiper = computed(() => windowWidth.value <= 640);
 
+interface Params360 {
+  src_img_top: string;
+  src_img_bottom: string;
+}
+
+
 const currentPage: Ref<number> = ref(999);
 var page4Swiper: any;
 const onPage4Swiper = (swiper4: any) => {
@@ -329,16 +372,21 @@ const onPage4Swiper = (swiper4: any) => {
 var startNumAni = ref(false);
 var dis360: Ref<boolean> = ref(true);
 var playweb360: Ref<boolean> = ref(false);
+var is360InteractionEnabled: Ref<boolean> = ref(false);
 function handleCustomEvent(cur: any) {
 
   let pagecur;
-  if (cur > 8) {
+  if (cur > 9) {
     pagecur = cur + 1;
+  } else if (cur > 2) {
+    pagecur = cur - 2;
   } else {
     pagecur = cur - 1;
   }
   if (cur == 2) {
     dis360.value = false;
+  } else {
+    is360InteractionEnabled.value = false;
   }
   setTimeout(
     () => {
@@ -402,6 +450,40 @@ onBeforeUnmount(() => {
     windowWidth.value = window.innerWidth;
   });
 });
+
+function web360Change(txt: string) {
+  let mySwiper: any = (document.querySelector(".fullPageContainer") as any)?.swiper;
+  if (!mySwiper) return;
+  switch (txt) {
+    case "top":
+      is360InteractionEnabled.value = false;
+      mySwiper.slidePrev();
+      break;
+    case "bottom":
+      dis360.value = true;
+      is360InteractionEnabled.value = false;
+      setTimeout(() => {
+        mySwiper.slideNext();
+      }, 100);
+      break;
+  }
+}
+
+function enable360Interaction() {
+  if (dis360.value) return;
+  is360InteractionEnabled.value = true;
+}
+
+function disable360Interaction() {
+  is360InteractionEnabled.value = false;
+}
+
+const folder_360 = "/360/";
+const folder_j7 = `${folder_360}j7-shs/`;
+var section_360: Params360 = {
+  src_img_top: `${folder_360}web360-top.png`,
+  src_img_bottom: `${folder_360}web360-bottom.png`,
+};
 
 var section2_tittle = ["POTENTE", "CUANDO", "HACE", "FALTA,", "SILENCIOSO", "CUANDO", "IMPORTA.", "EL", "JAECOO", "J7", "SHS", "ENCUENTRA", "EL", "EQUILIBRIO", "EN", "CADA", "CAMINO.", "GRACIAS", "A", "SU", "SUPER", "HYBRID", "SYSTEM,", "SE", "CONVIERTE", "EN", "EL", "SUV", "DISEÑADO", "PARA", "TI."];
 var section2_btns: Array<{ label: string; link: string }> = [
@@ -794,10 +876,9 @@ function changePage_section5(type: string) {
 
 .wrap_360 .iframe {
   width: 100%;
-  height: 94%;
+  height: 100%;
   position: absolute;
   left: 0;
-  top: 6%;
   border: none;
   z-index: 10;
 }
@@ -810,9 +891,48 @@ function changePage_section5(type: string) {
   z-index: 1;
 }
 
+.wrap_360 .interaction-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.wrap_360 .exit-interaction {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.wrap_360 .interaction-button {
+  position: absolute;
+  z-index: 220;
+  width: 1rem;
+  height: auto;
+  cursor: pointer;
+  animation: web360ClickInOut 1.4s ease-in-out infinite;
+}
+
+.wrap_360 .exit-interaction {
+  position: absolute;
+  right: 6%;
+  top: 11%;
+  z-index: 220;
+}
+
+.wrap_360 .exit-interaction img {
+  width: 0.5rem;
+  height: auto;
+  display: block;
+}
+
 .wrap_360 .icon {
-  width: 3.2rem;
-  width: calc(3.2 * 16 / 19.2 * 1vw);
+  width: 0.6rem;
   height: auto;
   position: absolute;
   left: 3%;
@@ -825,12 +945,12 @@ function changePage_section5(type: string) {
 }
 
 .wrap_360 .icon.top {
-  top: 40%;
+  top: 35%;
   animation: move2top 1.2s infinite;
 }
 
 .wrap_360 .icon.bottom {
-  top: 80%;
+  top: 70%;
   animation: move2bottom 1.2s infinite;
 }
 
@@ -859,6 +979,23 @@ function changePage_section5(type: string) {
 
   100% {
     transform: translateY(-70%);
+  }
+}
+
+@keyframes web360ClickInOut {
+  0% {
+    opacity: 0.78;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+
+  100% {
+    opacity: 0.78;
+    transform: scale(0.96);
   }
 }
 
@@ -914,12 +1051,14 @@ function changePage_section5(type: string) {
   }
 
   .wrap_360 .icon.top {
-    top: 20%;
+    top: 25%;
+    width: 0.8rem;
     animation: move2top 1.2s infinite;
   }
 
   .wrap_360 .icon.bottom {
-    top: 80%;
+    width: 0.8rem;
+    top: 75%;
     animation: move2bottom 1.2s infinite;
   }
 
@@ -1203,6 +1342,14 @@ function changePage_section5(type: string) {
 }
 
 @media (max-width: 640px) {
+  .wrap_360 .interaction-overlay {
+    pointer-events: none;
+  }
+
+  .wrap_360 .interaction-button {
+    pointer-events: auto;
+  }
+
   .carrousel-sub {
     display: block !important;
     min-height: 100vh;
