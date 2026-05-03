@@ -258,12 +258,21 @@ const config = useRuntimeConfig();
   font-family: "MiSans";
   height: 100vh;
   overflow: hidden;
-
-  &.p1 {
+ 
+  &.p1,
+  &.p3,
+  &.p6,
+  &.p10 {
     .shs-img {
-      object-position: 0 20%;
+      opacity: 0.8;
     }
   }
+  &.p1{
+    .shs-img {
+      object-position: center center;
+    }
+  }
+  
   .shs-top {
     position: absolute;
     top: 8.0729vw;
@@ -432,6 +441,19 @@ const config = useRuntimeConfig();
 @media screen and (max-width: 767px) {
   // Solo teléfonos móviles (portrait y landscape)
   .shs-box {
+    &.h1,
+    &.h3,
+    &.h6,
+    &.h10 {
+      .shs-img {
+        opacity: 0.8;
+      }
+    }
+    &.h1{
+      .shs-img {
+        object-position: center center;
+      }
+    }
     .shs-top {
       top: 15%;
       &-title {

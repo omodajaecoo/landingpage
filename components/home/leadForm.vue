@@ -121,7 +121,7 @@
               </div>
             </div>
             <div>
-              <label for="field8" class="block text-[12px] font-inter font-semibold text-[#0D0E0E] mb-[4px]">OMODA & JAECOO store</label>
+              <label for="field8" class="block text-[12px] font-inter font-semibold text-[#0D0E0E] mb-[4px]">OMODA | JAECOO store</label>
               <input 
                 v-model="form.concesionario"
                 type="text" 
@@ -320,10 +320,10 @@ const loading = ref(false);
 
 watch(() => form.value.ciudad, (nuevaCiudad) => {
   switch (nuevaCiudad) {
-    case 'QUITO': form.value.concesionario = 'OMODA & JAECOO – EL LABRADOR'; break;
-    case 'GUAYAQUIL': form.value.concesionario = 'OMODA & JAECOO – JUAN TANCA MARENGO'; break;
-    case 'CUENCA': form.value.concesionario = 'OMODA & JAECOO – CUENCA'; break;
-    default: form.value.concesionario = 'OMODA & JAECOO POP UP STORE';
+    case 'QUITO': form.value.concesionario = 'OMODA | JAECOO – EL LABRADOR'; break;
+    case 'GUAYAQUIL': form.value.concesionario = 'OMODA | JAECOO – JUAN TANCA MARENGO'; break;
+    case 'CUENCA': form.value.concesionario = 'OMODA | JAECOO – CUENCA'; break;
+    default: form.value.concesionario = 'OMODA | JAECOO POP UP STORE';
   }
 });
 

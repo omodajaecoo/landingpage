@@ -24,7 +24,7 @@ export default defineNuxtConfig({
   app: {
     baseURL: process.env.NUXT_API_KEY,
     head: {
-      title: "OMODA&JAECOO",
+      title: "OMODA | JAECOO",
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
       ],
@@ -36,21 +36,21 @@ export default defineNuxtConfig({
         },
         {
           name: "keywords",
-          content: `JAECOO,JAECOO 7,JAECOO 8,CHERY,Off-road,CARS,OMODA,J7,J8,C5,E5,OMODA,OMODA&JAECOO`,
+          content: `JAECOO,JAECOO 7,JAECOO 8,CHERY,Off-road,CARS,OMODA,J7,J8,C5,E5,OMODA,OMODA | JAECOO`,
         },
         {
           name: "description",
-          content: `Welcome to OMODA&JAECOO official website. Here you can find out more about the OMODA&JAECOO brand concept, the latest models, exciting events and more.`,
+          content: `Welcome to OMODA | JAECOO official website. Here you can find out more about the OMODA | JAECOO brand concept, the latest models, exciting events and more.`,
         },
-        { property: "og:site_name", content: `OMODA&JAECOO INTERNATIONAL WEB` },
-        { property: "og:title", content: `OMODA&JAECOO INTERNATIONAL WEB` },
+        { property: "og:site_name", content: `OMODA | JAECOO INTERNATIONAL WEB` },
+        { property: "og:title", content: `OMODA | JAECOO INTERNATIONAL WEB` },
         {
           property: "og:image",
           content: `http://www.omodajaecoo.com/images/page1-championing.webp`,
         },
         {
           property: "og:description",
-          content: `Welcome to OMODA&JAECOO official website. Here you can find out more about the OMODA&JAECOO brand concept, the latest models, exciting events and more.`,
+          content: `Welcome to OMODA | JAECOO official website. Here you can find out more about the OMODA | JAECOO brand concept, the latest models, exciting events and more.`,
         },
       ],
       script: [],

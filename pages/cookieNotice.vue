@@ -63,7 +63,7 @@
             <td>.omodajaecoo.ec</td>
             <td>Registra las cookies seleccionadas por el usuario.</td>
             <td>La duración de seis meses.</td>
-            <td>Sitio web en Ecuador de OMODA&JAECOO</td>
+            <td>Sitio web en Ecuador de OMODA | JAECOO</td>
           </tr>
         </tbody>
       </table>

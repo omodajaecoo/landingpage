@@ -92,6 +92,7 @@ const allPageData: AllPageData = {
     },
     {
       imgUrl: "shs/bg_3.webp",
+      style: "p3",
       top: {
         title: "REDISEÑANDO EL RENDIMIENTO",
         desc: "Potencia del motor: 105 kW, Torque del motor: 215 N·m, Potencia del motor eléctrico: 150 kW, Torque del motor eléctrico: 310 N·m.",
@@ -141,6 +142,7 @@ const allPageData: AllPageData = {
     },
     {
       imgUrl: "shs/bg_6.webp",
+      style: "p6",
       top: {
         title: "AUTONOMÍA COMBINADA EXTENDIDA",
         desc: "Más de 1,200 km* con una sola carga y un tanque lleno, capaz de desde la sierra hasta la costa sin esfuerzo.",
@@ -174,6 +176,7 @@ const allPageData: AllPageData = {
     },
     {
       imgUrl: "shs/bg_10.webp",
+      style: "p10",
       top: {
         title: "AUTONOMÍA ELÉCTRICA EXTENDIDA",
         desc: "En el uso diario cuentas con 90 km de conducción totalmente eléctrica.<br/> ¡Con una sola carga alcanza para toda una semana!",
@@ -243,6 +246,7 @@ const allPageData: AllPageData = {
     },
     {
       imgUrl: "shs/bg_3_m.webp",
+      style: "h3",
       top: {
         title: "REDISEÑANDO EL RENDIMIENTO",
         desc: "Potencia del motor: 105 kW, Torque del motor: 215 N·m, Potencia del motor eléctrico: 150 kW, Torque del motor eléctrico: 310 N·m.",
@@ -294,6 +298,7 @@ const allPageData: AllPageData = {
     },
     {
       imgUrl: "shs/bg_6_m.webp",
+      style: "h6",
       top: {
         title: "AUTONOMÍA COMBINADA EXTENDIDA",
         desc: "Más de 1,200 km* con una sola carga y un tanque lleno, capaz de desde la sierra hasta la costa sin esfuerzo.",
@@ -328,6 +333,7 @@ const allPageData: AllPageData = {
     },
     {
       imgUrl: "shs/bg_10_m.webp",
+      style: "h10",
       top: {
         title: "AUTONOMÍA ELÉCTRICA EXTENDIDA",
         desc: "En el uso diario cuentas con 90 km de conducción totalmente eléctrica. ¡Con una sola carga alcanza para toda una semana!",
