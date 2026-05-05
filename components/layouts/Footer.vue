@@ -94,7 +94,8 @@ const categories = [
     link: '/about',
     links: [
       { name: 'COTIZACIÓN', link: '/quote' },
-      { name: 'ENCUÉNTRANOS', link: '/authorized-service' }
+      { name: 'TEST DRIVE', link: '/test-drive' },
+      { name: 'ENCUÉNTRANOS', link: '/authorized-service' },
     ]
   },
   {
