@@ -552,6 +552,14 @@ const goToAuthorizedService = () => {
     }
 
     &-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #FFFF;
+      cursor: pointer;
+      transition: background-color 0.25s ease;
+      padding: 20px;
+
       &-container {
         min-width: 100%;
         display: flex;
@@ -568,14 +576,6 @@ const goToAuthorizedService = () => {
           color: rgba(255, 255, 255, 1);
         }
       }
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #FFFF;
-      cursor: pointer;
-      transition: background-color 0.25s ease;
-      padding: 20px;
 
       &:hover {
         background: #93cada;

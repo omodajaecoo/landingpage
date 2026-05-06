@@ -1185,8 +1185,6 @@ function changePage_section5(type: string) {
 .carrousel-sub .swiper-slide .mask {
   width: 100%;
   height: 100vh;
-  background: url(/images/mask.webp);
-  background-repeat: repeat;
   position: absolute;
   top: 0;
   left: 0;
@@ -1319,8 +1317,6 @@ function changePage_section5(type: string) {
   .carrousel-sub .swiper-slide .mask {
     width: 100%;
     height: 100vh;
-    background: url(/images/mask.webp);
-    background-repeat: repeat;
     position: absolute;
     top: 0;
     left: 0;

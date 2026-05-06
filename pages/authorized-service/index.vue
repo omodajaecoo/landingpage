@@ -202,11 +202,15 @@ const { isMobile } = useDeviceType();
 const isDesktop = computed(() => !isMobile.value);
 
 const validTabs: AuthorizedServiceTab[] = ['workshops', 'showrooms'];
-const queryTab = route.query.tab as AuthorizedServiceTab;
-const isValidTab = validTabs.includes(queryTab);
-const initialTab = isValidTab ? queryTab : 'workshops';
+const getValidTab = (tab: unknown): AuthorizedServiceTab | undefined => {
+  return typeof tab === 'string' && validTabs.includes(tab as AuthorizedServiceTab)
+    ? tab as AuthorizedServiceTab
+    : undefined;
+};
+const queryTab = getValidTab(route.query.tab);
+const initialTab = queryTab ?? 'workshops';
 
-if (queryTab && !isValidTab) {
+if (route.query.tab && !queryTab) {
   const { tab, ...restQuery } = route.query;
   router.replace({ query: restQuery });
 }
@@ -416,12 +420,27 @@ useHead({
   ]
 });
 
+watch(() => route.query.tab, (tab) => {
+  const validTab = getValidTab(tab);
+
+  if (validTab && validTab !== tabSelected.value) {
+    tabSelected.value = validTab;
+  }
+
+  if (tab && !validTab) {
+    const { tab: _tab, ...restQuery } = route.query;
+    router.replace({ query: restQuery });
+  }
+});
+
 watch(tabSelected, () => {
   selectedCity.value = 'all';
 
-  router.push({
-    query: { tab: tabSelected.value }
-  });
+  if (route.query.tab !== tabSelected.value) {
+    router.push({
+      query: { ...route.query, tab: tabSelected.value }
+    });
+  }
 });
 
 watch(selectedCity, () => {

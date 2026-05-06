@@ -20,6 +20,7 @@
         @mouseleave="navStore.setNav(false)"
         :class="[
           {'group': navStore.name === nav.name},
+          {'active': isActiveNav(nav)},
           isVerticalSubMenu(nav) ? 'vertical-nav-item' : ''
         ]"
         class="mr-[0.24rem] last:mr-0 flex items-center">
@@ -188,12 +189,13 @@
 <script lang="ts" setup>
   import { computed, inject, reactive, watch } from 'vue';
   import { storeToRefs } from 'pinia';
-  import { useRouter } from 'vue-router';
+  import { useRoute, useRouter } from 'vue-router';
   import { useHeaderStore } from '~/stores/useHeader';
   import { useNavStore } from '~/stores/useNav';
   const navStore = useNavStore();
 
   const router = useRouter();
+  const route = useRoute();
   const props = defineProps<{ expand: boolean; }>();
 
   interface SubMenuChild {
@@ -356,6 +358,18 @@
 
   const subMenuChildren = (nav: NavItem): SubMenuChild[] => {
     return nav.type !== 'model' ? (nav.children as SubMenuChild[] | undefined) ?? [] : [];
+  }
+
+  const isActiveNav = (nav: NavItem) => {
+    if (nav.linkUrl) {
+      const [path] = nav.linkUrl.split('?');
+      return route.path === path;
+    }
+
+    return Boolean(nav.children?.some((child) => {
+      const [path] = child.linkUrl.split('?');
+      return route.path === path;
+    }));
   }
 
   const NavToPage = (url: string) => {

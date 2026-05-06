@@ -310,7 +310,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
+import { ref, onMounted, onBeforeUnmount, nextTick, computed } from "vue";
+import { EffectCreative as SwiperEffectCreative, Pagination as SwiperPagination, FreeMode as SwiperFreeMode, Mousewheel as SwiperMousewheel } from "swiper/modules";
+import { useRuntimeConfig, useDeviceType, useRouter } from "#imports";
 import type { Ref } from "vue";
 const dir = useRuntimeConfig().public.staticURL + "/";
 const { isMobile } = useDeviceType();
@@ -1048,8 +1050,6 @@ function changePage_section5(type: string) {
 .carrousel-sub .swiper-slide .mask {
   width: 100%;
   height: 100vh;
-  background: url(/images/mask.webp);
-  background-repeat: repeat;
   position: absolute;
   top: 0;
   left: 0;
@@ -1182,8 +1182,6 @@ function changePage_section5(type: string) {
   .carrousel-sub .swiper-slide .mask {
     width: 100%;
     height: 100vh;
-    background: url(/images/mask.webp);
-    background-repeat: repeat;
     position: absolute;
     top: 0;
     left: 0;
