@@ -94,19 +94,19 @@ const categories = [
     link: '/about',
     links: [
       { name: 'COTIZACIÓN', link: '/quote' },
-      { name: 'TEST DRIVE', link: '/test-drive' },
-      { name: 'ENCUÉNTRANOS', link: '/authorized-service' },
+      // { name: 'TEST DRIVE', link: '/test-drive' },
+      // { name: 'ENCUÉNTRANOS', link: '/authorized-service' },
     ]
   },
-  {
-    title: 'POSVENTA',
-    isLinked: false,
-    links: [
-      { name: 'GARANTÍA', link: '/after-sales/warranty' },
-      { name: 'REPUESTOS', link: '/after-sales/spare-parts' },
-      { name: 'MANTENIMIENTO', link: '/after-sales/maintenance' }
-    ]
-  }
+  // {
+  //   title: 'POSVENTA',
+  //   isLinked: false,
+  //   links: [
+  //     { name: 'GARANTÍA', link: '/after-sales/warranty' },
+  //     { name: 'REPUESTOS', link: '/after-sales/spare-parts' },
+  //     { name: 'MANTENIMIENTO', link: '/after-sales/maintenance' }
+  //   ]
+  // }
 ]
 
 const NavToPage = (url: string) => {

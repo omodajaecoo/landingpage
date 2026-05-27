@@ -292,42 +292,42 @@
       name: 'Cotización',
       linkUrl: '/quote'
     },
-    {
-      name: 'Test Drive',
-      linkUrl: '/test-drive'
-    },
-    {
-      name: 'Posventa',
-      submenuType: 'vertical',
-      children: [
-        {
-          name: 'Garantía',
-          linkUrl: '/after-sales/warranty'
-        },
-        {
-          name: 'Repuestos',
-          linkUrl: '/after-sales/spare-parts'
-        },
-        {
-          name: 'Mantenimiento',
-          linkUrl: '/after-sales/maintenance'
-        }
-      ]
-    },
-    {
-      name: 'Encuéntranos',
-      submenuType: 'vertical',
-      children: [
-        {
-          name: 'Talleres',
-          linkUrl: '/authorized-service?tab=workshops'
-        },
-        {
-          name: 'Ventas',
-          linkUrl: '/authorized-service?tab=showrooms'
-        }
-      ]
-    },
+    // {
+    //   name: 'Test Drive',
+    //   linkUrl: '/test-drive'
+    // },
+    // {
+    //   name: 'Posventa',
+    //   submenuType: 'vertical',
+    //   children: [
+    //     {
+    //       name: 'Garantía',
+    //       linkUrl: '/after-sales/warranty'
+    //     },
+    //     {
+    //       name: 'Repuestos',
+    //       linkUrl: '/after-sales/spare-parts'
+    //     },
+    //     {
+    //       name: 'Mantenimiento',
+    //       linkUrl: '/after-sales/maintenance'
+    //     }
+    //   ]
+    // },
+    // {
+    //   name: 'Encuéntranos',
+    //   submenuType: 'vertical',
+    //   children: [
+    //     {
+    //       name: 'Talleres',
+    //       linkUrl: '/authorized-service?tab=workshops'
+    //     },
+    //     {
+    //       name: 'Ventas',
+    //       linkUrl: '/authorized-service?tab=showrooms'
+    //     }
+    //   ]
+    // },
   ]
 
   // 注入父组件提供的方法
