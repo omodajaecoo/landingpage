@@ -208,24 +208,24 @@ const maintenanceDocuments: MaintenanceDocument[] = [
     model: 'Omoda C5',
     service: '5,000 KM',
     frequency: 'Cada 10,000 KM',
-    href: '/files/Ficha_Tecnica_OMODA-C5.pdf',
-    filename: 'Pauta_Mantenimiento_OMODA-C5.pdf'
+    href: '/files/maintenance/Tabla_Mantenimiento_OMODA-C5.pdf',
+    filename: 'Tabla_Mantenimiento_OMODA-C5.pdf'
   },
   {
     img: 'section5-item2',
     model: 'Omoda E5',
     service: '5,000 KM',
     frequency: 'Cada 10,000 KM',
-    href: '/files/Ficha_Tecnica_OMODA-E5.pdf',
-    filename: 'Pauta_Mantenimiento_OMODA-E5.pdf'
+    href: '/files/maintenance/Tabla_Mantenimiento_OMODA-E5.pdf',
+    filename: 'Tabla_Mantenimiento_OMODA-E5.pdf'
   },
   {
     img: 'section5-item3',
     model: 'Jaecoo J7',
     service: '10,000 KM',
     frequency: 'Cada 20,000 KM',
-    href: '/files/Ficha_Tecnica_JAECOO-J7.pdf',
-    filename: 'Pauta_Mantenimiento_JAECOO-J7.pdf'
+    href: '/files/maintenance/Tabla_Mantenimiento_JAECOO-J7.pdf',
+    filename: 'Tabla_Mantenimiento_JAECOO-J7.pdf'
   }
 ];
 

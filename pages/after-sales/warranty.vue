@@ -270,17 +270,17 @@ const maintenanceDocuments: MaintenanceDocument[] = [
   {
     img: 'section5-item1',
     model: 'Omoda C5',
-    href: '/files/Ficha_Tecnica_OMODA-C5.pdf'
+    href: '/files/warranty/Manual_Garantia_OMODA-C5.pdf'
   },
   {
     img: 'section5-item2',
     model: 'Omoda E5',
-    href: '/files/Ficha_Tecnica_OMODA-E5.pdf'
+    href: '/files/warranty/Manual_Garantia_OMODA-E5.pdf'
   },
   {
     img: 'section5-item3',
     model: 'Jaecoo J7',
-    href: '/files/Ficha_Tecnica_JAECOO-J7.pdf'
+    href: '/files/warranty/Manual_Garantia_JAECOO-J7.pdf'
   }
 ];
 

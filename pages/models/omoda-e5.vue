@@ -13,7 +13,7 @@
             <div class="" v-if="currentPage == 0">
               <div class="flex flex-row items-stretch justify-center w-[90vw] lg:w-[70vw] ">
                 <div class="pr-[10px] lg:pr-[48px] flex-[1.2] border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
-                  +430 KMS AUTONOMÍA EV (WLTP)</div>
+                  +505 KMS AUTONOMÍA EV (WLTP)</div>
                 <div class="px-[10px] lg:px-[48px] flex-[1.2] border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
                   24.6" PANTALLA DUAL</div>
                 <div class="px-[10px] lg:px-[48px] flex-1 border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
@@ -420,7 +420,7 @@ var section2_btns: Array<{ label: string; link: string }> = [
 
 var section3_slides: Array<swiperItem> = [
   {
-    label: ["MOTOR", "PLANO", "3", "EN", "1", "DE", "ALTO", "RENDIMIENTO,", "OTORGA", "AUTONOMÍA", "SUPERIOR", "EN", "EL", "SEGMENTO", "DE", "430", "KMS"],
+    label: ["MOTOR", "PLANO", "3", "EN", "1", "DE", "ALTO", "RENDIMIENTO,", "OTORGA", "AUTONOMÍA", "SUPERIOR", "EN", "EL", "SEGMENTO", "DE", "505", "KMS"],
     txtarr: {},
     imgsrc: dir + "images/models/E5/section3-item1.webp",
     isvideo: false,
@@ -448,7 +448,7 @@ var section3_slides: Array<swiperItem> = [
 var section3_slides_mob: sideswiperItem[] = [
   {
     src: dir + "images/models/E5/section3-item1_mob.webp",
-    txt: "Motor plano 3 en 1 de alto rendimiento, otorga autonomía superior en el segmento de 430 KMS.",
+    txt: "Motor plano 3 en 1 de alto rendimiento, otorga autonomía superior en el segmento de 505 KMS.",
   },
   {
     src: dir + "images/models/E5/section3-item2_mob.webp",
