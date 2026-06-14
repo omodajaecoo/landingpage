@@ -211,7 +211,8 @@ const queryTab = getValidTab(route.query.tab);
 const initialTab = queryTab ?? 'workshops';
 
 if (route.query.tab && !queryTab) {
-  const { tab, ...restQuery } = route.query;
+  const restQuery = { ...route.query };
+  delete restQuery.tab;
   router.replace({ query: restQuery });
 }
 
@@ -235,52 +236,121 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
     emptyMessage: 'No encontramos talleres autorizados en esta ciudad. Por favor selecciona otra ciudad o contáctanos directamente.',
     locations: [
       {
-        name: 'Centro Técnico Ecuador',
-        address: 'Av. 10 de Agosto 170138',
+        name: 'Omoda | Jaecoo - Labrador',
+        address: 'Av. 10 de agosto y Av. El Inca',
         city: 'Quito',
-        hours: '9 a.m. a 6 p.m.',
-        phone: '+593 96 405 4055',
-        image: `${workshopPath}/ws_quito.webp`
+        hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
+        phone: '+593-96-405-4055',
+        image: `${workshopPath}/ws_labrador.webp`,
+        url_map: 'https://maps.app.goo.gl/Ry1ewEE8AQgX5mZi9'
       },
       {
-        name: 'Centro Técnico Orellana',
-        address: 'Av. Francisco de Orellana y Av. 10 de Agosto E2-30 y, 170102',
+        name: 'Omoda | Jaecoo - Cumbayá',
+        address: 'Av. Oswaldo Guayasamín E5-11 y pasaje praga',
         city: 'Quito',
-        hours: '9 a.m. a 6 p.m.',
-        phone: '+593 95 897 2022',
-        image: `${workshopPath}/ws_orellana.webp`
+        hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
+        phone: '+593-96-405-4055',
+        image: `${workshopPath}/ws_cumbaya.webp`,
+        url_map: 'https://maps.app.goo.gl/L2EQaLTSwwASbWZy8'
       },
       {
-        name: 'Scala Shopping Mall',
-        address: 'Junto CC Scala, Av. Oswaldo Guayasamín y Pje. la Praga S/N, 170902',
+        name: 'Omoda | Jaecoo - San Rafael',
+        address: 'Av. General Rumiñahui 50 e Isla Genovesa',
         city: 'Quito',
-        hours: '9 a.m. a 6 p.m.',
-        phone: '+593 95 897 2022',
-        image: `${workshopPath}/ws_scala.webp`
+        hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
+        phone: '+593-96-405-4055',
+        image: `${workshopPath}/ws_san-rafael.webp`,
+        url_map: 'https://maps.app.goo.gl/CVbfF1rZgPN9qFWo7'
       },
       {
-        name: 'Centro Juan Tanca Marengo',
-        address: 'km 2 1/2, Av. Juan Tanca Marengo 2, 090613',
+        name: 'Centro de Colisiones Azucenas',
+        address: 'De los Naranjos y Azucenas',
+        city: 'Quito',
+        hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
+        phone: '+593-96-405-4055',
+        image: `${workshopPath}/ws_azucenas.webp`,
+        url_map: 'https://maps.app.goo.gl/X4nEjhX9oSBMfDyc7'
+      },
+      {
+        name: 'Omoda | Jaecoo - Juan Tanca Marengo',
+        address: 'Av. Juan Tanca Marengo, km 2 1 1/2',
         city: 'Guayaquil',
-        hours: '9 a.m. a 6 p.m.',
-        phone: '+593 4 380 2900',
-        image: `${workshopPath}/ws_tanca.webp`
+        hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
+        phone: '+593-96-405-4055',
+        image: `${workshopPath}/ws_tanca.webp`,
+        url_map: 'https://maps.app.goo.gl/D2Lwdh9gyKMUdrBb8'
       },
       {
-        name: 'Centro Piazza Samborondón',
-        address: 'La Piazza, 092301',
-        city: 'Samborondón',
-        hours: '9 a.m. a 6 p.m.',
-        phone: '+593 95 897 2022',
-        image: `${workshopPath}/ws_piazza.webp`
-      },
-      {
-        name: 'Centro Carlos Julio Arosemena',
-        address: 'Av. 41 NO Km 2 1/2, 090609',
+        name: 'Omoda | Jaecoo - El Dorado',
+        address: 'Riocentro El Dorado, Km 10 1/2 vía a La Aurora.',
         city: 'Guayaquil',
-        hours: '9 a.m. a 6 p.m.',
-        phone: '+593 4 220 3770',
-        image: `${workshopPath}/ws_arosemena.webp`
+        hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
+        phone: '+593-96-405-4055',
+        image: `${workshopPath}/ws_dorado.webp`,
+        url_map: 'https://maps.app.goo.gl/qkTrB5v9vx9CNako6'
+      },
+      {
+        name: 'Soficar - Omoda | Jaecoo - Carlos Julio Arosemena',
+        address: 'Av. Carlos Julio Arosemena km 2 1/2, vía Daule',
+        city: 'Guayaquil',
+        hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
+        phone: '+593-96-405-4055',
+        image: `${workshopPath}/ws_arosemena.webp`,
+        url_map: 'https://maps.app.goo.gl/FKVqhseXvzBpWGDRA'
+      },
+      {
+        name: 'Centro de Colisiones Mapasingue',
+        address: 'Km 5/2 via Daula, Calle primera y Av. Cuarta',
+        city: 'Guayaquil',
+        hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
+        phone: '+593-96-405-4055',
+        image: `${workshopPath}/ws_mapasingue.webp`,
+        url_map: 'https://maps.app.goo.gl/RSomRR5AsRT7PPh7A'
+      },
+      {
+        name: 'Omoda | Jaecoo - Cuenca',
+        address: 'Av. España y Valencia. Frente a Telerama',
+        city: 'Cuenca',
+        hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
+        phone: '+593-96-405-4055',
+        image: `${workshopPath}/ws_cuenca.webp`,
+        url_map: 'https://maps.app.goo.gl/UyW1EZ1ccpWnwczz8'
+      },
+      {
+        name: 'Omoda | Jaecoo - Loja',
+        address: 'Av. Indoamérica (Sector Ingahurco Bajo)',
+        city: 'Loja',
+        hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
+        phone: '+593-96-405-4055',
+        image: `${workshopPath}/ws_loja.webp`,
+        url_map: 'https://maps.app.goo.gl/GguvAV7rneJb4byq6'
+      },
+      {
+        name: 'Omoda | Jaecoo - Manta',
+        address: 'Av. 4 de noviembre y calle 304',
+        city: 'Manta',
+        hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
+        phone: '+593-96-405-4055',
+        image: `${workshopPath}/ws_manta.webp`,
+        url_map: 'https://maps.app.goo.gl/67ixRhoRhbULmLft6'
+      },
+      {
+        name: 'Omoda | Jaecoo - Machala',
+        address: 'Av. 25 de Junio Km 1 vía Pasaje',
+        city: 'Machala',
+        hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
+        phone: '+593-96-405-4055',
+        image: `${workshopPath}/ws_machala.webp`,
+        url_map: 'https://maps.app.goo.gl/ZYDGtSux3qgyoDmj8'
+      },
+      {
+        name: 'Automotores Antonio Larrea - Omoda | Jaecoo - Riobamba',
+        address: 'Lizarzaburo y Leopoldo Cabezas',
+        city: 'Riobamba',
+        hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
+        phone: '+593-96-405-4055',
+        image: `${workshopPath}/ws_riobamba.webp`,
+        url_map: 'https://maps.app.goo.gl/ifpS18NYoZeKpp987'
       }
     ]
   },
@@ -294,52 +364,103 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
     emptyMessage: 'Próximamente podrás consultar los puntos autorizados de ventas.',
     locations: [
       {
-        name: 'Centro Técnico Ecuador',
-        address: 'Av. 10 de Agosto 170138',
-        city: 'Quito',
-        hours: '9 a.m. a 6 p.m.',
-        phone: '+593 96 405 4055',
-        image: `${workshopPath}/ws_quito.webp`
+        name: 'Omoda | Jaecoo - Labrador',
+        address: 'Av. 10 de agosto y Av. El Inca',
+        city: 'Quito - Valles',
+        hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
+        phone: '+593-96-405-4055',
+        image: `${showroomPath}/sr_labrador.webp`,
+        url_map: 'https://maps.app.goo.gl/Ry1ewEE8AQgX5mZi9'
       },
       {
-        name: 'Centro Técnico Orellana',
-        address: 'Av. Francisco de Orellana y Av. 10 de Agosto E2-30 y, 170102',
-        city: 'Quito',
-        hours: '9 a.m. a 6 p.m.',
-        phone: '+593 95 897 2022',
-        image: `${showroomPath}/sr_orellana.webp`
+        name: 'Omoda | Jaecoo - Cumbayá',
+        address: 'Av. Oswaldo Guayasamín E5-11 y pasaje praga',
+        city: 'Quito - Valles',
+        hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
+        phone: '+593-96-405-4055',
+        image: `${showroomPath}/sr_cumbaya.webp`,
+        url_map: 'https://maps.app.goo.gl/L2EQaLTSwwASbWZy8'
       },
       {
-        name: 'Scala Shopping Mall',
-        address: 'Junto CC Scala, Av. Oswaldo Guayasamín y Pje. la Praga S/N, 170902',
-        city: 'Quito',
-        hours: '9 a.m. a 6 p.m.',
-        phone: '+593 95 897 2022',
-        image: `${showroomPath}/sr_scala.webp`
+        name: 'Omoda | Jaecoo - San Rafael',
+        address: 'Av. General Rumiñahui 50 e Isla Genovesa',
+        city: 'Quito - Valles',
+        hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
+        phone: '+593-96-405-4055',
+        image: `${showroomPath}/sr_san-rafael.webp`,
+        url_map: 'https://maps.app.goo.gl/jhTMoY6QjebVwSKRA'
       },
       {
-        name: 'Centro Juan Tanca Marengo',
-        address: 'km 2 1/2, Av. Juan Tanca Marengo 2, 090613',
+        name: 'Omoda | Jaecoo - Juan Tanca Marengo',
+        address: 'Av. Juan Tanca Marengo, km 2 1 1/2',
         city: 'Guayaquil',
-        hours: '9 a.m. a 6 p.m.',
-        phone: '+593 4 380 2900',
-        image: `${showroomPath}/sr_tanca.webp`
+        hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
+        phone: '+593-96-405-4055',
+        image: `${showroomPath}/sr_tanca.webp`,
+        url_map: 'https://maps.app.goo.gl/D2Lwdh9gyKMUdrBb8'
       },
       {
-        name: 'Centro Piazza Samborondón',
-        address: 'La Piazza, 092301',
-        city: 'Samborondón',
-        hours: '9 a.m. a 6 p.m.',
-        phone: '+593 95 897 2022',
-        image: `${showroomPath}/sr_piazza.webp`
-      },
-      {
-        name: 'Centro Carlos Julio Arosemena',
-        address: 'Av. 41 NO Km 2 1/2, 090609',
+        name: 'Soficar - Omoda | Jaecoo - Carlos Julio Arosemena',
+        address: 'Av. Carlos Julio Arosemena km 2 1/2, vía Daule',
         city: 'Guayaquil',
-        hours: '9 a.m. a 6 p.m.',
-        phone: '+593 4 220 3770',
-        image: `${showroomPath}/sr_arosemena.webp` 
+        hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
+        phone: '+593-96-405-4055',
+        image: `${showroomPath}/sr_arosemena.webp`,
+        url_map: 'https://maps.app.goo.gl/qkTrB5v9vx9CNako6'
+      },
+      {
+        name: 'Omoda | Jaecoo - Cuenca',
+        address: 'Av. España y Valencia. Frente a Telerama',
+        city: 'Cuenca',
+        hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
+        phone: '+593-96-405-4055',
+        image: `${showroomPath}/sr_cuenca.webp`,
+        url_map: 'https://maps.app.goo.gl/UyW1EZ1ccpWnwczz8'
+      },
+      {
+        name: 'Omoda | Jaecoo - Manta',
+        address: 'Av. 4 de noviembre y calle 304',
+        city: 'Manta',
+        hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
+        phone: '+593-96-405-4055',
+        image: `${showroomPath}/sr_manta.webp`,
+        url_map: 'https://maps.app.goo.gl/67ixRhoRhbULmLft6'
+      },
+      {
+        name: 'Omoda | Jaecoo - Machala',
+        address: 'Av. 25 de Junio Km 1 vía Pasaje',
+        city: 'Machala',
+        hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
+        phone: '+593-96-405-4055',
+        image: `${showroomPath}/sr_machala.webp`,
+        url_map: 'https://maps.app.goo.gl/ifpS18NYoZeKpp987'
+      },
+      {
+        name: 'Omoda | Jaecoo - Portoviejo',
+        address: 'Av. Metropolitana km 1, junto al diario Manabita',
+        city: 'Portoviejo',
+        hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
+        phone: '+593-96-405-4055',
+        image: `${showroomPath}/sr_portoviejo.webp`,
+        url_map: 'https://maps.app.goo.gl/7z5zuPtSLsGF77Mw7'
+      },
+      {
+        name: 'Omoda | Jaecoo - Loja',
+        address: 'Av. Cuxibamba y Tulcán',
+        city: 'Loja',
+        hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
+        phone: '+593-96-405-4055',
+        image: `${showroomPath}/sr_loja.webp`,
+        url_map: 'https://maps.app.goo.gl/GguvAV7rneJb4byq6'
+      },
+      {
+        name: 'Automotores Antonio Larrea - Omoda | Jaecoo - Riobamba',
+        address: 'Av. Lizarzaburu y Leopoldo Cabezas Frente Colegio Riobamba Norte',
+        city: 'Riobamba',
+        hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
+        phone: '+593-96-405-4055',
+        image: `${showroomPath}/sr_riobamba.webp`,
+        url_map: 'https://maps.app.goo.gl/ifpS18NYoZeKpp987'
       }
     ],
     cta: {
@@ -428,7 +549,8 @@ watch(() => route.query.tab, (tab) => {
   }
 
   if (tab && !validTab) {
-    const { tab: _tab, ...restQuery } = route.query;
+    const restQuery = { ...route.query };
+    delete restQuery.tab;
     router.replace({ query: restQuery });
   }
 });
