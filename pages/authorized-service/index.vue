@@ -241,7 +241,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Quito',
         hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
-        image: `${workshopPath}/ws_labrador.webp`,
+        image: `${workshopPath}/ws_preview.webp`,
         url_map: 'https://maps.app.goo.gl/Ry1ewEE8AQgX5mZi9'
       },
       {
@@ -250,7 +250,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Quito',
         hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
-        image: `${workshopPath}/ws_cumbaya.webp`,
+        image: `${workshopPath}/ws_preview.webp`,
         url_map: 'https://maps.app.goo.gl/L2EQaLTSwwASbWZy8'
       },
       {
@@ -259,7 +259,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Quito',
         hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
-        image: `${workshopPath}/ws_san-rafael.webp`,
+        image: `${workshopPath}/ws_preview.webp`,
         url_map: 'https://maps.app.goo.gl/CVbfF1rZgPN9qFWo7'
       },
       {
@@ -268,7 +268,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Quito',
         hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
-        image: `${workshopPath}/ws_azucenas.webp`,
+        image: `${workshopPath}/ws_preview.webp`,
         url_map: 'https://maps.app.goo.gl/X4nEjhX9oSBMfDyc7'
       },
       {
@@ -277,7 +277,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Guayaquil',
         hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
-        image: `${workshopPath}/ws_tanca.webp`,
+        image: `${workshopPath}/ws_preview.webp`,
         url_map: 'https://maps.app.goo.gl/D2Lwdh9gyKMUdrBb8'
       },
       {
@@ -286,7 +286,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Guayaquil',
         hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
-        image: `${workshopPath}/ws_dorado.webp`,
+        image: `${workshopPath}/ws_preview.webp`,
         url_map: 'https://maps.app.goo.gl/qkTrB5v9vx9CNako6'
       },
       {
@@ -295,7 +295,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Guayaquil',
         hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
-        image: `${workshopPath}/ws_arosemena.webp`,
+        image: `${workshopPath}/ws_preview.webp`,
         url_map: 'https://maps.app.goo.gl/FKVqhseXvzBpWGDRA'
       },
       {
@@ -304,7 +304,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Guayaquil',
         hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
-        image: `${workshopPath}/ws_mapasingue.webp`,
+        image: `${workshopPath}/ws_preview.webp`,
         url_map: 'https://maps.app.goo.gl/RSomRR5AsRT7PPh7A'
       },
       {
@@ -313,7 +313,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Cuenca',
         hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
-        image: `${workshopPath}/ws_cuenca.webp`,
+        image: `${workshopPath}/ws_preview.webp`,
         url_map: 'https://maps.app.goo.gl/UyW1EZ1ccpWnwczz8'
       },
       {
@@ -322,7 +322,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Loja',
         hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
-        image: `${workshopPath}/ws_loja.webp`,
+        image: `${workshopPath}/ws_preview.webp`,
         url_map: 'https://maps.app.goo.gl/GguvAV7rneJb4byq6'
       },
       {
@@ -331,7 +331,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Manta',
         hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
-        image: `${workshopPath}/ws_manta.webp`,
+        image: `${workshopPath}/ws_preview.webp`,
         url_map: 'https://maps.app.goo.gl/67ixRhoRhbULmLft6'
       },
       {
@@ -340,7 +340,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Machala',
         hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
-        image: `${workshopPath}/ws_machala.webp`,
+        image: `${workshopPath}/ws_preview.webp`,
         url_map: 'https://maps.app.goo.gl/ZYDGtSux3qgyoDmj8'
       },
       {
@@ -349,7 +349,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Riobamba',
         hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
-        image: `${workshopPath}/ws_riobamba.webp`,
+        image: `${workshopPath}/ws_preview.webp`,
         url_map: 'https://maps.app.goo.gl/ifpS18NYoZeKpp987'
       }
     ]
@@ -369,7 +369,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Quito - Valles',
         hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
         phone: '+593-96-405-4055',
-        image: `${showroomPath}/sr_labrador.webp`,
+        image: `${showroomPath}/sr_preview.webp`,
         url_map: 'https://maps.app.goo.gl/Ry1ewEE8AQgX5mZi9'
       },
       {
@@ -378,7 +378,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Quito - Valles',
         hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
         phone: '+593-96-405-4055',
-        image: `${showroomPath}/sr_cumbaya.webp`,
+        image: `${showroomPath}/sr_preview.webp`,
         url_map: 'https://maps.app.goo.gl/L2EQaLTSwwASbWZy8'
       },
       {
@@ -387,7 +387,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Quito - Valles',
         hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
         phone: '+593-96-405-4055',
-        image: `${showroomPath}/sr_san-rafael.webp`,
+        image: `${showroomPath}/sr_preview.webp`,
         url_map: 'https://maps.app.goo.gl/jhTMoY6QjebVwSKRA'
       },
       {
@@ -396,7 +396,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Guayaquil',
         hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
         phone: '+593-96-405-4055',
-        image: `${showroomPath}/sr_tanca.webp`,
+        image: `${showroomPath}/sr_preview.webp`,
         url_map: 'https://maps.app.goo.gl/D2Lwdh9gyKMUdrBb8'
       },
       {
@@ -405,7 +405,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Guayaquil',
         hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
         phone: '+593-96-405-4055',
-        image: `${showroomPath}/sr_arosemena.webp`,
+        image: `${showroomPath}/sr_preview.webp`,
         url_map: 'https://maps.app.goo.gl/qkTrB5v9vx9CNako6'
       },
       {
@@ -414,7 +414,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Cuenca',
         hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
         phone: '+593-96-405-4055',
-        image: `${showroomPath}/sr_cuenca.webp`,
+        image: `${showroomPath}/sr_preview.webp`,
         url_map: 'https://maps.app.goo.gl/UyW1EZ1ccpWnwczz8'
       },
       {
@@ -423,7 +423,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Manta',
         hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
         phone: '+593-96-405-4055',
-        image: `${showroomPath}/sr_manta.webp`,
+        image: `${showroomPath}/sr_preview.webp`,
         url_map: 'https://maps.app.goo.gl/67ixRhoRhbULmLft6'
       },
       {
@@ -432,7 +432,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Machala',
         hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
         phone: '+593-96-405-4055',
-        image: `${showroomPath}/sr_machala.webp`,
+        image: `${showroomPath}/sr_preview.webp`,
         url_map: 'https://maps.app.goo.gl/ifpS18NYoZeKpp987'
       },
       {
@@ -441,7 +441,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Portoviejo',
         hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
         phone: '+593-96-405-4055',
-        image: `${showroomPath}/sr_portoviejo.webp`,
+        image: `${showroomPath}/sr_preview.webp`,
         url_map: 'https://maps.app.goo.gl/7z5zuPtSLsGF77Mw7'
       },
       {
@@ -450,7 +450,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Loja',
         hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
         phone: '+593-96-405-4055',
-        image: `${showroomPath}/sr_loja.webp`,
+        image: `${showroomPath}/sr_preview.webp`,
         url_map: 'https://maps.app.goo.gl/GguvAV7rneJb4byq6'
       },
       {
@@ -459,7 +459,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         city: 'Riobamba',
         hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
         phone: '+593-96-405-4055',
-        image: `${showroomPath}/sr_riobamba.webp`,
+        image: `${showroomPath}/sr_preview.webp`,
         url_map: 'https://maps.app.goo.gl/ifpS18NYoZeKpp987'
       }
     ],
