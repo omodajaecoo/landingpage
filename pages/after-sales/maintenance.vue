@@ -20,51 +20,6 @@
       </div>
     </section>
 
-    <section class="maintenance-section maintenance-section--downloads">
-      <div class="maintenance-section__inner">
-        <div class="maintenance-section-downloads">
-          <div class="maintenance-section-downloads__heading mobile-no-observer-animation" v-animate="{ effect: 'fadeInUp', once: true }">
-            <h2>Intervalos de servicio</h2>
-            <h4>Protocolos rigurosos diseñados por ingenieros para cada vehículo en específico.</h4>
-          </div>
-          <div class="maintenance-download-error" v-if="downloadError" v-animate="{ effect: 'fadeInUp', delay: 0.25, once: true }">
-            <p class="maintenance-download-error__message" role="alert">
-              {{ downloadError }}
-            </p>
-          </div>
-          <div class="maintenance-downloads">
-            <div v-for="(document, index) in maintenanceDocuments" :key="document.model" class="maintenance-download">
-              <BaseImg :src="`after-sales/warranty/${document.img}.webp`" class="maintenance-download__image"
-                :alt="document.model" loading="lazy" />
-              <div class="maintenance-download__content">
-                <div class="maintenance-download__content-text">
-                  <h2>{{ document.model }}</h2>
-                  <div class="maintenance-download__content-text-value">
-                    <p>Primer servicio</p>
-                    <span class="custom-blue">{{ document.service }}</span>
-                  </div>
-                  <div class="maintenance-download__content-text-value">
-                    <p>Frecuencia posterior</p>
-                    <span>{{ document.frequency }}</span>
-                  </div>
-                </div>
-                <div class="maintenance-download__content-btn-container">
-                  <h3>Pautas de mantenimiento</h3>
-                  <button class="maintenance-download__content-btn" type="button"
-                    :disabled="downloadingModel === document.model"
-                    :aria-label="`Descargar pauta de mantenimiento ${document.model}`"
-                    @click="downloadDocument(document)">
-                    <span v-if="downloadingModel === document.model" class="maintenance-download__loader"></span>
-                    <p v-else class="maintenance-download__content-btn-icon">Descargar PDF</p>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="maintenance-section maintenance-section--reasons">
       <div class="maintenance-section__inner">
         <div class="maintenance-section-reasons">
@@ -110,6 +65,79 @@
                     <p>{{ item.description }}</p>
                   </div>
                 </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="maintenance-section maintenance-section--downloads">
+      <div class="maintenance-section__inner">
+        <div class="warranty-section-downloads">
+          <div class="warranty-section-downloads__heading" v-animate="{ effect: 'fadeInUp', once: true }">
+            <h2>Documentación técnica</h2>
+            <span>Libretas de garantía y mantenimiento</span>
+          </div>
+          <div class="warranty-downloads">
+            <div v-for="(document, index) in warrantyDocuments" :key="document.model" class="warranty-download mobile-no-observer-animation"
+              v-animate="{ effect: 'fadeInUp', delay: index * 0.12, once: true }">
+              <BaseImg :src="`after-sales/warranty/${document.img}.webp`" class="warranty-download__image"
+                :alt="document.model" loading="lazy" />
+              <div class="warranty-download__content">
+                <div class="warranty-download__content-text">
+                  <h2>{{ document.model }}</h2>
+                  <h4>Manual de servicio</h4>
+                </div>
+                <a class="warranty-download__content-btn" :href="document.href" download>
+                  <BaseImg :src="`after-sales/warranty/icon_download.svg`" class="warranty-download__content-btn-icon" :alt="document.model + ' manual download icon'"
+                    loading="lazy" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="maintenance-section maintenance-section--downloads">
+      <div class="maintenance-section__inner">
+        <div class="maintenance-section-downloads">
+          <div class="maintenance-section-downloads__heading mobile-no-observer-animation" v-animate="{ effect: 'fadeInUp', once: true }">
+            <h2>Intervalos de servicio</h2>
+            <h4>Protocolos rigurosos diseñados por ingenieros para cada vehículo en específico.</h4>
+          </div>
+          <div class="maintenance-download-error" v-if="downloadError" v-animate="{ effect: 'fadeInUp', delay: 0.25, once: true }">
+            <p class="maintenance-download-error__message" role="alert">
+              {{ downloadError }}
+            </p>
+          </div>
+          <div class="maintenance-downloads">
+            <div v-for="(document, index) in maintenanceDocuments" :key="document.model" class="maintenance-download">
+              <BaseImg :src="`after-sales/warranty/${document.img}.webp`" class="maintenance-download__image"
+                :alt="document.model" loading="lazy" />
+              <div class="maintenance-download__content">
+                <div class="maintenance-download__content-text">
+                  <h2>{{ document.model }}</h2>
+                  <div class="maintenance-download__content-text-value">
+                    <p>Primer servicio</p>
+                    <span class="custom-blue">{{ document.service }}</span>
+                  </div>
+                  <div class="maintenance-download__content-text-value">
+                    <p>Frecuencia posterior</p>
+                    <span>{{ document.frequency }}</span>
+                  </div>
+                </div>
+                <div class="maintenance-download__content-btn-container">
+                  <h3>Pautas de mantenimiento</h3>
+                  <button class="maintenance-download__content-btn" type="button"
+                    :disabled="downloadingModel === document.model"
+                    :aria-label="`Descargar pauta de mantenimiento ${document.model}`"
+                    @click="downloadDocument(document)">
+                    <span v-if="downloadingModel === document.model" class="maintenance-download__loader"></span>
+                    <p v-else class="maintenance-download__content-btn-icon">Descargar PDF</p>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -163,6 +191,12 @@ interface MaintenanceDocument {
   filename: string;
 }
 
+interface WarrantyDocument {
+  img: string;
+  model: string;
+  href: string;
+}
+
 interface AuthorizedReasons {
   group: 'left' | 'topRight' | 'bottomRight';
   reasons: AuthorizedReason[];
@@ -201,6 +235,23 @@ const bannerHeroContent = ref({
   titleContentClass: '!justify-end !pb-[0.9rem] !pt-0 md:!pt-0',
 });
 
+const warrantyDocuments: WarrantyDocument[] = [
+  {
+    img: 'section5-item1',
+    model: 'Omoda C5',
+    href: '/files/warranty/Manual_Garantia_OMODA-C5.pdf'
+  },
+  {
+    img: 'section5-item2',
+    model: 'Omoda E5',
+    href: '/files/warranty/Manual_Garantia_OMODA-E5.pdf'
+  },
+  {
+    img: 'section5-item3',
+    model: 'Jaecoo J7',
+    href: '/files/warranty/Manual_Garantia_JAECOO-J7.pdf'
+  }
+];
 
 const maintenanceDocuments: MaintenanceDocument[] = [
   {
@@ -362,14 +413,15 @@ const goToAuthorizedService = () => {
 
 .maintenance-mobile-hero__content {
   position: absolute;
-  top: calc(0.88rem + ((100% - 0.88rem) / 2));
+  top: auto;
+  bottom: 0.5rem;
   left: 50%;
   z-index: 2;
   width: 100%;
   padding: 0 16px;
   color: #fff;
   text-align: center;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   gap: 0px;
   display: flex;
   flex-direction: column;
@@ -412,6 +464,14 @@ const goToAuthorizedService = () => {
   background: #131313;
 }
 
+.warranty-section--downloads {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background: #0D0E0E;
+}
+
 .maintenance-section__inner {
   width: 100%;
   padding: 100px 48px;
@@ -444,6 +504,125 @@ const goToAuthorizedService = () => {
     line-height: 100%;
     letter-spacing: 0px;
     text-align: center;
+  }
+}
+
+.warranty-section-downloads {
+  font-family: "Inter", "MiSansMedium", sans-serif;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  gap: 56px;
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+
+    h2 {
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 100%;
+      letter-spacing: 0px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    span {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 100%;
+      letter-spacing: 0px;
+      color: rgba(255, 255, 255, 1);
+      text-align: center;
+      text-transform: uppercase;
+      color: #67B0C4;
+    }
+  }
+}
+
+
+.warranty-downloads {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 56px;
+  width: 100%;
+}
+
+.warranty-download {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #131313;
+
+  &__image {
+    width: 100%;
+    height: auto;
+    max-height: 269px;
+    object-fit: contain;
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 16px;
+
+    &-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+
+      h2 {
+        font-family: "Inter", "MiSansMedium", sans-serif;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 100%;
+        letter-spacing: 0;
+        color: rgba(255, 255, 255, 1);
+        text-transform: uppercase;
+      }
+
+      h4 {
+        font-family: "Inter", "MiSansMedium", sans-serif;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0;
+        color: rgba(255, 255, 255, 1);
+        text-transform: uppercase;
+      }
+    }
+  
+    &-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      min-width: 80px;
+      height: 80px;
+      min-height: 80px;
+      background: #67B0C4;
+      color: rgba(255, 255, 255, 1);
+
+      &-icon {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+      }
+      &:hover {
+        background: #93cada;
+        color: rgba(255, 255, 255, 1);
+      }
+    }
   }
 }
 
@@ -793,6 +972,7 @@ const goToAuthorizedService = () => {
   }
 
   .maintenance-reasons,
+  .warranty-downloads,
   .maintenance-downloads {
     grid-template-columns: 1fr;
   }
@@ -809,7 +989,8 @@ const goToAuthorizedService = () => {
     grid-auto-rows: auto;
   }
 
-  .maintenance-downloads {
+  .maintenance-downloads,
+  .warranty-downloads {
     justify-items: center;
   }
 
@@ -831,8 +1012,20 @@ const goToAuthorizedService = () => {
     animation: none !important;
   }
 
-  .maintenance-download {
+  .maintenance-download,
+  .warranty-download {
     width: fit-content;
+  }
+
+  .warranty-section-downloads__heading {
+    h2 {
+      font-size: 20px;
+      line-height: 1.3;
+    }
+    span {
+      font-size: 12px;
+      line-height: 1.3;
+    }
   }
 
   .maintenance-cta__content {

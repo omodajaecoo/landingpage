@@ -94,7 +94,7 @@ const categories = [
     link: '/about',
     links: [
       { name: 'COTIZACIÓN', link: '/quote' },
-      { name: 'TEST DRIVE', link: '/test-drive' },
+      /*{ name: 'TEST DRIVE', link: '/test-drive' },*/
       { name: 'ENCUÉNTRANOS', link: '/authorized-service' },
     ]
   },
@@ -102,8 +102,7 @@ const categories = [
     title: 'POSVENTA',
     isLinked: false,
     links: [
-      { name: 'GARANTÍA', link: '/after-sales/warranty' },
-      { name: 'REPUESTOS', link: '/after-sales/spare-parts' },
+      /*{ name: 'REPUESTOS', link: '/after-sales/spare-parts' },*/
       { name: 'MANTENIMIENTO', link: '/after-sales/maintenance' }
     ]
   }

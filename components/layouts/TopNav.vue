@@ -292,22 +292,18 @@
       name: 'Cotización',
       linkUrl: '/quote'
     },
-    {
+    /*{
       name: 'Test Drive',
       linkUrl: '/test-drive'
-    },
+    },*/
     {
       name: 'Posventa',
       submenuType: 'vertical',
       children: [
-        {
-          name: 'Garantía',
-          linkUrl: '/after-sales/warranty'
-        },
-        {
+        /*{
           name: 'Repuestos',
           linkUrl: '/after-sales/spare-parts'
-        },
+        },*/
         {
           name: 'Mantenimiento',
           linkUrl: '/after-sales/maintenance'
