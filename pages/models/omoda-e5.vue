@@ -13,7 +13,7 @@
             <div class="" v-if="currentPage == 0">
               <div class="flex flex-row items-stretch justify-center w-[90vw] lg:w-[70vw] ">
                 <div class="pr-[10px] lg:pr-[48px] flex-[1.2] border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
-                  +505 KMS AUTONOMÍA EV (WLTP)</div>
+                  +505 KMS AUTONOMÍA EV (NEDC)</div>
                 <div class="px-[10px] lg:px-[48px] flex-[1.2] border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
                   24.6" PANTALLA DUAL</div>
                 <div class="px-[10px] lg:px-[48px] flex-1 border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">

@@ -148,7 +148,7 @@ const carList = [
     iconUrl: 'index/cars/omoda-e5/logo_e5.webp',
     imgUrl: 'index/cars/omoda-e5/banner_e5.webp',
     configList: [
-      { label: '+505 KMS AUTONOMÍA EV (WLTP)', value: '4424', unit: 'mm' },
+      { label: '+505 KMS AUTONOMÍA EV (NEDC)', value: '4424', unit: 'mm' },
       { label: '24.6" PANTALLA DUAL', value: '1830', unit: 'mm' },
       { label: '6 AIRBAGS', value: '1588', unit: 'mm' },
     ]

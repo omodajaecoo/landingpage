@@ -87,7 +87,7 @@
               <div class="warranty-download__content">
                 <div class="warranty-download__content-text">
                   <h2>{{ document.model }}</h2>
-                  <h4>Manual de servicio</h4>
+                  <h4>Manual de garantía</h4>
                 </div>
                 <a class="warranty-download__content-btn" :href="document.href" download>
                   <BaseImg :src="`after-sales/warranty/icon_download.svg`" class="warranty-download__content-btn-icon" :alt="document.model + ' manual download icon'"
@@ -119,20 +119,12 @@
               <div class="maintenance-download__content">
                 <div class="maintenance-download__content-text">
                   <h2>{{ document.model }}</h2>
-                  <div class="maintenance-download__content-text-value">
-                    <p>Primer servicio</p>
-                    <span class="custom-blue">{{ document.service }}</span>
-                  </div>
-                  <div class="maintenance-download__content-text-value">
-                    <p>Frecuencia posterior</p>
-                    <span>{{ document.frequency }}</span>
-                  </div>
                 </div>
                 <div class="maintenance-download__content-btn-container">
-                  <h3>Pautas de mantenimiento</h3>
+                  <h3>Tabla de valores de Mantenimiento</h3>
                   <button class="maintenance-download__content-btn" type="button"
                     :disabled="downloadingModel === document.model"
-                    :aria-label="`Descargar pauta de mantenimiento ${document.model}`"
+                    :aria-label="`Descargar tabla de valores de Mantenimiento ${document.model}`"
                     @click="downloadDocument(document)">
                     <span v-if="downloadingModel === document.model" class="maintenance-download__loader"></span>
                     <p v-else class="maintenance-download__content-btn-icon">Descargar PDF</p>
@@ -749,7 +741,7 @@ const goToAuthorizedService = () => {
         h3 {
           font-family: "Inter", "MiSansMedium", sans-serif;
           font-weight: 500;
-          font-size: 24px;
+          font-size: 20px;
           line-height: 1.2;
           text-align: center;
           color: rgba(255, 255, 255, 1);
@@ -992,12 +984,6 @@ const goToAuthorizedService = () => {
   .maintenance-downloads,
   .warranty-downloads {
     justify-items: center;
-  }
-
-  .maintenance-download__content-text-value {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
   }
 
   .maintenance-reason {
