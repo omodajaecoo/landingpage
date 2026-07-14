@@ -152,7 +152,7 @@ defineOptions({
 });
 
 const URL_FORM = 'https://ayas-formweb-prd.powerappsportals.com/tools/omoda-jaecoo/quotation-checkout-form/';
-const formBreakpoints = 'h-[2050px] min-[390px]:h-[2020px] min-[501px]:h-[1740px] min-[596px]:h-[2050px] min-[828px]:h-[1600px] min-[1024px]:h-[1650px]';
+const formBreakpoints = 'h-[1750px] min-[390px]:h-[1750px] min-[501px]:h-[1740px] min-[513px]:h-[1500px] min-[513px]:h-[1450px] min-[596px]:h-[1400px] min-[615px]:h-[1750px] min-[640px]:h-[1400px] min-[708px]:h-[1700px] min-[828px]:h-[1680px] min-[838px]:h-[1350px] min-[1024px]:h-[1400px]';
 const router = useRouter();
 const route = useRoute();
 
@@ -197,7 +197,7 @@ const vehicles: Vehicle[] = [
   {
     name: 'JAECOO J5',
     brand: 'JAECOO',
-    newProduct: false,
+    newProduct: true,
     limitedEdition: false,
     autonomy: '950 KMs',
     power: '221 HP',
@@ -209,12 +209,12 @@ const vehicles: Vehicle[] = [
   {
     name: 'JAECOO J7',
     brand: 'JAECOO',
-    newProduct: true,
+    newProduct: false,
     limitedEdition: false,
     autonomy: '1350 KMs',
     power: '315 HP',
     technology: 'PHEV',
-    price: 26990,
+    price: 28990,
     discountedPrice: 0,
     photo: 'JAECOO_J7_OPT.png'
   }
