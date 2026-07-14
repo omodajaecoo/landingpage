@@ -1,6 +1,18 @@
 <template>
   <main class="min-h-[80vh] bg-[#0D0E0E]">
     <div class="reservations-hero">
+      <div class="reservations-hero__logos">
+        <img
+          src="/images/reservations/E5-NEXT-logo.png"
+          alt="E5 NEXT"
+          class="reservations-hero__logo reservations-hero__logo--e5"
+        />
+        <img
+          src="/images/reservations/JAECOO-J5-logo.png"
+          alt="JAECOO J5"
+          class="reservations-hero__logo reservations-hero__logo--j5"
+        />
+      </div>
       <div class="reservations-hero__content">
         <h1 class="reservations-hero__title">
           RESERVA TU<br />
@@ -110,6 +122,12 @@
                 :class="{ 'reservation-selected-vehicle__price-current--discounted': hasDiscountedPrice(selectedVehicle) }"
               >
                 {{ formatPrice(selectedVehicle.discountedPrice || selectedVehicle.price) }}
+                <span
+                  v-if="selectedVehicle.bonus"
+                  class="reservation-selected-vehicle__price-bonus"
+                >
+                  *
+                </span>
               </span>
               <span
                 v-if="hasDiscountedPrice(selectedVehicle)"
@@ -128,6 +146,12 @@
                 <strong>{{ spec.value }}</strong>
               </div>
             </div>
+            <span
+              v-if="selectedVehicle.bonus"
+              class="reservation-selected-vehicle__bonus-label"
+            >
+              *INCLUYE BONO
+            </span>
           </div>
         </div>
 
@@ -161,6 +185,7 @@ interface Vehicle {
   brand: string;
   newProduct: boolean;
   limitedEdition: boolean;
+  bonus: boolean;
   autonomy: string;
   power: string;
   technology: string;
@@ -175,6 +200,7 @@ const vehicles: Vehicle[] = [
     brand: 'OMODA',
     newProduct: false,
     limitedEdition: false,
+    bonus: false,
     autonomy: '1001 KMs',
     power: '221 HP',
     technology: 'HEV',
@@ -186,7 +212,8 @@ const vehicles: Vehicle[] = [
     name: 'OMODA E5 NEXT',
     brand: 'OMODA',
     newProduct: true,
-    limitedEdition: true,
+    limitedEdition: false,
+    bonus: true,
     autonomy: '350 KMs (WLTP)',
     power: '208 HP',
     technology: 'EV',
@@ -199,6 +226,7 @@ const vehicles: Vehicle[] = [
     brand: 'JAECOO',
     newProduct: true,
     limitedEdition: false,
+    bonus: false,
     autonomy: '950 KMs',
     power: '221 HP',
     technology: 'HEV',
@@ -211,10 +239,11 @@ const vehicles: Vehicle[] = [
     brand: 'JAECOO',
     newProduct: false,
     limitedEdition: false,
+    bonus: true,
     autonomy: '1350 KMs',
     power: '315 HP',
     technology: 'PHEV',
-    price: 28990,
+    price: 26990,
     discountedPrice: 0,
     photo: 'JAECOO_J7_OPT.png'
   }
@@ -362,21 +391,52 @@ const reservationSections = [
 
 <style scoped lang="scss">
 .reservations-hero {
+  position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   width: 100%;
   min-height: 3.6rem;
-  aspect-ratio: 3840 / 1986;
-  background-image: url("/images/reservations/top-banner.png");
+  padding-bottom: 0.48rem;
+  aspect-ratio: 720 / 1280;
+  background-image: url("/images/reservations/top-banner-m.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
+.reservations-hero__logos {
+  position: absolute;
+  top: calc(0.72rem + 50px);
+  left: 0.24rem;
+  right: 0.24rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.24rem;
+  pointer-events: none;
+}
+
+.reservations-hero__logo {
+  display: block;
+  height: auto;
+  object-fit: contain;
+}
+
+.reservations-hero__logo--e5 {
+  width: min(2.1rem, 42vw);
+}
+
+.reservations-hero__logo--j5 {
+  width: min(2.5rem, 42vw);
+}
+
 .reservations-hero__content {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 7.2rem;
   margin-left: 0.24rem;
+  transform: translateY(-50px);
   color: #fff;
 }
 
@@ -401,8 +461,29 @@ const reservationSections = [
 }
 
 @media (min-width: 640px) {
+  .reservations-hero {
+    aspect-ratio: 16 / 9;
+    background-image: url("/images/reservations/top-banner-w.png");
+    padding-bottom: 0.7rem;
+  }
+
+  .reservations-hero__logos {
+    top: calc(0.7rem + 50px);
+    left: 0.7rem;
+    right: 0.7rem;
+  }
+
+  .reservations-hero__logo--e5 {
+    width: min(3rem, 24vw);
+  }
+
+  .reservations-hero__logo--j5 {
+    width: min(3.4rem, 24vw);
+  }
+
   .reservations-hero__content {
     margin-left: 0.7rem;
+    transform: none;
   }
 }
 
@@ -630,12 +711,13 @@ const reservationSections = [
 }
 
 .reservation-selected-vehicle__info {
+  position: relative;
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.24rem;
+  padding: 0.24rem 0.24rem 0.64rem;
   text-align: center;
 
   h3 {
@@ -671,6 +753,10 @@ const reservationSections = [
   &--discounted {
     color: #67b0c4;
   }
+}
+
+.reservation-selected-vehicle__price-bonus {
+  color: #ce0000;
 }
 
 .reservation-selected-vehicle__price-original {
@@ -727,6 +813,19 @@ const reservationSections = [
   }
 }
 
+.reservation-selected-vehicle__bonus-label {
+  position: absolute;
+  right: 0.24rem;
+  bottom: 0.2rem;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
 :deep(.reservation-checkout-form) {
   display: flex;
   justify-content: center;
@@ -755,6 +854,10 @@ const reservationSections = [
   .reservation-selected-vehicle__media {
     flex: 0 0 40%;
     width: 40%;
+  }
+
+  .reservation-selected-vehicle__info {
+    padding: 0.24rem;
   }
 }
 </style>
