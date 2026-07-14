@@ -292,6 +292,10 @@
       name: 'Cotización',
       linkUrl: '/quote'
     },
+    // {
+    //   name: 'Reservas',
+    //   linkUrl: '/reservations'
+    // },
     /*{
       name: 'Test Drive',
       linkUrl: '/test-drive'
