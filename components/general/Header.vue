@@ -83,7 +83,7 @@
 
   const logoUrl = computed(() => `common/logo_${headerTheme.value}.png`);
 
-  const globalUrl = computed(() => `common/logo_ayasa_${headerTheme.value}.webp`);
+  const globalUrl = computed(() => `common/logo_ayasa_${headerTheme.value}.png`);
 
   const mbMenuExpand = ref(false);
 

@@ -27,6 +27,7 @@
         <div class="swiper-scrollbar" v-if="ispc"></div>
       </Swiper>
     </ClientOnly>
+    <slot name="overlay" />
   </div>
   <div v-else class="normalPage">
     <slot />

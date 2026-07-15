@@ -7,7 +7,7 @@
             <div class="font-interRegular text-[14px] lg:text-[20px] leading-[20px] lg:leading-[28px] text-justify">
                 <div class="flex justify-between items-center max-[550px]:flex-col">
                     <div class="flex lg:hidden justify-center order-2 min-[550px]:order-1">
-                        <img src="/images/common/logo_ayasa_light.webp" alt="Logo AYASA" class="h-[30px] md:h-[38px] w-auto" />
+                        <img src="/images/common/logo_ayasa_light.png" alt="Logo AYASA" class="h-[30px] md:h-[38px] w-auto" />
                     </div>  
                     <div class="flex flex-col order-1 min-[550px]:order-2 mb-[40px] min-[550px]:mb-0">
                         <div class="font-interSemiBold text-center sm:text-right lg:text-left">

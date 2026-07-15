@@ -11,7 +11,7 @@
         <swiper
           :loop="true"
           :autoplay="{
-            delay: 20000,
+            delay: DEFAULT_SLIDE_DELAY,
           }"
           :speed="500"
           :modules="[SwiperAutoplay]"
@@ -19,7 +19,11 @@
           @slide-change="handleSlideChange"
           class="home-swiper"
         >
-          <swiper-slide v-for="(slide, idx) in slides" :key="idx">
+          <swiper-slide
+            v-for="(slide, idx) in slides"
+            :key="idx"
+            :data-swiper-autoplay="getSlideDelay(slide)"
+          >
             <div class="h-[100vh] relative">
               <img
                 v-if="slide.type === 'image'"
@@ -60,14 +64,31 @@
                 />
               </video>
               <div
-                class="info absolute text-white left-1/2 transform translate-x-[-50%] lg:bottom-[1.1rem] bottom-[1.71rem]"
+                class="info absolute text-white left-1/2 transform translate-x-[-50%] lg:bottom-[1.1rem] bottom-[1.71rem] flex flex-col items-center text-center"
                 :class="{ 'opacity-100': visible }"
               >
+                <div
+                  v-if="slide.title || slide.desc"
+                  class="anim mb-[0.24rem] flex flex-col items-center text-center"
+                >
+                  <h2
+                    v-if="slide.title"
+                    class="m-0 font-interMedium text-[0.36rem] leading-[100%] lg:text-[0.72rem]"
+                  >
+                    {{ slide.title }}
+                  </h2>
+                  <p
+                    v-if="slide.desc"
+                    class="m-0 mt-[0.12rem] font-interMedium text-[0.24rem] leading-[100%] lg:mt-[0.18rem] lg:text-[0.36rem]"
+                  >
+                    {{ slide.desc }}
+                  </p>
+                </div>
                 <nuxt-link v-if="slide.linkUrl" :to="slide.linkUrl">
                   <BaseButton
                     type="text"
-                    class="text-[0.32rem] lg:text-[0.16rem] anim"
-                    >Descubre más</BaseButton
+                    class="text-[0.32rem] lg:text-[0.5rem] anim"
+                    >{{ slide.buttonText || 'Descubre más' }}</BaseButton
                   >
                 </nuxt-link>
               </div>
@@ -107,6 +128,8 @@ interface SlideItem {
   imgUrlMobile: string;
   videoUrl?: string;
   videoUrlMobile?: string;
+  autoplayDelay?: number;
+  buttonText?: string;
   title: string;
   desc: string;
   linkUrl: string;
@@ -114,6 +137,8 @@ interface SlideItem {
 }
 
 const props = defineProps<{ slides: SlideItem[] }>();
+const DEFAULT_SLIDE_DELAY = 20000;
+const PAGINATION_TRANSITION_OFFSET = 500;
 
 const slideLength = computed(() => props.slides.length);
 
@@ -127,6 +152,9 @@ let timerPagination = 0;
 const { isMobile } = useDeviceType();
 
 const config = useRuntimeConfig();
+
+const getSlideDelay = (slide?: SlideItem) =>
+  slide?.autoplayDelay ?? DEFAULT_SLIDE_DELAY;
 
 const handlePauseVideo = () => {
   const videoDom = document.querySelectorAll(".home-page video");
@@ -179,8 +207,14 @@ const handleInit = (inst: any) => {
 };
 
 const activePaginationLeft = computed(() => {
+  const paginationDuration = Math.max(
+    getSlideDelay(props.slides[activeIndex.value]) - PAGINATION_TRANSITION_OFFSET,
+    0
+  );
+
   return {
     left: `${(0.48 + 0.09) * activeIndex.value}rem`,
+    "--pagination-duration": `${paginationDuration}ms`,
   };
 });
 
@@ -218,7 +252,7 @@ onBeforeUnmount(() => {
   }
 }
 .active-bar {
-  transition: width 19.5s linear;
+  transition: width var(--pagination-duration, 19500ms) linear;
   width: 0.48rem;
 }
 </style>

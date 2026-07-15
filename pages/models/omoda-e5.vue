@@ -305,6 +305,13 @@
         </Swiper>
       </SwiperSlide>
     </template>
+    <template #overlay>
+      <CommonReservationsStickyBar
+        v-if="currentPage !== 999 && currentPage > 0"
+        variant="fixed"
+        vehicle="OMODA E5 NEXT"
+      />
+    </template>
   </NuxtLayout>
 </template>
 

@@ -338,6 +338,13 @@
         </Swiper>
       </SwiperSlide>
     </template>
+    <template #overlay>
+      <CommonReservationsStickyBar
+        v-if="currentPage !== 999 && currentPage > 0"
+        variant="fixed"
+        vehicle="JAECOO J7"
+      />
+    </template>
   </NuxtLayout>
 </template>
 

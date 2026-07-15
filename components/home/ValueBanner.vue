@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="flex justify-center items-center">
-          <BaseImg src="common/logo_ayasa_dark.webp" class="w-[300px] object-contain" />
+          <BaseImg src="common/logo_ayasa_dark.png" class="w-[300px] object-contain" />
         </div>
         <div class="flex justify-center items-center">
           <div class="font-interSemiRegular text-white text-light text-[14px] md:text-[16px] text-center">
