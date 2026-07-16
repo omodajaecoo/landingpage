@@ -1,7 +1,7 @@
 <template>
   <!-- Section: Main Banners -->
   <div ref="homeSwiperRef">
-    <HomeNewSwiper :slides="homeBanners" />
+    <HomeNewSwiper :slides="homeBanners" enable-side-navigation />
   </div>
 
   <CommonReservationsStickyBar
@@ -64,32 +64,26 @@
 
   const homeBanners = [
     
+    
     {
-      title: '',
-      desc: '',
-      linkUrl: '/models/jaecoo-j7',
-      type: 'video',
-      imgUrl: 'images/index/banner_1-1.webp',
-      imgUrlMobile: 'images/index/banner_1-1_mb.webp',
-      videoUrl: 'videos/index/omoda-jaecoo_web.mp4',
-      videoUrlMobile: 'videos/index/omoda-jaecoo-long-distance-challenge_web_v03.mp4',
-      autoplayDelay: 105000,
-    },
-    {
-      title: 'Early Adopters Edition',
+      title: 'EARLY ADOPTERS EDITION',
       desc: 'Sé parte de los primeros propietarios',
       linkUrl: '/reservations?vehicle=JAECOO%20J5',
       type: 'image',
-      buttonText: 'Reservar',
+      buttonText: 'RESERVAR',
+      topLeftText: '<span>DESDE</span><span class="home-banner-price-single__amount">$21.990</span>',
+      topLeftTextClass: '!font-[inherit] !font-bold !text-[0.42rem] lg:!text-[1.3rem] home-banner-price home-banner-price-single',
       imgUrl: 'images/index/banner_J5.png',
       imgUrlMobile: 'images/index/banner_J5_mobile.png'
     },
     {
-      title: '100 unidades al precio de reserva',
-      desc: 'asegura el tuyo',
+      title: '100 UNIDADES AL PRECIO DE RESERVA',
+      desc: 'Asegura el tuyo',
       linkUrl: '/reservations?vehicle=OMODA%20E5%20NEXT',
       type: 'image',
-      buttonText: 'Reservar',
+      buttonText: 'RESERVAR',
+      topLeftText: '<span class="home-banner-price-discount__old"><span>DESDE</span> <span class="home-banner-price-discount__strike">$21.990</span></span><span class="home-banner-price-discount__amount">$19.990</span>',
+      topLeftTextClass: '!font-[inherit] !font-bold !text-[0.42rem] lg:!text-[1.3rem] home-banner-price home-banner-price-discount',
       imgUrl: 'images/index/banner_E5_NEXT.png',
       imgUrlMobile: 'images/index/banner_E5_NEXT_mobile.png'
     },
@@ -117,6 +111,18 @@
       imgUrl: 'images/index/banner_1-4.webp',
       imgUrlMobile: 'images/index/banner_1-4_mb.webp',
     },
+    {
+      title: '',
+      desc: '',
+      linkUrl: '/models/jaecoo-j7',
+      type: 'video',
+      buttonText: 'DESCUBRE MÁS',
+      imgUrl: 'images/index/banner_1-1.webp',
+      imgUrlMobile: 'images/index/banner_1-1_mb.webp',
+      videoUrl: 'videos/index/omoda-jaecoo_web.mp4',
+      videoUrlMobile: 'videos/index/omoda-jaecoo-long-distance-challenge_web_v03.mp4',
+      autoplayDelay: 105000,
+    },
   ]
 
   const videoBanner = ref({
@@ -129,3 +135,68 @@
 
 </script>
 
+<style lang="scss">
+.home-banner-price-single {
+  display: inline-flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.02rem;
+}
+
+.home-banner-price-single__amount {
+  margin-left: 0.24rem;
+}
+
+.home-banner-price-discount {
+  display: inline-flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.06rem;
+}
+
+.home-banner-price-discount__old {
+  font-size: 0.26rem;
+  line-height: 100%;
+}
+
+.home-banner-price-discount__strike {
+  text-decoration: line-through;
+  text-decoration-thickness: 0.02rem;
+}
+
+.home-banner-price-discount__amount {
+  margin-left: 0.24rem;
+}
+
+@media (min-width: 751px) and (max-width: 1023px) {
+  .home-banner-price {
+    font-size: 0.64rem !important;
+  }
+
+  .home-banner-price-discount__old {
+    font-size: 0.38rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-banner-price-single {
+    gap: 0.04rem;
+  }
+
+  .home-banner-price-single__amount {
+    margin-left: 0.42rem;
+  }
+
+  .home-banner-price-discount {
+    gap: 0.08rem;
+  }
+
+  .home-banner-price-discount__amount {
+    margin-left: 0.42rem;
+  }
+
+  .home-banner-price-discount__old {
+    font-size: 0.48rem;
+  }
+}
+</style>

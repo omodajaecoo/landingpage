@@ -25,21 +25,12 @@
     </div>
 
     <div class="reservations-sections">
-      <section
-        v-for="section in reservationSections"
-        :key="section.number"
-        class="reservation-section"
-      >
-        <div class="reservation-section__title">
-          <div class="reservation-section__number">{{ section.number }}</div>
-          <h2>{{ section.title }}</h2>
-        </div>
-
+      <section class="reservation-section">
         <EmbededForm
-          v-if="section.number === 3"
           :url="URL_FORM"
           container-class="reservation-checkout-form"
           :iframe-class="`reservation-checkout-form__iframe ${formBreakpoints}`"
+          :redirect-ios="false"
           loading="eager"
         />
       </section>
@@ -56,7 +47,7 @@ defineOptions({
 });
 
 const URL_FORM = 'https://ayas-formweb-prd.powerappsportals.com/tools/omoda-jaecoo/quotation-checkout-form/';
-const formBreakpoints = 'h-[1750px] min-[390px]:h-[1750px] min-[501px]:h-[1740px] min-[513px]:h-[1500px] min-[513px]:h-[1450px] min-[596px]:h-[1400px] min-[615px]:h-[1750px] min-[640px]:h-[1400px] min-[708px]:h-[1700px] min-[828px]:h-[1680px] min-[838px]:h-[1350px] min-[1024px]:h-[1400px]';
+const formBreakpoints = 'h-[1785px] min-[390px]:h-[1785px] min-[501px]:h-[1775px] min-[513px]:h-[1535px] min-[513px]:h-[1485px] min-[596px]:h-[1435px] min-[615px]:h-[1785px] min-[640px]:h-[1435px] min-[708px]:h-[1735px] min-[828px]:h-[1715px] min-[838px]:h-[1385px] min-[1024px]:h-[1435px]';
 const router = useRouter();
 const route = useRoute();
 
@@ -83,21 +74,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('message', handleFormSubmitMessage, false);
 });
-
-const reservationSections = [
-  {
-    number: 1,
-    title: 'completa tus datos.'
-  },
-  {
-    number: 2,
-    title: 'escoge tu modelo.'
-  },
-  {
-    number: 3,
-    title: 'paga y reserva.'
-  }
-];
 </script>
 
 <style scoped lang="scss">
@@ -109,7 +85,7 @@ const reservationSections = [
   min-height: 3.6rem;
   padding-bottom: 0.48rem;
   aspect-ratio: 720 / 1280;
-  background-image: url("/images/reservations/top-banner-m.png");
+  background-image: url("/images/reservations/top-banner-m.webp");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -174,7 +150,7 @@ const reservationSections = [
 @media (min-width: 640px) {
   .reservations-hero {
     aspect-ratio: 16 / 9;
-    background-image: url("/images/reservations/top-banner-w.png");
+    background-image: url("/images/reservations/top-banner-w.webp");
     padding-bottom: 0.7rem;
   }
 
@@ -211,53 +187,16 @@ const reservationSections = [
   width: 100%;
 }
 
-.reservation-section__title {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
-  color: #fff;
-
-  h2 {
-    margin: 0;
-    font-family: "Inter", sans-serif;
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 100%;
-    letter-spacing: 0;
-    text-align: center;
-    text-transform: uppercase;
-  }
-}
-
-.reservation-section__number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 25px;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: #67b0c4;
-  color: #fff;
-  font-family: "Inter", sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 100%;
-  letter-spacing: 0;
-  text-align: center;
-}
-
-
 :deep(.reservation-checkout-form) {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 24px;
 }
 
 :deep(.reservation-checkout-form__iframe) {
   width: 100%;
+  padding-top: 35px;
+  box-sizing: border-box;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);

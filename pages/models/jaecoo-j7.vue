@@ -13,7 +13,7 @@
             <div class="" v-if="currentPage == 0">
               <div class="flex flex-row items-stretch justify-center w-[90vw] lg:w-[70vw] ">
                 <div class="pr-[10px] lg:pr-[48px] flex-[1.2] border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
-                  1.200KMS AUTONOMÍA PHEV</div>
+                  1.340KMS AUTONOMÍA PHEV</div>
                 <div class="px-[10px] lg:px-[48px] flex-[1.2] border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
                   14.8" PANTALLA VERTICAL</div>
                 <div class="px-[10px] lg:px-[48px] flex-1 border-r border-white font-interSemiBold text-[12px] sm:text-[20px] text-center">
@@ -68,7 +68,7 @@
           <div class="flex flex-col justify-center items-center space-y-[20px] sm:space-y-[50px]">
             <div class="flex space-x-[8px] sm:space-x-[32px] justify-center items-center">
               <BaseButton type="text" class="font-interSemiRegular text-[16px] sm:text-[20px] px-[10px] py-[10px] sm:px-[20px] sm:py-[20px] 
-              border border-white leading-none" @click="router.push(section2_btns[0].link)">
+              border border-[#67B0C4] leading-none !bg-[#67B0C4]" @click="router.push(section2_btns[0].link)">
                 {{ section2_btns[0].label }}
               </BaseButton>
               <a :href="section2_btns[1].link" target="_blank" rel="noopener">

@@ -67,8 +67,8 @@ const goToReservations = () => {
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 0.7rem;
-  padding: 0.12rem 0.72rem;
+  min-height: 0.92rem;
+  padding: 0.18rem 0.92rem;
   background-color: rgba(13, 14, 14, 0.72);
   backdrop-filter: blur(16px);
 }
@@ -87,17 +87,17 @@ const goToReservations = () => {
 .reservations-sticky-bar__close {
   position: absolute;
   top: 50%;
-  right: 0.24rem;
+  right: 0.32rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 0.34rem;
-  height: 0.34rem;
+  width: 0.42rem;
+  height: 0.42rem;
   border: 1px solid rgba(255, 255, 255, 0.38);
   border-radius: 50%;
   color: #fff;
   font-family: "Inter", sans-serif;
-  font-size: 0.24rem;
+  font-size: 0.3rem;
   font-weight: 300;
   line-height: 1;
   background-color: transparent;
@@ -106,12 +106,12 @@ const goToReservations = () => {
 }
 
 .reservations-sticky-bar__button {
-  min-height: 0.46rem;
-  padding: 0 0.28rem;
+  min-height: 0.58rem;
+  padding: 0 0.42rem;
   border: 1px solid #67b0c4;
   color: #fff;
   font-family: "Inter", sans-serif;
-  font-size: 0.16rem;
+  font-size: 0.22rem;
   font-weight: 500;
   line-height: 100%;
   letter-spacing: 0;

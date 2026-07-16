@@ -25,6 +25,20 @@
             :data-swiper-autoplay="getSlideDelay(slide)"
           >
             <div class="h-[100vh] relative">
+              <button
+                v-if="props.enableSideNavigation"
+                type="button"
+                class="side-navigation side-navigation--prev"
+                aria-label="Slide anterior"
+                @click.stop="handlePreviousSlide"
+              />
+              <button
+                v-if="props.enableSideNavigation"
+                type="button"
+                class="side-navigation side-navigation--next"
+                aria-label="Siguiente slide"
+                @click.stop="handleNextSlide"
+              />
               <img
                 v-if="slide.type === 'image'"
                 :src="
@@ -64,6 +78,12 @@
                 />
               </video>
               <div
+                v-if="slide.topLeftText"
+                class="top-left-text anim absolute z-10 text-white"
+                :class="slide.topLeftTextClass"
+                v-html="slide.topLeftText"
+              />
+              <div
                 class="info absolute text-white left-1/2 transform translate-x-[-50%] lg:bottom-[1.1rem] bottom-[1.71rem] flex flex-col items-center text-center"
                 :class="{ 'opacity-100': visible }"
               >
@@ -73,13 +93,13 @@
                 >
                   <h2
                     v-if="slide.title"
-                    class="m-0 font-interMedium text-[0.36rem] leading-[100%] lg:text-[0.72rem]"
+                    class="slide-title m-0 font-[inherit] font-bold text-[0.36rem] leading-[100%] lg:text-[0.72rem]"
                   >
                     {{ slide.title }}
                   </h2>
                   <p
                     v-if="slide.desc"
-                    class="m-0 mt-[0.12rem] font-interMedium text-[0.24rem] leading-[100%] lg:mt-[0.18rem] lg:text-[0.36rem]"
+                    class="slide-desc m-0 mt-[0.12rem] font-[inherit] text-[0.28rem] leading-[100%] lg:mt-[0.18rem] lg:text-[0.44rem]"
                   >
                     {{ slide.desc }}
                   </p>
@@ -87,7 +107,7 @@
                 <nuxt-link v-if="slide.linkUrl" :to="slide.linkUrl">
                   <BaseButton
                     type="text"
-                    class="text-[0.32rem] lg:text-[0.5rem] anim"
+                    class="slide-button-text text-[0.32rem] lg:text-[0.35rem] anim"
                     >{{ slide.buttonText || 'Descubre más' }}</BaseButton
                   >
                 </nuxt-link>
@@ -130,13 +150,23 @@ interface SlideItem {
   videoUrlMobile?: string;
   autoplayDelay?: number;
   buttonText?: string;
+  topLeftText?: string;
+  topLeftTextClass?: string;
   title: string;
   desc: string;
   linkUrl: string;
   type: string;
 }
 
-const props = defineProps<{ slides: SlideItem[] }>();
+const props = withDefaults(
+  defineProps<{
+    slides: SlideItem[];
+    enableSideNavigation?: boolean;
+  }>(),
+  {
+    enableSideNavigation: false,
+  }
+);
 const DEFAULT_SLIDE_DELAY = 20000;
 const PAGINATION_TRANSITION_OFFSET = 500;
 
@@ -222,6 +252,14 @@ const handleChangeSlide = (idx: number) => {
   swiperInst.slideTo(idx);
 };
 
+const handlePreviousSlide = () => {
+  swiperInst?.slidePrev();
+};
+
+const handleNextSlide = () => {
+  swiperInst?.slideNext();
+};
+
 const handleAnimation = () => {
   if (!swiperInst) return;
 
@@ -254,5 +292,59 @@ onBeforeUnmount(() => {
 .active-bar {
   transition: width var(--pagination-duration, 19500ms) linear;
   width: 0.48rem;
+}
+
+@media (min-width: 751px) and (max-width: 1023px) {
+  .slide-title {
+    font-size: 0.58rem !important;
+  }
+
+  .slide-desc {
+    margin-top: 0.16rem !important;
+    font-size: 0.36rem !important;
+  }
+
+  .slide-button-text {
+    font-size: 0.42rem !important;
+  }
+}
+
+.side-navigation {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+  width: 30%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.side-navigation--prev {
+  left: 0;
+}
+
+.side-navigation--next {
+  right: 0;
+}
+
+.top-left-text {
+  top: 1.18rem;
+  left: 0.42rem;
+  max-width: 80vw;
+  font-family: "Inter", sans-serif;
+  font-size: 0.24rem;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0;
+}
+
+@media (min-width: 1024px) {
+  .top-left-text {
+    top: 1.62rem;
+    left: 1.1rem;
+    max-width: 6rem;
+    font-size: 0.32rem;
+  }
 }
 </style>

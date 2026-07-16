@@ -33,6 +33,7 @@ interface Props {
   iframeStyle?: StyleValue;
   allowFullscreen?: boolean;
   loading?: 'lazy' | 'eager';
+  redirectIos?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -44,7 +45,8 @@ const props = withDefaults(defineProps<Props>(), {
   iframeClass: '',
   iframeStyle: '',
   allowFullscreen: true,
-  loading: 'lazy'
+  loading: 'lazy',
+  redirectIos: true
 });
 
 function isIOSDevice(): boolean {
@@ -58,17 +60,22 @@ function getLandingParams(): string {
   if (window.location.search && window.location.search.length > 1) {
     try { 
       localStorage.setItem("landingParams", window.location.search); 
-    } catch (e) {}
+    } catch {
+      return window.location.search;
+    }
     return window.location.search;
   }
   try {
     const saved = localStorage.getItem("landingParams");
     if (saved && saved.length > 1) return saved;
-  } catch (e2) {}
+  } catch {
+    return "";
+  }
   return "";
 }
 
 function redirectIOS(): void {
+  if (!props.redirectIos) return;
   if (!isIOSDevice()) return;
   if (!props.url) return;
   const params = getLandingParams();
