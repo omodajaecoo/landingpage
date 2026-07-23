@@ -104,13 +104,25 @@
                     {{ slide.desc }}
                   </p>
                 </div>
-                <nuxt-link v-if="slide.linkUrl" :to="slide.linkUrl">
+                <div
+                  v-if="slide.linkUrl || slide.secondaryButtonUrl"
+                  class="slide-actions anim flex flex-wrap justify-center gap-[0.12rem] lg:gap-[0.2rem]"
+                >
                   <BaseButton
+                    v-if="slide.linkUrl"
                     type="text"
-                    class="slide-button-text text-[0.32rem] lg:text-[0.35rem] anim"
+                    class="slide-button-text text-[0.32rem] lg:text-[0.35rem]"
+                    @click.stop="handlePrimaryButtonClick(slide.linkUrl)"
                     >{{ slide.buttonText || 'Descubre más' }}</BaseButton
                   >
-                </nuxt-link>
+                  <BaseButton
+                    v-if="slide.secondaryButtonUrl"
+                    type="text"
+                    class="slide-button-text text-[0.32rem] lg:text-[0.35rem]"
+                    @click.stop="handleSecondaryButtonClick(slide.secondaryButtonUrl)"
+                    >{{ slide.secondaryButtonText }}</BaseButton
+                  >
+                </div>
               </div>
             </div>
           </swiper-slide>
@@ -142,6 +154,7 @@
 
 <script lang="ts" setup>
 import { type Swiper } from "swiper";
+import { useRouter } from "vue-router";
 
 interface SlideItem {
   imgUrl: string;
@@ -150,6 +163,8 @@ interface SlideItem {
   videoUrlMobile?: string;
   autoplayDelay?: number;
   buttonText?: string;
+  secondaryButtonText?: string;
+  secondaryButtonUrl?: string;
   topLeftText?: string;
   topLeftTextClass?: string;
   title: string;
@@ -182,6 +197,7 @@ let timerPagination = 0;
 const { isMobile } = useDeviceType();
 
 const config = useRuntimeConfig();
+const router = useRouter();
 
 const getSlideDelay = (slide?: SlideItem) =>
   slide?.autoplayDelay ?? DEFAULT_SLIDE_DELAY;
@@ -260,6 +276,14 @@ const handleNextSlide = () => {
   swiperInst?.slideNext();
 };
 
+const handlePrimaryButtonClick = (url: string) => {
+  router.push(url);
+};
+
+const handleSecondaryButtonClick = (url: string) => {
+  window.open(url, "_blank", "noopener");
+};
+
 const handleAnimation = () => {
   if (!swiperInst) return;
 
@@ -292,6 +316,11 @@ onBeforeUnmount(() => {
 .active-bar {
   transition: width var(--pagination-duration, 19500ms) linear;
   width: 0.48rem;
+}
+
+.info,
+.slide-actions {
+  z-index: 10;
 }
 
 @media (min-width: 751px) and (max-width: 1023px) {

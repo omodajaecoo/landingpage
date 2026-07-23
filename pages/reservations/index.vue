@@ -2,16 +2,36 @@
   <main class="min-h-[80vh] bg-[#0D0E0E]">
     <div class="reservations-hero">
       <div class="reservations-hero__logos">
-        <img
-          src="/images/reservations/E5-NEXT-logo.png"
-          alt="E5 NEXT"
-          class="reservations-hero__logo reservations-hero__logo--e5"
-        />
-        <img
-          src="/images/reservations/JAECOO-J5-logo.png"
-          alt="JAECOO J5"
-          class="reservations-hero__logo reservations-hero__logo--j5"
-        />
+        <div class="reservations-hero__logo-action reservations-hero__logo-action--e5">
+          <img
+            src="/images/reservations/E5-NEXT-logo.png"
+            alt="E5 NEXT"
+            class="reservations-hero__logo reservations-hero__logo--e5"
+          />
+          <a
+            class="reservations-hero__file-button"
+            href="/files/Ficha_Tecnica_OMODA-E5-NEXT.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+            FICHA TÉCNICA
+          </a>
+        </div>
+        <div class="reservations-hero__logo-action reservations-hero__logo-action--j5">
+          <img
+            src="/images/reservations/JAECOO-J5-logo.png"
+            alt="JAECOO J5"
+            class="reservations-hero__logo reservations-hero__logo--j5"
+          />
+          <a
+            class="reservations-hero__file-button"
+            href="/files/Ficha_Tecnica_JAECOO-J5.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+            FICHA TÉCNICA
+          </a>
+        </div>
       </div>
       <div class="reservations-hero__content">
         <h1 class="reservations-hero__title">
@@ -97,10 +117,25 @@ onBeforeUnmount(() => {
   left: 0.24rem;
   right: 0.24rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.24rem;
   pointer-events: none;
+}
+
+.reservations-hero__logo-action {
+  display: flex;
+  flex-direction: column;
+  gap: 0.14rem;
+  pointer-events: auto;
+}
+
+.reservations-hero__logo-action--e5 {
+  align-items: flex-start;
+}
+
+.reservations-hero__logo-action--j5 {
+  align-items: flex-end;
 }
 
 .reservations-hero__logo {
@@ -115,6 +150,29 @@ onBeforeUnmount(() => {
 
 .reservations-hero__logo--j5 {
   width: min(2.5rem, 42vw);
+}
+
+.reservations-hero__file-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0.36rem;
+  padding: 0 0.18rem;
+  border: 1px solid #67b0c4;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 0.12rem;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: #67b0c4;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: rgba(103, 176, 196, 0.84);
+  }
 }
 
 .reservations-hero__content {
@@ -168,9 +226,31 @@ onBeforeUnmount(() => {
     width: min(3.4rem, 24vw);
   }
 
+  .reservations-hero__file-button {
+    min-height: 0.42rem;
+    padding: 0 0.22rem;
+    font-size: 0.14rem;
+  }
+
   .reservations-hero__content {
     margin-left: 0.7rem;
     transform: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .reservations-hero__logos {
+    align-items: center;
+  }
+
+  .reservations-hero__logo-action {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.24rem;
+  }
+
+  .reservations-hero__logo-action--j5 {
+    flex-direction: row-reverse;
   }
 }
 
