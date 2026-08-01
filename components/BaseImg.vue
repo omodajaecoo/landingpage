@@ -18,7 +18,10 @@
     alt: ''
   })
   const config = useRuntimeConfig()
-  const imgUrl = computed(() => `${config.public.staticURL}/images${props.src.startsWith('/')?'':'/'}${props.src}`)
+  const imgUrl = computed(() => {
+    const src = props.src || ''
+    return `${config.public.staticURL}/images${src.startsWith('/') ? '' : '/'}${src}`
+  })
 </script>
 <style scoped lang='scss'>
 

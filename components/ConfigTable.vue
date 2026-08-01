@@ -1,5 +1,8 @@
 <template>
   <div class="table-main">
+    <span v-if="title" class="flex flex-col items-center justify-center text-white font-interRegular table-title">
+      {{ title }}
+    </span>
     <div v-if="paramsData && paramsData.title" :mq="['lg', 'xl', 'md']">
   
       <table class="params-table">
@@ -209,22 +212,26 @@
       <div class="params-div__remark">{{ paramsDataMobile.remarks[1] }}</div>
     </div>
     <div class="table-hint">
-      The pictures and parameters in this website are for reference only, and
-      the relevant configuration of the vehicle model will be adjusted
-      differently due to different national markets. The actual release of the
-      country shall prevail.
+      Las imágenes y los parámetros de este sitio web son solo de referencia. La configuración del modelo del vehículo puede variar según el mercado. La versión del país de lanzamiento prevalecerá.
+      <div v-if="versionHint" class="table-hint-version">
+        *aplica a la versión {{ versionHint }}
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { computed, ref, onMounted } from "vue";
 import * as XLSX from "xlsx";
 import axios from "axios";
 
 const props = defineProps<{
   dataUrl: string;
+  title?: string;
+  specialVersion?: string;
 }>();
+
+const versionHint = computed(() => props.specialVersion || "");
 
 var dir = useRuntimeConfig().public.staticURL + '/';
 var paramsData: any = ref("");
@@ -468,6 +475,13 @@ function menuClickMobile(k) {
   padding-top: 6rem;
   padding-top: calc(6 * 16 / 19.2 * 1vw);
 }
+
+.table-title {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 .table-hint {
   width: 80%;
   margin: 2.6rem auto;
@@ -478,6 +492,9 @@ function menuClickMobile(k) {
   color: #fff;
   text-align: left;
   opacity: 0.9;
+}
+.table-hint-version {
+  margin-top: 0.8em;
 }
 .params-table__title {
   width: 100%;
@@ -939,6 +956,12 @@ function menuClickMobile(k) {
         border: none;
       }
     }
+  }
+}
+
+@media (min-width: 640px) {
+  .table-title {
+    font-size: 24px;
   }
 }
 </style>

@@ -154,6 +154,28 @@ const carList = [
     ]
   },
   {
+    name: 'OMODA E5 NEXT',
+    carType: 'omoda-e5-next',
+    iconUrl: 'index/cars/omoda-e5-next/logo_e5next.webp',
+    imgUrl: 'index/cars/omoda-e5-next/banner_e5next.webp',
+    configList: [
+      { label: '+422 KMS AUTONOMÍA EV (NEDC)*', value: '422', unit: 'km' },
+      { label: '15.6" PANTALLA DUAL*', value: '15', unit: 'mm' },
+      { label: '7 AIRBAGS', value: '1588', unit: 'mm' },
+    ]
+  },
+  {
+    name: 'JAECOO J5',
+    carType: 'jaecoo-j5',
+    iconUrl: 'index/cars/jaecoo-j5/logo_j5.webp',
+    imgUrl: 'index/cars/jaecoo-j5/banner_j5.webp',
+    configList: [
+      { label: '+900 KMS AUTONOMÍA', value: '900', unit: 'km' },
+      { label: '13.2" PANTALLA VERTICAL*', value: '13', unit: '.2" PANTALLA VERTICAL*' },
+      { label: '6 AIRBAGS*', value: '6', unit: '.  AIRBAGS*' },
+    ]
+  },
+  {
     name: 'JAECOO J7',
     carType: 'jaecoo-j7',
     iconUrl: 'index/cars/jaecoo-j7/logo_j7.webp',
@@ -163,7 +185,7 @@ const carList = [
       { label: '14.8" PANTALLA VERTICAL', value: '1865', unit: 'mm' },
       { label: '7 AIRBAGS', value: '1680', unit: 'mm' },
     ]
-  }
+  }  
 ]
 
 
@@ -306,6 +328,14 @@ const goCarDetail = () => {
   }
 
   &-2 {
+    background-image: linear-gradient(to right, #f4f9fe, #819de1);
+  }
+
+  &-3 {
+    background-image: linear-gradient(to right, #f4f9fe, #98d4d8);
+  }
+
+  &-4 {
     background-image: linear-gradient(to right, #f4f9fe, #d5dcee);
   }
 }

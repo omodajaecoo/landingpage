@@ -36,15 +36,20 @@
 <script>
 import { TweenMax } from "gsap";
 import { isMobileDevice } from "~/utils/common";
-import { useRoute } from 'vue-router'
-import { computed } from 'vue'
-const route = useRoute();
-const isQuote = computed(() => {
-  return route.path === '/quote';
-});
+import { useRoute } from "vue-router";
+import { computed } from "vue";
 
 export default {
   name: "layout",
+  setup() {
+    const route = useRoute();
+    const isQuote = computed(() => route.path === "/quote");
+
+    return {
+      route,
+      isQuote,
+    };
+  },
   data() {
     return {
       current: 0,
@@ -93,7 +98,6 @@ export default {
       }, 810);
     },
     onSwiper(swiper) {
-      const route = useRoute();
       // // console.log(swiper);
       let _that = this;
       // swiper.on("scroll", function (e) {
@@ -128,7 +132,7 @@ export default {
       swiper.on("slideNextTransitionStart", function () {
         this.scrollHeight = this.activeIndex;
         let num;
-        switch (route.path) {
+        switch (_that.route.path) {
           case "/models":
             num = _that.ispc ? 5 : this.slides.length - 1;
             break;
@@ -150,7 +154,7 @@ export default {
       });
       swiper.on("slideChangeTransitionStart", function () {
         let num2;
-        switch (route.path) {
+        switch (_that.route.path) {
           case "/models":
             num2 = _that.ispc ? 5 : this.slides.length - 1;
             break;

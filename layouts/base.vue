@@ -3,14 +3,14 @@
     <!-- 回到顶部 -->
     <CommonBacktop />
   <!-- head -->
-  <LayoutsHeader v-if="route.path.startsWith('/LP')" />
+  <LayoutsHeader v-if="routePath.startsWith('/LP')" />
   <GeneralHeader v-else />
     <!-- content -->
     <div :id="'layout-' + String(route.name)">
       <slot></slot>
     </div>
     <!-- footer -->
-    <LayoutsFooter :routePath="route.path" />
+    <LayoutsFooter :routePath="routePath" />
     <LayoutsCookies />
   </div>
 </template>
@@ -24,12 +24,13 @@ import { useRoute } from "vue-router";
 const headerStore = useHeaderStore();
 const navStore = useNavStore();
 const route = useRoute();
+const routePath = computed(() => route.path || "");
 
 
 watch(
   route,
   (newVal) => {
-    if (newVal.path.startsWith("/LP")) {
+    if ((newVal.path || "").startsWith("/LP")) {
       headerStore.setHeaderTheme("dark");
       navStore.setActiveBrand("ALL");
     } else {

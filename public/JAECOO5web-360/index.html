@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>J5 ICE</title>
+    <style>
+    </style>
+    <script type="module" crossorigin src="./assets/main-wrbafuJ0.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/main-D2mQHKQ8.css">
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="renderCanvas"></canvas>
+    </div>
+  <script>
+    function sendMessage(msg) {
+      // console.log(window.parent)
+      window.parent.postMessage({
+        sendHeight: true,
+        message: msg,
+      }, '*')
+    }
+    window.addEventListener('wheel', function (event) {
+      let e = event.originalEvent || event;
+      let deltaY = e.deltaY || e.detail;
+      sendMessage(deltaY);
+      event.preventDefault();
+    }, { passive: false });
+    let startTime, startX, startY;
+    let isOverflow = true;
+    window.addEventListener('touchstart', function (event) {
+      let e = event.originalEvent || event;
+      startTime = Date.now();
+      if (event.changedTouches) {
+        startX = event.changedTouches[0].clientX;
+        startY = event.changedTouches[0].clientY;
+      } else {
+        startX = event.touches.currentX;
+        startY = event.touches.currentY;
+      }
+    }, { passive: false });
+
+    window.addEventListener('touchmove', function (event) {
+      if (isOverflow) {
+        if (event.preventDefault) {
+          event.preventDefault();
+        }
+      }
+    }, { passive: false });
+
+    window.addEventListener('touchend', function (event) {
+      const endTime = Date.now();
+      var endX, endY;
+      if (event.changedTouches) {
+        endX = event.changedTouches[0].clientX;
+        endY = event.changedTouches[0].clientY;
+      } else {
+        endX = event.touches.currentX;
+        endY = event.touches.currentY;
+      }
+      //判断按下的时长
+      console.log(startY - endY);
+
+      if (endTime - startTime > 200 || (startY - endY > 0 && startY - endY < 100) || (startY - endY < 0 && startY - endY > -100)) {
+        return;
+      }
+      //滑动的方向
+      let direction = "";
+      //先判断用户滑动的距离，是否合法，合法:判断滑动的方向 注意 距离要加上绝对值
+      if (Math.abs(endY - startY) > 10) {
+        //滑动方向
+        direction = endY - startY > 0 ? "down" : "up";
+      } else {
+        return;
+      }
+      //用户做了合法的滑动操作
+      if (direction === "up") {
+        sendMessage(100);
+      }
+      if (direction === "down") {
+        sendMessage(-100);
+      }
+    }, { passive: false });
+
+  </script>
+  </body>
+</html>

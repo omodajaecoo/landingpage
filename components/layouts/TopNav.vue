@@ -277,6 +277,18 @@
           brand: brandList[0],
           linkUrl: '/models/jaecoo-j7'
         },
+        {
+          name: 'JAECOO J5',
+          imgUrl: '/header/j5.png',
+          brand: brandList[0],
+          linkUrl: '/models/jaecoo-j5'
+        },
+        {
+          name: 'OMODA E5 NEXT',
+          imgUrl: '/header/e5next.webp',
+          brand: brandList[1],
+          linkUrl: '/models/omoda-e5-next'
+        },
         
       ]
     },

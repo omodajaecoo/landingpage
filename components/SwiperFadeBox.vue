@@ -211,12 +211,16 @@ const handlePageChange = (index) => {
     left: 0;
     width: 100vw;
     height: calc(900 / 1125 * 100vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0;
     margin-top: 0;
   }
   .fade-car > img {
     width: 100%;
     height: 100%;
+    object-fit: contain;
   }
   .fade-head {
     top: calc(448 / 1125 * 100vw);
@@ -233,8 +237,8 @@ const handlePageChange = (index) => {
     line-height: calc(42 / 1125 * 100vw);
   }
   .fade-pagination {
-    top: calc(1850 / 1125 * 100vw);
-    bottom: auto;
+    top: auto;
+    bottom: clamp(24px, 7vh, 72px);
     overflow-x: auto;
     scrollbar-width: none;
 
