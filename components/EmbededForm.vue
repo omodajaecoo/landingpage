@@ -2,7 +2,7 @@
   <div :class="containerClass" :style="containerStyle">
     <iframe
       v-if="url"
-      :src="url"
+      :src="iframeSrc"
       :width="width"
       :height="height"
       :frameborder="frameborder"
@@ -10,6 +10,7 @@
       :style="iframeStyle"
       :allowfullscreen="allowFullscreen"
       :loading="loading"
+      data-powerapps-form="true"
       scrolling="yes"
     />
     <div v-else class="flex items-center justify-center p-8 bg-gray-100 rounded">
@@ -19,8 +20,9 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import type { StyleValue } from 'vue';
+import { useRoute } from 'vue-router';
 
 interface Props {
   url: string;
@@ -34,6 +36,8 @@ interface Props {
   allowFullscreen?: boolean;
   loading?: 'lazy' | 'eager';
   redirectIos?: boolean;
+  forwardParams?: boolean;
+  paramMode?: 'keep' | 'overwrite';
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -46,8 +50,55 @@ const props = withDefaults(defineProps<Props>(), {
   iframeStyle: '',
   allowFullscreen: true,
   loading: 'lazy',
-  redirectIos: true
+  redirectIos: true,
+  forwardParams: true,
+  paramMode: 'keep'
 });
+
+const route = useRoute();
+
+function appendParamsToUrl(url: string, params: URLSearchParams): string {
+  if (!props.forwardParams) return url;
+
+  var hasParams = false;
+  params.forEach(() => {
+    hasParams = true;
+  });
+  if (!hasParams) return url;
+
+  try {
+    const srcUrl = new URL(url);
+    const merged = new URLSearchParams(srcUrl.search);
+
+    params.forEach((value, key) => {
+      if (props.paramMode === 'overwrite' || !merged.has(key)) {
+        merged.set(key, value);
+      }
+    });
+
+    srcUrl.search = merged.toString();
+    return srcUrl.toString();
+  } catch {
+    return url;
+  }
+}
+
+function getRouteParams(): URLSearchParams {
+  const params = new URLSearchParams();
+
+  Object.entries(route.query).forEach(([key, value]) => {
+    const values = Array.isArray(value) ? value : [value];
+
+    values.forEach((item) => {
+      const paramValue = (item == null ? '' : String(item)).trim();
+      if (paramValue !== '') params.append(key, paramValue);
+    });
+  });
+
+  return params;
+}
+
+const iframeSrc = computed(() => appendParamsToUrl(props.url, getRouteParams()));
 
 function isIOSDevice(): boolean {
   const ua = navigator.userAgent || "";
@@ -81,7 +132,9 @@ function redirectIOS(): void {
   const params = getLandingParams();
   if (window.location.href.indexOf("powerappsportals.com") !== -1) return;
 
-  window.location.href = props.url + params;
+  window.location.href = params
+    ? appendParamsToUrl(props.url, new URLSearchParams(params))
+    : iframeSrc.value;
 }
 
 onMounted(() => {

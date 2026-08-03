@@ -59,8 +59,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeUnmount, onMounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { usePowerAppsFormMessages } from '~/composables/usePowerAppsFormMessages';
 
 defineOptions({
   name: 'ReservationsPage'
@@ -68,31 +67,9 @@ defineOptions({
 
 const URL_FORM = 'https://ayas-formweb-prd.powerappsportals.com/tools/omoda-jaecoo/quotation-checkout-form/';
 const formBreakpoints = 'h-[1785px] min-[390px]:h-[1785px] min-[501px]:h-[1775px] min-[513px]:h-[1535px] min-[513px]:h-[1485px] min-[596px]:h-[1435px] min-[615px]:h-[1785px] min-[640px]:h-[1435px] min-[708px]:h-[1735px] min-[828px]:h-[1715px] min-[838px]:h-[1385px] min-[1024px]:h-[1435px]';
-const router = useRouter();
-const route = useRoute();
 
-const handleFormSubmitMessage = (event: MessageEvent) => {
-  const allowedOrigins = ['https://ayas-formweb-prd.powerappsportals.com'];
-  if (!allowedOrigins.includes(event.origin)) return;
-
-  const data = event.data || {};
-  if (data.type === 'redirect' && typeof data.url === 'string' && data.url) {
-    sessionStorage.setItem('tyAccess', Date.now().toString());
-    router.push({
-      path: '/thank-you',
-      query: {
-        source: route.path.replace(/^\//, '')
-      }
-    });
-  }
-};
-
-onMounted(() => {
-  window.addEventListener('message', handleFormSubmitMessage, false);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener('message', handleFormSubmitMessage, false);
+usePowerAppsFormMessages({
+  enablePaymentRedirect: true
 });
 </script>
 

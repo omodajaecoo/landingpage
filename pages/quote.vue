@@ -10,37 +10,12 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { usePowerAppsFormMessages } from '~/composables/usePowerAppsFormMessages';
 
 const URL_FORM = 'https://ayas-formweb-prd.powerappsportals.com/tools/omoda-jaecoo/form-quote-general';
 const breakpoints = "h-[2050px] min-[390px]:h-[2020px] min-[501px]:h-[1740px] min-[596px]:h-[2050px] min-[828px]:h-[1600px] min-[1024px]:h-[1650px]";
 
-const router = useRouter();
-const route = useRoute();
-
-const handleFormSubmitMessage = (event: MessageEvent) => {
-  const allowedOrigins = ['https://ayas-formweb-prd.powerappsportals.com'];
-  if (allowedOrigins.indexOf(event.origin) === -1) return;
-  
-  const data = event.data || {};
-  if (data.type === 'redirect' && typeof data.url === 'string' && data.url) {
-    sessionStorage.setItem('tyAccess', Date.now().toString());
-    const isLPRoute = route.path.startsWith('/LP');
-    const thankYouPath = isLPRoute ? '/LP/thank-you' : '/thank-you';
-    const queryParams: Record<string, string> = { source: route.path.replace(/^\//, '') };
-    
-    router.push({ path: thankYouPath, query: queryParams });
-  }
-};
-
-onMounted(() => {
-  window.addEventListener('message', handleFormSubmitMessage, false);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('message', handleFormSubmitMessage, false);
-});
+usePowerAppsFormMessages();
 
 </script>
 <style lang='scss'>
