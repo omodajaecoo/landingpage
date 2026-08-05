@@ -7,6 +7,13 @@
         :modules="[SwiperAutoplay, SwiperPagination, SwiperEffectCreative]"
         :slides-per-view="1"
         :loop="swiperArr.length > 1 ? true : false"
+        :nested="true"
+        :threshold="8"
+        :longSwipes="true"
+        :longSwipesRatio="0.25"
+        :touchAngle="32"
+        :touchMoveStopPropagation="false"
+        :passiveListeners="false"
         :autoplay="{
           delay: 8000,
           disableOnInteraction: true,
@@ -151,11 +158,13 @@ function changeMobSwiper(type:any) {
   width: 100%;
   height: 100vh;
   position: relative;
+  touch-action: pan-y;
 }
 
 .mob-swiper-container .swiper-container {
   width: 100%;
   height: 100vh;
+  touch-action: pan-y;
 }
 .mob-swiper-container .btn {
   width: 1rem;

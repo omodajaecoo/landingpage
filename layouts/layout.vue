@@ -9,13 +9,18 @@
         :modules="[SwiperFreeMode, SwiperMousewheel, SwiperScrollbar]"
         :freeMode="{ enabled: isFree, minimumVelocity: 0.1 }"
         :noSwiping="true"
-        :longSwipes="false"
-        :mousewheel="{ enable: true, thresholdDelta: 33 }"
+        :longSwipes="true"
+        :longSwipesRatio="0.25"
+        :mousewheel="{ enabled: true, thresholdDelta: 33 }"
         :slidesPerView="'auto'"
         :parallax="true"
         :virtualTranslate="true"
         :centeredSlides="true"
         :slidesOffsetAfter="20"
+        :threshold="8"
+        :touchAngle="38"
+        :touchReleaseOnEdges="true"
+        :passiveListeners="false"
         :scrollbar="ispc ? { el: '.swiper-scrollbar', draggable: true } : false"
         @swiper="onSwiper"
         @touch-start="handleTouchstart"
@@ -255,14 +260,19 @@ export default {
       }
     },
     // 清除触摸事件
-    handleTouchmove(event) {
+    handleTouchmove(swiper, event) {
       if (this.ispc == true) {
+        return false;
+      }
+      const touchEvent = event || swiper;
+      const target = touchEvent?.target;
+      if (target?.closest?.(".mob-swiper-container, .insideSwiper")) {
         return false;
       }
       if (this.isOverflow) {
         this.clearLockDelay();
-        if (event.preventDefault) {
-          event.preventDefault();
+        if (touchEvent.preventDefault) {
+          touchEvent.preventDefault();
         }
       }
     },
@@ -404,6 +414,11 @@ export default {
   transition: all linear 0.5s;
   z-index: 10;
   position: relative;
+  touch-action: pan-x;
+}
+
+.fullPageContainer :deep(.insideSwiper) {
+  touch-action: pan-x;
 }
 
 .fullPage .swiper {

@@ -240,11 +240,12 @@
       </SwiperSlide>
       <SwiperSlide>
         <Swiper class="insideSwiper" style="width: 100%; height: 100vh; transform: none"
-          :modules="[SwiperFreeMode, SwiperMousewheel]" direction="vertical" :mousewheel="true" slidesPerView="auto"
+          :modules="[SwiperFreeMode, SwiperMousewheel]" direction="vertical" :mousewheel="{ enabled: true, releaseOnEdges: true, thresholdDelta: 18 }" slidesPerView="auto"
           :freeMode="{
             enabled: true,
             minimumVelocity: 0.1,
-          }" :nested="true" :observer="true" :observeParents="true" :autoHeight="true">
+          }" :nested="true" :observer="true" :observeParents="true" :autoHeight="true"
+          :threshold="8" :longSwipes="true" :longSwipesRatio="0.25" :touchAngle="38" :touchReleaseOnEdges="true" :passiveListeners="false">
           <SwiperSlide class="mobile-collage_section" v-if="showMobileSwiper">
             <div class="img-main">
               <div class="img-item item1">

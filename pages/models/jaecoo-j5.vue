@@ -7,6 +7,7 @@
       >
         <FullBox
           v-if="page.code === 'box'"
+          class="j5-safe-bottom"
           :ispc="!isMobile"
           :imgUrl="page.imgUrl"
           :style="page.style"
@@ -20,16 +21,18 @@
         </FullBox>
         <SwiperFullBox
           v-if="page.code === 'swiper'"
+          class="j5-safe-bottom"
           :ispc="!isMobile"
           :slide="page.slide"
         />
         <SwiperFadeBox
           v-if="page.code === 'fade'"
+          class="j5-safe-bottom"
           :ispc="!isMobile"
           :fade="page.fade"
         />
         <div 
-          v-if="page.code === 'web360'" class="wrap_360" ref="web360">
+          v-if="page.code === 'web360'" class="wrap_360 j5-safe-bottom" ref="web360">
           <iframe
             ref="web360_iframe"
             id="wrap_360"
@@ -62,7 +65,7 @@
           style="width: 100%; height: 100vh; transform: none"
           :modules="[SwiperFreeMode, SwiperMousewheel]"
           direction="vertical"
-          :mousewheel="true"
+          :mousewheel="{ enabled: true, releaseOnEdges: true, thresholdDelta: 18 }"
           slidesPerView="auto"
           :freeMode="{
             enabled: true,
@@ -72,6 +75,12 @@
           :observer="true"
           :observeParents="true"
           :autoHeight="true"
+          :threshold="8"
+          :longSwipes="true"
+          :longSwipesRatio="0.25"
+          :touchAngle="38"
+          :touchReleaseOnEdges="true"
+          :passiveListeners="false"
         >
           <SwiperSlide style="height: auto; display: block">
             <ClientOnly fallback-tag="span" fallback="Loading comments...">
@@ -1097,6 +1106,44 @@ function web360Change(txt) {
 }
 
 @media screen and (max-width: 1023px) {
+  .j5-safe-bottom {
+    --j5-mobile-bottom-safe: 48px;
+    --j5-mobile-bottom-safe: max(48px, env(safe-area-inset-bottom));
+  }
+
+  :deep(.j5-safe-bottom .box-bottom) {
+    bottom: calc(136 / 1125 * 100vw + var(--j5-mobile-bottom-safe));
+  }
+
+  :deep(.j5-safe-bottom .box-bottom.h3) {
+    bottom: calc((136 - 96 / 2) / 1125 * 100vw + var(--j5-mobile-bottom-safe));
+  }
+
+  :deep(.j5-safe-bottom .box-leftBottom),
+  :deep(.j5-safe-bottom .box-rightBottom) {
+    bottom: calc(186 / 1125 * 100vw + var(--j5-mobile-bottom-safe));
+  }
+
+  :deep(.j5-safe-bottom .box-box-count) {
+    bottom: var(--j5-mobile-bottom-safe);
+  }
+
+  :deep(.j5-safe-bottom .number-tab-wrap) {
+    bottom: calc(24px + var(--j5-mobile-bottom-safe));
+  }
+
+  :deep(.j5-safe-bottom .btn) {
+    bottom: calc(136 / 1125 * 100vw + var(--j5-mobile-bottom-safe));
+  }
+
+  :deep(.j5-safe-bottom .h6-pagination) {
+    bottom: calc(120 / 1125 * 100vw + var(--j5-mobile-bottom-safe));
+  }
+
+  :deep(.j5-safe-bottom .fade-pagination) {
+    bottom: calc(clamp(24px, 7vh, 72px) + var(--j5-mobile-bottom-safe));
+  }
+
   .wrap_360 .icon {
     width: 0.8rem;
   }
