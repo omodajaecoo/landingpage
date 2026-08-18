@@ -8,7 +8,7 @@ interface UsePowerAppsFormMessagesOptions {
 }
 
 const DEFAULT_POWER_APPS_ORIGINS = ['https://ayas-formweb-prd.powerappsportals.com'];
-const DEFAULT_PAYMENT_HOSTS = ['checkout.ayasa.ec'];
+const DEFAULT_PAYMENT_HOSTS = ['checkout.ayasa.ec', 'checkout.omodajaecoo.ec'];
 
 function parseMessageData(data: unknown): Record<string, unknown> | null {
   if (!data) return null;
