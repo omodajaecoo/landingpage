@@ -8,6 +8,7 @@
     "generate": "nuxt generate --dotenv .env.development",
     "generate:prod": "nuxt generate --dotenv .env.production",
     "generate:test": "nuxt generate --dotenv .env.test",
+    "fonts:subset": "node scripts/subset-misans.mjs",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",

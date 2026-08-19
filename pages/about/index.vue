@@ -23,7 +23,7 @@
         Desde 1963, Automotores y Anexos ha sido protagonista en la evolución de la movilidad en Ecuador, iniciando con la representación de Nissan y consolidando alianzas con marcas globales como Renault, Foton y BAIC. Con más de seis décadas de experiencia, seguimos innovando para ofrecer soluciones que respondan a las tendencias del mercado y a las necesidades de nuestros clientes. Hoy, damos un paso hacia el futuro con la incorporación de Omoda y Jaecoo, marcas del Grupo Chery que están diseñadas para la mejor experiencia automotriz con diseño vanguardista, tecnología inteligente y un firme compromiso con la movilidad sostenible. Nuestra historia es sinónimo de confianza, calidad y visión, y con estas nuevas marcas reafirmamos nuestro propósito: construir relaciones duraderas y liderar la transformación del sector automotor en el país.
         </div>
         <div class="flex justify-center items-center">
-        <img src="/images/about/banner1bg_logo.webp" alt="Logo" class="w-[132px] sm:w-[250px] h-[50px] sm:h-[96px] mt-[24px]" />
+        <img src="/images/common/logo_ayasa_dark.png" alt="Logo" class="w-[132px] sm:w-[250px]  mt-[24px]" />
         </div>
         `,
         h5ClassName: 'h5-brand-sub',

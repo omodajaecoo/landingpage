@@ -77,7 +77,9 @@ const categories = [
     title: 'JAECOO',
     isLinked: false,
     links: [
+      { name: 'JAECOO J5 SHS H', link: '/models/jaecoo-j5' },
       { name: 'JAECOO J7 SHS P', link: '/models/jaecoo-j7' },
+
     ]
   },
   {
@@ -86,6 +88,7 @@ const categories = [
     links: [
       { name: 'OMODA C5 SHS H', link: '/models/omoda-c5' },
       { name: 'OMODA E5', link: '/models/omoda-e5' },
+      { name: 'OMODA E5 NEXT', link: '/models/omoda-e5-next' },
     ]
   },
   {

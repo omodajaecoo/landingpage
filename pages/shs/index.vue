@@ -8,6 +8,7 @@
         :ispc="!isMobile"
         :imgUrl="page.imgUrl"
         :style="page.style"
+        :logo="page.logo"
         :top="page.top"
         :leftBottom="page.leftBottom"
         :horizontal="page.horizontal"
@@ -20,6 +21,7 @@
 <script lang="ts" setup>
 interface PageData {
   imgUrl: string;
+  logo?: string;
   style?: string;
   top?: {
     title?: string;
@@ -81,7 +83,7 @@ const allPageData: AllPageData = {
               },
               {
             title: "Autonomía extendida",
-            desc: "Hasta 1,200 km de recorrido combinado, sin limitantes de autonomía.",
+            desc: "Hasta 1,350 km de recorrido combinado, sin limitantes de autonomía.",
               },
               {
             title: "Amplia autonomía eléctrica",
@@ -92,6 +94,7 @@ const allPageData: AllPageData = {
     },
     {
       imgUrl: "shs/bg_3.webp",
+      logo: "logos/logo_C5_SHS-H_white.png",
       style: "p3",
       top: {
         title: "REDISEÑANDO EL RENDIMIENTO",
@@ -114,6 +117,7 @@ const allPageData: AllPageData = {
     },
     {
       imgUrl: "shs/bg_4.webp",
+      logo: "logos/logo_J7_SHS-P_white.png",
       top: {
         title: "MOVILIDAD PENSADA EN TI",
         desc: "La integración ideal entre un SUV eléctrico e híbrido, otorgando la solución en movilidad pensada en nuestra realidad.",
@@ -142,6 +146,7 @@ const allPageData: AllPageData = {
     },
     {
       imgUrl: "shs/bg_6.webp",
+      logo: "logos/logo_C5_SHS-H_white.png",
       style: "p6",
       top: {
         title: "AUTONOMÍA COMBINADA EXTENDIDA",
@@ -176,6 +181,7 @@ const allPageData: AllPageData = {
     },
     {
       imgUrl: "shs/bg_10.webp",
+      logo: "logos/logo_J7_SHS-P_white.png",
       style: "p10",
       top: {
         title: "AUTONOMÍA ELÉCTRICA EXTENDIDA",
@@ -235,7 +241,7 @@ const allPageData: AllPageData = {
           },
           {
             title: "Autonomía extendida",
-            desc: "Hasta 1,200 km de recorrido combinado, sin limitantes de autonomía.",
+            desc: "Hasta 1,350 km de recorrido combinado, sin limitantes de autonomía.",
           },
           {
             title: "Amplia autonomía eléctrica",
@@ -246,6 +252,7 @@ const allPageData: AllPageData = {
     },
     {
       imgUrl: "shs/bg_3_m.webp",
+      logo: "logos/logo_C5_SHS-H_white.png",
       style: "h3",
       top: {
         title: "REDISEÑANDO EL RENDIMIENTO",
@@ -269,6 +276,7 @@ const allPageData: AllPageData = {
     },
     {
       imgUrl: "shs/bg_4_m.webp",
+      logo: "logos/logo_J7_SHS-P_white.png",
       top: {
         title: "MOVILIDAD PENSADA EN TI",
         desc: "La integración ideal entre un SUV eléctrico e híbrido, otorgando la solución en movilidad pensada en nuestra realidad.",
@@ -298,6 +306,7 @@ const allPageData: AllPageData = {
     },
     {
       imgUrl: "shs/bg_6_m.webp",
+      logo: "logos/logo_C5_SHS-H_white.png",
       style: "h6",
       top: {
         title: "AUTONOMÍA COMBINADA EXTENDIDA",
@@ -333,6 +342,7 @@ const allPageData: AllPageData = {
     },
     {
       imgUrl: "shs/bg_10_m.webp",
+      logo: "logos/logo_J7_SHS-P_white.png",
       style: "h10",
       top: {
         title: "AUTONOMÍA ELÉCTRICA EXTENDIDA",

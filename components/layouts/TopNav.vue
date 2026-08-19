@@ -278,7 +278,7 @@
           linkUrl: '/models/jaecoo-j7'
         },
         {
-          name: 'JAECOO J5',
+          name: 'JAECOO J5 SHS H',
           imgUrl: '/header/j5.png',
           brand: brandList[0],
           linkUrl: '/models/jaecoo-j5'

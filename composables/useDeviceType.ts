@@ -3,6 +3,7 @@ import { isMobileDevice, debunce } from '~/utils/common';
 function useDeviceType() {
   const { isClient } = useNuxtApp();
   const isMobile = ref(isClient ? isMobileDevice() : false);
+  let resizeHandler: (() => void) | undefined;
 
   const handleResize = () => {
     isMobile.value = isMobileDevice();
@@ -10,11 +11,14 @@ function useDeviceType() {
 
   onMounted(() => {
     handleResize();
-    window.addEventListener('resize', debunce(handleResize));
+    resizeHandler = debunce(handleResize);
+    window.addEventListener('resize', resizeHandler);
   })
 
   onBeforeUnmount(() => {
-    window.removeEventListener('resize', debunce(handleResize));
+    if (resizeHandler) {
+      window.removeEventListener('resize', resizeHandler);
+    }
   })
 
   return {

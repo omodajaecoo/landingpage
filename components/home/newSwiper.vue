@@ -7,18 +7,18 @@
         immediate: true,
       }"
     >
-      <ClientOnly>
-        <swiper
-          :loop="true"
-          :autoplay="{
-            delay: DEFAULT_SLIDE_DELAY,
-          }"
-          :speed="500"
-          :modules="[SwiperAutoplay]"
-          @swiper="handleInit"
-          @slide-change="handleSlideChange"
-          class="home-swiper"
-        >
+      <swiper
+        :loop="true"
+        :autoplay="{
+          delay: DEFAULT_SLIDE_DELAY,
+          disableOnInteraction: false,
+        }"
+        :speed="500"
+        :modules="[SwiperAutoplay]"
+        @swiper="handleInit"
+        @slide-change="handleSlideChange"
+        class="home-swiper"
+      >
           <swiper-slide
             v-for="(slide, idx) in slides"
             :key="idx"
@@ -47,9 +47,13 @@
                   (isMobile ? slide.imgUrlMobile : slide.imgUrl)
                 "
                 class="w-full h-full object-cover"
+                :alt="slide.title || slide.desc || 'OMODA JAECOO'"
+                decoding="async"
+                :fetchpriority="idx === 0 ? 'high' : 'low'"
+                :loading="idx === 0 ? 'eager' : 'lazy'"
               />
               <video
-                v-else-if="slide.type === 'video'"
+                v-else-if="slide.type === 'video' && shouldLoadSlideMedia(idx)"
                 :id="'page1KVVideo' + idx"
                 :poster="
                   config.public.staticURL +
@@ -59,7 +63,7 @@
                 class="w-full h-full object-cover"
                 loop
                 muted
-                preload="auto"
+                preload="metadata"
                 playsinline="true"
                 x5-playsinline="true"
                 webkit-playsinline="true"
@@ -77,10 +81,23 @@
                   "
                 />
               </video>
+              <img
+                v-else-if="slide.type === 'video'"
+                :src="
+                  config.public.staticURL +
+                  '/' +
+                  (isMobile ? slide.imgUrlMobile : slide.imgUrl)
+                "
+                class="w-full h-full object-cover"
+                :alt="slide.title || slide.desc || 'OMODA JAECOO'"
+                decoding="async"
+                fetchpriority="low"
+                loading="lazy"
+              />
               <div
                 v-if="slide.topLeftText"
-                class="top-left-text anim absolute z-10 text-white"
-                :class="slide.topLeftTextClass"
+                class="top-left-text absolute z-10 text-white"
+                :class="[slide.topLeftTextClass, { anim: shouldAnimateSlideContent(idx) }]"
                 v-html="slide.topLeftText"
               />
               <div
@@ -89,7 +106,8 @@
               >
                 <div
                   v-if="slide.title || slide.desc"
-                  class="anim mb-[0.24rem] flex flex-col items-center text-center"
+                  class="mb-[0.24rem] flex flex-col items-center text-center"
+                  :class="{ anim: shouldAnimateSlideContent(idx) }"
                 >
                   <h2
                     v-if="slide.title"
@@ -106,7 +124,8 @@
                 </div>
                 <div
                   v-if="slide.linkUrl || slide.secondaryButtonUrl"
-                  class="slide-actions anim flex flex-wrap justify-center gap-[0.12rem] lg:gap-[0.2rem]"
+                  class="slide-actions flex flex-wrap justify-center gap-[0.12rem] lg:gap-[0.2rem]"
+                  :class="{ anim: shouldAnimateSlideContent(idx) }"
                 >
                   <BaseButton
                     v-if="slide.linkUrl"
@@ -127,34 +146,37 @@
             </div>
           </swiper-slide>
           <!-- 分页器 -->
-          <div
-            slot="container-end"
-            class="absolute bottom-[1.1rem] left-1/2 transform translate-x-[-50%] z-10 lg:right-[0.6rem] lg:left-[unset] lg:translate-x-0 opacity-0"
-            :class="{ 'opacity-100': visible }"
-          >
-            <div class="pagination-wrap flex gap-x-[0.09rem] relative">
-              <div
-                class="pagination-item w-[0.48rem] h-[0.02rem] bg-white/30 cursor-pointer"
-                v-for="i in slideLength"
-                :key="i"
-                @click="handleChangeSlide(i - 1)"
-              ></div>
-              <div
-                class="w-0 h-[0.02rem] bg-white/80 absolute top-0 duration-300"
-                :class="{ 'active-bar': showPagination }"
-                :style="activePaginationLeft"
-              ></div>
+          <template #container-end>
+            <div
+              class="absolute bottom-[1.1rem] left-1/2 transform translate-x-[-50%] z-10 lg:right-[0.6rem] lg:left-[unset] lg:translate-x-0 opacity-0"
+              :class="{ 'opacity-100': visible }"
+            >
+              <div class="pagination-wrap flex gap-x-[0.09rem] relative">
+                <div
+                  class="pagination-item w-[0.48rem] h-[0.02rem] bg-white/30 cursor-pointer"
+                  v-for="i in slideLength"
+                  :key="i"
+                  @click="handleChangeSlide(i - 1)"
+                ></div>
+                <div
+                  class="w-0 h-[0.02rem] bg-white/80 absolute top-0 duration-300"
+                  :class="{ 'active-bar': showPagination }"
+                  :style="activePaginationLeft"
+                ></div>
+              </div>
             </div>
-          </div>
-        </swiper>
-      </ClientOnly>
+          </template>
+      </swiper>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import { type Swiper } from "swiper";
 import { useRouter } from "vue-router";
+import { useRuntimeConfig } from "#imports";
+import useDeviceType from "~/composables/useDeviceType";
 
 interface SlideItem {
   imgUrl: string;
@@ -188,9 +210,10 @@ const PAGINATION_TRANSITION_OFFSET = 500;
 const slideLength = computed(() => props.slides.length);
 
 let swiperInst: Swiper;
+let hasStartedAutoplay = false;
 
 const activeIndex = ref(0);
-const visible = ref(false);
+const visible = ref(true);
 const showPagination = ref(false);
 let timerPagination = 0;
 
@@ -202,6 +225,14 @@ const router = useRouter();
 const getSlideDelay = (slide?: SlideItem) =>
   slide?.autoplayDelay ?? DEFAULT_SLIDE_DELAY;
 
+const shouldLoadSlideMedia = (idx: number) => {
+  return idx === 0 || idx === activeIndex.value;
+};
+
+const shouldAnimateSlideContent = (idx: number) => {
+  return idx !== 0;
+};
+
 const handlePauseVideo = () => {
   const videoDom = document.querySelectorAll(".home-page video");
   videoDom.forEach((dom) => {
@@ -209,20 +240,23 @@ const handlePauseVideo = () => {
   });
 };
 
-const handleSlideChange = (curSwiper: any) => {
+const handleSlideChange = (curSwiper: Swiper) => {
   activeIndex.value = curSwiper.realIndex;
   visible.value = true;
   handleAnimation();
 
   handlePauseVideo();
   if (props.slides[activeIndex.value].type === "video") {
-    const videoDom = document.querySelector(
-      "#page1KVVideo" + activeIndex.value
-    ) as HTMLVideoElement;
-    if (videoDom) {
-      videoDom.play().catch(() => {
-      });
-    }
+    nextTick(() => {
+      const videoDom = document.querySelector(
+        "#page1KVVideo" + activeIndex.value
+      ) as HTMLVideoElement;
+      if (videoDom) {
+        videoDom.load();
+        videoDom.play().catch(() => {
+        });
+      }
+    });
   }
 
   showPagination.value = false;
@@ -232,8 +266,9 @@ const handleSlideChange = (curSwiper: any) => {
   }, 300);
 };
 
-const handleInit = (inst: any) => {
+const handleInit = (inst: Swiper) => {
   swiperInst = inst;
+  swiperInst.autoplay?.stop();
 
   handleAnimation();
 
@@ -251,6 +286,28 @@ const handleInit = (inst: any) => {
     }, 100);
   }
 };
+
+const startAutoplayAfterInteraction = () => {
+  if (hasStartedAutoplay) return;
+
+  hasStartedAutoplay = true;
+  swiperInst?.autoplay?.start();
+  removeAutoplayStartListeners();
+};
+
+const addAutoplayStartListeners = () => {
+  window.addEventListener("pointerdown", startAutoplayAfterInteraction, { passive: true });
+  window.addEventListener("keydown", startAutoplayAfterInteraction);
+};
+
+const removeAutoplayStartListeners = () => {
+  window.removeEventListener("pointerdown", startAutoplayAfterInteraction);
+  window.removeEventListener("keydown", startAutoplayAfterInteraction);
+};
+
+onMounted(() => {
+  addAutoplayStartListeners();
+});
 
 const activePaginationLeft = computed(() => {
   const paginationDuration = Math.max(
@@ -287,7 +344,9 @@ const handleSecondaryButtonClick = (url: string) => {
 const handleAnimation = () => {
   if (!swiperInst) return;
 
-  const curSlide = swiperInst.slides[activeIndex.value];
+  const curSlide = swiperInst.slides[swiperInst.activeIndex];
+  if (!curSlide) return;
+
   const animElements = curSlide.querySelectorAll(".anim");
   if (animElements.length === 0) return;
 
@@ -301,6 +360,7 @@ const handleAnimation = () => {
 
 onBeforeUnmount(() => {
   window.clearTimeout(timerPagination);
+  removeAutoplayStartListeners();
 });
 </script>
 

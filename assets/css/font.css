@@ -1,36 +1,41 @@
 @font-face {
   font-family: "MiSansLight";
-  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Light.woff2);
+  src: url("@/assets/fonts/MiSans-Light-latin.woff2") format("woff2");
   font-weight: 250;
   font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0100-017F, U+0180-024F, U+2000-206F, U+20A0-20CF, U+2122, U+2190-21FF, U+2212, U+25A0-25FF;
 }
 
 @font-face {
   font-family: "MiSansNormal";
-  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Normal.woff2);
+  src: url("@/assets/fonts/MiSans-Normal-latin.woff2") format("woff2");
   font-weight: 305;
   font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0100-017F, U+0180-024F, U+2000-206F, U+20A0-20CF, U+2122, U+2190-21FF, U+2212, U+25A0-25FF;
 }
 
 @font-face {
   font-family: "MiSansRegular";
-  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Regular.woff2);
+  src: url("@/assets/fonts/MiSans-Regular-latin.woff2") format("woff2");
   font-weight: 330;
   font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0100-017F, U+0180-024F, U+2000-206F, U+20A0-20CF, U+2122, U+2190-21FF, U+2212, U+25A0-25FF;
 }
 
 @font-face {
   font-family: "MiSansMedium";
-  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Medium.woff2);
+  src: url("@/assets/fonts/MiSans-Medium-latin.woff2") format("woff2");
   font-weight: 380;
   font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0100-017F, U+0180-024F, U+2000-206F, U+20A0-20CF, U+2122, U+2190-21FF, U+2212, U+25A0-25FF;
 }
 
 @font-face {
   font-family: "MiSansBold";
-  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Semibold.woff2);
+  src: url("@/assets/fonts/MiSans-Semibold-latin.woff2") format("woff2");
   font-weight: 520;
   font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0100-017F, U+0180-024F, U+2000-206F, U+20A0-20CF, U+2122, U+2190-21FF, U+2212, U+25A0-25FF;
 }
 
 @font-face {
@@ -94,32 +99,42 @@ body {
 
 @font-face {
   font-family: "MiSans";
-  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Light.woff2);
+  src: url("@/assets/fonts/MiSans-Light-latin.woff2") format("woff2");
   font-weight: 250;
+  font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0100-017F, U+0180-024F, U+2000-206F, U+20A0-20CF, U+2122, U+2190-21FF, U+2212, U+25A0-25FF;
 }
 
 @font-face {
   font-family: "MiSans";
-  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Normal.woff2);
+  src: url("@/assets/fonts/MiSans-Normal-latin.woff2") format("woff2");
   font-weight: 305;
+  font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0100-017F, U+0180-024F, U+2000-206F, U+20A0-20CF, U+2122, U+2190-21FF, U+2212, U+25A0-25FF;
 }
 
 @font-face {
   font-family: "MiSans";
-  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Regular.woff2);
+  src: url("@/assets/fonts/MiSans-Regular-latin.woff2") format("woff2");
   font-weight: 330;
+  font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0100-017F, U+0180-024F, U+2000-206F, U+20A0-20CF, U+2122, U+2190-21FF, U+2212, U+25A0-25FF;
 }
 
 @font-face {
   font-family: "MiSans";
-  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Medium.woff2);
+  src: url("@/assets/fonts/MiSans-Medium-latin.woff2") format("woff2");
   font-weight: 380;
+  font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0100-017F, U+0180-024F, U+2000-206F, U+20A0-20CF, U+2122, U+2190-21FF, U+2212, U+25A0-25FF;
 }
 
 @font-face {
   font-family: "MiSans";
-  src: url(https://static-resource-data.obs.cn-east-3.myhuaweicloud.com/MiSans-Semibold.woff2);
+  src: url("@/assets/fonts/MiSans-Semibold-latin.woff2") format("woff2");
   font-weight: 520;
+  font-display: swap;
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0100-017F, U+0180-024F, U+2000-206F, U+20A0-20CF, U+2122, U+2190-21FF, U+2212, U+25A0-25FF;
 }
 
 .font-inter {

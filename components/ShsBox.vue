@@ -10,6 +10,13 @@
       }"
     />
     <BaseImg :src="imgUrl" class="w-full h-full object-cover shs-img" />
+    <BaseImg
+      v-if="logo"
+      :src="logo"
+      class="shs-logo"
+      :class="{ 'shs-logo--raised': bottom || leftBottom }"
+      loading="eager"
+    />
     <div v-if="top" class="shs-top" :class="top.style || ''">
       <div
         v-if="top.title"
@@ -200,6 +207,7 @@
 interface PageData {
   ispc: boolean;
   imgUrl: string;
+  logo?: string;
   style?: string;
   top?: {
     title?: string;
@@ -230,9 +238,10 @@ interface PageData {
   };
 }
 
-const props = withDefaults(defineProps<PageData>(), {
+withDefaults(defineProps<PageData>(), {
   ispc: true,
   imgUrl: "",
+  logo: "",
   style: "",
 });
 
@@ -270,6 +279,19 @@ const config = useRuntimeConfig();
   &.p1{
     .shs-img {
       object-position: center center;
+    }
+  }
+  .shs-logo {
+    position: absolute;
+    bottom: 5.2083vw;
+    left: 4.17vw;
+    z-index: 1;
+    width: clamp(140px, 12.5vw, 240px);
+    height: auto;
+    pointer-events: none;
+
+    &--raised {
+      bottom: 10vw;
     }
   }
   
@@ -472,6 +494,16 @@ const config = useRuntimeConfig();
         }
       }
     }
+    .shs-logo {
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: clamp(120px, 38vw, 180px);
+
+      &--raised {
+        bottom: 190px;
+      }
+    }
     .shs-leftBottom {
       left: 4.27vw;
       bottom: 40px;
@@ -560,6 +592,15 @@ const config = useRuntimeConfig();
         line-height: 24px;
         letter-spacing: 0;
         text-align: left;
+      }
+    }
+    .shs-logo {
+      bottom: 40px;
+      left: 4.27vw;
+      width: clamp(150px, 26vw, 220px);
+
+      &--raised {
+        bottom: 180px;
       }
     }
     .shs-horizontal {
