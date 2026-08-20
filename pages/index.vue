@@ -267,6 +267,7 @@
       desc: '',
       linkUrl: '',
       type: 'image',
+      logo: 'images/logos/logo_C5_SHS-H_white.png',
       imgUrl: 'images/index/banner_1-2.webp',
       imgUrlMobile: 'images/index/banner_1-2_mb.webp'
     },
@@ -275,6 +276,7 @@
       desc: '',
       linkUrl: '',
       type: 'image',
+      logo: 'images/logos/logo_J7_SHS-P_white.png',
       imgUrl: 'images/index/banner_1-3.webp',
       imgUrlMobile: 'images/index/banner_1-3_mb.webp'
     },
@@ -283,6 +285,7 @@
       desc: '',
       linkUrl: '',
       type: 'image',
+      logo: 'images/logos/logo_E5_EV_white.png',
       imgUrl: 'images/index/banner_1-4.webp',
       imgUrlMobile: 'images/index/banner_1-4_mb.webp',
     },

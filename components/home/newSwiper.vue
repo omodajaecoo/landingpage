@@ -100,6 +100,15 @@
                 :class="[slide.topLeftTextClass, { anim: shouldAnimateSlideContent(idx) }]"
                 v-html="slide.topLeftText"
               />
+              <img
+                v-if="slide.logo"
+                :src="config.public.staticURL + '/' + slide.logo"
+                class="home-slide-logo"
+                :class="slide.logoClass"
+                :alt="slide.title ? `${slide.title} logo` : 'Logo del modelo'"
+                loading="lazy"
+                decoding="async"
+              />
               <div
                 class="info absolute text-white left-1/2 transform translate-x-[-50%] lg:bottom-[1.1rem] bottom-[1.71rem] flex flex-col items-center text-center"
                 :class="{ 'opacity-100': visible }"
@@ -189,6 +198,8 @@ interface SlideItem {
   secondaryButtonUrl?: string;
   topLeftText?: string;
   topLeftTextClass?: string;
+  logo?: string;
+  logoClass?: string;
   title: string;
   desc: string;
   linkUrl: string;
@@ -428,12 +439,30 @@ onBeforeUnmount(() => {
   letter-spacing: 0;
 }
 
+.home-slide-logo {
+  position: absolute;
+  bottom: 2.35rem;
+  left: 50%;
+  z-index: 20;
+  width: clamp(2.325rem, 66vw, 3.225rem);
+  height: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
 @media (min-width: 1024px) {
   .top-left-text {
     top: 1.62rem;
     left: 1.1rem;
     max-width: 6rem;
     font-size: 0.32rem;
+  }
+
+  .home-slide-logo {
+    bottom: 1.72rem;
+    left: 1.1rem;
+    width: clamp(3.15rem, 21vw, 4.5rem);
+    transform: none;
   }
 }
 </style>
