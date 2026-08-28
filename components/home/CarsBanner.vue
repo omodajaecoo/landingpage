@@ -155,13 +155,13 @@ let slides = [
     btn: 'Más información',
     link: '/models/omoda-c5'
   },
-  {
-    title: "Omoda E5 EV",
-    desc: "El Omoda E5 trae la movilidad eléctrica con un diseño que fusiona aerodinámica, tecnología y emoción. Su silueta fastback transmite dinamismo puro, mientras el frontal cerrado sin parrilla tradicional y las líneas limpias y fluidas reflejan la elegancia de un vehículo nacido para un futuro más sostenible.",
-    imgUrl: "index/banner-value_omoda-e5.webp",
-    btn: 'Más información',
-    link: '/models/omoda-e5'
-  },
+  // {
+  //   title: "Omoda E5 EV",
+  //   desc: "El Omoda E5 trae la movilidad eléctrica con un diseño que fusiona aerodinámica, tecnología y emoción. Su silueta fastback transmite dinamismo puro, mientras el frontal cerrado sin parrilla tradicional y las líneas limpias y fluidas reflejan la elegancia de un vehículo nacido para un futuro más sostenible.",
+  //   imgUrl: "index/banner-value_omoda-e5.webp",
+  //   btn: 'Más información',
+  //   link: '/models/omoda-e5'
+  // },
   {
     title: "Jaecoo J7 SHS-P",
     desc: "El Jaecoo J7 Super Hybrid System combina elegancia urbana con la fuerza de un auténtico SUV todoterreno. Su diseño vertical y musculoso proyecta autoridad en cada ángulo, mientras la parrilla trapezoidal con detalles cromados y las luces LED en forma de T refuerzan su identidad moderna y poderosa.",

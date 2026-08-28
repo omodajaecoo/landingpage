@@ -233,11 +233,11 @@ const warrantyDocuments: WarrantyDocument[] = [
     model: 'Omoda C5',
     href: '/files/warranty/Manual_Garantia_OMODA-C5.pdf'
   },
-  {
-    img: 'section5-item2',
-    model: 'Omoda E5',
-    href: '/files/warranty/Manual_Garantia_OMODA-E5.pdf'
-  },
+  // {
+  //   img: 'section5-item2',
+  //   model: 'Omoda E5',
+  //   href: '/files/warranty/Manual_Garantia_OMODA-E5.pdf'
+  // },
   {
     img: 'section5-item3',
     model: 'Jaecoo J7',
@@ -254,14 +254,14 @@ const maintenanceDocuments: MaintenanceDocument[] = [
     href: '/files/maintenance/Tabla_Mantenimiento_OMODA-C5.pdf',
     filename: 'Tabla_Mantenimiento_OMODA-C5.pdf'
   },
-  {
-    img: 'section5-item2',
-    model: 'Omoda E5',
-    service: '5,000 KM',
-    frequency: 'Cada 10,000 KM',
-    href: '/files/maintenance/Tabla_Mantenimiento_OMODA-E5.pdf',
-    filename: 'Tabla_Mantenimiento_OMODA-E5.pdf'
-  },
+  // {
+  //   img: 'section5-item2',
+  //   model: 'Omoda E5',
+  //   service: '5,000 KM',
+  //   frequency: 'Cada 10,000 KM',
+  //   href: '/files/maintenance/Tabla_Mantenimiento_OMODA-E5.pdf',
+  //   filename: 'Tabla_Mantenimiento_OMODA-E5.pdf'
+  // },
   {
     img: 'section5-item3',
     model: 'Jaecoo J7',

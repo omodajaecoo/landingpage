@@ -87,7 +87,7 @@ const categories = [
     isLinked: false,
     links: [
       { name: 'OMODA C5 SHS H', link: '/models/omoda-c5' },
-      { name: 'OMODA E5', link: '/models/omoda-e5' },
+      // { name: 'OMODA E5', link: '/models/omoda-e5' },
       { name: 'OMODA E5 NEXT', link: '/models/omoda-e5-next' },
     ]
   },

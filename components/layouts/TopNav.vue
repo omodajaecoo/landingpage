@@ -265,12 +265,12 @@
           brand: brandList[1],
           linkUrl: '/models/omoda-c5',
         },
-        {
-          name: 'OMODA E5',
-          imgUrl: '/header/e5.png',
-          brand: brandList[1],
-          linkUrl: '/models/omoda-e5'
-        },
+        // {
+        //   name: 'OMODA E5',
+        //   imgUrl: '/header/e5.png',
+        //   brand: brandList[1],
+        //   linkUrl: '/models/omoda-e5'
+        // },
         {
           name: 'JAECOO J7 SHS P',
           imgUrl: '/header/j7.png',

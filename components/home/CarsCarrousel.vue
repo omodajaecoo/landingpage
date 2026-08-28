@@ -142,17 +142,17 @@ const carList = [
       { label: '6 AIRBAGS', value: '6', unit: '.  AIRBAGS' },
     ]
   },
-  {
-    name: 'OMODA E5',
-    carType: 'omoda-e5',
-    iconUrl: 'index/cars/omoda-e5/logo_e5.webp',
-    imgUrl: 'index/cars/omoda-e5/banner_e5.webp',
-    configList: [
-      { label: '+505 KMS AUTONOMÍA EV (NEDC)', value: '4424', unit: 'mm' },
-      { label: '24.6" PANTALLA DUAL', value: '1830', unit: 'mm' },
-      { label: '6 AIRBAGS', value: '1588', unit: 'mm' },
-    ]
-  },
+  // {
+  //   name: 'OMODA E5',
+  //   carType: 'omoda-e5',
+  //   iconUrl: 'index/cars/omoda-e5/logo_e5.webp',
+  //   imgUrl: 'index/cars/omoda-e5/banner_e5.webp',
+  //   configList: [
+  //     { label: '+505 KMS AUTONOMÍA EV (NEDC)', value: '4424', unit: 'mm' },
+  //     { label: '24.6" PANTALLA DUAL', value: '1830', unit: 'mm' },
+  //     { label: '6 AIRBAGS', value: '1588', unit: 'mm' },
+  //   ]
+  // },
   {
     name: 'OMODA E5 NEXT',
     carType: 'omoda-e5-next',
@@ -324,18 +324,14 @@ const goCarDetail = () => {
   }
 
   &-1 {
-    background-image: linear-gradient(to right, #d8e5e8, #9fbcbb);
-  }
-
-  &-2 {
     background-image: linear-gradient(to right, #f4f9fe, #819de1);
   }
 
-  &-3 {
+  &-2 {
     background-image: linear-gradient(to right, #f4f9fe, #98d4d8);
   }
 
-  &-4 {
+  &-3 {
     background-image: linear-gradient(to right, #f4f9fe, #d5dcee);
   }
 }

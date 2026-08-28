@@ -280,15 +280,15 @@
       imgUrl: 'images/index/banner_1-3.webp',
       imgUrlMobile: 'images/index/banner_1-3_mb.webp'
     },
-    {
-      title: '',
-      desc: '',
-      linkUrl: '',
-      type: 'image',
-      logo: 'images/logos/logo_E5_EV_white.png',
-      imgUrl: 'images/index/banner_1-4.webp',
-      imgUrlMobile: 'images/index/banner_1-4_mb.webp',
-    },
+    // {
+    //   title: '',
+    //   desc: '',
+    //   linkUrl: '',
+    //   type: 'image',
+    //   logo: 'images/logos/logo_E5_EV_white.png',
+    //   imgUrl: 'images/index/banner_1-4.webp',
+    //   imgUrlMobile: 'images/index/banner_1-4_mb.webp',
+    // },
     {
       title: '',
       desc: '',
