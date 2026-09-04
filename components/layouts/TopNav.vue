@@ -331,12 +331,12 @@
       submenuType: 'vertical',
       children: [
         {
-          name: 'Talleres',
-          linkUrl: '/authorized-service?tab=workshops'
+          name: 'Concesionarios',
+          linkUrl: '/authorized-service?tab=showrooms'
         },
         {
-          name: 'Ventas',
-          linkUrl: '/authorized-service?tab=showrooms'
+          name: 'Talleres',
+          linkUrl: '/authorized-service?tab=workshops'
         }
       ]
     },

@@ -351,11 +351,20 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         phone: '+593-96-405-4055',
         image: `${workshopPath}/ws_preview.webp`,
         url_map: 'https://maps.app.goo.gl/ifpS18NYoZeKpp987'
+      },
+      {
+        name: 'Omoda | Jaecoo - Quicentro Sur',
+        address: 'Av. Morán Valverde y Quitumbe Ñan (Quicentro Sur)',
+        city: 'Quito',
+        hours: 'L-V: 07:00 - 17:30 / S: 08:00 - 12:00',
+        phone: '+593-96-405-4055',
+        image: `${workshopPath}/ws_preview.webp`,
+        url_map: 'https://maps.app.goo.gl/nyBohqn5Kxy5bgEt9'
       }
     ]
   },
   showrooms: {
-    tabLabel: 'Ventas',
+    tabLabel: 'Concesionarios',
     title: 'Puntos Autorizados - OMODA | JAECOO',
     meta: 'Encuentra puntos de venta autorizados OMODA | JAECOO por ciudad.',
     heroImg: `${showroomPath}/sr_bannerHerobg`,
@@ -461,7 +470,25 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         phone: '+593-96-405-4055',
         image: `${showroomPath}/sr_preview.webp`,
         url_map: 'https://maps.app.goo.gl/ifpS18NYoZeKpp987'
-      }
+      },
+      {
+        name: 'OMODA | JAECOO - Eloy Alfaro',
+        address: 'Av. Eloy Alfaro y José Queri',
+        city: 'Quito',
+        hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
+        phone: '+593-96-405-4055',
+        image: `${showroomPath}/sr_preview.webp`,
+        url_map: 'https://maps.app.goo.gl/sWxKfS8BSYGq8yee7'
+      },
+      {
+        name: 'OMODA | JAECOO - Quicentro Sur',
+        address: 'Av. Morán Valverde y Quitumbe Ñan (Quicentro Sur)',
+        city: 'Quito',
+        hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
+        phone: '+593-96-405-4055',
+        image: `${showroomPath}/sr_preview.webp`,
+        url_map: 'https://maps.app.goo.gl/nyBohqn5Kxy5bgEt9'
+      },
     ],
     cta: {
       title: '¿LISTO PARA TU PRÓXIMO OMODA | JAECOO?',
