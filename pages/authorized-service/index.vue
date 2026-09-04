@@ -353,13 +353,13 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         url_map: 'https://maps.app.goo.gl/ifpS18NYoZeKpp987'
       },
       {
-        name: 'Omoda | Jaecoo - Quicentro Sur',
-        address: 'Av. Morán Valverde y Quitumbe Ñan (Quicentro Sur)',
+        name: 'Omoda | Jaecoo - Quito Sur',
+        address: 'Av. Pedro Vicente Maldonado S20-120 y calle Guanazán, Sector de San Bartolo',
         city: 'Quito',
         hours: 'L-V: 07:00 - 17:30 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
         image: `${workshopPath}/ws_preview.webp`,
-        url_map: 'https://maps.app.goo.gl/nyBohqn5Kxy5bgEt9'
+        url_map: 'https://maps.app.goo.gl/qRuF2tTBsWyFzMPv8'
       }
     ]
   },
