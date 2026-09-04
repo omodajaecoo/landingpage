@@ -84,11 +84,18 @@
         >
           <SwiperSlide style="height: auto; display: block">
             <ClientOnly fallback-tag="span" fallback="Loading comments...">
-              <ConfigTable class="config-table" data-url="excels/j5.xlsx" specialVersion="Excellent" title="Tabla de parámetros de configuración del JAECO J5"/>
+              <ConfigTable class="config-table" data-url="excels/j5.xlsx" specialVersion="Excellent" title="Tabla de parámetros de configuración del JAECOO J5"/>
             </ClientOnly>
           </SwiperSlide>
         </Swiper>
       </SwiperSlide>
+    </template>
+    <template #overlay>
+      <CommonReservationsStickyBar
+        v-if="currentPage !== 999 && currentPage > 0"
+        variant="fixed"
+        vehicle="JAECOO J5"
+      />
     </template>
   </NuxtLayout>
 </template>
@@ -982,8 +989,35 @@ const dis360: Ref<boolean> = ref(true);
 const playweb360: Ref<boolean> = ref(false);
 const web360Src = "/JAECOO5web-360/";
 let web360Observer: IntersectionObserver | undefined;
+let isHandling360Scroll = false;
+
+function handle360Message(event: MessageEvent) {
+  // The 360 iframe prevents the native wheel event and forwards its direction
+  // to the parent window instead.
+  const iframe = document.querySelector("#wrap_360") as HTMLIFrameElement | null;
+  if (event.source !== iframe?.contentWindow) return;
+
+  const deltaY = Number(event.data?.message);
+  if (!Number.isFinite(deltaY) || deltaY === 0 || isHandling360Scroll) return;
+
+  const fullPageSwiper = (document.querySelector(".fullPageContainer") as any)?.swiper;
+  if (!fullPageSwiper) return;
+
+  isHandling360Scroll = true;
+  if (deltaY > 0) {
+    fullPageSwiper.slideNext();
+  } else {
+    fullPageSwiper.slidePrev();
+  }
+
+  window.setTimeout(() => {
+    isHandling360Scroll = false;
+  }, 1500);
+}
 
 onMounted(() => {
+  window.addEventListener("message", handle360Message);
+
   nextTick(() => {
     const elements = document.querySelectorAll(".wrap_360");
     web360Observer = new IntersectionObserver((entries, instance) => {
@@ -999,6 +1033,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
+  window.removeEventListener("message", handle360Message);
   web360Observer?.disconnect();
 });
 
