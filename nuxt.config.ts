@@ -113,6 +113,11 @@ export default defineNuxtConfig({
     storesDirs: ['~/stores/**'],
   },
   nitro: {
+    prerender: {
+      // Esta página puede no ser descubierta por el crawler si no está
+      // enlazada desde otra ruta, pero debe publicarse en el build estático.
+      routes: ['/promises-temp-110926'],
+    },
     output: {
       publicDir: "./dist",
       dir: './dist'
