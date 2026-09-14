@@ -32,8 +32,7 @@
 
             <div class="promises-info__grid">
                 <article class="promise-card">
-                    <img class="promise-card__logo" src="/icons/clock.svg" alt="" />
-                    <h3>OFERTA DE SERVICIO</h3>
+                    <img class="promise-card__brand-logo" src="/images/promises/PROMISE_Logo_white.png" alt="PROMISE" />
                     <p class="promise-card__summary">
                         "Si el repuesto no llega en 10 días, asumimos el costo completo. Tu tiempo y tu tranquilidad son nuestra prioridad."
                     </p>
@@ -68,8 +67,7 @@
                 </article>
 
                 <article class="promise-card">
-                    <img class="promise-card__logo" src="/icons/retry.svg" alt="" />
-                    <h3>PROMESA DE REVENTA</h3>
+                    <img class="promise-card__brand-logo" src="/images/promises/UPGRADE_Logo_white.png" alt="UPGRADE" />
                     <p class="promise-card__summary">
                         "Cuando decidas cambiar tu vehículo por uno nuevo de la marca, te garantizamos un precio mínimo de recepción competitivo, sin fricción de mercado."
                     </p>
@@ -280,20 +278,11 @@ defineOptions({
   background: #131313;
 }
 
-.promise-card__logo {
-  width: 24px;
-  height: 24px;
+.promise-card__brand-logo {
+  display: block;
+  width: min(100%, 280px);
+  height: auto;
   object-fit: contain;
-}
-
-.promise-card h3 {
-  margin: 0;
-  font-family: Inter, sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 100%;
-  letter-spacing: 0;
-  text-align: center;
 }
 
 .promise-card__summary {
@@ -513,11 +502,6 @@ defineOptions({
     .promise-card {
         min-height: 0;
         padding: 0;
-        text-align: center;
-    }
-
-    .promise-card h3 {
-        font-size: 20px;
         text-align: center;
     }
 
