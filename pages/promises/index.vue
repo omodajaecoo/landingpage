@@ -455,7 +455,7 @@ defineOptions({
     }
 
     .promises-hero {
-        min-height: 320px;
+        min-height: 640px;
         background-image: url('/images/promises/banner_promises_mobile.webp');
         background-position: 58% center;
     }
