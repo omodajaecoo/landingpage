@@ -58,6 +58,31 @@
             @click="web360Change('bottom')"
           />
         </div>
+        <div v-if="page.code === 'downloads'" class="downloads-section">
+          <img
+            loading="lazy"
+            :src="isMobile ? '/images/models/j5/m_bg_10_1.webp' : '/images/models/j5/bg_10_1.webp'"
+            class="downloads-background"
+            alt="JAECOO J5"
+          />
+          <div class="downloads-actions">
+            <BaseButton
+              type="text"
+              class="font-interSemiRegular text-[16px] sm:text-[20px] px-[10px] py-[10px] sm:px-[20px] sm:py-[20px] border border-[#67B0C4] leading-none !bg-[#67B0C4]"
+              @click="router.push('/quote')"
+            >
+              COTIZAR AHORA
+            </BaseButton>
+            <a href="/files/Ficha_Tecnica_JAECOO-J5.pdf" target="_blank" rel="noopener">
+              <BaseButton
+                type="text"
+                class="font-interSemiRegular text-[16px] sm:text-[20px] px-[10px] py-[10px] sm:px-[20px] sm:py-[20px] border border-[#67B0C4] leading-none !bg-[#67B0C4]"
+              >
+                FICHA TÉCNICA
+              </BaseButton>
+            </a>
+          </div>
+        </div>
       </SwiperSlide>
       <SwiperSlide>
         <Swiper
@@ -102,6 +127,7 @@
 
 <script setup lang="ts">
 import { onMounted, nextTick, onBeforeUnmount, ref } from "vue";
+import { useRouter } from "#app";
 import type { Ref } from "vue";
 import useDeviceType from "~/composables/useDeviceType";
 
@@ -144,6 +170,7 @@ interface AllPageData {
   h5: PageData[];
 }
 const { isMobile } = useDeviceType();
+const router = useRouter();
 
 const allPageData: AllPageData = {
   pc: [
@@ -161,6 +188,9 @@ const allPageData: AllPageData = {
     },
     {
       code: "web360",
+    },
+    {
+      code: "downloads",
     },
     {
       code: "box",
@@ -550,6 +580,9 @@ const allPageData: AllPageData = {
     },
     {
       code: "web360",
+    },
+    {
+      code: "downloads",
     },
     {
       code: "box",
@@ -1057,6 +1090,44 @@ function web360Change(txt) {
 </script>
 
 <style lang="scss" scoped>
+.downloads-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.downloads-background {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.downloads-actions {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  width: max-content;
+  transform: translateX(-50%);
+}
+
+.downloads-actions > a {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 639px) {
+  .downloads-actions {
+    bottom: max(72px, calc(24px + env(safe-area-inset-bottom)));
+    gap: 8px;
+  }
+}
+
 .config-table-two {
   padding-top: 2rem;
 }
