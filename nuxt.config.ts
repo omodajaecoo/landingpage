@@ -116,7 +116,7 @@ export default defineNuxtConfig({
     prerender: {
       // Esta página puede no ser descubierta por el crawler si no está
       // enlazada desde otra ruta, pero debe publicarse en el build estático.
-      routes: ['/promises-temp-110926'],
+      routes: ['/promises'],
     },
     output: {
       publicDir: "./dist",

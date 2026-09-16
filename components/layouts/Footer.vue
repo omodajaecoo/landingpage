@@ -106,7 +106,8 @@ const categories = [
     isLinked: false,
     links: [
       /*{ name: 'REPUESTOS', link: '/after-sales/spare-parts' },*/
-      { name: 'MANTENIMIENTO', link: '/after-sales/maintenance' }
+      { name: 'MANTENIMIENTO', link: '/after-sales/maintenance' },
+      { name: 'PROMESAS', link: '/promises' }
     ]
   }
 ]

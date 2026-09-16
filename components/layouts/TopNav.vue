@@ -323,6 +323,10 @@
         {
           name: 'Mantenimiento',
           linkUrl: '/after-sales/maintenance'
+        },
+        {
+          name: 'Promesas',
+          linkUrl: '/promises'
         }
       ]
     },
