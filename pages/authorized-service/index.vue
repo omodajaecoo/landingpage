@@ -273,7 +273,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
       },
       {
         name: 'Omoda | Jaecoo - Juan Tanca Marengo',
-        address: 'Av. Juan Tanca Marengo, km 2 1 1/2',
+        address: 'Av. Juan Tanca Marengo, km 2 1/2',
         city: 'Guayaquil',
         hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
@@ -375,7 +375,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
       {
         name: 'Omoda | Jaecoo - Labrador',
         address: 'Av. 10 de agosto y Av. El Inca',
-        city: 'Quito - Valles',
+        city: 'Quito',
         hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
         phone: '+593-96-405-4055',
         image: `${showroomPath}/sr_preview.webp`,
@@ -384,7 +384,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
       {
         name: 'Omoda | Jaecoo - Cumbayá',
         address: 'Av. Oswaldo Guayasamín E5-11 y pasaje praga',
-        city: 'Quito - Valles',
+        city: 'Quito',
         hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
         phone: '+593-96-405-4055',
         image: `${showroomPath}/sr_preview.webp`,
@@ -401,7 +401,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
       },
       {
         name: 'Omoda | Jaecoo - Juan Tanca Marengo',
-        address: 'Av. Juan Tanca Marengo, km 2 1 1/2',
+        address: 'Av. Juan Tanca Marengo, km 2 1/2',
         city: 'Guayaquil',
         hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
         phone: '+593-96-405-4055',
@@ -484,10 +484,19 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         name: 'OMODA | JAECOO - Quicentro Sur',
         address: 'Av. Morán Valverde y Quitumbe Ñan (Quicentro Sur)',
         city: 'Quito',
-        hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
+        hours: 'L-V: 10:00 - 21:00 / S: 10:00 - 20:00',
         phone: '+593-96-405-4055',
         image: `${showroomPath}/sr_preview.webp`,
         url_map: 'https://maps.app.goo.gl/nyBohqn5Kxy5bgEt9'
+      },
+      {
+        name: 'OMODA | JAECOO - El Dorado',
+        address: 'Riocentro El Dorado, Km 10 1/2 vía a La Aurora',
+        city: 'Guayaquil',
+        hours: 'L-D: 10:00 - 21:00',
+        phone: '+593-96-405-4055',
+        image: `${showroomPath}/sr_preview.webp`,
+        url_map: 'https://maps.app.goo.gl/Us36JkzA2jZfNfzx6'
       },
     ],
     cta: {
