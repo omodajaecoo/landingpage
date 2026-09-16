@@ -152,7 +152,7 @@ defineOptions({
     display: flex;
     align-items: flex-end;
     overflow: hidden;
-    background: url('/images/promises/banner_promises.webp') center / cover no-repeat;
+    background: url('/images/promises/banner_promises_web.webp') center / cover no-repeat;
 }
 
 .promises-hero__overlay {
@@ -168,7 +168,7 @@ defineOptions({
     align-items: flex-end;
     justify-content: space-between;
     gap: 48px;
-    padding: 0 0 64px;
+    padding: 0 0 32px;
 }
 
 .promises-hero__left h1 {
@@ -456,6 +456,7 @@ defineOptions({
 
     .promises-hero {
         min-height: 320px;
+        background-image: url('/images/promises/banner_promises_mobile.webp');
         background-position: 58% center;
     }
 
@@ -535,7 +536,7 @@ defineOptions({
     }
 
     .promises-hero__content {
-        padding-bottom: 96px;
+        padding-bottom: 48px;
     }
 
     .promises-hero__left h1 {
