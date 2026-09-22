@@ -31,32 +31,37 @@
           :ispc="!isMobile"
           :fade="page.fade"
         />
-        <div 
-          v-if="page.code === 'web360'" class="wrap_360 j5-safe-bottom" ref="web360">
-          <iframe
-            ref="web360_iframe"
-            id="wrap_360"
-            v-if="playweb360"
-            scrolling="no"
-            frameborder="0"
-            :src="web360Src"
-            class="iframe"
-            :class="dis360 ? 'dis' : ''"
-          ></iframe>
-          <img
-            loading="lazy"
-            src="/images/models/web360-top.png"
-            class="icon top"
-            :class="dis360 ? 'hide' : 'show'"
-            @click="web360Change('top')"
-          />
-          <img
-            loading="lazy"
-            src="/images/models/web360-bottom.png"
-            class="icon bottom"
-            :class="dis360 ? 'hide' : 'show'"
-            @click="web360Change('bottom')"
-          />
+        <div
+          v-if="page.code === 'web360'"
+          class="wrap_360 j5-safe-bottom"
+          ref="web360"
+        >
+          <template v-if="!isMobile">
+            <iframe
+              ref="web360_iframe"
+              id="wrap_360"
+              v-if="playweb360"
+              scrolling="no"
+              frameborder="0"
+              :src="web360Src"
+              class="iframe"
+              :class="dis360 ? 'dis' : ''"
+            ></iframe>
+            <img
+              loading="lazy"
+              src="/images/models/web360-top.png"
+              class="icon top"
+              :class="dis360 ? 'hide' : 'show'"
+              @click="web360Change('top')"
+            />
+            <img
+              loading="lazy"
+              src="/images/models/web360-bottom.png"
+              class="icon bottom"
+              :class="dis360 ? 'hide' : 'show'"
+              @click="web360Change('bottom')"
+            />
+          </template>
         </div>
         <div v-if="page.code === 'downloads'" class="downloads-section">
           <img
@@ -116,6 +121,31 @@
       </SwiperSlide>
     </template>
     <template #overlay>
+      <div v-if="isMobile && mobileWeb360Active" class="mobile-web360-layer">
+        <iframe
+          ref="web360_iframe"
+          id="wrap_360"
+          scrolling="no"
+          frameborder="0"
+          :src="web360Src"
+          class="iframe"
+          :class="dis360 ? 'dis' : ''"
+        ></iframe>
+        <img
+          loading="lazy"
+          src="/images/models/web360-top.png"
+          class="icon top"
+          :class="dis360 ? 'hide' : 'show'"
+          @click="web360Change('top')"
+        />
+        <img
+          loading="lazy"
+          src="/images/models/web360-bottom.png"
+          class="icon bottom"
+          :class="dis360 ? 'hide' : 'show'"
+          @click="web360Change('bottom')"
+        />
+      </div>
       <CommonReservationsStickyBar
         v-if="currentPage !== 999 && currentPage > 0"
         variant="fixed"
@@ -1003,6 +1033,7 @@ const moduleCard2 = [
 ];
 
 const currentPage = ref(1);
+const mobileWeb360Active = ref(false);
 let swiperInst;
 const toNextSlide = () => {
   swiperInst?.slideNext();
@@ -1011,6 +1042,7 @@ const handleCustomEvent = (cur, swiper) => {
   swiperInst = swiper;
   const page = allPageData[isMobile.value ? "h5" : "pc"][cur - 1];
   dis360.value = page?.code !== "web360";
+  mobileWeb360Active.value = isMobile.value && page?.code === "web360";
   setTimeout(() => {
     currentPage.value = swiper.activeIndex + 1;
   }, 310);
@@ -1052,6 +1084,8 @@ onMounted(() => {
   window.addEventListener("message", handle360Message);
 
   nextTick(() => {
+    if (isMobile.value) return;
+
     const elements = document.querySelectorAll(".wrap_360");
     web360Observer = new IntersectionObserver((entries, instance) => {
       entries.forEach((entry) => {
@@ -1132,7 +1166,8 @@ function web360Change(txt) {
   padding-top: 2rem;
 }
 
-.wrap_360 {
+.wrap_360,
+.mobile-web360-layer {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -1140,7 +1175,14 @@ function web360Change(txt) {
   background: #000;
 }
 
-.wrap_360 .iframe {
+.mobile-web360-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+
+.wrap_360 .iframe,
+.mobile-web360-layer .iframe {
   position: absolute;
   inset: 0;
   z-index: 10;
@@ -1149,11 +1191,13 @@ function web360Change(txt) {
   border: 0;
 }
 
-.wrap_360 .iframe.dis {
+.wrap_360 .iframe.dis,
+.mobile-web360-layer .iframe.dis {
   pointer-events: none;
 }
 
-.wrap_360 .icon {
+.wrap_360 .icon,
+.mobile-web360-layer .icon {
   position: absolute;
   left: 3%;
   z-index: 200;
@@ -1164,22 +1208,26 @@ function web360Change(txt) {
   transition: opacity 0.3s ease;
 }
 
-.wrap_360 .icon.top {
+.wrap_360 .icon.top,
+.mobile-web360-layer .icon.top {
   top: 35%;
   animation: move2top 1.2s infinite;
 }
 
-.wrap_360 .icon.bottom {
+.wrap_360 .icon.bottom,
+.mobile-web360-layer .icon.bottom {
   top: 70%;
   animation: move2bottom 1.2s infinite;
 }
 
-.wrap_360 .icon.hide {
+.wrap_360 .icon.hide,
+.mobile-web360-layer .icon.hide {
   opacity: 0;
   pointer-events: none;
 }
 
-.wrap_360 .icon.show {
+.wrap_360 .icon.show,
+.mobile-web360-layer .icon.show {
   opacity: 1;
 }
 
@@ -1250,15 +1298,18 @@ function web360Change(txt) {
     bottom: calc(clamp(24px, 7vh, 72px) + var(--j5-mobile-bottom-safe));
   }
 
-  .wrap_360 .icon {
+  .wrap_360 .icon,
+  .mobile-web360-layer .icon {
     width: 0.8rem;
   }
 
-  .wrap_360 .icon.top {
+  .wrap_360 .icon.top,
+  .mobile-web360-layer .icon.top {
     top: 20%;
   }
 
-  .wrap_360 .icon.bottom {
+  .wrap_360 .icon.bottom,
+  .mobile-web360-layer .icon.bottom {
     top: 80%;
   }
 }
