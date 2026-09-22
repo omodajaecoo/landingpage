@@ -21,43 +21,6 @@
       <canvas id="renderCanvas"></canvas>
     </div>
   <script>
-    let reportedSceneErrors = 0;
-
-    function reportSceneError(kind, detail) {
-      if (reportedSceneErrors >= 3) return;
-      reportedSceneErrors += 1;
-
-      const errorDetail = detail instanceof Error
-        ? `${detail.name}: ${detail.message}${detail.stack ? `\n${detail.stack}` : ''}`
-        : String(detail || 'Sin detalle adicional');
-      const message = `[J5 3D] ${kind}\n${errorDetail.slice(0, 900)}`;
-
-      console.error(message);
-      window.setTimeout(() => window.alert(message), 0);
-    }
-
-    window.addEventListener('error', function (event) {
-      if (event.target && event.target !== window) {
-        const resource = event.target.currentSrc || event.target.src || event.target.href || event.target.tagName;
-        reportSceneError('No se pudo cargar un recurso', resource);
-        return;
-      }
-
-      reportSceneError('Error no controlado', event.error || `${event.message} (${event.filename}:${event.lineno})`);
-    }, true);
-
-    window.addEventListener('unhandledrejection', function (event) {
-      reportSceneError('Promesa rechazada', event.reason);
-    });
-
-    const renderCanvas = document.getElementById('renderCanvas');
-    renderCanvas?.addEventListener('webglcontextlost', function (event) {
-      reportSceneError('Contexto WebGL perdido', 'Safari liberó los recursos gráficos de la escena.');
-    });
-    renderCanvas?.addEventListener('webglcontextrestored', function () {
-      reportSceneError('Contexto WebGL restaurado', 'El navegador restauró el contexto; la escena debe reinicializarse.');
-    });
-
     function sendMessage(msg) {
       // console.log(window.parent)
       window.parent.postMessage({
