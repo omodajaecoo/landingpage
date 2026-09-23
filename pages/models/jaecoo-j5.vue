@@ -113,9 +113,12 @@
           :passiveListeners="false"
         >
           <SwiperSlide style="height: auto; display: block">
-            <ClientOnly fallback-tag="span" fallback="Loading comments...">
-              <ConfigTable class="config-table" data-url="excels/j5.xlsx" specialVersion="Excellent" title="Tabla de parámetros de configuración del JAECOO J5"/>
-            </ClientOnly>
+            <div class="min-h-[100vh] flex flex-col">
+              <ClientOnly fallback-tag="span" fallback="Loading comments...">
+                <ConfigTable class="flex-1" data-url="excels/j5.xlsx" specialVersion="Excellent" title="Tabla de parámetros de configuración del JAECOO J5" />
+              </ClientOnly>
+              <LayoutsFooter :routePath="$route.path" />
+            </div>
           </SwiperSlide>
         </Swiper>
       </SwiperSlide>
