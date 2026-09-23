@@ -92,7 +92,7 @@
       <SwiperSlide>
         <Swiper
           class="insideSwiper"
-          style="width: 100%; height: 100vh; transform: none"
+          style="width: 100%; height: 100vh; height: 100dvh; transform: none"
           :modules="[SwiperFreeMode, SwiperMousewheel]"
           direction="vertical"
           :mousewheel="{ enabled: true, releaseOnEdges: true, thresholdDelta: 18 }"
@@ -1263,6 +1263,23 @@ function web360Change(txt) {
 }
 
 @media screen and (max-width: 1023px) {
+  // `vh` can include Chrome iOS's expanded bottom toolbar. Keep it as a
+  // fallback, then use the dynamic viewport for J5's full-screen sections.
+  .j5-safe-bottom,
+  .downloads-section,
+  .wrap_360,
+  .mobile-web360-layer {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  // SwiperFullBox defines its nested Swiper with 100vh in the shared
+  // component. Scope this override to J5 so other model pages are unchanged.
+  :deep(.j5-safe-bottom .inner-swiper) {
+    height: 100vh;
+    height: 100dvh;
+  }
+
   .j5-safe-bottom {
     --j5-mobile-bottom-safe: 48px;
     --j5-mobile-bottom-safe: max(48px, env(safe-area-inset-bottom));
