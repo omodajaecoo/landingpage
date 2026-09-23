@@ -9,8 +9,8 @@
     <div :id="'layout-' + String(route.name)">
       <slot></slot>
     </div>
-    <!-- footer -->
-    <LayoutsFooter :routePath="routePath" />
+    <!-- Model pages render their footer inside their scrollable swiper. -->
+    <LayoutsFooter v-if="!routePath.startsWith('/models/')" :routePath="routePath" />
     <LayoutsCookies />
   </div>
 </template>
