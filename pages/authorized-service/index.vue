@@ -296,7 +296,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         hours: 'L-V: 07:30 - 17:50 / S: 08:00 - 12:00',
         phone: '+593-96-405-4055',
         image: `${workshopPath}/ws_preview.webp`,
-        url_map: 'https://maps.app.goo.gl/FKVqhseXvzBpWGDRA'
+        url_map: 'https://maps.app.goo.gl/1A3z23DR6sUqUGe17'
       },
       {
         name: 'Centro de Colisiones Mapasingue',
@@ -415,7 +415,7 @@ const services: Record<AuthorizedServiceTab, AuthorizedServiceMetadata> = {
         hours: 'L-V: 09:00 - 18:00 / S: 10:00 - 14:00',
         phone: '+593-96-405-4055',
         image: `${showroomPath}/sr_preview.webp`,
-        url_map: 'https://maps.app.goo.gl/qkTrB5v9vx9CNako6'
+        url_map: 'https://maps.app.goo.gl/1A3z23DR6sUqUGe17'
       },
       {
         name: 'Omoda | Jaecoo - Cuenca',

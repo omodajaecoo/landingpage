@@ -122,7 +122,7 @@ usePowerAppsFormMessages({
 }
 
 .reservations-hero__logo--e5 {
-  width: min(2.1rem, 42vw);
+  width: min(1.512rem, 30.24vw);
 }
 
 .reservations-hero__logo--j5 {
@@ -196,7 +196,7 @@ usePowerAppsFormMessages({
   }
 
   .reservations-hero__logo--e5 {
-    width: min(3rem, 24vw);
+    width: min(2.16rem, 17.28vw);
   }
 
   .reservations-hero__logo--j5 {

@@ -237,20 +237,20 @@
     
     
     {
-      title: 'EARLY ADOPTERS EDITION',
-      desc: 'Sé parte de los primeros propietarios',
+      title: 'DISEÑADO PARA TU COPILOTO PERFECTO',
+      desc: '',
       linkUrl: '/reservations?vehicle=JAECOO%20J5',
       type: 'image',
       buttonText: 'RESERVAR',
       secondaryButtonText: 'FICHA TÉCNICA',
       secondaryButtonUrl: '/files/Ficha_Tecnica_JAECOO-J5.pdf',
-      topLeftText: '<span>DESDE</span><span class="home-banner-price-single__amount">$21.990</span>',
-      topLeftTextClass: '!font-[inherit] !font-bold !text-[0.42rem] lg:!text-[1.3rem] home-banner-price home-banner-price-single',
+      topLeftText: '<span>DESDE</span><span class="home-banner-price-single__amount">$20.990</span>',
+      topLeftTextClass: '!font-[inherit] !font-bold !text-[0.42rem] lg:!text-[0.8rem] home-banner-price home-banner-price-single',
       imgUrl: 'images/index/banner_J5.webp',
       imgUrlMobile: 'images/index/banner_J5_mobile.webp'
     },
     {
-      title: '100 UNIDADES AL PRECIO DE RESERVA',
+      title: 'MUÉVETE CON NUEVAS ENERGÍAS',
       desc: 'Asegura el tuyo',
       linkUrl: '/reservations?vehicle=OMODA%20E5%20NEXT',
       type: 'image',
@@ -258,7 +258,7 @@
       secondaryButtonText: 'FICHA TÉCNICA',
       secondaryButtonUrl: '/files/Ficha_Tecnica_OMODA-E5-NEXT.pdf',
       topLeftText: '<span class="home-banner-price-discount__old"><span>DESDE</span> <span class="home-banner-price-discount__strike">$21.990</span></span><span class="home-banner-price-discount__amount">$19.990</span>',
-      topLeftTextClass: '!font-[inherit] !font-bold !text-[0.42rem] lg:!text-[1.3rem] home-banner-price home-banner-price-discount',
+      topLeftTextClass: '!font-[inherit] !font-bold !text-[0.42rem] lg:!text-[0.8rem] home-banner-price home-banner-price-discount',
       imgUrl: 'images/index/banner_E5_NEXT.webp',
       imgUrlMobile: 'images/index/banner_E5_NEXT_mobile.webp'
     },
@@ -289,18 +289,18 @@
     //   imgUrl: 'images/index/banner_1-4.webp',
     //   imgUrlMobile: 'images/index/banner_1-4_mb.webp',
     // },
-    {
-      title: '',
-      desc: '',
-      linkUrl: '/models/jaecoo-j7',
-      type: 'video',
-      buttonText: 'DESCUBRE MÁS',
-      imgUrl: 'images/index/banner_1-1.webp',
-      imgUrlMobile: 'images/index/banner_1-1_mb.webp',
-      videoUrl: 'videos/index/omoda-jaecoo_web.mp4',
-      videoUrlMobile: 'videos/index/omoda-jaecoo-long-distance-challenge_web_v03.mp4',
-      autoplayDelay: 105000,
-    },
+    // {
+    //   title: '',
+    //   desc: '',
+    //   linkUrl: '/models/jaecoo-j7',
+    //   type: 'video',
+    //   buttonText: 'DESCUBRE MÁS',
+    //   imgUrl: 'images/index/banner_1-1.webp',
+    //   imgUrlMobile: 'images/index/banner_1-1_mb.webp',
+    //   videoUrl: 'videos/index/omoda-jaecoo_web.mp4',
+    //   videoUrlMobile: 'videos/index/omoda-jaecoo-long-distance-challenge_web_v03.mp4',
+    //   autoplayDelay: 105000,
+    // },
   ]
 
   const videoBanner = ref({
@@ -439,7 +439,7 @@
   }
 
   .home-banner-price-discount__old {
-    font-size: 0.48rem;
+    font-size: 0.38rem;
   }
 }
 </style>
